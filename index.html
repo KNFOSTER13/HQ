@@ -4,104 +4,115 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>K — Links</title>
-
   <!-- Fonts: DM Sans Bold 700 -->
   <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@700&display=swap" rel="stylesheet">
-
   <style>
-    body{
-      margin:0;
-      font-family:"DM Sans", system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
-      background:#B4A7FA;
-      color:#000;
-      display:flex;
-      align-items:center;
-      justify-content:center;
-      min-height:100vh;
-      font-size:1.75rem;
-      letter-spacing:1.5px;
+    body {
+      margin: 0;
+      font-family: "DM Sans", system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+      background: #B4A7FA;
+      color: #000;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+      font-size: 1.75rem;
+      letter-spacing: 1.5px;
     }
-
-    .wrap{
-      background:#fff;
-      border-radius:20px;
-      padding:32px 24px;
-      max-width:500px;
-      width:100%;
-      text-align:center;
-      box-shadow:0 8px 24px rgba(0,0,0,0.25);
+    
+    .wrap {
+      background: #fff;
+      border-radius: 20px;
+      padding: 32px 24px;
+      max-width: 500px;
+      width: 100%;
+      text-align: center;
+      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.15);
     }
-
-    .logo{
-      width:84px;
-      height:auto;
-      margin-bottom:16px;
+    
+    .logo {
+      width: 84px;
+      height: auto;
+      margin-bottom: 16px;
     }
-
-    hr{
-      border:0;
-      height:1px;
-      background:rgba(0,0,0,.15);
-      margin:16px 0;
+    
+    hr {
+      border: 0;
+      height: 1px;
+      background: rgba(0, 0, 0, 0.15);
+      margin: 16px 0;
     }
-
-    ul.links{
-      list-style:none;
-      padding:0;
-      margin:0;
-      display:grid;
-      gap:20px;
+    
+    ul.links {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      display: grid;
+      gap: 16px;
     }
-
-    .links a{
-      text-decoration:none;
-      color:#000;
-      font-weight:700;
-      text-transform:lowercase;
-      letter-spacing:2px;
-      position:relative;
-      transition: color 0.3s ease, transform 0.3s ease;
+    
+    .links a {
+      text-decoration: none;
+      color: #000;
+      font-weight: 700;
+      text-transform: lowercase;
+      letter-spacing: 2px;
+      position: relative;
+      display: block;
+      padding: 8px 0;
+      transition: color 0.2s ease;
     }
-
-    .links a::after{
-      content:"";
-      position:absolute;
-      left:0;
-      bottom:-4px;
-      width:0%;
-      height:3px;
-      background:#c35ff6;
-      transition: width 0.3s ease;
+    
+    .links a::after {
+      content: "";
+      position: absolute;
+      left: 50%;
+      bottom: 4px;
+      width: 0%;
+      height: 2px;
+      background: #c35ff6;
+      transition: all 0.2s ease;
+      transform: translateX(-50%);
     }
-
+    
     .links a:hover,
-    .links a:focus-visible{
-      color:#c35ff6;
-      transform: translateY(-2px) scale(1.05);
-      outline:none;
+    .links a:focus-visible {
+      color: #c35ff6;
+      outline: none;
     }
-
+    
     .links a:hover::after,
-    .links a:focus-visible::after{
-      width:100%;
+    .links a:focus-visible::after {
+      width: 100%;
     }
-
-    footer{
-      margin-top:16px;
-      font-size:1.1rem;
-      color:rgba(0,0,0,.85);
-      letter-spacing:1px;
+    
+    footer {
+      margin-top: 16px;
+      font-size: 1.1rem;
+      color: rgba(0, 0, 0, 0.85);
+      letter-spacing: 1px;
     }
-
-    .page-star{
-      position:fixed;
-      bottom:20px;
-      right:20px;
-      font-size:2rem;
-      color:#fff;
-      opacity:0.9;
-      user-select:none;
-      pointer-events:none;
+    
+    .page-star {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      font-size: 2rem;
+      color: #fff;
+      opacity: 0.9;
+      user-select: none;
+      pointer-events: none;
+    }
+    
+    /* Responsive */
+    @media (max-width: 600px) {
+      body { 
+        font-size: 1.5rem; 
+        padding: 20px;
+      }
+      .wrap { 
+        padding: 28px 20px; 
+      }
     }
   </style>
 </head>
@@ -109,11 +120,10 @@
   <main class="wrap">
     <img
       class="logo"
-      src="https://github.com/KNFOSTER13/HQ/blob/main/KNF-PURPLE-HEART-LOGO.png"
+      src="https://knfoster13.github.io/HQ/KNF-PURPLE-HEART-LOGO.png"
       alt="K heart logo"
     />
     <hr />
-
     <ul class="links">
       <li><a href="#">my first app</a></li>
       <li><a href="#">another great app</a></li>
@@ -123,13 +133,10 @@
       <li><a href="#">utility app</a></li>
       <li><a href="#">learning platform</a></li>
     </ul>
-
     <hr />
-    <footer>© <span id="yr"></span> KIMBERLY NICOLE FOSTER</footer>
+    <footer>✨ <span id="yr"></span> KIMBERLY NICOLE FOSTER</footer>
   </main>
-
   <div class="page-star">✦</div>
-
   <script>
     document.getElementById("yr").textContent = new Date().getFullYear();
   </script>
