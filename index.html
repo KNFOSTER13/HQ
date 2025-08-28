@@ -3,11 +3,10 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>KIMBERLY'S APPS</title>
+  <title>K — Links</title>
 
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@200;400&display=swap" rel="stylesheet">
+  <!-- Fonts: DM Sans Bold 700 -->
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@700&display=swap" rel="stylesheet">
 
   <style>
     body{
@@ -20,7 +19,7 @@
       justify-content:center;
       min-height:100vh;
       font-size:1.75rem;
-      letter-spacing:2px;
+      letter-spacing:1.5px;
     }
 
     .wrap{
@@ -57,19 +56,40 @@
     .links a{
       text-decoration:none;
       color:#000;
-      font-weight:200;
-      letter-spacing:3px;
-      transition:color 0.2s ease;
+      font-weight:700;
+      text-transform:lowercase;
+      letter-spacing:2px;
+      position:relative;
+      transition: color 0.3s ease, transform 0.3s ease;
     }
 
-    .links a:hover{
-      color:#cc77f7;
+    .links a::after{
+      content:"";
+      position:absolute;
+      left:0;
+      bottom:-4px;
+      width:0%;
+      height:3px;
+      background:#c35ff6;
+      transition: width 0.3s ease;
+    }
+
+    .links a:hover,
+    .links a:focus-visible{
+      color:#c35ff6;
+      transform: translateY(-2px) scale(1.05);
+      outline:none;
+    }
+
+    .links a:hover::after,
+    .links a:focus-visible::after{
+      width:100%;
     }
 
     footer{
       margin-top:16px;
       font-size:1.1rem;
-      color:rgba(0,0,0,.75);
+      color:rgba(0,0,0,.85);
       letter-spacing:1px;
     }
 
@@ -79,7 +99,9 @@
       right:20px;
       font-size:2rem;
       color:#fff;
-      opacity:0.8;
+      opacity:0.9;
+      user-select:none;
+      pointer-events:none;
     }
   </style>
 </head>
@@ -87,19 +109,19 @@
   <main class="wrap">
     <img
       class="logo"
-      src="KNF-PURPLE-HEART-LOGO.png"
+      src="https://github.com/KNFOSTER13/HQ/blob/main/KNF-PURPLE-HEART-LOGO.png"
       alt="K heart logo"
     />
     <hr />
 
     <ul class="links">
-      <li><a href="#">MY FIRST APP</a></li>
-      <li><a href="#">ANOTHER GREAT APP</a></li>
-      <li><a href="#">PRODUCTIVITY TOOL</a></li>
-      <li><a href="#">CREATIVE STUDIO</a></li>
-      <li><a href="#">GAMING HUB</a></li>
-      <li><a href="#">UTILITY APP</a></li>
-      <li><a href="#">LEARNING PLATFORM</a></li>
+      <li><a href="#">my first app</a></li>
+      <li><a href="#">another great app</a></li>
+      <li><a href="#">productivity tool</a></li>
+      <li><a href="#">creative studio</a></li>
+      <li><a href="#">gaming hub</a></li>
+      <li><a href="#">utility app</a></li>
+      <li><a href="#">learning platform</a></li>
     </ul>
 
     <hr />
