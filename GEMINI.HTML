@@ -1,0 +1,620 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kimberly's AI Focus</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary1: #6204BF;
+            --primary2: #B272F2;
+            --primary3: #9781ED;
+            --primary4: #5D04D9;
+            --primary5: #914BF2;
+            --bg-dark: #202124;
+            --bg-darker: #16171a;
+            --border: rgba(255, 255, 255, 0.1);
+            --text: #fff;
+            --text-muted: rgba(255, 255, 255, 0.6);
+        }
+
+        body {
+            background-color: var(--bg-dark);
+            color: var(--text);
+            font-family: 'DM Sans', sans-serif;
+        }
+
+        .btn-focus {
+            background: linear-gradient(135deg, var(--primary3), var(--primary5));
+            box-shadow: 0 0 20px rgba(151, 129, 237, 0.3);
+            transition: all 0.3s ease;
+        }
+
+        .btn-focus:hover:not(:disabled) {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 24px rgba(151, 129, 237, 0.4);
+        }
+
+        .btn-add {
+            background: linear-gradient(135deg, var(--primary3), var(--primary5));
+            box-shadow: 0 4px 20px rgba(151, 129, 237, 0.3);
+            transition: all 0.3s ease;
+        }
+        .btn-add:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 30px rgba(151, 129, 237, 0.5);
+        }
+
+        .task-input:focus {
+            border-color: var(--primary3);
+            box-shadow: 0 0 30px rgba(151, 129, 237, 0.3), inset 0 0 10px rgba(151, 129, 237, 0.1);
+            background: rgba(151, 129, 237, 0.05);
+        }
+        
+        .task-item:hover {
+            background: rgba(151, 129, 237, 0.05);
+            border-color: rgba(151, 129, 237, 0.3);
+            transform: translateX(5px);
+        }
+
+        .task-item .task-actions {
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+        .task-item:hover .task-actions, .task-item.loading .task-actions {
+            opacity: 1;
+        }
+
+        @keyframes spin { to { transform: rotate(360deg); } }
+        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+        @keyframes slideUp { from { transform: translateY(50px); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
+        @keyframes sparkle {
+            0%, 100% { transform: scale(1) rotate(0deg); opacity: 0.7; }
+            50% { transform: scale(1.2) rotate(15deg); opacity: 1; }
+        }
+        .animate-spin { animation: spin 1s linear infinite; }
+        .animate-fadeIn { animation: fadeIn 0.3s ease-out; }
+        .animate-slideUp { animation: slideUp 0.3s ease-out; }
+        .animate-sparkle { animation: sparkle 2s ease-in-out infinite; }
+
+        .hidden { display: none; }
+    </style>
+</head>
+<body class="min-h-screen">
+
+    <div id="app-container">
+        <!-- Header -->
+        <header class="sticky top-0 z-10 border-b border-[--border] bg-[rgba(32,33,36,0.8)] backdrop-blur-xl">
+            <div class="max-w-6xl mx-auto flex items-center justify-between flex-wrap gap-4 p-4">
+                <h1 class="text-3xl font-medium text-shadow flex items-center gap-2" style="text-shadow: 0 0 20px rgba(151, 129, 237, 0.5);">
+                    <i data-lucide="sparkles" class="text-[--primary2]"></i>
+                    Kimberly's AI Focus
+                </h1>
+                <button id="start-focus-btn" class="btn-focus px-6 py-2.5 rounded-full text-white font-semibold text-base disabled:opacity-50 disabled:cursor-not-allowed">
+                    Focus Mode
+                </button>
+            </div>
+        </header>
+
+        <!-- Main Content -->
+        <main id="main-content" class="max-w-6xl mx-auto p-8">
+            <!-- Hero Section -->
+            <div id="hero-section" class="text-center py-16">
+                <h2 class="text-6xl font-light leading-tight mb-4" style="background: linear-gradient(135deg, var(--primary2), var(--primary3)); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">
+                    AI-Powered Task Breakdown
+                </h2>
+                <p class="text-xl text-[--text-muted] mb-12">Turn overwhelming goals into tiny, doable steps.</p>
+            </div>
+
+            <!-- Add Task Input -->
+            <div class="mb-12 flex gap-4">
+                <input id="new-task-input" type="text" placeholder="What do you want to achieve?" class="task-input flex-1 p-4 rounded-xl bg-[--bg-darker] border-2 border-[rgba(151,129,237,0.2)] text-lg transition-all duration-300 outline-none">
+                <button id="add-task-btn" class="btn-add px-8 py-4 rounded-xl text-white font-semibold text-lg">Add Task</button>
+            </div>
+            
+            <!-- API Error Message -->
+            <div id="api-error" class="hidden text-center text-red-500 bg-red-500/10 p-4 rounded-xl border border-red-500/30 mb-8"></div>
+
+            <!-- Task List -->
+            <div id="task-list" class="flex flex-col gap-2"></div>
+
+            <!-- Info Section -->
+            <div id="info-section" class="hidden text-center mt-16 text-[--text-muted] text-base">
+                <p><kbd class="bg-white/10 px-2 py-1 rounded-md font-mono text-sm">+</kbd> Add subtasks manually</p>
+                <p class="my-2"><kbd class="bg-white/10 px-2 py-1 rounded-md font-mono text-sm"><i data-lucide="sparkles" class="w-3 h-3 inline-block align-middle"></i></kbd> Use AI to break down tasks automatically</p>
+                <p>Click <strong>Focus Mode</strong> to work on one small step at a time</p>
+            </div>
+        </main>
+    </div>
+
+    <!-- Focus Mode Overlay -->
+    <div id="focus-mode-overlay" class="hidden fixed inset-0 bg-gradient-to-br from-[--bg-dark] to-[rgba(151,129,237,0.05)] flex items-center justify-center p-8 z-50">
+        <div class="text-center max-w-3xl w-full">
+            <h2 id="focus-task-text" class="text-6xl font-light mb-16 leading-tight" style="text-shadow: 0 0 30px rgba(151, 129, 237, 0.3);"></h2>
+            <div class="flex gap-6 justify-center mb-12">
+                <button id="complete-focus-task-btn" class="flex items-center gap-2 px-10 py-4 rounded-full font-semibold text-lg text-white" style="background: linear-gradient(135deg, var(--primary3), var(--primary5)); box-shadow: 0 8px 30px rgba(151, 129, 237, 0.4);">
+                    <i data-lucide="check" class="w-5 h-5"></i> Complete
+                </button>
+                <button id="next-focus-task-btn" class="flex items-center gap-2 px-10 py-4 rounded-full font-semibold text-lg text-white bg-transparent border-2 border-[rgba(151,129,237,0.5)]">
+                    <i data-lucide="shuffle" class="w-5 h-5"></i> Next
+                </button>
+            </div>
+            <button id="exit-focus-btn" class="bg-transparent border-none text-[--text-muted] underline underline-offset-4 text-base">Exit Focus Mode</button>
+        </div>
+    </div>
+    
+    <!-- Modals Container -->
+    <div id="modals-container"></div>
+
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // --- STATE MANAGEMENT ---
+            let state = {
+                tasks: [],
+                focusMode: false,
+                currentFocusTask: null,
+                expandedTasks: new Set(),
+                isLoadingAI: {},
+                showSuggestions: {},
+                suggestions: {},
+                apiError: null,
+                showWelcome: true,
+            };
+
+            // --- DOM ELEMENTS ---
+            const taskListContainer = document.getElementById('task-list');
+            const newTaskInput = document.getElementById('new-task-input');
+            const addTaskBtn = document.getElementById('add-task-btn');
+            const startFocusBtn = document.getElementById('start-focus-btn');
+            const focusModeOverlay = document.getElementById('focus-mode-overlay');
+            const focusTaskText = document.getElementById('focus-task-text');
+            const completeFocusTaskBtn = document.getElementById('complete-focus-task-btn');
+            const nextFocusTaskBtn = document.getElementById('next-focus-task-btn');
+            const exitFocusBtn = document.getElementById('exit-focus-btn');
+            const heroSection = document.getElementById('hero-section');
+            const infoSection = document.getElementById('info-section');
+            const apiErrorDiv = document.getElementById('api-error');
+            const modalsContainer = document.getElementById('modals-container');
+
+
+            // --- CORE LOGIC ---
+
+            // Generate unique ID
+            const generateId = () => Math.random().toString(36).substr(2, 9);
+
+            // Add new task
+            const addTask = (parentId = null, taskText = '') => {
+                const text = taskText || newTaskInput.value.trim();
+                if (!text) return;
+
+                const newTask = {
+                    id: generateId(),
+                    text: text,
+                    completed: false,
+                    subtasks: []
+                };
+
+                if (parentId) {
+                    const parentTask = findTaskById(state.tasks, parentId);
+                    if (parentTask) {
+                        parentTask.subtasks.push(newTask);
+                        state.expandedTasks.add(parentId);
+                    }
+                } else {
+                    state.tasks.push(newTask);
+                    newTaskInput.value = '';
+                }
+                render();
+            };
+            
+            // Find a task by its ID in the nested structure
+            const findTaskById = (tasks, taskId) => {
+                for (const task of tasks) {
+                    if (task.id === taskId) return task;
+                    if (task.subtasks.length > 0) {
+                        const found = findTaskById(task.subtasks, taskId);
+                        if (found) return found;
+                    }
+                }
+                return null;
+            };
+
+            // Toggle task completion
+            const toggleTask = (taskId) => {
+                const task = findTaskById(state.tasks, taskId);
+                if (task) {
+                    task.completed = !task.completed;
+                }
+                render();
+            };
+
+            // Delete task
+            const deleteTask = (taskId) => {
+                const removeTask = (tasks) => {
+                    return tasks.filter(task => {
+                        if (task.id === taskId) return false;
+                        if (task.subtasks.length > 0) {
+                            task.subtasks = removeTask(task.subtasks);
+                        }
+                        return true;
+                    });
+                };
+                state.tasks = removeTask(state.tasks);
+                render();
+            };
+
+            // Toggle expand/collapse
+            const toggleExpand = (taskId) => {
+                if (state.expandedTasks.has(taskId)) {
+                    state.expandedTasks.delete(taskId);
+                } else {
+                    state.expandedTasks.add(taskId);
+                }
+                render();
+            };
+            
+            // Add suggested subtasks
+            const addSuggestedSubtasks = (parentId, selectedSubtasks) => {
+                const parentTask = findTaskById(state.tasks, parentId);
+                if (!parentTask) return;
+
+                selectedSubtasks.forEach(subtaskText => {
+                    parentTask.subtasks.push({
+                        id: generateId(),
+                        text: subtaskText,
+                        completed: false,
+                        subtasks: []
+                    });
+                });
+
+                state.expandedTasks.add(parentId);
+                state.showSuggestions[parentId] = false;
+                render();
+            };
+
+            // --- GEMINI API INTEGRATION ---
+            const getAISubtasks = async (taskId, taskText) => {
+                state.isLoadingAI[taskId] = true;
+                state.apiError = null;
+                render();
+
+                const systemPrompt = `You are an expert productivity assistant. Your goal is to break down a user's task into small, actionable, and clear subtasks.
+                - Return between 5 and 7 subtasks.
+                - Each subtask should be a clear, concise action item.
+                - The response must be a valid JSON array of strings. For example: ["First step", "Second step", "Third step"]`;
+
+                const userQuery = `Break down this task: "${taskText}"`;
+                const apiKey = ""; // Canvas will provide the key
+                const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-preview-05-20:generateContent?key=${apiKey}`;
+
+                const payload = {
+                    contents: [{ parts: [{ text: userQuery }] }],
+                    systemInstruction: { parts: [{ text: systemPrompt }] },
+                    generationConfig: {
+                        responseMimeType: "application/json",
+                        responseSchema: { type: "ARRAY", items: { type: "STRING" } }
+                    }
+                };
+
+                try {
+                    const response = await fetch(apiUrl, {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify(payload)
+                    });
+
+                    if (!response.ok) throw new Error(`API error: ${response.status}`);
+
+                    const result = await response.json();
+                    if (result.candidates?.[0]?.content?.parts?.[0]?.text) {
+                        const subtasks = JSON.parse(result.candidates[0].content.parts[0].text);
+                        state.suggestions[taskId] = subtasks;
+                        state.showSuggestions[taskId] = true;
+                    } else {
+                        throw new Error("Unexpected API response structure.");
+                    }
+                } catch (error) {
+                    console.error("Error fetching AI subtasks:", error);
+                    state.apiError = "Sorry, the AI is having trouble. Please try again later.";
+                    const genericSteps = [
+                        `Research best practices for ${taskText.toLowerCase()}`,
+                        `Break down "${taskText}" into main components`,
+                        `Gather necessary tools or resources`,
+                        `Create a simple action plan`,
+                        `Start with the easiest part first`,
+                    ];
+                    state.suggestions[taskId] = genericSteps;
+                    state.showSuggestions[taskId] = true;
+                } finally {
+                    state.isLoadingAI[taskId] = false;
+                    render();
+                }
+            };
+
+            // --- FOCUS MODE ---
+            const getLeafTasks = (taskList = state.tasks) => {
+                let leafTasks = [];
+                taskList.forEach(task => {
+                    if (!task.completed) {
+                        if (task.subtasks.length === 0) {
+                            leafTasks.push(task);
+                        } else {
+                            leafTasks = [...leafTasks, ...getLeafTasks(task.subtasks)];
+                        }
+                    }
+                });
+                return leafTasks;
+            };
+
+            const startFocusMode = () => {
+                const leafTasks = getLeafTasks();
+                if (leafTasks.length > 0) {
+                    state.currentFocusTask = leafTasks[Math.floor(Math.random() * leafTasks.length)];
+                    state.focusMode = true;
+                    render();
+                }
+            };
+
+            const nextTask = () => {
+                const leafTasks = getLeafTasks();
+                if (leafTasks.length > 0) {
+                    const availableTasks = leafTasks.filter(task => task.id !== state.currentFocusTask?.id);
+                    if (availableTasks.length > 0) {
+                        state.currentFocusTask = availableTasks[Math.floor(Math.random() * availableTasks.length)];
+                    } else {
+                        state.currentFocusTask = leafTasks[0];
+                    }
+                } else {
+                    state.focusMode = false;
+                    state.currentFocusTask = null;
+                }
+                render();
+            };
+
+            const completeFocusTask = () => {
+                if (state.currentFocusTask) {
+                    toggleTask(state.currentFocusTask.id); // This will call render
+                    nextTask(); // This will also call render
+                }
+            };
+
+            // --- RENDERING ---
+            const renderTask = (task, depth = 0) => {
+                const isExpanded = state.expandedTasks.has(task.id);
+                const hasSubtasks = task.subtasks.length > 0;
+
+                const taskContainer = document.createElement('div');
+                taskContainer.className = 'mb-2';
+                
+                let subtasksHtml = '';
+                if (isExpanded && hasSubtasks) {
+                    subtasksHtml = `<div class="mt-2">${task.subtasks.map(subtask => renderTask(subtask, depth + 1)).join('')}</div>`;
+                }
+
+                const actionButtons = `
+                    ${!hasSubtasks ? `
+                        <button data-action="add-manual" data-id="${task.id}" data-text="${task.text}" title="Add subtask manually" class="action-btn w-8 h-8 flex items-center justify-center bg-white/5 border border-white/10 rounded-lg text-white/60 hover:bg-[--primary3]/20 hover:border-[--primary3]/50 hover:text-white transition-all">
+                            <i data-lucide="plus" class="w-4 h-4"></i>
+                        </button>
+                        <button data-action="ai-breakdown" data-id="${task.id}" data-text="${task.text}" title="Break down with AI" class="action-btn w-auto px-3 h-8 flex items-center gap-1.5 bg-white/5 border border-white/10 rounded-lg text-white/60 hover:bg-[--primary3]/20 hover:border-[--primary3]/50 hover:text-white transition-all disabled:opacity-50 disabled:cursor-not-allowed" ${state.isLoadingAI[task.id] ? 'disabled' : ''}>
+                            ${state.isLoadingAI[task.id] ? `
+                                <div class="w-4 h-4 border-2 border-[--primary3] border-t-transparent rounded-full animate-spin"></div>
+                                <span class="text-xs">Thinking...</span>
+                            ` : `
+                                <i data-lucide="sparkles" class="w-4 h-4 text-[--primary3]"></i>
+                                <span class="text-xs">Break down</span>
+                            `}
+                        </button>
+                    ` : `
+                        <button data-action="expand" data-id="${task.id}" title="Toggle subtasks" class="action-btn w-8 h-8 flex items-center justify-center bg-white/5 border border-white/10 rounded-lg text-white/60 hover:bg-[--primary3]/20 hover:border-[--primary3]/50 hover:text-white transition-all">
+                            <i data-lucide="${isExpanded ? 'chevron-down' : 'chevron-right'}" class="w-4 h-4"></i>
+                        </button>
+                    `}
+                    <button data-action="delete" data-id="${task.id}" title="Delete task" class="action-btn w-8 h-8 flex items-center justify-center bg-white/5 border border-white/10 rounded-lg text-white/60 hover:bg-red-500/20 hover:border-red-500/50 hover:text-red-400 transition-all">
+                        <i data-lucide="x" class="w-4 h-4"></i>
+                    </button>
+                `;
+
+                taskContainer.innerHTML = `
+                    <div class="task-item flex items-center p-4 bg-white/5 border border-white/10 rounded-xl transition-all duration-300 ${task.completed ? 'opacity-50' : ''} ${state.isLoadingAI[task.id] ? 'loading' : ''}" style="margin-left: ${depth * 24}px;">
+                        <button data-action="toggle" data-id="${task.id}" class="w-6 h-6 border-2 border-[--primary3]/50 rounded-md flex-shrink-0 mr-4 flex items-center justify-center cursor-pointer hover:border-[--primary3] hover:bg-[--primary3]/10 transition-all">
+                            ${task.completed ? `<i data-lucide="check" class="w-4 h-4 text-[--primary3]"></i>` : ''}
+                        </button>
+                        <span class="flex-1 ${task.completed ? 'line-through text-white/40' : ''}">${task.text}</span>
+                        <div class="task-actions flex items-center gap-2 ml-4">
+                            ${actionButtons}
+                        </div>
+                    </div>
+                    ${subtasksHtml}
+                `;
+
+                return taskContainer.innerHTML;
+            };
+            
+            const renderModals = () => {
+                modalsContainer.innerHTML = ''; // Clear previous modals
+
+                // Welcome Modal
+                if (state.showWelcome && state.tasks.length === 0) {
+                     modalsContainer.innerHTML += `
+                        <div id="welcome-modal" class="fixed inset-0 bg-black/80 flex items-center justify-center z-[100] p-8 animate-fadeIn">
+                            <div class="bg-gradient-to-br from-[--bg-darker] to-[rgba(151,129,237,0.05)] rounded-2xl p-12 max-w-2xl w-full border border-[--primary3] shadow-2xl shadow-[--primary3]/30 animate-slideUp text-center">
+                                <div class="text-6xl mb-4 animate-sparkle">✨</div>
+                                <h2 class="text-3xl mb-4 text-[--primary2] font-medium">Welcome to Kimberly's AI Focus</h2>
+                                <p class="text-[--text] mb-8 text-lg leading-relaxed">Break down any goal into tiny, actionable steps. Use AI suggestions or add your own. The magic is in making tasks so small they're impossible to procrastinate on.</p>
+                                <div class="text-left bg-white/5 rounded-xl p-6 mb-8">
+                                    <h3 class="text-[--primary3] mb-4 text-lg">How it works:</h3>
+                                    <ol class="list-none p-0 flex flex-col gap-3">
+                                        <li class="flex items-start gap-3"><span class="text-[--primary3] font-bold">1.</span><span>Type any goal, dream, or project</span></li>
+                                        <li class="flex items-start gap-3"><span class="text-[--primary3] font-bold">2.</span><span>AI instantly breaks it down OR add steps manually</span></li>
+                                        <li class="flex items-start gap-3"><span class="text-[--primary3] font-bold">3.</span><span>Keep breaking down until tasks are tiny</span></li>
+                                        <li class="flex items-start gap-3"><span class="text-[--primary3] font-bold">4.</span><span>Focus Mode helps you tackle one step at a time</span></li>
+                                    </ol>
+                                </div>
+                                <button id="close-welcome-btn" class="px-12 py-4 rounded-full text-white text-lg font-semibold transition-all" style="background: linear-gradient(135deg, var(--primary3), var(--primary5)); box-shadow: 0 8px 30px rgba(151, 129, 237, 0.4);">Let's Get Started</button>
+                            </div>
+                        </div>
+                    `;
+                }
+
+                // Suggestions Modal
+                Object.entries(state.showSuggestions).forEach(([taskId, show]) => {
+                    if (!show || !state.suggestions[taskId]) return;
+                    const task = findTaskById(state.tasks, taskId);
+                    if (!task) return;
+
+                    modalsContainer.innerHTML += `
+                        <div data-modal-id="${taskId}" class="suggestions-modal fixed inset-0 bg-black/80 flex items-center justify-center z-[100] p-8 animate-fadeIn">
+                            <div class="bg-[--bg-darker] rounded-2xl p-8 max-w-2xl w-full max-h-[80vh] overflow-y-auto border border-[--primary3] shadow-2xl shadow-[--primary3]/30 animate-slideUp">
+                                <h3 class="text-2xl mb-4 text-[--primary2] flex items-center gap-2"><i data-lucide="sparkles" class="w-6 h-6"></i>AI broke down: "${task.text}"</h3>
+                                <div class="flex justify-between items-center mb-6">
+                                    <p class="text-[--text-muted]">Uncheck any steps you don't want:</p>
+                                    <button data-action="toggle-all" data-id="${taskId}" class="bg-transparent border border-[--border] rounded-lg px-3 py-1.5 text-sm transition-all hover:bg-white/10">Select All</button>
+                                </div>
+                                <div class="flex flex-col gap-2 mb-6 suggestion-list">
+                                    ${state.suggestions[taskId].map((suggestion, index) => `
+                                        <div data-index="${index}" class="suggestion-item p-4 bg-white/5 border-2 border-transparent rounded-xl cursor-pointer transition-all flex items-center gap-4 selected" style="animation: fadeIn 0.3s ease-out ${index * 0.05}s both;">
+                                            <div class="w-5 h-5 border-2 border-[--primary3] rounded-md flex items-center justify-center bg-[--primary3] transition-all">
+                                                <i data-lucide="check" class="w-3 h-3 text-white"></i>
+                                            </div>
+                                            <span>${suggestion}</span>
+                                        </div>
+                                    `).join('')}
+                                </div>
+                                <div class="flex gap-4 justify-end">
+                                    <button data-action="cancel-suggestions" data-id="${taskId}" class="px-6 py-3 bg-transparent border border-[--border] rounded-lg text-white transition-all hover:bg-white/10">Cancel</button>
+                                    <button data-action="add-suggestions" data-id="${taskId}" class="px-6 py-3 rounded-lg text-white font-semibold transition-all" style="background: linear-gradient(135deg, var(--primary3), var(--primary5));">Add Steps</button>
+                                </div>
+                            </div>
+                        </div>
+                    `;
+                });
+            };
+
+            const render = () => {
+                // Render tasks
+                taskListContainer.innerHTML = state.tasks.map(task => renderTask(task)).join('');
+                
+                // Render modals
+                renderModals();
+
+                // Update UI based on state
+                heroSection.classList.toggle('hidden', state.tasks.length > 0);
+                infoSection.classList.toggle('hidden', state.tasks.length === 0);
+                startFocusBtn.disabled = getLeafTasks().length === 0;
+
+                if (state.apiError) {
+                    apiErrorDiv.textContent = state.apiError;
+                    apiErrorDiv.classList.remove('hidden');
+                } else {
+                    apiErrorDiv.classList.add('hidden');
+                }
+
+                // Focus mode
+                if (state.focusMode && state.currentFocusTask) {
+                    focusTaskText.textContent = state.currentFocusTask.text;
+                    focusModeOverlay.classList.remove('hidden');
+                } else {
+                    focusModeOverlay.classList.add('hidden');
+                }
+
+                // Final step: render icons
+                lucide.createIcons();
+            };
+
+            // --- EVENT LISTENERS ---
+            addTaskBtn.addEventListener('click', () => addTask());
+            newTaskInput.addEventListener('keypress', (e) => {
+                if (e.key === 'Enter') addTask();
+            });
+            
+            startFocusBtn.addEventListener('click', startFocusMode);
+            exitFocusBtn.addEventListener('click', () => {
+                state.focusMode = false;
+                render();
+            });
+            completeFocusTaskBtn.addEventListener('click', completeFocusTask);
+            nextFocusTaskBtn.addEventListener('click', nextTask);
+
+            // Delegated event listener for dynamic content
+            document.body.addEventListener('click', (e) => {
+                const target = e.target.closest('[data-action]');
+                if (!target) return;
+
+                const { action, id, text } = target.dataset;
+
+                switch (action) {
+                    case 'toggle':
+                        toggleTask(id);
+                        break;
+                    case 'delete':
+                        deleteTask(id);
+                        break;
+                    case 'expand':
+                        toggleExpand(id);
+                        break;
+                    case 'add-manual':
+                        const subtaskText = prompt(`Add a subtask for "${text}"`);
+                        if (subtaskText) addTask(id, subtaskText);
+                        break;
+                    case 'ai-breakdown':
+                        getAISubtasks(id, text);
+                        break;
+                    case 'cancel-suggestions':
+                        state.showSuggestions[id] = false;
+                        render();
+                        break;
+                    case 'add-suggestions':
+                        const modal = target.closest('.suggestions-modal');
+                        const selectedItems = modal.querySelectorAll('.suggestion-item.selected');
+                        const selectedSubtasks = Array.from(selectedItems).map(item => state.suggestions[id][item.dataset.index]);
+                        addSuggestedSubtasks(id, selectedSubtasks);
+                        break;
+                    case 'toggle-all':
+                        const suggestionList = document.querySelector(`.suggestions-modal[data-modal-id="${id}"] .suggestion-list`);
+                        const allItems = suggestionList.querySelectorAll('.suggestion-item');
+                        const areAllSelected = Array.from(allItems).every(item => item.classList.contains('selected'));
+                        allItems.forEach(item => {
+                            item.classList.toggle('selected', !areAllSelected);
+                            const checkIcon = item.querySelector('[data-lucide="check"]');
+                            const checkbox = item.querySelector('div:first-child');
+                            checkbox.style.backgroundColor = areAllSelected ? 'transparent' : 'var(--primary3)';
+                            checkIcon.style.display = areAllSelected ? 'none' : 'block';
+                        });
+                        target.textContent = areAllSelected ? 'Select All' : 'Deselect All';
+                        break;
+                }
+            });
+            
+            // Listener for welcome modal close button
+            modalsContainer.addEventListener('click', (e) => {
+                if (e.target.id === 'close-welcome-btn' || e.target.id === 'welcome-modal') {
+                    state.showWelcome = false;
+                    render();
+                }
+            });
+            
+             // Listener for suggestion items
+            modalsContainer.addEventListener('click', (e) => {
+                const item = e.target.closest('.suggestion-item');
+                if (item) {
+                    item.classList.toggle('selected');
+                    const checkIcon = item.querySelector('[data-lucide="check"]');
+                    const checkbox = item.querySelector('div:first-child');
+                    const isSelected = item.classList.contains('selected');
+                    checkbox.style.backgroundColor = isSelected ? 'var(--primary3)' : 'transparent';
+                    checkIcon.style.display = isSelected ? 'block' : 'none';
+                }
+            });
+
+
+            // --- INITIAL RENDER ---
+            render();
+        });
+    </script>
+</body>
+</html>
