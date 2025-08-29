@@ -3,32 +3,72 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Begin Ideation Run</title>
+    <title>Content Mining Checklist - Enhanced</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
     <style>
-        /* --- General & Reset --- */
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
         }
         
+        :root {
+            --bg-primary: #1a1a1a;
+            --bg-secondary: #2a2a2a;
+            --border-color: #444;
+            --text-primary: white;
+            --text-secondary: #ccc;
+            --text-muted: #999;
+            --accent: #8350f3;
+            --accent-hover: #7340e3;
+        }
+        
+        body.light-mode {
+            --bg-primary: #f5f5f5;
+            --bg-secondary: white;
+            --border-color: #ddd;
+            --text-primary: #1a1a1a;
+            --text-secondary: #333;
+            --text-muted: #666;
+            --accent: #6840d3;
+            --accent-hover: #5830c3;
+        }
+        
         body {
             font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-            background: #1a1a1a;
-            color: white;
+            background: var(--bg-primary);
+            color: var(--text-primary);
             min-height: 100vh;
             display: flex;
             align-items: center;
             justify-content: center;
             padding: 20px;
+            transition: background 0.3s, color 0.3s;
         }
         
-        /* --- Layout & Container --- */
         .container {
             max-width: 700px;
             width: 100%;
             text-align: center;
+            position: relative;
+        }
+        
+        .theme-toggle {
+            position: absolute;
+            top: -40px;
+            right: 0;
+            background: var(--bg-secondary);
+            border: 1px solid var(--border-color);
+            color: var(--text-primary);
+            padding: 8px 16px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 0.9em;
+            transition: all 0.3s;
+        }
+        
+        .theme-toggle:hover {
+            border-color: var(--accent);
         }
         
         .page {
@@ -39,12 +79,12 @@
             display: block;
         }
         
-        /* --- Typography --- */
         h1 {
             font-size: 3em;
             margin-bottom: 20px;
             font-weight: 400;
             letter-spacing: -1px;
+            line-height: 1.2;
         }
         
         h2 {
@@ -55,59 +95,85 @@
         
         .subtitle {
             font-size: 1.3em;
-            color: #ccc;
+            color: var(--text-secondary);
             margin-bottom: 30px;
             font-weight: 300;
         }
         
-        /* --- Forms & Inputs --- */
+        .recent-sessions {
+            margin-bottom: 30px;
+            text-align: left;
+        }
+        
+        .recent-sessions-label {
+            font-size: 0.9em;
+            color: var(--text-muted);
+            margin-bottom: 10px;
+        }
+        
+        .session-item {
+            background: var(--bg-secondary);
+            border: 1px solid var(--border-color);
+            padding: 12px 16px;
+            border-radius: 8px;
+            margin-bottom: 8px;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: all 0.2s;
+        }
+        
+        .session-item:hover {
+            border-color: var(--accent);
+        }
+        
+        .session-date {
+            font-size: 0.85em;
+            color: var(--text-muted);
+        }
+        
         .dropdown-container {
             margin-bottom: 40px;
         }
         
-        .category-dropdown, .brand-select {
+        .category-dropdown {
             width: 100%;
             padding: 20px 25px;
-            background: #2a2a2a;
-            border: 1px solid #444;
+            background: var(--bg-secondary);
+            border: 1px solid var(--border-color);
             border-radius: 12px;
-            color: white;
+            color: var(--text-primary);
             font-size: 1.3em;
             font-family: 'Inter', sans-serif;
             cursor: pointer;
             appearance: none;
-            background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='white' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e");
+            background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23999' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e");
             background-repeat: no-repeat;
             background-position: right 20px center;
             background-size: 20px;
             padding-right: 50px;
         }
         
-        .category-dropdown:focus, .brand-select:focus, .paste-area:focus, .notes-area:focus {
+        .category-dropdown:focus {
             outline: none;
-            border-color: #8350f3;
-        }
-        
-        .brand-select {
-            font-size: 1.1em;
-            padding: 15px;
-            margin: 20px 0;
+            border-color: var(--accent);
         }
         
         .paste-label {
             font-size: 1.3em;
             margin-bottom: 20px;
             font-weight: 300;
-            color: #ccc;
+            color: var(--text-secondary);
         }
         
         .paste-area, .notes-area {
             width: 100%;
             min-height: 300px;
             padding: 20px;
-            background: #2a2a2a;
-            border: 1px solid #444;
-            color: white;
+            background: var(--bg-secondary);
+            border: 1px solid var(--border-color);
+            color: var(--text-primary);
             font-size: 1.1em;
             font-family: 'Inter', sans-serif;
             border-radius: 12px;
@@ -115,21 +181,24 @@
             resize: vertical;
         }
         
+        .paste-area:focus, .notes-area:focus {
+            outline: none;
+            border-color: var(--accent);
+        }
+        
         .notes-area {
             min-height: 150px;
-            font-size: 1em;
             margin: 20px 0;
         }
         
-        /* --- Buttons --- */
         .start-btn, .primary-btn {
-            background: #8350f3;
+            background: var(--accent);
             border: none;
             color: white;
             padding: 20px 60px;
             font-size: 1.3em;
             cursor: pointer;
-            border-radius: 8px;
+            border-radius: 12px;
             width: 100%;
             font-family: 'Inter', sans-serif;
             font-weight: 500;
@@ -140,121 +209,53 @@
             margin-top: 20px;
         }
         
-        .start-btn:hover:not(:disabled), .primary-btn:hover {
-            background: #7340e3;
+        .start-btn:hover:not(:disabled), .primary-btn:hover:not(:disabled) {
+            background: var(--accent-hover);
         }
         
-        .start-btn:disabled {
-            background: #444;
+        .start-btn:disabled, .primary-btn:disabled {
+            background: var(--border-color);
             cursor: not-allowed;
         }
         
-        .format-btn {
-            background: transparent;
-            border: 1px solid #666;
-            color: white;
-            padding: 8px 16px;
-            font-size: 0.9em;
-            cursor: pointer;
-            border-radius: 6px;
-            transition: all 0.2s;
+        .task-text {
+            font-size: 1.8em;
+            line-height: 1.5;
+            margin-bottom: 40px;
         }
         
-        .format-btn:hover {
-            border-color: #8350f3;
-            color: #8350f3;
-        }
-        
-        .format-btn.selected {
-            background: #8350f3;
-            border-color: #8350f3;
-        }
-        
-        .nav-btn {
-            background: transparent;
-            border: 1px solid #666;
-            color: white;
-            padding: 15px 40px;
-            font-size: 1.1em;
-            cursor: pointer;
-            transition: all 0.2s;
-            font-family: 'Inter', sans-serif;
-        }
-        
-        .nav-btn:hover:not(:disabled) {
-            background: #2a2a2a;
-            border-color: #8350f3;
-        }
-        
-        .nav-btn:disabled {
-            opacity: 0.3;
-            cursor: not-allowed;
-        }
-        
-        /* --- Component Styles --- */
-        .format-grid {
-            display: grid;
-            gap: 15px;
-            margin: 20px 0;
-            text-align: left;
-        }
-        
-        .format-category {
-            background: #2a2a2a;
-            padding: 20px;
-            border-radius: 8px;
-            border: 1px solid #444;
-        }
-        
-        .format-category h3 {
-            color: #8350f3;
-            font-size: 1.1em;
-            margin-bottom: 15px;
-        }
-        
-        .format-options {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 10px;
-        }
-        
-        .question-display {
-            font-size: 1.4em;
-            margin: 30px 0;
-            padding: 30px;
-            background: #2a2a2a;
-            border-radius: 12px;
-            border: 2px solid #8350f3;
-            line-height: 1.6;
+        .step-text {
+            font-size: 1.2em;
+            color: var(--text-muted);
+            margin-bottom: 20px;
         }
         
         .item-text {
             font-size: 1.4em;
             margin: 30px 0;
             padding: 20px;
-            background: #2a2a2a;
+            background: var(--bg-secondary);
             border-radius: 8px;
+            border: 1px solid var(--border-color);
         }
         
         .location-text {
             font-size: 1.6em;
-            margin-top: 30px;
-            margin-bottom: 10px;
-            color: #8350f3;
-        }
-
-        .instruction-text {
-            font-size: 1.1em;
-            color: #ccc;
-            margin-bottom: 30px;
-            min-height: 2em; /* Reserve space to prevent layout shift */
+            margin: 30px 0;
+            color: var(--accent);
         }
         
         .note-reminder {
             font-size: 1em;
-            color: #999;
+            color: var(--text-muted);
             margin-top: 40px;
             font-style: italic;
+        }
+        
+        .instruction-text {
+            font-size: 0.9em;
+            color: var(--text-muted);
+            margin-top: 10px;
         }
         
         .nav-section {
@@ -264,32 +265,242 @@
             margin-top: 30px;
         }
         
+        .nav-btn {
+            background: transparent;
+            border: 1px solid var(--border-color);
+            color: var(--text-primary);
+            padding: 15px 40px;
+            font-size: 1.1em;
+            cursor: pointer;
+            transition: all 0.2s;
+            font-family: 'Inter', sans-serif;
+            border-radius: 12px;
+        }
+        
+        .nav-btn:hover:not(:disabled) {
+            background: var(--bg-secondary);
+            border-color: var(--accent);
+        }
+        
+        .nav-btn:disabled {
+            opacity: 0.3;
+            cursor: not-allowed;
+        }
+        
         .arrow {
             font-size: 1.5em;
         }
         
         .counter {
-            color: #666;
+            color: var(--text-muted);
             font-size: 0.9em;
             margin-top: 40px;
         }
         
-        .phase-indicator {
-            font-size: 1em;
-            color: #888;
-            margin-bottom: 30px;
-            text-transform: uppercase;
-            letter-spacing: 2px;
+        .timer-section {
+            margin-top: 20px;
+            padding: 15px;
+            background: var(--bg-secondary);
+            border-radius: 8px;
+            border: 1px solid var(--border-color);
         }
         
-        /* --- Final Summary --- */
+        .timer {
+            font-size: 1.2em;
+            font-weight: 500;
+            color: var(--accent);
+        }
+        
+        .timer-controls {
+            margin-top: 10px;
+            display: flex;
+            gap: 10px;
+            justify-content: center;
+        }
+        
+        .timer-btn {
+            background: var(--accent);
+            border: none;
+            color: white;
+            padding: 8px 16px;
+            font-size: 0.9em;
+            cursor: pointer;
+            border-radius: 6px;
+            font-family: 'Inter', sans-serif;
+        }
+        
+        .timer-btn:hover {
+            background: var(--accent-hover);
+        }
+        
+        .keyboard-hint {
+            position: fixed;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: var(--bg-secondary);
+            padding: 10px 20px;
+            border-radius: 8px;
+            border: 1px solid var(--border-color);
+            font-size: 0.85em;
+            color: var(--text-muted);
+            display: flex;
+            gap: 20px;
+        }
+        
+        .key {
+            background: var(--bg-primary);
+            padding: 4px 8px;
+            border-radius: 4px;
+            border: 1px solid var(--border-color);
+            font-family: monospace;
+        }
+        
+        .progress-bar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: var(--bg-secondary);
+        }
+        
+        .progress-fill {
+            height: 100%;
+            background: var(--accent);
+            width: 0%;
+            transition: width 0.3s;
+        }
+        
+        .source-preset-section {
+            margin-bottom: 20px;
+            text-align: left;
+        }
+        
+        .preset-label {
+            font-size: 0.9em;
+            color: var(--text-muted);
+            margin-bottom: 10px;
+        }
+        
+        .preset-chips {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+        
+        .preset-chip {
+            background: var(--bg-secondary);
+            border: 1px solid var(--border-color);
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-size: 0.9em;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+        
+        .preset-chip:hover {
+            border-color: var(--accent);
+        }
+        
+        .preset-chip.active {
+            background: var(--accent);
+            color: white;
+            border-color: var(--accent);
+        }
+        
+        .skip-source-btn {
+            background: transparent;
+            border: 1px solid var(--border-color);
+            color: var(--text-muted);
+            padding: 8px 16px;
+            font-size: 0.9em;
+            cursor: pointer;
+            border-radius: 6px;
+            margin-top: 15px;
+            transition: all 0.2s;
+        }
+        
+        .skip-source-btn:hover {
+            border-color: var(--accent);
+            color: var(--text-primary);
+        }
+        
+        .autosave-indicator {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            padding: 8px 16px;
+            background: var(--bg-secondary);
+            border-radius: 6px;
+            font-size: 0.85em;
+            color: var(--text-muted);
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+        
+        .autosave-indicator.show {
+            opacity: 1;
+        }
+        
+        /* Remaining styles from original... */
         .done-text {
             font-size: 2em;
             margin: 40px 0;
         }
         
+        .phase-indicator {
+            font-size: 1em;
+            color: var(--text-muted);
+            margin-bottom: 30px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+        
+        .question-display {
+            font-size: 1.4em;
+            margin: 30px 0;
+            padding: 30px;
+            background: var(--bg-secondary);
+            border-radius: 12px;
+            border: 2px solid var(--accent);
+            line-height: 1.6;
+        }
+        
+        .choice-btn {
+            background: var(--bg-secondary);
+            border: 2px solid var(--border-color);
+            color: var(--text-primary);
+            padding: 30px;
+            font-size: 1.1em;
+            cursor: pointer;
+            border-radius: 12px;
+            transition: all 0.2s;
+            text-align: left;
+            width: 100%;
+            margin: 15px 0;
+        }
+        
+        .choice-btn:hover {
+            border-color: var(--accent);
+            background: var(--bg-primary);
+        }
+        
+        .choice-title {
+            font-size: 1.3em;
+            font-weight: 500;
+            margin-bottom: 10px;
+            color: var(--accent);
+        }
+        
+        .choice-desc {
+            font-size: 0.95em;
+            color: var(--text-secondary);
+            line-height: 1.5;
+        }
+        
         .final-summary {
-            background: #2a2a2a;
+            background: var(--bg-secondary);
             padding: 30px;
             border-radius: 12px;
             margin: 20px 0;
@@ -299,7 +510,7 @@
         .summary-item {
             margin: 15px 0;
             padding: 15px 0;
-            border-bottom: 1px solid #444;
+            border-bottom: 1px solid var(--border-color);
         }
         
         .summary-item:last-child {
@@ -307,22 +518,249 @@
         }
         
         .summary-label {
-            color: #8350f3;
+            color: var(--accent);
             font-size: 0.9em;
             text-transform: uppercase;
             letter-spacing: 1px;
             margin-bottom: 5px;
         }
+        
+        .copy-btn {
+            background: var(--accent);
+            border: none;
+            color: white;
+            padding: 12px 30px;
+            font-size: 1em;
+            cursor: pointer;
+            border-radius: 8px;
+            font-family: 'Inter', sans-serif;
+            margin-top: 20px;
+        }
+        
+        .copy-btn:hover {
+            background: var(--accent-hover);
+        }
+        
+        /* AI Expansion Styles */
+        .ai-panel {
+            background: var(--bg-secondary);
+            border: 2px solid var(--accent);
+            border-radius: 12px;
+            padding: 20px;
+            margin-top: 20px;
+            display: none;
+        }
+        
+        .ai-panel.active {
+            display: block;
+        }
+        
+        .ai-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+        
+        .ai-title {
+            color: var(--accent);
+            font-size: 1.1em;
+            font-weight: 500;
+        }
+        
+        .close-ai {
+            background: none;
+            border: none;
+            color: var(--text-muted);
+            font-size: 1.5em;
+            cursor: pointer;
+            padding: 0;
+            width: 30px;
+            height: 30px;
+        }
+        
+        .close-ai:hover {
+            color: var(--text-primary);
+        }
+        
+        .ai-content {
+            margin: 15px 0;
+        }
+        
+        .ai-loading {
+            text-align: center;
+            padding: 30px;
+            color: var(--text-muted);
+        }
+        
+        .ai-suggestions {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+        
+        .ai-suggestion {
+            background: var(--bg-primary);
+            padding: 15px;
+            border-radius: 8px;
+            border: 1px solid var(--border-color);
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+        
+        .ai-suggestion:hover {
+            border-color: var(--accent);
+        }
+        
+        .ai-suggestion-title {
+            color: var(--accent);
+            font-size: 0.9em;
+            font-weight: 500;
+            margin-bottom: 8px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        
+        .ai-suggestion-text {
+            color: var(--text-primary);
+            line-height: 1.5;
+        }
+        
+        .expand-btn {
+            background: transparent;
+            border: 1px solid var(--accent);
+            color: var(--accent);
+            padding: 6px 12px;
+            font-size: 0.85em;
+            cursor: pointer;
+            border-radius: 6px;
+            margin-top: 10px;
+            transition: all 0.2s;
+        }
+        
+        .expand-btn:hover {
+            background: var(--accent);
+            color: white;
+        }
+        
+        .ai-actions {
+            display: flex;
+            gap: 10px;
+            margin-top: 15px;
+        }
+        
+        .ai-action-btn {
+            background: var(--accent);
+            border: none;
+            color: white;
+            padding: 10px 20px;
+            font-size: 0.9em;
+            cursor: pointer;
+            border-radius: 8px;
+            font-family: 'Inter', sans-serif;
+            transition: all 0.2s;
+        }
+        
+        .ai-action-btn:hover {
+            background: var(--accent-hover);
+        }
+        
+        .ai-action-btn.secondary {
+            background: transparent;
+            border: 1px solid var(--border-color);
+            color: var(--text-primary);
+        }
+        
+        .ai-action-btn.secondary:hover {
+            border-color: var(--accent);
+        }
+        
+        .note-item {
+            background: var(--bg-primary);
+            padding: 12px;
+            border-radius: 8px;
+            margin-bottom: 10px;
+            border: 1px solid var(--border-color);
+        }
+        
+        .note-text {
+            margin-bottom: 8px;
+        }
+        
+        .spinner {
+            display: inline-block;
+            width: 20px;
+            height: 20px;
+            border: 3px solid var(--border-color);
+            border-top-color: var(--accent);
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+        
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+        
+        .notes-container {
+            max-height: 300px;
+            overflow-y: auto;
+            padding-right: 10px;
+        }
+        
+        .expanded-ideas {
+            margin-top: 15px;
+            padding: 15px;
+            background: var(--bg-primary);
+            border-radius: 8px;
+            border: 1px solid var(--accent);
+        }
+        
+        .expanded-ideas-title {
+            color: var(--accent);
+            font-size: 0.9em;
+            font-weight: 500;
+            margin-bottom: 10px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        
+        .idea-chip {
+            display: inline-block;
+            background: var(--accent);
+            color: white;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 0.85em;
+            margin: 4px;
+        }
     </style>
 </head>
 <body>
+    <div class="progress-bar">
+        <div class="progress-fill" id="progressFill"></div>
+    </div>
+    
+    <div class="autosave-indicator" id="autosaveIndicator">
+        ✓ Saved
+    </div>
+    
     <div class="container">
+        <button class="theme-toggle" onclick="toggleTheme()">🌙 Dark</button>
+        <div style="position: absolute; top: -40px; left: 0; background: var(--accent); color: white; padding: 4px 12px; border-radius: 20px; font-size: 0.75em;">Demo Version</div>
+        
         <!-- Start Page -->
         <div class="page active" id="startPage">
-            <h1>Begin Ideation Run</h1>
+            <h1>Begin<br>Ideation<br>Run</h1>
+            
+            <div class="recent-sessions" id="recentSessions" style="display: none;">
+                <div class="recent-sessions-label">Recent Sessions</div>
+                <div id="sessionsList"></div>
+            </div>
+            
             <div class="subtitle">Select analysis category:</div>
+            
             <div class="dropdown-container">
-                <select class="category-dropdown" id="categorySelect">
+                <select class="category-dropdown" id="categorySelect" onchange="updatePasteArea()">
                     <option value="keyword">Keyword</option>
                     <option value="theme">Theme</option>
                     <option value="concept">Concept</option>
@@ -330,463 +768,1308 @@
                     <option value="question">Question</option>
                 </select>
             </div>
+            
+            <div class="source-preset-section">
+                <div class="preset-label">Source Presets:</div>
+                <div class="preset-chips">
+                    <div class="preset-chip" onclick="selectPreset('all')">All Sources</div>
+                    <div class="preset-chip" onclick="selectPreset('social')">Social Media</div>
+                    <div class="preset-chip" onclick="selectPreset('reading')">Reading & Notes</div>
+                    <div class="preset-chip" onclick="selectPreset('visual')">Visual Inspiration</div>
+                    <div class="preset-chip" onclick="selectPreset('quick')">Quick Scan (15 sources)</div>
+                </div>
+            </div>
+            
             <div class="paste-label">Paste your list (one item per line):</div>
             <textarea class="paste-area" id="pasteArea" placeholder="paste items here..."></textarea>
-            <button class="start-btn" id="startButton">Start <span class="arrow">▶</span></button>
+            <button class="start-btn" id="startButton" onclick="startIdeationRun()" disabled>
+                Start <span class="arrow">▶</span>
+            </button>
         </div>
         
-        <!-- Format Selection Page -->
-        <div class="page" id="formatSelectPage">
-            <h2>Choose a Content Format</h2>
-            <div class="question-display" id="questionDisplay1"></div>
-            <div class="format-grid">
-                <div class="format-category">
-                    <h3>📝 Text-Based</h3>
-                    <div class="format-options">
-                        <button class="format-btn">Newsletter</button>
-                        <button class="format-btn">Long-form Essay</button>
-                        <button class="format-btn">Listicle</button>
-                        <button class="format-btn">Twitter Thread</button>
-                    </div>
+        <!-- Noun Phrase Selection Page (Questions only) -->
+        <div class="page" id="nounPhrasePage">
+            <h2>What concepts should we search for?</h2>
+            <div class="question-display" id="questionForNouns"></div>
+            
+            <div class="subtitle" style="margin-bottom: 20px;">Pull out the key ideas, themes, and concepts from your question that you want to explore</div>
+            
+            <div class="paste-label">Enter the key noun phrases from your question (one per line):</div>
+            <textarea class="paste-area" id="nounPhraseArea" placeholder="Example:
+visual luxury
+collective desires
+Black women's leisure
+authentic self-expression
+marketable persona
+digital images
+emotional economies
+..." style="min-height: 300px;"></textarea>
+            <button class="primary-btn" id="nounPhraseButton" onclick="proceedWithNounPhrases()" disabled>
+                Continue <span class="arrow">→</span>
+            </button>
+        </div>
+        
+        <!-- Task Page (Phase 1 & 2) -->
+        <div class="page" id="taskPage">
+            <div class="phase-indicator" id="phaseIndicator">Phase 1: Craft Search</div>
+            <div class="step-text" id="stepText">Step 1</div>
+            <div class="task-text" id="taskInstruction">Search for:</div>
+            <div class="item-text" id="currentItem"></div>
+            <div class="location-text" id="searchLocation">in your Craft docs</div>
+            <div class="instruction-text" id="instructionText"></div>
+            
+            <div class="timer-section">
+                <div class="timer" id="timer">Timer: 2:00</div>
+                <div class="timer-controls">
+                    <button class="timer-btn" onclick="startTimer()">Start</button>
+                    <button class="timer-btn" onclick="resetTimer()">Reset</button>
                 </div>
-                <div class="format-category">
-                    <h3>🎨 Visual/Graphic</h3>
-                    <div class="format-options">
-                        <button class="format-btn">Instagram Carousel</button>
-                        <button class="format-btn">Meme</button>
-                        <button class="format-btn">Quote</button>
-                        <button class="format-btn">Gif</button>
-                    </div>
+            </div>
+            
+            <button class="skip-source-btn" onclick="skipCurrentSource()">Skip This Source</button>
+            
+            <div class="note-reminder">Capture any notes (one per line):</div>
+            <textarea class="notes-area" id="searchNotes" placeholder="Write your notes here..."></textarea>
+            <button class="expand-btn" onclick="showAIPanel()" style="width: 100%;">✨ Expand Ideas with AI (Demo)</button>
+            <div class="instruction-text" style="text-align: center; margin-top: 5px;">Get AI-powered suggestions based on your notes</div>
+            
+            <!-- AI Expansion Panel -->
+            <div class="ai-panel" id="aiPanel">
+                <div class="ai-header">
+                    <div class="ai-title">AI Idea Expansion</div>
+                    <button class="close-ai" onclick="hideAIPanel()">×</button>
                 </div>
-                <div class="format-category">
-                    <h3>🎙️ Audio</h3>
-                    <div class="format-options">
-                        <button class="format-btn">Podcast Segment</button>
-                        <button class="format-btn">Audiogram</button>
-                    </div>
-                </div>
-                <div class="format-category">
-                    <h3>🎥 Video</h3>
-                    <div class="format-options">
-                        <button class="format-btn">YouTube Livestream</button>
-                        <button class="format-btn">Recorded Video Essay</button>
-                        <button class="format-btn">TikTok/Reel</button>
+                <div class="ai-content" id="aiContent">
+                    <div class="ai-loading">
+                        <div class="spinner"></div>
+                        <p>Analyzing your notes...</p>
                     </div>
                 </div>
             </div>
-            <button class="primary-btn" id="formatNextBtn" style="display: none;">Next: Assign Brand <span class="arrow">→</span></button>
-        </div>
-        
-        <!-- Brand Selection Page -->
-        <div class="page" id="brandSelectPage">
-            <h2>Assign a Brand</h2>
-            <div class="question-display" id="questionDisplay2"></div>
-            <div class="item-text">Format: <span id="selectedFormatText"></span></div>
-            <select class="brand-select" id="brandSelector">
-                <option value="">Select a brand...</option>
-                <option value="KNF">KNF</option>
-                <option value="For Harriet">For Harriet</option>
-                <option value="The Shallow Side">The Shallow Side</option>
-                <option value="Taste of Kimberly">Taste of Kimberly</option>
-                <option value="Kimberly Has Thoughts">Kimberly Has Thoughts</option>
-                <option value="Making Things is Hard">Making Things is Hard</option>
-            </select>
-            <button class="primary-btn" id="startMiningBtn">Start Mining <span class="arrow">▶</span></button>
-        </div>
-        
-        <!-- Question Mining Task Page -->
-        <div class="page" id="questionTaskPage">
-            <div class="phase-indicator">Mining for Noun Phrases</div>
-            <div class="step-text" id="qStepText"></div>
-            <div class="task-text">Look for:</div>
-            <div class="item-text" id="currentNounPhrase"></div>
-            <div class="location-text">in your knowledge base</div>
-            <div class="instruction-text">Scroll through photos, screenshots, saved memes, notes</div>
-            <div class="note-reminder">Capture any thoughts or inspiration that could answer your question</div>
-            <textarea class="notes-area" id="miningNotes" placeholder="Write your thoughts here..."></textarea>
+            
             <div class="nav-section">
-                <button class="nav-btn" id="qBackBtn"><span class="arrow">←</span></button>
-                <button class="nav-btn" id="qNextBtn"><span class="arrow">→</span></button>
+                <button class="nav-btn" id="backBtn" onclick="previousItem()">
+                    <span class="arrow">←</span>
+                </button>
+                <button class="nav-btn" onclick="nextItem()">
+                    <span class="arrow">→</span>
+                </button>
             </div>
-            <div class="counter" id="qCounter"></div>
+            <div class="counter" id="counter"></div>
+        </div>
+        
+        <!-- Rest of the pages remain the same... -->
+        <!-- Energy Question Page -->
+        <div class="page" id="energyPage">
+            <h2>How's your energy right now?</h2>
+            <button class="choice-btn" onclick="selectEnergy('high')">
+                <div class="choice-title">HIGH Energy / Heavy Lift 💪</div>
+                <div class="choice-desc">I'm ready for deep work and can tackle something substantial</div>
+            </button>
+            <button class="choice-btn" onclick="selectEnergy('medium')">
+                <div class="choice-title">MEDIUM Energy / Mid-Weight ⚡</div>
+                <div class="choice-desc">I can produce solid content without draining my battery</div>
+            </button>
+            <button class="choice-btn" onclick="selectEnergy('low')">
+                <div class="choice-title">LOW Energy / Light Lift 🌱</div>
+                <div class="choice-desc">Quick hit - I need something I can create fast</div>
+            </button>
+        </div>
+        
+        <!-- Time Question Page -->
+        <div class="page" id="timePage">
+            <h2>How much time do you have?</h2>
+            <button class="choice-btn" onclick="selectTime('lots')">
+                <div class="choice-title">2+ Hours 🕐</div>
+                <div class="choice-desc">I have a good block of time for creation</div>
+            </button>
+            <button class="choice-btn" onclick="selectTime('some')">
+                <div class="choice-title">30-90 Minutes ⏰</div>
+                <div class="choice-desc">Standard work session</div>
+            </button>
+            <button class="choice-btn" onclick="selectTime('little')">
+                <div class="choice-title">Under 30 Minutes ⚡</div>
+                <div class="choice-desc">Need to create something quickly</div>
+            </button>
+        </div>
+        
+        <!-- Vibe Question Page -->
+        <div class="page" id="vibePage">
+            <h2>What's your creative vibe today?</h2>
+            <button class="choice-btn" onclick="selectVibe('analytical')">
+                <div class="choice-title">Analytical & Thoughtful 🧠</div>
+                <div class="choice-desc">I want to dig deep and provide insights</div>
+            </button>
+            <button class="choice-btn" onclick="selectVibe('conversational')">
+                <div class="choice-title">Conversational & Relatable 💬</div>
+                <div class="choice-desc">Keep it real and approachable</div>
+            </button>
+            <button class="choice-btn" onclick="selectVibe('creative')">
+                <div class="choice-title">Creative & Playful 🎨</div>
+                <div class="choice-desc">Feeling experimental and fun</div>
+            </button>
+        </div>
+        
+        <!-- Brand Question Page -->
+        <div class="page" id="brandQuestionPage">
+            <h2>Which best describes your content angle?</h2>
+            <div class="question-display" id="questionDisplay"></div>
+            <button class="choice-btn" onclick="selectBrandAngle('cultural')">
+                <div class="choice-title">Cultural Commentary 🎬</div>
+                <div class="choice-desc">Pop culture analysis, media critique, hot takes</div>
+            </button>
+            <button class="choice-btn" onclick="selectBrandAngle('political')">
+                <div class="choice-title">Social & Political 📢</div>
+                <div class="choice-desc">Gender, race, politics, historical context</div>
+            </button>
+            <button class="choice-btn" onclick="selectBrandAngle('aesthetic')">
+                <div class="choice-title">Aesthetic & Trends 💅</div>
+                <div class="choice-desc">Internet culture, visual analysis, style critique</div>
+            </button>
+            <button class="choice-btn" onclick="selectBrandAngle('lifestyle')">
+                <div class="choice-title">Personal Style 👗</div>
+                <div class="choice-desc">Fashion, lifestyle, visual inspiration</div>
+            </button>
+            <button class="choice-btn" onclick="selectBrandAngle('business')">
+                <div class="choice-title">Creator Business 💼</div>
+                <div class="choice-desc">Creator economy, productivity, business insights</div>
+            </button>
         </div>
         
         <!-- Title/Hook Page -->
         <div class="page" id="titlePage">
-            <h2>Write a Working Title/Hook</h2>
-            <div class="question-display" id="questionDisplay3"></div>
-            <div class="paste-label">Draft a compelling headline or the first line you would say on camera:</div>
+            <h2>Create Your Title/Hook</h2>
+            <div class="question-display" id="questionDisplay2"></div>
+            
+            <div class="paste-label">Write a title that answers your question:</div>
             <textarea class="paste-area" id="titleArea" placeholder="Enter your title or hook..." style="min-height: 150px;"></textarea>
+            
             <div class="note-reminder">Your notes from mining:</div>
             <div class="final-summary" id="notesSummary"></div>
-            <button class="primary-btn" id="completeMiningBtn">Complete <span class="arrow">✓</span></button>
-        </div>
-        
-        <!-- Keyword/Theme/etc. Task Page -->
-        <div class="page" id="taskPage">
-            <div class="phase-indicator" id="phaseIndicator"></div>
-            <div class="step-text" id="stepText"></div>
-            <div class="task-text">Search for:</div>
-            <div class="item-text" id="currentItem"></div>
-            <div class="location-text" id="searchLocation"></div>
-            <div class="instruction-text" id="searchInstruction"></div>
-            <div class="note-reminder">Click the arrow to get a new search location</div>
-            <div class="nav-section">
-                <button class="nav-btn" id="backBtn"><span class="arrow">←</span></button>
-                <button class="nav-btn" id="nextBtn"><span class="arrow">→</span></button>
-            </div>
-            <div class="counter" id="counter"></div>
+            
+            <button class="primary-btn" onclick="completeSession()">
+                Complete <span class="arrow">✓</span>
+            </button>
         </div>
         
         <!-- Done Page -->
         <div class="page" id="donePage">
             <div class="done-text">✓ Complete</div>
-            <div class="final-summary" id="finalSummary" style="display: none;">
-                <div class="summary-item">
-                    <div class="summary-label">Question</div>
-                    <div id="finalQuestion"></div>
-                </div>
-                <div class="summary-item">
-                    <div class="summary-label">Format</div>
-                    <div id="finalFormat"></div>
-                </div>
-                <div class="summary-item">
-                    <div class="summary-label">Brand</div>
-                    <div id="finalBrand"></div>
-                </div>
-                <div class="summary-item">
-                    <div class="summary-label">Title/Hook</div>
-                    <div id="finalTitle"></div>
-                </div>
-            </div>
-            <button class="nav-btn" id="restartBtn">Start New Session</button>
+            <div class="final-summary" id="finalSummary"></div>
+            <button class="copy-btn" onclick="copyToClipboard()">Copy All Notes to Clipboard</button>
+            <button class="nav-btn" onclick="restart()">Start New Session</button>
         </div>
     </div>
     
+    <div class="keyboard-hint" id="keyboardHint">
+        <span><span class="key">←</span> Previous</span>
+        <span><span class="key">→</span> Next</span>
+        <span><span class="key">S</span> Skip</span>
+        <span><span class="key">T</span> Timer</span>
+    </div>
+    
     <script>
-        document.addEventListener('DOMContentLoaded', () => {
+        // Note: This version uses simulated AI responses for demonstration
+        // In production, replace simulateAIResponse() with actual Anthropic API calls
+        
+        // All search locations (original array)
+        const allSearchLocations = [
+            { place: 'Camera Roll', instruction: 'Scroll through photos, screenshots, saved memes, notes' },
+            { place: 'Desktop Files', instruction: 'Browse PDFs, documents, draft folders' },
+            { place: 'Notes App', instruction: 'Search in Apple Notes/Notion/Evernote' },
+            { place: 'Browser History', instruction: 'Review visited sites and bookmarked pages' },
+            { place: 'Email', instruction: 'Check unsent replies and drafts' },
+            { place: 'Canva', instruction: 'Review abandoned projects' },
+            { place: 'Kindle', instruction: 'Browse your highlights and books' },
+            { place: 'Readwise', instruction: 'Review saved highlights and annotations' },
+            { place: 'Audible', instruction: 'Check bookmarks and clips from audiobooks' },
+            { place: 'Goodreads', instruction: 'Browse your shelves and reviews' },
+            { place: 'Noa', instruction: 'Review your saved content' },
+            { place: 'Instagram Saved', instruction: 'Review Saved Posts for inspiration' },
+            { place: 'Instagram Explore', instruction: 'Browse Explore page for trends' },
+            { place: 'TikTok Favorites', instruction: 'Check your Favorites and Watch History' },
+            { place: 'TikTok FYP', instruction: 'Scroll For You Page for 5 minutes' },
+            { place: 'Pinterest Boards', instruction: 'Browse your Pins and Boards' },
+            { place: 'Twitter Bookmarks', instruction: 'Review Bookmarks and interesting Replies' },
+            { place: 'Twitter List 1', instruction: 'Check your first curated list' },
+            { place: 'Twitter List 2', instruction: 'Check your second curated list' },
+            { place: 'Twitter List 3', instruction: 'Check your third curated list' },
+            { place: 'Twitter List 4', instruction: 'Check your fourth curated list' },
+            { place: 'Twitter List 5', instruction: 'Check your fifth curated list' },
+            { place: 'Reddit', instruction: 'Check popular, home, and search' },
+            { place: 'YouTube Watch Later', instruction: 'Check Watch Later and Comments' },
+            { place: 'Substack', instruction: 'Review your drafts and saved posts' },
+            { place: 'Netflix', instruction: 'Check My List and continue watching' },
+            { place: 'Hulu', instruction: 'Browse saved shows and recommendations' },
+            { place: 'Amazon Prime', instruction: 'Check watchlist and recommended' },
+            { place: 'HBO Max', instruction: 'Review My List and trending' },
+            { place: 'Peacock', instruction: 'Check saved content and browse' },
+            { place: 'Google Docs', instruction: 'Search old project folders' },
+            { place: 'ChatGPT History', instruction: 'Review past conversations for ideas' },
+            { place: 'Claude History', instruction: 'Check previous chats and prompts' },
+            { place: 'Podcasts', instruction: 'Think what episodes made you pause' },
+            { place: 'Spotify', instruction: 'Check playlists, liked songs, podcasts' },
+            { place: 'Apple Music', instruction: 'Browse playlists and library' },
+            { place: 'Physical Notebooks', instruction: 'Flip through journals, agendas, tear sheets' },
+            { place: 'Magazine 1', instruction: 'Browse first magazine for ideas' },
+            { place: 'Magazine 2', instruction: 'Check second magazine' },
+            { place: 'Magazine 3', instruction: 'Review third magazine' },
+            { place: 'Magazine 4', instruction: 'Scan fourth magazine' },
+            { place: 'Magazine 5', instruction: 'Look through fifth magazine' },
+            { place: 'Newspaper 1', instruction: 'Check first newspaper' },
+            { place: 'Newspaper 2', instruction: 'Review second newspaper' },
+            { place: 'Newspaper 3', instruction: 'Browse third newspaper' },
+            { place: 'Newspaper 4', instruction: 'Scan fourth newspaper' },
+            { place: 'Newspaper 5', instruction: 'Check fifth newspaper' },
+            { place: 'Google Trends', instruction: 'Check trending topics in your niche' },
+            { place: 'Google Scholar', instruction: 'Search academic papers and citations' },
+            { place: 'Google News', instruction: 'Browse top stories and your interests' },
+            { place: 'YouTube Trending', instruction: 'Browse Trending tab and Shorts' },
+            { place: 'Apple News Plus', instruction: 'Check top stories and saved articles' },
+            { place: 'LinkedIn', instruction: 'Review posts, newsletters, comments' }
+        ];
+        
+        // Source presets
+        const sourcePresets = {
+            all: allSearchLocations,
+            social: allSearchLocations.filter(s => 
+                ['Instagram', 'TikTok', 'Twitter', 'Reddit', 'YouTube', 'LinkedIn', 'Pinterest'].some(platform => 
+                    s.place.includes(platform)
+                )
+            ),
+            reading: allSearchLocations.filter(s => 
+                ['Kindle', 'Readwise', 'Audible', 'Goodreads', 'Substack', 'Magazine', 'Newspaper', 'Google Scholar'].some(platform => 
+                    s.place.includes(platform)
+                )
+            ),
+            visual: allSearchLocations.filter(s => 
+                ['Camera Roll', 'Instagram', 'Pinterest', 'Canva', 'Netflix', 'Hulu', 'Amazon Prime', 'HBO', 'Peacock', 'YouTube'].some(platform => 
+                    s.place.includes(platform)
+                )
+            ),
+            quick: allSearchLocations.slice(0, 15)
+        };
+        
+        // Global variables
+        let selectedCategory = 'keyword';
+        let userItems = [];
+        let currentIndex = 0;
+        let currentPhase = 1;
+        let searchIndex = 0;
+        let currentQuestion = '';
+        let selectedEnergy = '';
+        let selectedTime = '';
+        let selectedVibe = '';
+        let selectedFormat = '';
+        let selectedBrand = '';
+        let allSearchNotes = {};
+        let title = '';
+        let searchLocations = allSearchLocations;
+        let selectedPreset = 'all';
+        let sessionId = '';
+        let timerInterval = null;
+        let timerSeconds = 120;
+        let autosaveTimer = null;
+        let currentAIExpansions = {};
+        
+        // Initialize
+        function init() {
+            loadRecentSessions();
+            setupKeyboardShortcuts();
+            setupAutosave();
             
-            // --- DATA ---
-            const searchLocations = [
-                { place: 'Camera Roll', instruction: 'Scroll through photos, screenshots, and saved memes.' },
-                { place: 'Desktop Files', instruction: 'Browse PDFs, documents, and draft folders.' },
-                { place: 'Notes App', instruction: 'Search your notes in Apple Notes, Notion, or Evernote.' },
-                { place: 'Browser History', instruction: 'Review recently visited sites and bookmarked pages.' },
-                { place: 'Email', instruction: 'Check unsent replies, drafts, and newsletters.' },
-                { place: 'Kindle Highlights', instruction: 'Browse your book highlights and notes.' },
-                { place: 'Readwise', instruction: 'Review your daily saved highlights and annotations.' },
-                { place: 'Audible Clips', instruction: 'Check bookmarks and clips from audiobooks.' },
-                { place: 'Goodreads', instruction: 'Browse your shelves, reviews, and reading updates.' },
-                { place: 'Instagram Saved', instruction: 'Review your Saved Posts for inspiration.' },
-                { place: 'Instagram Explore', instruction: 'Browse your Explore page for trends and ideas.' },
-                { place: 'TikTok Favorites', instruction: 'Check your Favorites and Watch History.' },
-                { place: 'TikTok FYP', instruction: 'Scroll your For You Page for 5 minutes.' },
-                { place: 'Pinterest Boards', instruction: 'Browse your Pins and Boards.' },
-                { place: 'X (Twitter) Bookmarks', instruction: 'Review your Bookmarks and interesting Replies.' },
-                { place: 'X (Twitter) Lists', instruction: 'Check your curated lists for conversations.' },
-                { place: 'Reddit', instruction: 'Check popular posts, your home feed, and search relevant subreddits.' },
-                { place: 'YouTube Watch Later', instruction: 'Check your Watch Later list and recent comments.' },
-                { place: 'Substack/Medium', instruction: 'Review your drafts and saved posts from other writers.' },
-                { place: 'Netflix/Streaming', instruction: 'Check "My List" and your "Continue Watching" row.' },
-                { place: 'Google Docs', instruction: 'Search your old project folders and abandoned drafts.' },
-                { place: 'ChatGPT/Claude History', instruction: 'Review past conversations for interesting ideas.' },
-                { place: 'Podcasts', instruction: 'Think about recent episodes that made you pause or take a note.' },
-                { place: 'Spotify/Apple Music', instruction: 'Check playlists, liked songs, and podcast subscriptions.' },
-                { place: 'Physical Notebooks', instruction: 'Flip through journals, agendas, and sticky notes.' },
-                { place: 'Magazines/Newspapers', instruction: 'Scan headlines and articles for interesting angles.' },
-                { place: 'Google Trends', instruction: 'Check trending topics related to your niche.' },
-                { place: 'Google Scholar', instruction: 'Search academic papers and citations.' },
-                { place: 'Google News', instruction: 'Browse top stories and topics you follow.' },
-                { place: 'YouTube Trending', instruction: 'Browse the Trending tab and popular Shorts.' },
-                { place: 'LinkedIn Feed', instruction: 'Review posts, newsletters, and comments in your industry.' },
-                { place: 'Quora', instruction: 'Search for questions related to your topic.' },
-                { place: 'Product Hunt', instruction: 'Look at new product launches and discussions.' },
-                { place: 'Your Own Analytics', instruction: 'What are your most popular posts or videos about?' },
-                { place: 'Your Comments Section', instruction: 'What questions are your followers asking you?' },
-            ];
-
-            // --- STATE MANAGEMENT ---
-            const defaultState = {
-                selectedCategory: 'keyword',
-                userItems: [],
-                currentIndex: 0,
-                shuffledLocations: [],
-                currentQuestion: '',
-                selectedFormat: '',
-                selectedBrand: '',
-                nounPhrases: [],
-                nounPhraseIndex: 0,
-                miningNotes: {},
+            // Check for theme preference
+            if (localStorage.getItem('theme') === 'light') {
+                document.body.classList.add('light-mode');
+                document.querySelector('.theme-toggle').textContent = '☀️ Light';
+            }
+            
+            // Enable/disable start button based on textarea content
+            document.getElementById('pasteArea').addEventListener('input', function() {
+                const hasContent = this.value.trim().length > 0;
+                document.getElementById('startButton').disabled = !hasContent;
+            });
+            
+            document.getElementById('startButton').disabled = true;
+        }
+        
+        // Theme toggle
+        function toggleTheme() {
+            document.body.classList.toggle('light-mode');
+            const isLight = document.body.classList.contains('light-mode');
+            localStorage.setItem('theme', isLight ? 'light' : 'dark');
+            document.querySelector('.theme-toggle').textContent = isLight ? '☀️ Light' : '🌙 Dark';
+        }
+        
+        // Source preset selection
+        function selectPreset(preset) {
+            selectedPreset = preset;
+            searchLocations = sourcePresets[preset];
+            
+            // Update UI
+            document.querySelectorAll('.preset-chip').forEach(chip => {
+                chip.classList.remove('active');
+            });
+            event.target.classList.add('active');
+        }
+        
+        // Timer functions
+        function startTimer() {
+            if (timerInterval) return;
+            
+            timerInterval = setInterval(() => {
+                timerSeconds--;
+                updateTimerDisplay();
+                
+                if (timerSeconds <= 0) {
+                    clearInterval(timerInterval);
+                    timerInterval = null;
+                    // Optional: play a sound or show notification
+                    document.getElementById('timer').style.color = '#ff4444';
+                }
+            }, 1000);
+        }
+        
+        function resetTimer() {
+            clearInterval(timerInterval);
+            timerInterval = null;
+            timerSeconds = 120;
+            updateTimerDisplay();
+            document.getElementById('timer').style.color = 'var(--accent)';
+        }
+        
+        function updateTimerDisplay() {
+            const minutes = Math.floor(timerSeconds / 60);
+            const seconds = timerSeconds % 60;
+            document.getElementById('timer').textContent = `Timer: ${minutes}:${seconds.toString().padStart(2, '0')}`;
+        }
+        
+        // Skip source function
+        function skipCurrentSource() {
+            // Save any notes before skipping
+            const noteKey = getNoteKey();
+            allSearchNotes[noteKey] = document.getElementById('searchNotes').value;
+            
+            // Mark as skipped
+            allSearchNotes[noteKey + '_skipped'] = true;
+            
+            // Move to next
+            nextItem();
+        }
+        
+        // Keyboard shortcuts
+        function setupKeyboardShortcuts() {
+            document.addEventListener('keydown', (e) => {
+                // Don't trigger shortcuts when typing in textareas
+                if (e.target.tagName === 'TEXTAREA' || e.target.tagName === 'INPUT') return;
+                
+                const activePage = document.querySelector('.page.active');
+                
+                if (activePage.id === 'taskPage') {
+                    switch(e.key) {
+                        case 'ArrowLeft':
+                            e.preventDefault();
+                            previousItem();
+                            break;
+                        case 'ArrowRight':
+                            e.preventDefault();
+                            nextItem();
+                            break;
+                        case 's':
+                        case 'S':
+                            e.preventDefault();
+                            skipCurrentSource();
+                            break;
+                        case 't':
+                        case 'T':
+                            e.preventDefault();
+                            if (timerInterval) {
+                                resetTimer();
+                            } else {
+                                startTimer();
+                            }
+                            break;
+                    }
+                }
+            });
+        }
+        
+        // Autosave functionality
+        function setupAutosave() {
+            // Save every 30 seconds
+            setInterval(() => {
+                saveSession();
+            }, 30000);
+            
+            // Also save on input changes
+            document.addEventListener('input', (e) => {
+                if (e.target.classList.contains('notes-area')) {
+                    clearTimeout(autosaveTimer);
+                    autosaveTimer = setTimeout(() => {
+                        saveSession();
+                        showAutosaveIndicator();
+                    }, 2000);
+                }
+            });
+        }
+        
+        function showAutosaveIndicator() {
+            const indicator = document.getElementById('autosaveIndicator');
+            indicator.classList.add('show');
+            setTimeout(() => {
+                indicator.classList.remove('show');
+            }, 2000);
+        }
+        
+        // Session management
+        function saveSession() {
+            if (!sessionId) {
+                sessionId = Date.now().toString();
+            }
+            
+            const sessionData = {
+                id: sessionId,
+                date: new Date().toISOString(),
+                category: selectedCategory,
+                items: userItems,
+                currentIndex,
+                currentPhase,
+                searchIndex,
+                question: currentQuestion,
+                selectedEnergy,
+                selectedTime,
+                selectedVibe,
+                selectedFormat,
+                selectedBrand,
+                allSearchNotes,
+                title,
+                selectedPreset,
+                aiExpansions: currentAIExpansions
             };
             
-            let appState = { ...defaultState };
+            // Save current session
+            localStorage.setItem('currentSession', JSON.stringify(sessionData));
             
-            // --- DOM ELEMENTS ---
-            const dom = {
-                pages: document.querySelectorAll('.page'),
-                categorySelect: document.getElementById('categorySelect'),
-                pasteArea: document.getElementById('pasteArea'),
-                startButton: document.getElementById('startButton'),
-                formatGrid: document.querySelector('.format-grid'),
-                formatButtons: document.querySelectorAll('.format-btn'),
-                formatNextBtn: document.getElementById('formatNextBtn'),
-                questionDisplay1: document.getElementById('questionDisplay1'),
-                brandSelector: document.getElementById('brandSelector'),
-                startMiningBtn: document.getElementById('startMiningBtn'),
-                questionDisplay2: document.getElementById('questionDisplay2'),
-                selectedFormatText: document.getElementById('selectedFormatText'),
-                qStepText: document.getElementById('qStepText'),
-                currentNounPhrase: document.getElementById('currentNounPhrase'),
-                qCounter: document.getElementById('qCounter'),
-                miningNotes: document.getElementById('miningNotes'),
-                qBackBtn: document.getElementById('qBackBtn'),
-                qNextBtn: document.getElementById('qNextBtn'),
-                titleArea: document.getElementById('titleArea'),
-                questionDisplay3: document.getElementById('questionDisplay3'),
-                notesSummary: document.getElementById('notesSummary'),
-                completeMiningBtn: document.getElementById('completeMiningBtn'),
-                phaseIndicator: document.getElementById('phaseIndicator'),
-                stepText: document.getElementById('stepText'),
-                currentItem: document.getElementById('currentItem'),
-                searchLocation: document.getElementById('searchLocation'),
-                searchInstruction: document.getElementById('searchInstruction'),
-                counter: document.getElementById('counter'),
-                backBtn: document.getElementById('backBtn'),
-                nextBtn: document.getElementById('nextBtn'),
-                finalSummary: document.getElementById('finalSummary'),
-                finalQuestion: document.getElementById('finalQuestion'),
-                finalFormat: document.getElementById('finalFormat'),
-                finalBrand: document.getElementById('finalBrand'),
-                finalTitle: document.getElementById('finalTitle'),
-                restartBtn: document.getElementById('restartBtn'),
-            };
+            // Update recent sessions
+            let recentSessions = JSON.parse(localStorage.getItem('recentSessions') || '[]');
+            const existingIndex = recentSessions.findIndex(s => s.id === sessionId);
             
-            // --- UI UPDATE FUNCTIONS ---
+            if (existingIndex >= 0) {
+                recentSessions[existingIndex] = sessionData;
+            } else {
+                recentSessions.unshift(sessionData);
+            }
             
-            const navigateTo = (pageId) => {
-                dom.pages.forEach(page => {
-                    page.classList.toggle('active', page.id === pageId);
+            // Keep only last 10 sessions
+            recentSessions = recentSessions.slice(0, 10);
+            localStorage.setItem('recentSessions', JSON.stringify(recentSessions));
+        }
+        
+        function loadRecentSessions() {
+            const recentSessions = JSON.parse(localStorage.getItem('recentSessions') || '[]');
+            
+            if (recentSessions.length > 0) {
+                document.getElementById('recentSessions').style.display = 'block';
+                
+                const sessionsList = document.getElementById('sessionsList');
+                sessionsList.innerHTML = '';
+                
+                recentSessions.forEach(session => {
+                    const sessionItem = document.createElement('div');
+                    sessionItem.className = 'session-item';
+                    sessionItem.onclick = () => loadSession(session.id);
+                    
+                    const date = new Date(session.date);
+                    const dateStr = date.toLocaleDateString() + ' ' + date.toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'});
+                    
+                    // Count AI expansions
+                    const aiCount = session.aiExpansions ? Object.keys(session.aiExpansions).length : 0;
+                    
+                    sessionItem.innerHTML = `
+                        <div>
+                            <strong>${session.category}</strong> - ${session.items.length} items
+                            ${session.question ? '<br><small>' + session.question.substring(0, 50) + '...</small>' : ''}
+                            ${aiCount > 0 ? `<br><small style="color: var(--accent);">✨ ${aiCount} AI expansions</small>` : ''}
+                        </div>
+                        <div class="session-date">${dateStr}</div>
+                    `;
+                    
+                    sessionsList.appendChild(sessionItem);
                 });
-            };
+            }
+        }
+        
+        function loadSession(id) {
+            const recentSessions = JSON.parse(localStorage.getItem('recentSessions') || '[]');
+            const session = recentSessions.find(s => s.id === id);
             
-            const updatePasteAreaPlaceholder = () => {
-                const category = dom.categorySelect.value;
-                dom.pasteArea.placeholder = `Paste your ${category}(s) here (one per line)...`;
-            };
-            
-            const toggleStartButton = () => {
-                dom.startButton.disabled = dom.pasteArea.value.trim().length === 0;
-            };
-            
-            const showCurrentKeywordItem = () => {
-                if (appState.currentIndex >= appState.userItems.length) {
-                    navigateTo('donePage');
-                    dom.finalSummary.style.display = 'none';
-                    return;
+            if (session) {
+                // Restore all session data
+                sessionId = session.id;
+                selectedCategory = session.category;
+                userItems = session.items;
+                currentIndex = session.currentIndex;
+                currentPhase = session.currentPhase;
+                searchIndex = session.searchIndex;
+                currentQuestion = session.question || '';
+                selectedEnergy = session.selectedEnergy || '';
+                selectedTime = session.selectedTime || '';
+                selectedVibe = session.selectedVibe || '';
+                selectedFormat = session.selectedFormat || '';
+                selectedBrand = session.selectedBrand || '';
+                allSearchNotes = session.allSearchNotes || {};
+                title = session.title || '';
+                currentAIExpansions = session.aiExpansions || {};
+                
+                if (session.selectedPreset) {
+                    selectPreset(session.selectedPreset);
                 }
                 
-                const category = appState.selectedCategory;
-                const locationIndex = appState.currentIndex % appState.shuffledLocations.length;
-                const currentLocation = appState.shuffledLocations[locationIndex];
-                
-                dom.phaseIndicator.textContent = `${category.charAt(0).toUpperCase() + category.slice(1)} Search`;
-                dom.stepText.textContent = `Step ${appState.currentIndex + 1}`;
-                dom.currentItem.textContent = appState.userItems[appState.currentIndex];
-                dom.counter.textContent = `${appState.currentIndex + 1} of ${appState.userItems.length}`;
-                dom.backBtn.disabled = appState.currentIndex === 0;
-
-                dom.searchLocation.textContent = `in ${currentLocation.place}`;
-                dom.searchInstruction.textContent = currentLocation.instruction;
-            };
+                // Navigate to appropriate page
+                document.getElementById('startPage').classList.remove('active');
+                document.getElementById('taskPage').classList.add('active');
+                showCurrentItem();
+                updateProgress();
+            }
+        }
+        
+        // Progress tracking
+        function updateProgress() {
+            const totalPhase1Steps = userItems.length;
+            const totalPhase2Steps = userItems.length * searchLocations.length;
+            const totalSteps = totalPhase1Steps + totalPhase2Steps;
             
-            const showCurrentNounPhrase = () => {
-                if (appState.nounPhraseIndex >= appState.nounPhrases.length) {
-                    displayMiningNotes();
-                    navigateTo('titlePage');
-                    return;
+            let completedSteps;
+            if (currentPhase === 1) {
+                completedSteps = currentIndex;
+            } else {
+                completedSteps = totalPhase1Steps + (currentIndex * searchLocations.length + searchIndex);
+            }
+            
+            const progress = (completedSteps / totalSteps) * 100;
+            document.getElementById('progressFill').style.width = progress + '%';
+        }
+        
+        // Modified existing functions
+        function updatePasteArea() {
+            selectedCategory = document.getElementById('categorySelect').value;
+            const pasteArea = document.getElementById('pasteArea');
+            
+            if (selectedCategory === 'question') {
+                pasteArea.placeholder = 'Enter your question here...';
+                pasteArea.style.minHeight = '150px';
+                document.querySelector('.paste-label').textContent = 'Enter your question:';
+            } else {
+                pasteArea.placeholder = 'paste items here...';
+                pasteArea.style.minHeight = '300px';
+                document.querySelector('.paste-label').textContent = 'Paste your list (one item per line):';
+            }
+            
+            pasteArea.value = '';
+            document.getElementById('startButton').disabled = true;
+        }
+        
+        function startIdeationRun() {
+            const pasteArea = document.getElementById('pasteArea');
+            const inputText = pasteArea.value.trim();
+            
+            if (!inputText) return;
+            
+            // Create new session
+            sessionId = Date.now().toString();
+            
+            if (selectedCategory === 'question') {
+                currentQuestion = inputText;
+                // Show noun phrase selection page
+                document.getElementById('startPage').classList.remove('active');
+                document.getElementById('nounPhrasePage').classList.add('active');
+                document.getElementById('questionForNouns').textContent = currentQuestion;
+                
+                // Enable noun phrase button when text is entered
+                const nounPhraseArea = document.getElementById('nounPhraseArea');
+                const nounPhraseButton = document.getElementById('nounPhraseButton');
+                
+                nounPhraseArea.addEventListener('input', function() {
+                    const hasContent = this.value.trim().length > 0;
+                    nounPhraseButton.disabled = !hasContent;
+                });
+            } else {
+                // For keywords/themes/concepts/frameworks
+                userItems = inputText.split('\n')
+                    .map(item => item.trim())
+                    .filter(item => item.length > 0);
+                
+                if (userItems.length === 0) return;
+                
+                currentIndex = 0;
+                currentPhase = 1;
+                searchIndex = 0;
+                allSearchNotes = {};
+                
+                document.getElementById('startPage').classList.remove('active');
+                document.getElementById('taskPage').classList.add('active');
+                showCurrentItem();
+                updateProgress();
+                saveSession();
+            }
+        }
+        
+        function proceedWithNounPhrases() {
+            const nounPhraseArea = document.getElementById('nounPhraseArea');
+            const inputText = nounPhraseArea.value.trim();
+            
+            if (!inputText) {
+                alert('Please enter at least one noun phrase to search for');
+                return;
+            }
+            
+            userItems = inputText.split('\n')
+                .map(item => item.trim())
+                .filter(item => item.length > 0);
+            
+            if (userItems.length === 0) return;
+            
+            currentIndex = 0;
+            currentPhase = 1;
+            searchIndex = 0;
+            allSearchNotes = {};
+            
+            document.getElementById('nounPhrasePage').classList.remove('active');
+            document.getElementById('taskPage').classList.add('active');
+            showCurrentItem();
+            updateProgress();
+            saveSession();
+        }
+        
+        function showCurrentItem() {
+            const totalPhase1Steps = userItems.length;
+            const totalPhase2Steps = userItems.length * searchLocations.length;
+            const totalSteps = totalPhase1Steps + totalPhase2Steps;
+            
+            let currentStep;
+            
+            // Reset timer for new item
+            resetTimer();
+            
+            if (currentPhase === 1) {
+                currentStep = currentIndex + 1;
+                document.getElementById('phaseIndicator').textContent = 'Phase 1: Craft Search';
+                document.getElementById('searchLocation').textContent = 'in your Craft docs';
+                document.getElementById('instructionText').textContent = '';
+            } else {
+                // Phase 2
+                const phase2Progress = currentIndex * searchLocations.length + searchIndex;
+                currentStep = totalPhase1Steps + phase2Progress + 1;
+                
+                const source = searchLocations[searchIndex];
+                document.getElementById('phaseIndicator').textContent = 'Phase 2: Source Mining';
+                document.getElementById('searchLocation').textContent = 'in ' + source.place;
+                document.getElementById('instructionText').textContent = source.instruction;
+            }
+            
+            document.getElementById('stepText').textContent = 'Step ' + currentStep + ' of ' + totalSteps;
+            document.getElementById('currentItem').textContent = userItems[currentIndex];
+            document.getElementById('counter').textContent = 'Item ' + (currentIndex + 1) + ' of ' + userItems.length;
+            
+            // Load saved notes if any
+            const noteKey = getNoteKey();
+            document.getElementById('searchNotes').value = allSearchNotes[noteKey] || '';
+            
+            // Update back button state
+            updateBackButton();
+            
+            // Show/hide keyboard hint
+            document.getElementById('keyboardHint').style.display = 'flex';
+        }
+        
+        function getNoteKey() {
+            if (currentPhase === 1) {
+                return 'craft_' + currentIndex;
+            } else {
+                return 'source_' + currentIndex + '_' + searchIndex;
+            }
+        }
+        
+        function updateBackButton() {
+            const isFirstStep = currentPhase === 1 && currentIndex === 0;
+            document.getElementById('backBtn').disabled = isFirstStep;
+        }
+        
+        function nextItem() {
+            // Save notes
+            const noteKey = getNoteKey();
+            allSearchNotes[noteKey] = document.getElementById('searchNotes').value;
+            
+            if (currentPhase === 1) {
+                // In Phase 1
+                currentIndex++;
+                if (currentIndex >= userItems.length) {
+                    // Move to Phase 2
+                    currentPhase = 2;
+                    currentIndex = 0;
+                    searchIndex = 0;
+                } 
+            } else {
+                // In Phase 2
+                searchIndex++;
+                if (searchIndex >= searchLocations.length) {
+                    currentIndex++;
+                    searchIndex = 0;
+                    
+                    if (currentIndex >= userItems.length) {
+                        // All done - proceed to next step
+                        proceedToNext();
+                        return;
+                    }
                 }
-                
-                const phrase = appState.nounPhrases[appState.nounPhraseIndex];
-                dom.qStepText.textContent = `Step ${appState.nounPhraseIndex + 1}`;
-                dom.currentNounPhrase.innerHTML = phrase;
-                dom.qCounter.textContent = `${appState.nounPhraseIndex + 1} of ${appState.nounPhrases.length}`;
-                dom.miningNotes.value = appState.miningNotes[phrase] || '';
-                dom.qBackBtn.disabled = appState.nounPhraseIndex === 0;
-            };
-
-            const displayMiningNotes = () => {
-                let notesHtml = '';
-                Object.entries(appState.miningNotes).forEach(([phrase, notes]) => {
-                    if (notes.trim()) {
-                        notesHtml += `<div class="summary-item">
-                            <div class="summary-label">${phrase}</div>
-                            <div>${notes.replace(/\n/g, '<br>')}</div>
-                        </div>`;
-                    }
-                });
-                dom.notesSummary.innerHTML = notesHtml || '<div style="color: #666;">No notes captured.</div>';
-            };
+            }
             
-            // --- LOGIC & HELPER FUNCTIONS ---
-
-            const shuffleArray = (array) => {
-                return array.map(value => ({ value, sort: Math.random() }))
-                            .sort((a, b) => a.sort - b.sort)
-                            .map(({ value }) => value);
-            };
+            showCurrentItem();
+            updateProgress();
+            saveSession();
+        }
+        
+        function previousItem() {
+            // Save current notes
+            const noteKey = getNoteKey();
+            allSearchNotes[noteKey] = document.getElementById('searchNotes').value;
             
-            const extractNounPhrases = (question) => {
-                const cleanQuestion = question.replace(/\?/g, '').toLowerCase();
-                const phrases = new Set();
-                const patterns = [
-                    /\b(visual\s+luxury|collective\s+desires?|social\s+hierarch\w+)/gi,
-                    /\b(black\s+wom[ae]n(?:'s)?\s+leisure|dominant\s+narratives?)/gi,
-                    /\b(authentic\s+self[\s-]expression|marketable\s+persona)/gi,
-                    /\b(digital\s+images?|emotional\s+econom\w+)/gi,
-                    /\b(leisure\s+politics?|luxury\s+spaces?)/gi,
-                    /\b(self[\s-]surveillance|intersectional\s+visibility)/gi,
-                    /\b(visual\s+grammar|class\s+politics)/gi,
-                    /\b(social\s+media|platform\s+capitalism)/gi,
-                    /\b(privilege|exclusion|representation|identity|authenticity)/gi,
-                    /\b(performance|curation|aspiration|consumption|labor)/gi,
-                    /\b(race|gender|class|power|resistance)/gi,
-                    /\b(luxury|leisure|wealth|access|belonging)/gi
-                ];
-                
-                patterns.forEach(pattern => {
-                    (cleanQuestion.match(pattern) || []).forEach(match => phrases.add(match.trim()));
-                });
-                
-                const result = Array.from(phrases);
-                return result.length > 0 ? result.slice(0, 8) : ['key themes', 'main concepts', 'central ideas'];
-            };
-            
-            const restartApp = () => {
-                appState = { ...defaultState };
-                Object.values(dom).forEach(el => {
-                    if (el.nodeName === 'TEXTAREA' || (el.nodeName === 'SELECT' && el.id !== 'categorySelect')) {
-                        el.value = '';
-                    }
-                });
-                dom.categorySelect.value = 'keyword';
-                dom.formatButtons.forEach(btn => btn.classList.remove('selected'));
-                dom.formatNextBtn.style.display = 'none';
-                
-                updatePasteAreaPlaceholder();
-                toggleStartButton();
-                navigateTo('startPage');
-            };
-            
-            // --- EVENT HANDLERS ---
-            
-            const handleStartIdeation = () => {
-                appState.selectedCategory = dom.categorySelect.value;
-                const pastedText = dom.pasteArea.value.trim();
-                if (!pastedText) return;
-                
-                appState.userItems = pastedText.split('\n').filter(item => item.trim() !== '');
-                
-                if (appState.selectedCategory === 'question') {
-                    appState.currentQuestion = appState.userItems[0] || 'No question provided.';
-                    appState.nounPhrases = extractNounPhrases(appState.currentQuestion);
-                    dom.questionDisplay1.textContent = appState.currentQuestion;
-                    navigateTo('formatSelectPage');
+            if (currentPhase === 2) {
+                if (searchIndex > 0) {
+                    searchIndex--;
+                } else if (currentIndex > 0) {
+                    currentIndex--;
+                    searchIndex = searchLocations.length - 1;
                 } else {
-                    appState.currentIndex = 0;
-                    appState.shuffledLocations = shuffleArray(searchLocations);
-                    showCurrentKeywordItem();
-                    navigateTo('taskPage');
+                    // Go back to Phase 1
+                    currentPhase = 1;
+                    currentIndex = userItems.length - 1;
                 }
+            } else {
+                // In Phase 1
+                if (currentIndex > 0) {
+                    currentIndex--;
+                }
+            }
+            
+            showCurrentItem();
+            updateProgress();
+            saveSession();
+        }
+        
+        function proceedToNext() {
+            document.getElementById('keyboardHint').style.display = 'none';
+            
+            if (selectedCategory === 'question') {
+                // Go to energy assessment
+                document.getElementById('taskPage').classList.remove('active');
+                document.getElementById('energyPage').classList.add('active');
+            } else {
+                // For non-questions, just complete
+                showFinalSummary();
+            }
+        }
+        
+        function selectEnergy(energy) {
+            selectedEnergy = energy;
+            document.getElementById('energyPage').classList.remove('active');
+            document.getElementById('timePage').classList.add('active');
+            saveSession();
+        }
+        
+        function selectTime(time) {
+            selectedTime = time;
+            document.getElementById('timePage').classList.remove('active');
+            document.getElementById('vibePage').classList.add('active');
+            saveSession();
+        }
+        
+        function selectVibe(vibe) {
+            selectedVibe = vibe;
+            
+            // Determine format based on all inputs
+            selectedFormat = determineFormat();
+            
+            document.getElementById('vibePage').classList.remove('active');
+            document.getElementById('brandQuestionPage').classList.add('active');
+            document.getElementById('questionDisplay').textContent = currentQuestion;
+            saveSession();
+        }
+        
+        function determineFormat() {
+            // Logic to determine format based on energy, time, and vibe
+            if (selectedEnergy === 'high' && selectedTime === 'lots') {
+                if (selectedVibe === 'analytical') return 'Recorded Video Essay';
+                if (selectedVibe === 'conversational') return 'Interview or Roundtable Podcast';
+                return 'Deep-Dive Newsletter Essay';
+            } else if (selectedEnergy === 'high' && selectedTime === 'some') {
+                if (selectedVibe === 'creative') return 'Instagram Carousel';
+                return 'Newsletter Essay';
+            } else if (selectedEnergy === 'medium' && selectedTime === 'some') {
+                if (selectedVibe === 'analytical') return 'Newsletter Roundup';
+                if (selectedVibe === 'conversational') return 'Standard Reaction Video';
+                return 'Instagram Carousel';
+            } else if (selectedEnergy === 'medium' && selectedTime === 'little') {
+                if (selectedVibe === 'creative') return 'TikTok/Reel';
+                return 'Twitter Thread';
+            } else if (selectedEnergy === 'low') {
+                if (selectedVibe === 'creative') return 'Meme';
+                if (selectedTime === 'little') return 'Instagram Story';
+                return 'Twitter Thread';
+            }
+            
+            // Default fallback
+            return 'Twitter Thread';
+        }
+        
+        function selectBrandAngle(angle) {
+            // Determine brand based on angle
+            const brandMap = {
+                'cultural': 'KNF',
+                'political': 'For Harriet',
+                'aesthetic': 'The Shallow Side',
+                'lifestyle': 'Taste of Kimberly',
+                'business': 'Making Things Is Hard'
             };
             
-            const handleFormatSelection = (event) => {
-                const selectedBtn = event.target.closest('.format-btn');
-                if (!selectedBtn) return;
-                
-                appState.selectedFormat = selectedBtn.textContent;
-                dom.formatButtons.forEach(btn => btn.classList.remove('selected'));
-                selectedBtn.classList.add('selected');
-                dom.formatNextBtn.style.display = 'flex';
-            };
+            selectedBrand = brandMap[angle];
             
-            const handleProceedToBrand = () => {
-                if (!appState.selectedFormat) return;
-                dom.questionDisplay2.textContent = appState.currentQuestion;
-                dom.selectedFormatText.textContent = appState.selectedFormat;
-                navigateTo('brandSelectPage');
-            };
+            document.getElementById('brandQuestionPage').classList.remove('active');
+            document.getElementById('titlePage').classList.add('active');
+            document.getElementById('questionDisplay2').textContent = currentQuestion;
             
-            const handleStartMining = () => {
-                appState.selectedBrand = dom.brandSelector.value;
-                if (!appState.selectedBrand) { alert('Please select a brand.'); return; }
-                
-                appState.nounPhraseIndex = 0;
-                appState.miningNotes = {};
-                dom.questionDisplay3.textContent = appState.currentQuestion;
-                showCurrentNounPhrase();
-                navigateTo('questionTaskPage');
-            };
-            
-            const handleCompleteMining = () => {
-                const title = dom.titleArea.value.trim();
-                if (!title) { alert('Please provide a title or hook.'); return; }
-                
-                dom.finalQuestion.textContent = appState.currentQuestion;
-                dom.finalFormat.textContent = appState.selectedFormat;
-                dom.finalBrand.textContent = appState.selectedBrand;
-                dom.finalTitle.textContent = title;
-                dom.finalSummary.style.display = 'block';
-                navigateTo('donePage');
-            };
-            
-            // --- EVENT LISTENERS ---
-            
-            dom.categorySelect.addEventListener('change', updatePasteAreaPlaceholder);
-            dom.pasteArea.addEventListener('input', toggleStartButton);
-            dom.startButton.addEventListener('click', handleStartIdeation);
-            dom.formatGrid.addEventListener('click', handleFormatSelection);
-            dom.formatNextBtn.addEventListener('click', handleProceedToBrand);
-            dom.startMiningBtn.addEventListener('click', handleStartMining);
-            dom.completeMiningBtn.addEventListener('click', handleCompleteMining);
-            
-            dom.qNextBtn.addEventListener('click', () => {
-                const phrase = appState.nounPhrases[appState.nounPhraseIndex];
-                appState.miningNotes[phrase] = dom.miningNotes.value;
-                appState.nounPhraseIndex++;
-                showCurrentNounPhrase();
-            });
-            
-            dom.qBackBtn.addEventListener('click', () => {
-                if (appState.nounPhraseIndex > 0) {
-                    const phrase = appState.nounPhrases[appState.nounPhraseIndex];
-                    appState.miningNotes[phrase] = dom.miningNotes.value;
-                    appState.nounPhraseIndex--;
-                    showCurrentNounPhrase();
+            // Show all notes
+            showNotesForTitle();
+            saveSession();
+        }
+        
+        function showNotesForTitle() {
+            let notesHtml = '';
+            Object.entries(allSearchNotes).forEach(([key, notes]) => {
+                if (notes.trim() && !key.includes('_skipped')) {
+                    const parts = key.split('_');
+                    let location;
+                    if (parts[0] === 'craft') {
+                        location = 'Craft';
+                    } else {
+                        location = searchLocations[parseInt(parts[2])].place;
+                    }
+                    let item = userItems[parseInt(parts[1])];
+                    
+                    notesHtml += '<div class="summary-item">';
+                    notesHtml += '<div class="summary-label">' + item + ' in ' + location + '</div>';
+                    notesHtml += '<div>' + notes.split('\n').join('<br>') + '</div>';
+                    notesHtml += '</div>';
                 }
             });
             
-            dom.nextBtn.addEventListener('click', () => {
-                appState.currentIndex++;
-                showCurrentKeywordItem();
+            document.getElementById('notesSummary').innerHTML = notesHtml || '<div style="color: var(--text-muted);">No notes captured</div>';
+        }
+        
+        function completeSession() {
+            title = document.getElementById('titleArea').value.trim();
+            if (!title && selectedCategory === 'question') {
+                alert('Please enter a title that answers your question');
+                return;
+            }
+            
+            saveSession();
+            showFinalSummary();
+        }
+        
+        function showFinalSummary() {
+            document.querySelectorAll('.page').forEach(page => {
+                page.classList.remove('active');
+            });
+            document.getElementById('donePage').classList.add('active');
+            
+            let summaryHtml = '';
+            
+            if (selectedCategory === 'question') {
+                summaryHtml += '<div class="summary-item"><div class="summary-label">Question</div><div>' + currentQuestion + '</div></div>';
+                summaryHtml += '<div class="summary-item"><div class="summary-label">Format</div><div>' + selectedFormat + '</div></div>';
+                summaryHtml += '<div class="summary-item"><div class="summary-label">Brand</div><div>' + selectedBrand + '</div></div>';
+                if (title) {
+                    summaryHtml += '<div class="summary-item"><div class="summary-label">Title/Hook</div><div>' + title + '</div></div>';
+                }
+            } else {
+                summaryHtml += '<div class="summary-item"><div class="summary-label">Category</div><div>' + selectedCategory.toUpperCase() + '</div></div>';
+                summaryHtml += '<div class="summary-item"><div class="summary-label">Items Searched</div><div>' + userItems.length + '</div></div>';
+            }
+            
+            // Add all notes
+            let allNotesText = '';
+            let aiNotesCount = 0;
+            summaryHtml += '<div class="summary-item"><div class="summary-label">All Notes</div><div>';
+            Object.entries(allSearchNotes).forEach(([key, notes]) => {
+                if (notes.trim() && !key.includes('_skipped')) {
+                    const parts = key.split('_');
+                    let location;
+                    if (parts[0] === 'craft') {
+                        location = 'Craft';
+                    } else {
+                        location = searchLocations[parseInt(parts[2])].place;
+                    }
+                    let item = userItems[parseInt(parts[1])];
+                    
+                    summaryHtml += '<strong>' + item + ' in ' + location + ':</strong><br>';
+                    
+                    // Format notes and highlight AI suggestions
+                    const formattedNotes = notes.split('\n').map(note => {
+                        if (note.startsWith('[AI]')) {
+                            aiNotesCount++;
+                            return `<span style="color: var(--accent);">✨ ${note.substring(4)}</span>`;
+                        }
+                        return note;
+                    }).join('<br>');
+                    
+                    summaryHtml += formattedNotes + '<br><br>';
+                    
+                    // For clipboard
+                    allNotesText += item + ' in ' + location + ':\n' + notes + '\n\n';
+                }
+            });
+            summaryHtml += '</div></div>';
+            
+            // Add AI expansion stats
+            if (aiNotesCount > 0) {
+                summaryHtml += '<div class="summary-item"><div class="summary-label">AI Expansions</div><div>' + aiNotesCount + ' ideas generated</div></div>';
+            }
+            
+            // Store for clipboard
+            window.allNotesForClipboard = allNotesText;
+            
+            document.getElementById('finalSummary').innerHTML = summaryHtml;
+        }
+        
+        function copyToClipboard() {
+            let clipboardText = '';
+            
+            if (selectedCategory === 'question') {
+                clipboardText = 'Question: ' + currentQuestion + '\n';
+                clipboardText += 'Format: ' + selectedFormat + '\n';
+                clipboardText += 'Brand: ' + selectedBrand + '\n';
+                if (title) {
+                    clipboardText += 'Title/Hook: ' + title + '\n';
+                }
+                clipboardText += '\n';
+            }
+            
+            clipboardText += window.allNotesForClipboard || '';
+            
+            navigator.clipboard.writeText(clipboardText).then(() => {
+                const btn = event.target;
+                const originalText = btn.textContent;
+                btn.textContent = '✓ Copied!';
+                setTimeout(() => {
+                    btn.textContent = originalText;
+                }, 2000);
+            });
+        }
+        
+        function restart() {
+            sessionId = '';
+            selectedCategory = 'keyword';
+            userItems = [];
+            currentIndex = 0;
+            currentPhase = 1;
+            searchIndex = 0;
+            currentQuestion = '';
+            selectedEnergy = '';
+            selectedTime = '';
+            selectedVibe = '';
+            selectedFormat = '';
+            selectedBrand = '';
+            allSearchNotes = {};
+            title = '';
+            currentAIExpansions = {};
+            
+            document.getElementById('pasteArea').value = '';
+            document.getElementById('categorySelect').value = 'keyword';
+            document.getElementById('titleArea').value = '';
+            document.getElementById('searchNotes').value = '';
+            document.getElementById('nounPhraseArea').value = '';
+            document.getElementById('progressFill').style.width = '0%';
+            
+            updatePasteArea();
+            
+            document.querySelectorAll('.page').forEach(page => {
+                page.classList.remove('active');
+            });
+            document.getElementById('startPage').classList.add('active');
+            
+            // Reset presets
+            document.querySelectorAll('.preset-chip').forEach(chip => {
+                chip.classList.remove('active');
+            });
+            searchLocations = allSearchLocations;
+            selectedPreset = 'all';
+            
+            // Clear current session
+            localStorage.removeItem('currentSession');
+            
+            // Reload recent sessions
+            loadRecentSessions();
+        }
+        
+        // AI Expansion Functions
+        async function showAIPanel() {
+            const notes = document.getElementById('searchNotes').value.trim();
+            if (!notes) {
+                alert('Please add some notes first to expand on');
+                return;
+            }
+            
+            const panel = document.getElementById('aiPanel');
+            const content = document.getElementById('aiContent');
+            panel.classList.add('active');
+            
+            // Show loading state
+            content.innerHTML = `
+                <div class="ai-loading">
+                    <div class="spinner"></div>
+                    <p>Analyzing your notes...</p>
+                </div>
+            `;
+            
+            try {
+                const currentItem = userItems[currentIndex];
+                const location = currentPhase === 1 ? 'Craft' : searchLocations[searchIndex].place;
+                
+                // Create a context-aware prompt
+                const prompt = selectedCategory === 'question' ? 
+                    `You are helping a content creator expand on their research notes. They are exploring the question: "${currentQuestion}"
+                    
+They found these notes while searching for "${currentItem}" in ${location}:
+${notes}
+
+Based on these notes and the original question, provide 3-4 different angles:
+1. A direct answer or insight that addresses the question
+2. A contrarian or alternative perspective
+3. A content hook that would resonate with their audience
+4. A practical framework or model they could share
+
+For each suggestion, provide:
+- A short title (3-5 words)
+- 2-3 sentences expanding the idea
+
+Keep suggestions specific to answering their question and actionable for content creation.
+
+Respond in JSON format:
+{
+  "suggestions": [
+    {
+      "title": "Title here",
+      "content": "Expansion here"
+    }
+  ],
+  "keywords": ["keyword1", "keyword2", "keyword3"]
+}` :
+                    `You are helping a content creator expand on their research notes. They are searching for "${currentItem}" in ${location}.
+
+Their notes:
+${notes}
+
+Based on these notes, provide 3-4 different angles or expansions:
+1. A deeper insight or analysis
+2. A content hook or angle
+3. A connection to current trends or cultural moments
+4. A practical application or takeaway
+
+For each suggestion, provide:
+- A short title (3-5 words)
+- 2-3 sentences expanding the idea
+
+Keep suggestions specific to their notes and actionable for content creation. Focus on exploring the ${selectedCategory}.
+
+Respond in JSON format:
+{
+  "suggestions": [
+    {
+      "title": "Title here",
+      "content": "Expansion here"
+    }
+  ],
+  "keywords": ["keyword1", "keyword2", "keyword3"]
+}`;
+
+                // Note: This is a simulated AI response for demonstration
+                // In production, you would use the actual Anthropic API
+                const simulateAIResponse = () => {
+                    const suggestions = [
+                        {
+                            suggestions: [
+                                {
+                                    title: "Cultural Pattern",
+                                    content: "This observation reflects a broader shift in how digital culture processes collective experiences. Consider exploring the psychological need for shared narratives in fragmented online spaces."
+                                },
+                                {
+                                    title: "Content Hook",
+                                    content: "Frame this as 'The Hidden Cost of [Topic]' - audiences love uncovering what they're not seeing. Build tension by revealing the disconnect between perception and reality."
+                                },
+                                {
+                                    title: "Trend Connection",
+                                    content: "This connects to the current 'core' trend cycle (cottagecore, goblincore, etc). Position your insight as the next evolution of this cultural pattern."
+                                },
+                                {
+                                    title: "Actionable Framework",
+                                    content: "Create a 3-step framework: Recognize, Reframe, Respond. This gives your audience a practical tool while establishing your authority on the topic."
+                                }
+                            ],
+                            keywords: ["digital culture", "trend analysis", "content strategy"]
+                        },
+                        {
+                            suggestions: [
+                                {
+                                    title: "Contrarian Take",
+                                    content: "What if the opposite is true? Challenge the conventional wisdom around this topic. Audiences engage more with perspectives that make them reconsider their assumptions."
+                                },
+                                {
+                                    title: "Historical Parallel",
+                                    content: "This mirrors patterns from [historical period]. Drawing these connections adds depth and shows the cyclical nature of cultural phenomena."
+                                },
+                                {
+                                    title: "Future Prediction",
+                                    content: "Based on this pattern, predict where this trend leads in 6-12 months. Position yourself as ahead of the curve by identifying early signals."
+                                },
+                                {
+                                    title: "Personal Story",
+                                    content: "Connect this observation to a personal experience or transformation. Vulnerability combined with insight creates memorable, shareable content."
+                                }
+                            ],
+                            keywords: ["storytelling", "thought leadership", "trend forecasting"]
+                        }
+                    ];
+                    
+                    return suggestions[Math.floor(Math.random() * suggestions.length)];
+                };
+                
+                // Simulate API delay and response
+                await new Promise(resolve => setTimeout(resolve, 1500));
+                const aiResponse = simulateAIResponse();
+                
+                // Store expansions
+                const noteKey = getNoteKey();
+                currentAIExpansions[noteKey] = aiResponse;
+                
+                // Display suggestions
+                displayAISuggestions(aiResponse);
+                
+            } catch (error) {
+                console.error('AI expansion error:', error);
+                content.innerHTML = `
+                    <div style="color: var(--text-muted); text-align: center;">
+                        <p>Unable to generate AI suggestions at this time.</p>
+                        <button class="ai-action-btn secondary" onclick="hideAIPanel()">Close</button>
+                    </div>
+                `;
+            }
+        }
+        
+        function displayAISuggestions(response) {
+            const content = document.getElementById('aiContent');
+            
+            let html = '<div class="ai-suggestions">';
+            
+            response.suggestions.forEach((suggestion, index) => {
+                html += `
+                    <div class="ai-suggestion" onclick="addSuggestionToNotes(${index})">
+                        <div class="ai-suggestion-title">${suggestion.title}</div>
+                        <div class="ai-suggestion-text">${suggestion.content}</div>
+                    </div>
+                `;
             });
             
-            dom.backBtn.addEventListener('click', () => {
-                if (appState.currentIndex > 0) {
-                    appState.currentIndex--;
-                    showCurrentKeywordItem();
+            html += '</div>';
+            
+            if (response.keywords && response.keywords.length > 0) {
+                html += '<div class="expanded-ideas">';
+                html += '<div class="expanded-ideas-title">Related Keywords</div>';
+                response.keywords.forEach(keyword => {
+                    html += `<span class="idea-chip">${keyword}</span>`;
+                });
+                html += '</div>';
+            }
+            
+            html += `
+                <div class="ai-actions">
+                    <button class="ai-action-btn" onclick="regenerateAI()">🔄 Generate More</button>
+                    <button class="ai-action-btn secondary" onclick="hideAIPanel()">Close</button>
+                </div>
+            `;
+            
+            content.innerHTML = html;
+        }
+        
+        function addSuggestionToNotes(index) {
+            const noteKey = getNoteKey();
+            const suggestion = currentAIExpansions[noteKey].suggestions[index];
+            const notesArea = document.getElementById('searchNotes');
+            
+            // Add suggestion to notes with AI marker
+            const aiNote = `\n[AI] ${suggestion.title}: ${suggestion.content}`;
+            notesArea.value += aiNote;
+            
+            // Save immediately
+            allSearchNotes[noteKey] = notesArea.value;
+            saveSession();
+            showAutosaveIndicator();
+            
+            // Visual feedback
+            const suggestionEl = document.querySelectorAll('.ai-suggestion')[index];
+            suggestionEl.style.background = 'var(--accent)';
+            suggestionEl.style.color = 'white';
+            setTimeout(() => {
+                suggestionEl.style.background = '';
+                suggestionEl.style.color = '';
+            }, 500);
+        }
+        
+        async function regenerateAI() {
+            // Simply call showAIPanel again to get new suggestions
+            hideAIPanel();
+            setTimeout(() => showAIPanel(), 100);
+        }
+        
+        function hideAIPanel() {
+            document.getElementById('aiPanel').classList.remove('active');
+        }
+        
+        // Modify showNotesForTitle to highlight AI-generated content
+        function showNotesForTitle() {
+            let notesHtml = '';
+            Object.entries(allSearchNotes).forEach(([key, notes]) => {
+                if (notes.trim() && !key.includes('_skipped')) {
+                    const parts = key.split('_');
+                    let location;
+                    if (parts[0] === 'craft') {
+                        location = 'Craft';
+                    } else {
+                        location = searchLocations[parseInt(parts[2])].place;
+                    }
+                    let item = userItems[parseInt(parts[1])];
+                    
+                    notesHtml += '<div class="summary-item">';
+                    notesHtml += '<div class="summary-label">' + item + ' in ' + location + '</div>';
+                    
+                    // Format notes and highlight AI suggestions
+                    const formattedNotes = notes.split('\n').map(note => {
+                        if (note.startsWith('[AI]')) {
+                            return `<span style="color: var(--accent);">✨ ${note.substring(4)}</span>`;
+                        }
+                        return note;
+                    }).join('<br>');
+                    
+                    notesHtml += '<div>' + formattedNotes + '</div>';
+                    notesHtml += '</div>';
                 }
             });
             
-            dom.restartBtn.addEventListener('click', restartApp);
-            
-            // --- INITIALIZATION ---
-            
-            const init = () => {
-                restartApp();
-            };
-            
-            init();
-        });
+            document.getElementById('notesSummary').innerHTML = notesHtml || '<div style="color: var(--text-muted);">No notes captured</div>';
+        }
+        
+        // Initialize on load
+        init();
     </script>
 </body>
 </html>
