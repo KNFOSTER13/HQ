@@ -1,0 +1,1761 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kimberly's Dropathon - 75 Days of Creative Output</title>
+    <meta name="description" content="Join Kimberly's 75-day creative challenge. Beating back perfectionism one drop at a time.">
+    
+    <!-- Open Graph Tags -->
+    <meta property="og:title" content="Kimberly's Dropathon">
+    <meta property="og:description" content="75 days of creative output. Beating back perfectionism one drop at a time.">
+    <meta property="og:image" content="kdrop4.png">
+    <meta property="og:type" content="website">
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --bg-dark: #1a0f26;
+            --bg-center: #2d1b42;
+            --bg-edge: #241538;
+            --surface: rgba(42, 26, 61, 0.85);
+            --surface-hover: rgba(52, 36, 71, 0.95);
+            --accent: #a78bfa;
+            --accent-bright: #c4b5fd;
+            --accent-start: #C6B6F7;
+            --accent-end: #FFD9C0;
+            --cta: #f472b6;
+            --cta-hover: #ec4899;
+            --text-primary: #f3f4f6;
+            --text-secondary: #d1d5db;
+            --text-muted: #9ca3af;
+            --tag-free: #86efac;
+            --tag-paid: #fde047;
+            --heart: #f472b6;
+            --success: #34d399;
+            --warning: #fbbf24;
+            --error: #f87171;
+        }
+
+        /* Custom text color utilities */
+        .text-muted { color: var(--text-muted); }
+        .text-accent { color: var(--accent); }
+        .text-cta { color: var(--cta); }
+        .text-success { color: var(--success); }
+        .text-warning { color: var(--warning); }
+        .text-error { color: var(--error); }
+        .text-primary { color: var(--text-primary); }
+        .text-secondary { color: var(--text-secondary); }
+        .text-heart { color: var(--heart); }
+
+        /* Custom background utilities */
+        .bg-success { background-color: var(--success); }
+        .bg-warning { background-color: var(--warning); }
+        .bg-error { background-color: var(--error); }
+
+        /* Line clamp utility */
+        .line-clamp-2 {
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+        }
+
+        .line-clamp-1 {
+            display: -webkit-box;
+            -webkit-line-clamp: 1;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: linear-gradient(135deg, var(--bg-center) 0%, var(--bg-edge) 100%);
+            min-height: 100vh;
+            color: var(--text-primary);
+            line-height: 1.6;
+            transition: all 0.3s ease;
+        }
+
+        .sticky-header {
+            background: rgba(26, 15, 38, 0.8);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border-bottom: 1px solid rgba(167, 139, 250, 0.1);
+            position: sticky;
+            top: 0;
+            z-index: 50;
+            transition: all 0.3s ease;
+        }
+
+        .card {
+            background: var(--surface);
+            border: 1px solid rgba(167, 139, 250, 0.15);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            border-radius: 1rem;
+            overflow: hidden;
+        }
+
+        .card:hover {
+            transform: translateY(-4px);
+            background: var(--surface-hover);
+            border-color: rgba(167, 139, 250, 0.3);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2),
+                        0 0 20px rgba(167, 139, 250, 0.1);
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, var(--cta) 0%, var(--cta-hover) 100%);
+            color: white;
+            font-weight: 600;
+            padding: 0.625rem 1.5rem;
+            border-radius: 9999px;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .btn-primary:hover {
+            transform: scale(1.05);
+            box-shadow: 0 10px 25px rgba(244, 114, 182, 0.3);
+        }
+
+        .btn-primary:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+            transform: scale(1);
+        }
+
+        .btn-secondary {
+            background: rgba(167, 139, 250, 0.1);
+            color: var(--accent-bright);
+            font-weight: 500;
+            padding: 0.5rem 1.25rem;
+            border-radius: 9999px;
+            transition: all 0.2s ease;
+            border: 1px solid rgba(167, 139, 250, 0.3);
+            cursor: pointer;
+        }
+
+        .btn-secondary:hover {
+            background: rgba(167, 139, 250, 0.2);
+            border-color: rgba(167, 139, 250, 0.5);
+        }
+
+        .tag {
+            font-size: 0.75rem;
+            font-weight: 600;
+            padding: 0.25rem 0.75rem;
+            border-radius: 9999px;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.25rem;
+        }
+
+        .tag-free {
+            background: rgba(134, 239, 172, 0.15);
+            color: var(--tag-free);
+            border: 1px solid rgba(134, 239, 172, 0.3);
+        }
+
+        .tag-paid {
+            background: rgba(253, 224, 71, 0.15);
+            color: var(--tag-paid);
+            border: 1px solid rgba(253, 224, 71, 0.3);
+        }
+
+        .form-input {
+            background: rgba(0, 0, 0, 0.2);
+            border: 1px solid rgba(167, 139, 250, 0.2);
+            color: var(--text-primary);
+            padding: 0.75rem 1rem;
+            border-radius: 0.5rem;
+            width: 100%;
+            transition: all 0.2s ease;
+        }
+
+        .form-input:focus {
+            outline: none;
+            border-color: var(--accent);
+            box-shadow: 0 0 0 3px rgba(167, 139, 250, 0.1);
+        }
+
+        .heart-btn {
+            transition: all 0.2s ease;
+            cursor: pointer;
+            user-select: none;
+        }
+
+        .heart-btn:hover svg {
+            transform: scale(1.1);
+        }
+
+        .heart-btn.hearted svg {
+            fill: var(--heart);
+            stroke: var(--heart);
+            animation: heartPulse 0.3s ease;
+        }
+
+        @keyframes heartPulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.2); }
+        }
+
+        .progress-bar {
+            height: 8px;
+            background: rgba(167, 139, 250, 0.1);
+            border-radius: 4px;
+            overflow: hidden;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, var(--accent) 0%, var(--cta) 100%);
+            transition: width 1.5s cubic-bezier(0.4, 0, 0.2, 1);
+            animation: progressShimmer 2s ease infinite;
+        }
+
+        @keyframes progressShimmer {
+            0% { opacity: 0.8; }
+            50% { opacity: 1; }
+            100% { opacity: 0.8; }
+        }
+
+        .progress-fill.animating {
+            width: 0% !important;
+            animation: fillProgress 1.5s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+        }
+
+        @keyframes fillProgress {
+            from { width: 0%; }
+            to { width: var(--target-width); }
+        }
+
+        .filter-btn {
+            padding: 0.5rem 1rem;
+            background: transparent;
+            border: 1px solid rgba(167, 139, 250, 0.2);
+            color: var(--text-secondary);
+            border-radius: 0.5rem;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            font-size: 0.875rem;
+        }
+
+        .filter-btn:hover {
+            background: rgba(167, 139, 250, 0.1);
+            border-color: rgba(167, 139, 250, 0.3);
+        }
+
+        .filter-btn.active {
+            background: rgba(167, 139, 250, 0.2);
+            color: var(--accent-bright);
+            border-color: var(--accent);
+        }
+
+        .toast {
+            position: fixed;
+            bottom: 2rem;
+            left: 50%;
+            transform: translateX(-50%) translateY(100px);
+            background: var(--surface);
+            color: var(--text-primary);
+            padding: 1rem 1.5rem;
+            border-radius: 0.75rem;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+            opacity: 0;
+            transition: all 0.3s ease;
+            z-index: 100;
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            border: 1px solid rgba(167, 139, 250, 0.2);
+        }
+
+        .toast.show {
+            transform: translateX(-50%) translateY(0);
+            opacity: 1;
+        }
+
+        @media (max-width: 640px) {
+            .sticky-header {
+                padding: 0.75rem;
+            }
+            
+            .card {
+                border-radius: 0.75rem;
+            }
+        }
+
+        /* Smooth scrolling */
+        html {
+            scroll-behavior: smooth;
+        }
+
+        /* Custom scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: rgba(0, 0, 0, 0.1);
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: var(--accent);
+            border-radius: 4px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: var(--accent-bright);
+        }
+    </style>
+</head>
+<body>
+    <!-- Sticky Header -->
+    <header class="sticky-header">
+        <div class="max-w-6xl mx-auto px-4 py-4">
+            <div class="flex items-center justify-between">
+                <a href="#" class="flex items-center gap-3">
+                    <img src="LARGE-LOGO-CUT-OUT_pastel_glow_TRANSPARENT_tight_10px.png" alt="Logo" class="h-8 w-auto">
+                    <span class="hidden sm:inline font-bold text-lg text-white" style="text-shadow: 0 2px 4px rgba(0,0,0,0.3);">Drop it like it's hot, Kim!</span>
+                </a>
+                
+                <div class="flex items-center gap-3">
+                    <div class="hidden md:flex items-center gap-3">
+                        <div class="bg-white/5 backdrop-blur px-4 py-2 rounded-full text-sm">
+                            <span id="current-day">Day 1</span> of 75
+                        </div>
+                        <div class="progress-bar w-32">
+                            <div class="progress-fill" id="progress-bar" style="width: 0%"></div>
+                        </div>
+                        <div class="bg-white/5 backdrop-blur px-4 py-2 rounded-full text-sm">
+                            <span id="total-drops">0</span> Drops
+                        </div>
+                    </div>
+                    
+                    <button id="admin-toggle" class="btn-secondary p-2" title="Admin mode">
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"></path>
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path>
+                        </svg>
+                    </button>
+                    
+                    <button id="subscribe-btn" class="btn-primary">
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9"></path>
+                        </svg>
+                        Subscribe
+                    </button>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <main class="max-w-6xl mx-auto px-4 py-8">
+        <!-- Hero Section -->
+        <section class="text-center py-12">
+            <img src="kdrop4.png" alt="Kimberly's Dropathon" class="mx-auto w-full max-w-md mb-6">
+            <h1 class="text-3xl md:text-4xl font-bold mb-4">Beating back perfectionism one drop at a time.</h1>
+            <p class="text-lg text-muted mb-2">September 12 — November 26, 2025</p>
+            
+            <!-- Stats Overview -->
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mt-8 max-w-2xl mx-auto">
+                <div class="card p-4 text-center">
+                    <div class="text-2xl font-bold text-accent" id="today-count">0</div>
+                    <div class="text-sm text-muted">Today's Drops</div>
+                </div>
+                <div class="card p-4 text-center">
+                    <div class="text-2xl font-bold text-cta" id="streak-count">0</div>
+                    <div class="text-sm text-muted">Day Streak</div>
+                </div>
+                <div class="card p-4 text-center">
+                    <div class="text-2xl font-bold text-success" id="free-count">0</div>
+                    <div class="text-sm text-muted">Free Content</div>
+                </div>
+                <div class="card p-4 text-center">
+                    <div class="text-2xl font-bold text-warning" id="paid-count">0</div>
+                    <div class="text-sm text-muted">Premium</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Admin Panel -->
+        <section id="admin-panel" class="hidden mb-8">
+            <div class="card p-6">
+                <h2 class="text-2xl font-bold mb-4 flex items-center gap-2">
+                    <svg class="w-6 h-6 text-accent" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6"></path>
+                    </svg>
+                    Add New Drop
+                </h2>
+                
+                <form id="drop-form" class="space-y-4">
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        <div>
+                            <label class="block text-sm font-medium mb-2">Title *</label>
+                            <input type="text" id="drop-title" class="form-input" placeholder="e.g., Morning Motivation Video" required>
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium mb-2">Content Type *</label>
+                            <select id="drop-type" class="form-input">
+                                <option>Video</option>
+                                <option>Podcast</option>
+                                <option>Essay</option>
+                                <option>Social Post</option>
+                                <option>Newsletter</option>
+                                <option>Tutorial</option>
+                                <option>Other</option>
+                            </select>
+                        </div>
+                    </div>
+                    
+                    <div>
+                        <label class="block text-sm font-medium mb-2">Description *</label>
+                        <textarea id="drop-description" class="form-input" rows="2" placeholder="Brief description of the content..." required></textarea>
+                    </div>
+                    
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                        <div>
+                            <label class="block text-sm font-medium mb-2">Link *</label>
+                            <input type="url" id="drop-link" class="form-input" placeholder="https://..." required>
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium mb-2">Image URL</label>
+                            <input type="url" id="drop-image" class="form-input" placeholder="https://...">
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium mb-2">Access Level</label>
+                            <select id="drop-access" class="form-input">
+                                <option>Free</option>
+                                <option>Paid</option>
+                            </select>
+                        </div>
+                    </div>
+                    
+                    <!-- Schedule Options (initially hidden) -->
+                    <div id="schedule-options" class="hidden space-y-4 p-4 bg-white/5 rounded-lg">
+                        <h3 class="font-semibold flex items-center gap-2">
+                            <svg class="w-5 h-5 text-accent" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path>
+                            </svg>
+                            Schedule Settings
+                        </h3>
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                            <div>
+                                <label class="block text-sm font-medium mb-2">Publish Date</label>
+                                <input type="date" id="schedule-date" class="form-input">
+                            </div>
+                            <div>
+                                <label class="block text-sm font-medium mb-2">Publish Time</label>
+                                <input type="time" id="schedule-time" class="form-input">
+                            </div>
+                        </div>
+                        <div class="flex items-center gap-3 text-sm text-muted">
+                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                            </svg>
+                            <span>Scheduled posts will auto-publish at the specified time</span>
+                        </div>
+                    </div>
+                    
+                    <div class="flex gap-3">
+                        <button type="submit" id="publish-btn" class="btn-primary">
+                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8"></path>
+                            </svg>
+                            Drop It!
+                        </button>
+                        <button type="button" id="draft-btn" class="btn-secondary">
+                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path>
+                            </svg>
+                            Save Draft
+                        </button>
+                        <button type="button" id="schedule-btn" class="btn-secondary">
+                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                            </svg>
+                            Schedule
+                        </button>
+                    </div>
+                </form>
+            </div>
+            
+            <!-- Drafts and Scheduled Posts Section -->
+            <div id="drafts-section" class="mt-6 space-y-4 hidden">
+                <div class="card p-6">
+                    <h3 class="text-xl font-bold mb-4 flex items-center gap-2">
+                        <svg class="w-5 h-5 text-accent" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2"></path>
+                        </svg>
+                        Drafts & Scheduled
+                    </h3>
+                    <div id="drafts-list" class="space-y-3">
+                        <!-- Drafts will be dynamically inserted here -->
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Search and Filters -->
+        <section class="mb-6">
+            <div class="card p-4">
+                <div class="flex flex-col md:flex-row gap-4">
+                    <div class="flex-1">
+                        <div class="relative">
+                            <input type="text" id="search-input" class="form-input pl-10" placeholder="Search drops...">
+                            <svg class="w-5 h-5 absolute left-3 top-1/2 -translate-y-1/2 text-muted" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
+                            </svg>
+                        </div>
+                    </div>
+                    
+                    <div class="flex gap-2 flex-wrap">
+                        <button class="filter-btn active" data-filter="all">All</button>
+                        <button class="filter-btn" data-filter="Video">Videos</button>
+                        <button class="filter-btn" data-filter="Podcast">Podcasts</button>
+                        <button class="filter-btn" data-filter="Essay">Essays</button>
+                        <button class="filter-btn" data-filter="free">Free</button>
+                        <button class="filter-btn" data-filter="paid">Premium</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Content Feed -->
+        <section id="content-feed" class="space-y-8">
+            <!-- Today's Drops -->
+            <div id="today-section" class="hidden">
+                <h2 class="text-2xl md:text-3xl font-bold mb-4 flex items-center gap-2">
+                    <span class="w-2 h-2 bg-green-500 rounded-full animate-pulse"></span>
+                    <span class="text-white" style="text-shadow: 0 2px 4px rgba(0,0,0,0.3);">Today's Drops</span>
+                </h2>
+                <div id="today-drops" class="grid gap-6"></div>
+            </div>
+            
+            <!-- Previous Drops -->
+            <div id="previous-section" class="hidden">
+                <h2 class="text-2xl font-bold mb-4">Previous Drops</h2>
+                <div id="previous-drops" class="grid gap-6"></div>
+            </div>
+            
+            <!-- Empty State -->
+            <div id="empty-state" class="text-center py-12 hidden">
+                <svg class="w-24 h-24 mx-auto mb-4 text-muted opacity-50" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20 13V6a2 2 0 00-2-2H6a2 2 0 00-2 2v7m16 0v5a2 2 0 01-2 2H6a2 2 0 01-2-2v-5m16 0h-2.586a1 1 0 00-.707.293l-2.414 2.414a1 1 0 01-.707.293h-3.172a1 1 0 01-.707-.293l-2.414-2.414A1 1 0 006.586 13H4"></path>
+                </svg>
+                <p class="text-lg text-muted">No drops yet. Click the settings icon to add your first drop!</p>
+            </div>
+        </section>
+
+        <!-- Quick Links -->
+        <section class="mt-12">
+            <h2 class="text-2xl font-bold mb-6 text-center">Quick Links</h2>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-4 max-w-3xl mx-auto">
+                <a href="https://www.patreon.com/kimberlynfoster" class="card p-6 flex items-center gap-4 hover:scale-105">
+                    <div class="p-3 rounded-full bg-pink-500/20">
+                        <svg class="w-6 h-6 text-pink-400" fill="currentColor" viewBox="0 0 20 20">
+                            <path fill-rule="evenodd" d="M3.172 5.172a4 4 0 015.656 0L10 6.343l1.172-1.171a4 4 0 115.656 5.656L10 17.657l-6.828-6.829a4 4 0 010-5.656z" clip-rule="evenodd"/>
+                        </svg>
+                    </div>
+                    <span class="font-semibold">Support on Patreon</span>
+                </a>
+                
+                <a href="https://discord.gg/your-invite" class="card p-6 flex items-center gap-4 hover:scale-105">
+                    <div class="p-3 rounded-full bg-blue-500/20">
+                        <svg class="w-6 h-6 text-blue-400" fill="currentColor" viewBox="0 0 20 20">
+                            <path d="M2 5a2 2 0 012-2h7a2 2 0 012 2v4a2 2 0 01-2 2H9l-3 3v-3H4a2 2 0 01-2-2V5z"/>
+                            <path d="M15 7v2a4 4 0 01-4 4H9.828l-1.766 1.767c.28.149.599.233.938.233h2l3 3v-3h2a2 2 0 002-2V9a2 2 0 00-2-2h-1z"/>
+                        </svg>
+                    </div>
+                    <span class="font-semibold">Join Discord</span>
+                </a>
+                
+                <a href="https://kimberlynfoster.substack.com" class="card p-6 flex items-center gap-4 hover:scale-105">
+                    <div class="p-3 rounded-full bg-green-500/20">
+                        <svg class="w-6 h-6 text-green-400" fill="currentColor" viewBox="0 0 20 20">
+                            <path d="M2.003 5.884L10 9.882l7.997-3.998A2 2 0 0016 4H4a2 2 0 00-1.997 1.884z"/>
+                            <path d="M18 8.118l-8 4-8-4V14a2 2 0 002 2h12a2 2 0 002-2V8.118z"/>
+                        </svg>
+                    </div>
+                    <span class="font-semibold">Newsletter</span>
+                </a>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="text-center py-8 mt-12 text-sm text-muted">
+        <p>&copy; 2025 Kimberly's Dropathon. All rights reserved.</p>
+    </footer>
+
+    <!-- Modals -->
+    <div id="delete-modal" class="fixed inset-0 bg-black/50 backdrop-blur-sm hidden items-center justify-center p-4 z-50">
+        <div class="card max-w-sm w-full p-6">
+            <h3 class="text-xl font-bold mb-4 flex items-center gap-2 text-error">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"></path>
+                </svg>
+                Confirm Deletion
+            </h3>
+            <p class="text-muted mb-4">This action cannot be undone. The drop will be permanently deleted.</p>
+            <div class="space-y-4">
+                <div>
+                    <label class="block text-sm font-medium mb-2">Type "DELETE" to confirm:</label>
+                    <input type="text" id="delete-confirmation-input" class="form-input" placeholder="Type DELETE here">
+                </div>
+                <div class="flex gap-3 justify-end">
+                    <button id="cancel-delete" class="btn-secondary">Cancel</button>
+                    <button id="confirm-delete" class="btn-primary bg-red-500 hover:bg-red-600" disabled>Delete</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Security Modal -->
+    <div id="security-modal" class="fixed inset-0 bg-black/50 backdrop-blur-sm hidden items-center justify-center p-4 z-50">
+        <div class="card max-w-md w-full p-6">
+            <h3 class="text-xl font-bold mb-4 flex items-center gap-2">
+                <svg class="w-6 h-6 text-accent" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"></path>
+                </svg>
+                Admin Access
+            </h3>
+            
+            <div id="login-form" class="space-y-4">
+                <div>
+                    <label class="block text-sm font-medium mb-2">Enter Admin Password</label>
+                    <input type="password" id="admin-password" class="form-input" placeholder="••••••••">
+                    <p class="text-xs text-muted mt-2">Default password: dropathon2025</p>
+                </div>
+                <div class="flex gap-3">
+                    <button id="security-login" class="btn-primary flex-1">
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 16l-4-4m0 0l4-4m-4 4h14m-5 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h7a3 3 0 013 3v1"></path>
+                        </svg>
+                        Login
+                    </button>
+                    <button id="security-cancel" class="btn-secondary">Cancel</button>
+                </div>
+            </div>
+            
+            <div id="admin-options" class="hidden space-y-4">
+                <p class="text-sm text-success">✓ You are logged in as admin</p>
+                <div class="flex flex-col gap-3">
+                    <button id="change-password-btn" class="btn-secondary">
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 7a2 2 0 012 2m4 0a6 6 0 01-7.743 5.743L11 17H9v2H7v2H4a1 1 0 01-1-1v-2.586a1 1 0 01.293-.707l5.964-5.964A6 6 0 1121 9z"></path>
+                        </svg>
+                        Change Password
+                    </button>
+                    <button id="logout-btn" class="btn-primary bg-red-500 hover:bg-red-600">
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1"></path>
+                        </svg>
+                        Logout
+                    </button>
+                    <button id="close-security" class="btn-secondary">Close</button>
+                </div>
+            </div>
+            
+            <div id="change-password-form" class="hidden space-y-4">
+                <div>
+                    <label class="block text-sm font-medium mb-2">Current Password</label>
+                    <input type="password" id="current-password" class="form-input" placeholder="••••••••">
+                </div>
+                <div>
+                    <label class="block text-sm font-medium mb-2">New Password</label>
+                    <input type="password" id="new-password" class="form-input" placeholder="••••••••">
+                    <p class="text-xs text-muted mt-1">At least 8 characters recommended</p>
+                </div>
+                <div>
+                    <label class="block text-sm font-medium mb-2">Confirm New Password</label>
+                    <input type="password" id="confirm-password" class="form-input" placeholder="••••••••">
+                </div>
+                <div class="flex gap-3">
+                    <button id="save-password" class="btn-primary flex-1">Save Password</button>
+                    <button id="cancel-password" class="btn-secondary">Cancel</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Subscribe Modal -->
+    <div id="subscribe-modal" class="fixed inset-0 bg-black/50 backdrop-blur-sm hidden items-center justify-center p-4 z-50">
+        <div class="card max-w-lg w-full p-6 relative">
+            <button id="close-subscribe" class="absolute top-4 right-4 text-muted hover:text-primary transition-colors">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+                </svg>
+            </button>
+            
+            <h2 class="text-2xl font-bold mb-4 text-center">Join the Dropathon!</h2>
+            <p class="text-muted mb-6 text-center">Get exclusive updates, behind-the-scenes content, and early access to drops straight to your inbox!</p>
+            
+            <div class="bg-white rounded-lg p-1">
+                <iframe src="https://kimberlynfoster.substack.com/embed"
+                    width="100%" 
+                    height="320" 
+                    style="border:1px solid #EEE; background:white;" 
+                    frameborder="0" 
+                    scrolling="no">
+                </iframe>
+            </div>
+        </div>
+    </div>
+
+    <!-- Toast Notification -->
+    <div id="toast" class="toast">
+        <svg class="w-5 h-5 text-success" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+        </svg>
+        <span id="toast-message">Action completed successfully!</span>
+    </div>
+
+    <!-- Firebase & App Scripts -->
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-app.js";
+        import { getAuth, signInAnonymously } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-auth.js";
+        import { 
+            getFirestore, 
+            collection, 
+            addDoc, 
+            onSnapshot, 
+            query, 
+            orderBy,
+            doc, 
+            deleteDoc, 
+            updateDoc, 
+            increment,
+            where
+        } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-firestore.js";
+
+        // Configuration
+        const firebaseConfig = {
+            apiKey: "AIzaSyDTd4lvs1lzjKeGu7Ee91lM30-8v88h-ng",
+            authDomain: "productivity-tracker-knf13.firebaseapp.com",
+            projectId: "productivity-tracker-knf13",
+            storageBucket: "productivity-tracker-knf13.firebasestorage.app",
+            messagingSenderId: "762035393571",
+            appId: "1:762035393571:web:7d474a6a57cc031b860d96"
+        };
+
+        const START_DATE = new Date('2025-09-12T00:00:00');
+        const END_DATE = new Date('2025-11-26T23:59:59');
+        const TOTAL_DAYS = 75;
+
+        // Initialize Firebase
+        let db;
+        try {
+            const app = initializeApp(firebaseConfig);
+            const auth = getAuth(app);
+            db = getFirestore(app);
+            await signInAnonymously(auth);
+        } catch (error) {
+            console.error("Firebase initialization failed:", error);
+            showToast("Error connecting to database", "error");
+        }
+
+        const dropsCollectionPath = `/artifacts/${firebaseConfig.projectId}/public/data/drops`;
+
+        // State Management
+        let allDrops = [];
+        let filteredDrops = [];
+        let currentFilter = 'all';
+        let searchQuery = '';
+        let isAdmin = false;
+        let dropToDelete = null;
+        let heartedPosts = JSON.parse(localStorage.getItem('heartedPosts')) || {};
+        let showScheduleOptions = false;
+        let editingDrop = null;
+        
+        // Add pagination variables for Load More functionality
+        let todayDisplayCount = 5;
+        let previousDisplayCount = 5;
+        const CARDS_PER_LOAD = 5;
+        
+        // Security Management
+        let adminSession = null;
+        let lastActivityTime = Date.now();
+        const SESSION_TIMEOUT = 30 * 60 * 1000; // 30 minutes
+        const ADMIN_PASSWORD_KEY = 'dropathon_admin_pwd';
+        const ADMIN_SESSION_KEY = 'dropathon_admin_session';
+        
+        // Check for existing session
+        const savedSession = sessionStorage.getItem(ADMIN_SESSION_KEY);
+        if (savedSession) {
+            const sessionData = JSON.parse(savedSession);
+            if (Date.now() - sessionData.timestamp < SESSION_TIMEOUT) {
+                adminSession = sessionData;
+                isAdmin = true;
+            } else {
+                sessionStorage.removeItem(ADMIN_SESSION_KEY);
+            }
+        }
+
+        // DOM Elements
+        const elements = {
+            currentDay: document.getElementById('current-day'),
+            progressBar: document.getElementById('progress-bar'),
+            totalDrops: document.getElementById('total-drops'),
+            todayCount: document.getElementById('today-count'),
+            streakCount: document.getElementById('streak-count'),
+            freeCount: document.getElementById('free-count'),
+            paidCount: document.getElementById('paid-count'),
+            adminPanel: document.getElementById('admin-panel'),
+            adminToggle: document.getElementById('admin-toggle'),
+            dropForm: document.getElementById('drop-form'),
+            searchInput: document.getElementById('search-input'),
+            todaySection: document.getElementById('today-section'),
+            todayDrops: document.getElementById('today-drops'),
+            previousSection: document.getElementById('previous-section'),
+            previousDrops: document.getElementById('previous-drops'),
+            emptyState: document.getElementById('empty-state'),
+            deleteModal: document.getElementById('delete-modal'),
+            confirmDelete: document.getElementById('confirm-delete'),
+            cancelDelete: document.getElementById('cancel-delete'),
+            subscribeBtn: document.getElementById('subscribe-btn'),
+            subscribeModal: document.getElementById('subscribe-modal'),
+            closeSubscribe: document.getElementById('close-subscribe'),
+            toast: document.getElementById('toast'),
+            toastMessage: document.getElementById('toast-message'),
+            scheduleBtn: document.getElementById('schedule-btn'),
+            draftBtn: document.getElementById('draft-btn'),
+            publishBtn: document.getElementById('publish-btn'),
+            scheduleOptions: document.getElementById('schedule-options'),
+            scheduleDate: document.getElementById('schedule-date'),
+            scheduleTime: document.getElementById('schedule-time'),
+            draftsSection: document.getElementById('drafts-section'),
+            draftsList: document.getElementById('drafts-list')
+        };
+
+        // Utility Functions
+        function getCurrentDay() {
+            const now = new Date();
+            if (now < START_DATE) return 0;
+            if (now > END_DATE) return TOTAL_DAYS;
+            
+            const diffTime = Math.abs(now - START_DATE);
+            const diffDays = Math.floor(diffTime / (1000 * 60 * 60 * 24)) + 1;
+            return Math.min(diffDays, TOTAL_DAYS);
+        }
+
+        function updateProgress() {
+            const currentDay = getCurrentDay();
+            const progress = (currentDay / TOTAL_DAYS) * 100;
+            
+            elements.currentDay.textContent = `Day ${currentDay}`;
+            
+            // Animate progress bar on initial load
+            if (!elements.progressBar.classList.contains('animating')) {
+                elements.progressBar.style.setProperty('--target-width', `${progress}%`);
+                setTimeout(() => {
+                    elements.progressBar.style.width = `${progress}%`;
+                    elements.progressBar.classList.add('animating');
+                }, 100);
+            } else {
+                elements.progressBar.style.width = `${progress}%`;
+            }
+            
+            return currentDay;
+        }
+
+        function showToast(message, type = 'success') {
+            elements.toastMessage.textContent = message;
+            elements.toast.classList.add('show');
+            
+            setTimeout(() => {
+                elements.toast.classList.remove('show');
+            }, 3000);
+        }
+
+        function escapeHtml(str) {
+            const div = document.createElement('div');
+            div.textContent = str;
+            return div.innerHTML;
+        }
+        
+        // Security Functions
+        function hashPassword(password) {
+            // Simple hash function for demo - in production use bcrypt or similar
+            let hash = 0;
+            for (let i = 0; i < password.length; i++) {
+                const char = password.charCodeAt(i);
+                hash = ((hash << 5) - hash) + char;
+                hash = hash & hash;
+            }
+            return hash.toString();
+        }
+        
+        function verifyPassword(inputPassword) {
+            const storedHash = localStorage.getItem(ADMIN_PASSWORD_KEY);
+            
+            // If no password set, use default and save it
+            if (!storedHash) {
+                const defaultPassword = 'dropathon2025'; // Default password
+                localStorage.setItem(ADMIN_PASSWORD_KEY, hashPassword(defaultPassword));
+                return hashPassword(inputPassword) === hashPassword(defaultPassword);
+            }
+            
+            return hashPassword(inputPassword) === storedHash;
+        }
+        
+        function createAdminSession() {
+            adminSession = {
+                id: Math.random().toString(36).substr(2, 9),
+                timestamp: Date.now()
+            };
+            sessionStorage.setItem(ADMIN_SESSION_KEY, JSON.stringify(adminSession));
+            lastActivityTime = Date.now();
+        }
+        
+        function destroyAdminSession() {
+            adminSession = null;
+            isAdmin = false;
+            sessionStorage.removeItem(ADMIN_SESSION_KEY);
+            elements.adminPanel.classList.add('hidden');
+            elements.draftsSection.classList.add('hidden');
+            renderDrops();
+            showToast('Admin session ended');
+        }
+        
+        function updateActivity() {
+            lastActivityTime = Date.now();
+            if (adminSession) {
+                adminSession.timestamp = lastActivityTime;
+                sessionStorage.setItem(ADMIN_SESSION_KEY, JSON.stringify(adminSession));
+            }
+        }
+        
+        function checkSessionTimeout() {
+            if (isAdmin && Date.now() - lastActivityTime > SESSION_TIMEOUT) {
+                destroyAdminSession();
+                showToast('Session expired due to inactivity', 'warning');
+            }
+        }
+        
+        // Track admin activity
+        document.addEventListener('click', () => {
+            if (isAdmin) updateActivity();
+        });
+        
+        document.addEventListener('keypress', () => {
+            if (isAdmin) updateActivity();
+        });
+        
+        // Check session timeout every minute
+        setInterval(checkSessionTimeout, 60000);
+
+        // Drop Card Creation
+        function createDropCard(drop) {
+            const card = document.createElement('div');
+            card.className = 'card overflow-hidden';
+            card.dataset.id = drop.id;
+            
+            const isHearted = heartedPosts[drop.id];
+            const dropTime = new Date(drop.timestamp).toLocaleTimeString([], { 
+                hour: 'numeric', 
+                minute: '2-digit' 
+            });
+            
+            const imageUrl = drop.imageUrl || `https://placehold.co/400x300/7c3aed/ffffff?text=${encodeURIComponent(drop.contentType)}`;
+            
+            card.innerHTML = `
+                <div class="flex flex-col md:flex-row">
+                    <div class="md:w-48 aspect-[4/3]">
+                        <img src="${escapeHtml(imageUrl)}" 
+                             alt="${escapeHtml(drop.title)}" 
+                             class="w-full h-full object-cover"
+                             loading="lazy"
+                             onerror="this.src='https://placehold.co/400x300/7c3aed/ffffff?text=${encodeURIComponent(drop.contentType)}'">
+                    </div>
+                    
+                    <div class="flex-1 p-6">
+                        <!-- Top utility strip with metadata -->
+                        <div class="flex items-center justify-between mb-3 pb-2 border-b border-white/5">
+                            <div class="flex items-center gap-3 text-xs text-muted">
+                                <span>Day ${drop.day}</span>
+                                <span>•</span>
+                                <span>${dropTime}</span>
+                                <span>•</span>
+                                <span>${drop.contentType}</span>
+                            </div>
+                            
+                            <div class="flex items-center gap-3">
+                                <button class="heart-btn flex items-center gap-1 text-xs ${isHearted ? 'text-heart' : 'text-muted hover:text-heart'}" 
+                                        data-id="${drop.id}">
+                                    <svg class="w-4 h-4" fill="${isHearted ? 'currentColor' : 'none'}" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.25l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.5l-1.318-1.182a4.5 4.5 0 00-6.364 0z"></path>
+                                    </svg>
+                                    <span>${drop.hearts || 0}</span>
+                                </button>
+                                
+                                <button class="share-btn text-muted hover:text-primary text-xs" 
+                                        data-link="${escapeHtml(drop.link)}" 
+                                        data-title="${escapeHtml(drop.title)}">
+                                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8.684 13.342C8.886 12.938 9 12.482 9 12c0-.482-.114-.938-.316-1.342m0 2.684a3 3 0 110-2.684m9.032 4.026a3 3 0 10-2.684-2.684m0 0a3 3 0 00-2.684 2.684M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                                    </svg>
+                                </button>
+                                
+                                ${isAdmin ? `
+                                    <button class="delete-btn text-muted hover:text-error text-xs" data-id="${drop.id}">
+                                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"></path>
+                                        </svg>
+                                    </button>
+                                ` : ''}
+                            </div>
+                        </div>
+                        
+                        <!-- Main content area -->
+                        <div class="space-y-3">
+                            <!-- Access badge -->
+                            <div>
+                                <span class="tag ${drop.access === 'Paid' ? 'tag-paid' : 'tag-free'}">
+                                    ${drop.access}
+                                </span>
+                            </div>
+                            
+                            <!-- Title - larger and more prominent -->
+                            <h3 class="text-lg md:text-xl font-semibold leading-tight hover:text-accent transition-colors">
+                                <a href="${escapeHtml(drop.link)}" 
+                                   target="_blank" 
+                                   rel="noopener noreferrer"
+                                   class="inline-flex items-center gap-1">
+                                    ${escapeHtml(drop.title)}
+                                    <svg class="w-4 h-4 opacity-50" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path>
+                                    </svg>
+                                </a>
+                            </h3>
+                            
+                            <!-- Description - ensure 2 line clamp -->
+                            <p class="text-sm text-muted line-clamp-2">${escapeHtml(drop.description)}</p>
+                        </div>
+                    </div>
+                </div>
+            `;
+            
+            return card;
+        }
+
+        // Filtering and Search
+        function applyFilters() {
+            // Reset display counts when filters change
+            todayDisplayCount = 5;
+            previousDisplayCount = 5;
+            
+            // Filter only published drops for public view
+            const publishedDrops = allDrops.filter(drop => 
+                drop.status === 'published' || (!drop.status && !drop.scheduledDate)
+            );
+            
+            filteredDrops = publishedDrops.filter(drop => {
+                // Apply content filter
+                if (currentFilter !== 'all') {
+                    if (currentFilter === 'free' && drop.access !== 'Free') return false;
+                    if (currentFilter === 'paid' && drop.access !== 'Paid') return false;
+                    if (!['free', 'paid', 'all'].includes(currentFilter) && drop.contentType !== currentFilter) return false;
+                }
+                
+                // Apply search filter
+                if (searchQuery) {
+                    const search = searchQuery.toLowerCase();
+                    return drop.title.toLowerCase().includes(search) || 
+                           drop.description.toLowerCase().includes(search);
+                }
+                
+                return true;
+            });
+            
+            renderDrops();
+            if (isAdmin) {
+                renderDrafts();
+            }
+        }
+
+        // Function to render drafts and scheduled posts
+        function renderDrafts() {
+            const drafts = allDrops.filter(drop => 
+                drop.status === 'draft' || drop.status === 'scheduled'
+            );
+            
+            if (drafts.length === 0) {
+                elements.draftsSection.classList.add('hidden');
+                return;
+            }
+            
+            elements.draftsSection.classList.remove('hidden');
+            elements.draftsList.innerHTML = '';
+            
+            drafts.forEach(drop => {
+                const draftCard = document.createElement('div');
+                draftCard.className = 'card p-4 flex items-center justify-between';
+                
+                const statusBadge = drop.status === 'scheduled' 
+                    ? `<span class="tag tag-paid">Scheduled: ${new Date(drop.scheduledDate).toLocaleString()}</span>`
+                    : '<span class="tag bg-gray-500/20 text-gray-400 border-gray-500/30">Draft</span>';
+                
+                draftCard.innerHTML = `
+                    <div class="flex-1">
+                        <div class="flex items-center gap-3 mb-2">
+                            ${statusBadge}
+                            <span class="text-sm text-muted">${drop.contentType}</span>
+                        </div>
+                        <h4 class="font-semibold">${escapeHtml(drop.title)}</h4>
+                        <p class="text-sm text-muted line-clamp-1">${escapeHtml(drop.description)}</p>
+                    </div>
+                    <div class="flex gap-2">
+                        <button class="edit-draft-btn btn-secondary p-2" data-id="${drop.id}" title="Edit">
+                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"></path>
+                            </svg>
+                        </button>
+                        <button class="publish-draft-btn btn-primary p-2" data-id="${drop.id}" title="Publish Now">
+                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8"></path>
+                            </svg>
+                        </button>
+                        <button class="delete-draft-btn btn-secondary p-2 hover:bg-red-500/20" data-id="${drop.id}" title="Delete">
+                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"></path>
+                            </svg>
+                        </button>
+                    </div>
+                `;
+                
+                elements.draftsList.appendChild(draftCard);
+            });
+        }
+
+        // Function to check and publish scheduled posts
+        async function checkScheduledPosts() {
+            const now = new Date();
+            const scheduledPosts = allDrops.filter(drop => 
+                drop.status === 'scheduled' && 
+                drop.scheduledDate && 
+                new Date(drop.scheduledDate) <= now
+            );
+            
+            for (const post of scheduledPosts) {
+                try {
+                    await updateDoc(doc(db, dropsCollectionPath, post.id), {
+                        status: 'published',
+                        publishedDate: now.toISOString(),
+                        day: getCurrentDay()
+                    });
+                    showToast(`Scheduled post "${post.title}" has been published!`);
+                } catch (error) {
+                    console.error('Error publishing scheduled post:', error);
+                }
+            }
+        }
+
+        // Reset form function
+        function resetForm() {
+            elements.dropForm.reset();
+            elements.scheduleOptions.classList.add('hidden');
+            showScheduleOptions = false;
+            editingDrop = null;
+            elements.publishBtn.innerHTML = `
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8"></path>
+                </svg>
+                Drop It!
+            `;
+        }
+
+        // Render Functions
+        function renderDrops() {
+            const currentDay = getCurrentDay();
+            const todaysDrops = filteredDrops.filter(d => d.day === currentDay);
+            const previousDrops = filteredDrops.filter(d => d.day < currentDay);
+            
+            // Update stats
+            elements.totalDrops.textContent = allDrops.filter(d => d.status === 'published' || (!d.status && !d.scheduledDate)).length;
+            elements.todayCount.textContent = todaysDrops.length;
+            elements.freeCount.textContent = allDrops.filter(d => d.access === 'Free' && (d.status === 'published' || (!d.status && !d.scheduledDate))).length;
+            elements.paidCount.textContent = allDrops.filter(d => d.access === 'Paid' && (d.status === 'published' || (!d.status && !d.scheduledDate))).length;
+            
+            // Calculate streak
+            const daysWithDrops = new Set(allDrops.filter(d => d.status === 'published' || (!d.status && !d.scheduledDate)).map(d => d.day)).size;
+            elements.streakCount.textContent = daysWithDrops;
+            
+            // Clear feeds
+            elements.todayDrops.innerHTML = '';
+            elements.previousDrops.innerHTML = '';
+            
+            // Render Today's drops with limit
+            if (todaysDrops.length > 0) {
+                elements.todaySection.classList.remove('hidden');
+                
+                // Show only limited number of cards
+                const todayToShow = todaysDrops.slice(0, todayDisplayCount);
+                
+                // Add counter showing how many drops are displayed
+                if (elements.todaySection.querySelector('.drop-counter')) {
+                    elements.todaySection.querySelector('.drop-counter').remove();
+                }
+                const counter = document.createElement('p');
+                counter.className = 'text-sm text-muted mb-2 drop-counter';
+                counter.textContent = `Showing ${todayToShow.length} of ${todaysDrops.length} drops`;
+                elements.todaySection.insertBefore(counter, elements.todayDrops);
+                
+                todayToShow.forEach(drop => {
+                    elements.todayDrops.appendChild(createDropCard(drop));
+                });
+                
+                // Add Load More button if needed
+                if (todaysDrops.length > todayDisplayCount) {
+                    const loadMoreBtn = document.createElement('button');
+                    loadMoreBtn.className = 'btn-secondary w-full mt-4 flex items-center justify-center';
+                    loadMoreBtn.innerHTML = `
+                        Load ${Math.min(CARDS_PER_LOAD, todaysDrops.length - todayDisplayCount)} More
+                        <svg class="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                        </svg>
+                    `;
+                    loadMoreBtn.onclick = () => {
+                        todayDisplayCount += CARDS_PER_LOAD;
+                        renderDrops();
+                    };
+                    elements.todayDrops.appendChild(loadMoreBtn);
+                }
+            } else {
+                elements.todaySection.classList.add('hidden');
+            }
+            
+            // Render Previous drops with limit
+            if (previousDrops.length > 0) {
+                elements.previousSection.classList.remove('hidden');
+                
+                // Show only limited number of cards
+                const previousToShow = previousDrops.slice(0, previousDisplayCount);
+                
+                // Add counter showing how many drops are displayed
+                if (elements.previousSection.querySelector('.drop-counter')) {
+                    elements.previousSection.querySelector('.drop-counter').remove();
+                }
+                const prevCounter = document.createElement('p');
+                prevCounter.className = 'text-sm text-muted mb-2 drop-counter';
+                prevCounter.textContent = `Showing ${previousToShow.length} of ${previousDrops.length} drops`;
+                elements.previousSection.insertBefore(prevCounter, elements.previousDrops);
+                
+                previousToShow.forEach(drop => {
+                    elements.previousDrops.appendChild(createDropCard(drop));
+                });
+                
+                // Add Load More button if needed
+                if (previousDrops.length > previousDisplayCount) {
+                    const loadMoreBtn = document.createElement('button');
+                    loadMoreBtn.className = 'btn-secondary w-full mt-4 flex items-center justify-center';
+                    loadMoreBtn.innerHTML = `
+                        Load ${Math.min(CARDS_PER_LOAD, previousDrops.length - previousDisplayCount)} More
+                        <svg class="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                        </svg>
+                    `;
+                    loadMoreBtn.onclick = () => {
+                        previousDisplayCount += CARDS_PER_LOAD;
+                        renderDrops();
+                    };
+                    elements.previousDrops.appendChild(loadMoreBtn);
+                }
+            } else {
+                elements.previousSection.classList.add('hidden');
+            }
+            
+            // Show empty state if needed
+            elements.emptyState.classList.toggle('hidden', filteredDrops.length > 0);
+        }
+
+        // Event Handlers
+        elements.adminToggle.addEventListener('click', () => {
+            if (!isAdmin) {
+                // Show security modal for login
+                document.getElementById('security-modal').classList.remove('hidden');
+                document.getElementById('security-modal').classList.add('flex');
+                document.getElementById('login-form').classList.remove('hidden');
+                document.getElementById('admin-options').classList.add('hidden');
+                document.getElementById('change-password-form').classList.add('hidden');
+                document.getElementById('admin-password').value = '';
+                document.getElementById('admin-password').focus();
+            } else {
+                // Show admin options if already logged in
+                document.getElementById('security-modal').classList.remove('hidden');
+                document.getElementById('security-modal').classList.add('flex');
+                document.getElementById('login-form').classList.add('hidden');
+                document.getElementById('admin-options').classList.remove('hidden');
+                document.getElementById('change-password-form').classList.add('hidden');
+            }
+        });
+        
+        // Security Modal Event Handlers - Check if elements exist first
+        const securityLogin = document.getElementById('security-login');
+        const adminPassword = document.getElementById('admin-password');
+        const securityCancel = document.getElementById('security-cancel');
+        const closeSecurity = document.getElementById('close-security');
+        const logoutBtn = document.getElementById('logout-btn');
+        const changePasswordBtn = document.getElementById('change-password-btn');
+        const cancelPassword = document.getElementById('cancel-password');
+        const savePassword = document.getElementById('save-password');
+        const deleteConfirmationInput = document.getElementById('delete-confirmation-input');
+        
+        if (securityLogin) {
+            securityLogin.addEventListener('click', () => {
+                const password = document.getElementById('admin-password').value;
+                
+                if (!password) {
+                    showToast('Please enter a password', 'error');
+                    return;
+                }
+                
+                if (verifyPassword(password)) {
+                    isAdmin = true;
+                    createAdminSession();
+                    elements.adminPanel.classList.remove('hidden');
+                    document.getElementById('security-modal').classList.add('hidden');
+                    document.getElementById('security-modal').classList.remove('flex');
+                    renderDrops();
+                    renderDrafts();
+                    showToast('Admin access granted! Session expires in 30 minutes.');
+                    
+                    // Update button appearance
+                    elements.adminToggle.classList.add('bg-green-500/20');
+                } else {
+                    showToast('Incorrect password', 'error');
+                    document.getElementById('admin-password').value = '';
+                }
+            });
+        }
+        
+        // Allow Enter key to submit password
+        if (adminPassword) {
+            adminPassword.addEventListener('keypress', (e) => {
+                if (e.key === 'Enter' && securityLogin) {
+                    securityLogin.click();
+                }
+            });
+        }
+        
+        if (securityCancel) {
+            securityCancel.addEventListener('click', () => {
+                document.getElementById('security-modal').classList.add('hidden');
+                document.getElementById('security-modal').classList.remove('flex');
+            });
+        }
+        
+        if (closeSecurity) {
+            closeSecurity.addEventListener('click', () => {
+                document.getElementById('security-modal').classList.add('hidden');
+                document.getElementById('security-modal').classList.remove('flex');
+            });
+        }
+        
+        if (logoutBtn) {
+            logoutBtn.addEventListener('click', () => {
+                destroyAdminSession();
+                document.getElementById('security-modal').classList.add('hidden');
+                document.getElementById('security-modal').classList.remove('flex');
+                elements.adminToggle.classList.remove('bg-green-500/20');
+            });
+        }
+        
+        // Change Password Handlers
+        if (changePasswordBtn) {
+            changePasswordBtn.addEventListener('click', () => {
+                document.getElementById('admin-options').classList.add('hidden');
+                document.getElementById('change-password-form').classList.remove('hidden');
+                document.getElementById('current-password').value = '';
+                document.getElementById('new-password').value = '';
+                document.getElementById('confirm-password').value = '';
+            });
+        }
+        
+        if (cancelPassword) {
+            cancelPassword.addEventListener('click', () => {
+                document.getElementById('change-password-form').classList.add('hidden');
+                document.getElementById('admin-options').classList.remove('hidden');
+            });
+        }
+        
+        if (savePassword) {
+            savePassword.addEventListener('click', () => {
+                const currentPwd = document.getElementById('current-password').value;
+                const newPwd = document.getElementById('new-password').value;
+                const confirmPwd = document.getElementById('confirm-password').value;
+                
+                if (!currentPwd || !newPwd || !confirmPwd) {
+                    showToast('Please fill in all password fields', 'error');
+                    return;
+                }
+                
+                if (!verifyPassword(currentPwd)) {
+                    showToast('Current password is incorrect', 'error');
+                    return;
+                }
+                
+                if (newPwd.length < 8) {
+                    showToast('New password must be at least 8 characters', 'error');
+                    return;
+                }
+                
+                if (newPwd !== confirmPwd) {
+                    showToast('New passwords do not match', 'error');
+                    return;
+                }
+                
+                // Save new password
+                localStorage.setItem(ADMIN_PASSWORD_KEY, hashPassword(newPwd));
+                showToast('Password changed successfully!');
+                
+                // Return to admin options
+                document.getElementById('change-password-form').classList.add('hidden');
+                document.getElementById('admin-options').classList.remove('hidden');
+            });
+        }
+        
+        // Update admin panel visibility on page load
+        if (isAdmin) {
+            elements.adminPanel.classList.remove('hidden');
+            elements.adminToggle.classList.add('bg-green-500/20');
+            renderDrafts();
+        }
+
+        // Schedule button - toggles schedule options
+        elements.scheduleBtn.addEventListener('click', () => {
+            showScheduleOptions = !showScheduleOptions;
+            elements.scheduleOptions.classList.toggle('hidden', !showScheduleOptions);
+            
+            if (showScheduleOptions) {
+                // Set default date/time to tomorrow at 9 AM
+                const tomorrow = new Date();
+                tomorrow.setDate(tomorrow.getDate() + 1);
+                tomorrow.setHours(9, 0, 0, 0);
+                
+                elements.scheduleDate.value = tomorrow.toISOString().split('T')[0];
+                elements.scheduleTime.value = '09:00';
+            }
+        });
+
+        // Draft button - saves as draft
+        elements.draftBtn.addEventListener('click', async () => {
+            const dropData = {
+                title: document.getElementById('drop-title').value,
+                description: document.getElementById('drop-description').value,
+                link: document.getElementById('drop-link').value,
+                contentType: document.getElementById('drop-type').value,
+                access: document.getElementById('drop-access').value,
+                imageUrl: document.getElementById('drop-image').value,
+                status: 'draft',
+                timestamp: new Date().toISOString(),
+                hearts: 0
+            };
+            
+            try {
+                if (editingDrop) {
+                    await updateDoc(doc(db, dropsCollectionPath, editingDrop), dropData);
+                    showToast('Draft updated successfully!');
+                } else {
+                    await addDoc(collection(db, dropsCollectionPath), dropData);
+                    showToast('Draft saved successfully!');
+                }
+                resetForm();
+            } catch (error) {
+                console.error('Error saving draft:', error);
+                showToast('Error saving draft', 'error');
+            }
+        });
+
+        // Main form submission (Publish/Schedule)
+        elements.dropForm.addEventListener('submit', async (e) => {
+            e.preventDefault();
+            
+            const dropData = {
+                title: document.getElementById('drop-title').value,
+                description: document.getElementById('drop-description').value,
+                link: document.getElementById('drop-link').value,
+                contentType: document.getElementById('drop-type').value,
+                access: document.getElementById('drop-access').value,
+                imageUrl: document.getElementById('drop-image').value,
+                timestamp: new Date().toISOString(),
+                hearts: 0
+            };
+            
+            // Check if scheduling
+            if (showScheduleOptions && elements.scheduleDate.value && elements.scheduleTime.value) {
+                const scheduledDate = new Date(`${elements.scheduleDate.value}T${elements.scheduleTime.value}`);
+                
+                if (scheduledDate <= new Date()) {
+                    showToast('Scheduled date must be in the future', 'error');
+                    return;
+                }
+                
+                dropData.status = 'scheduled';
+                dropData.scheduledDate = scheduledDate.toISOString();
+                dropData.day = null; // Will be set when published
+            } else {
+                dropData.status = 'published';
+                dropData.day = getCurrentDay();
+                dropData.publishedDate = new Date().toISOString();
+            }
+            
+            try {
+                if (editingDrop) {
+                    await updateDoc(doc(db, dropsCollectionPath, editingDrop), dropData);
+                    showToast(dropData.status === 'scheduled' ? 'Drop scheduled!' : 'Drop updated!');
+                } else {
+                    await addDoc(collection(db, dropsCollectionPath), dropData);
+                    showToast(dropData.status === 'scheduled' ? 'Drop scheduled!' : 'Drop added successfully!');
+                }
+                resetForm();
+            } catch (error) {
+                console.error('Error adding drop:', error);
+                showToast('Error adding drop', 'error');
+            }
+        });
+
+        // Subscribe modal handlers
+        elements.subscribeBtn.addEventListener('click', () => {
+            elements.subscribeModal.classList.remove('hidden');
+            elements.subscribeModal.classList.add('flex');
+        });
+
+        elements.closeSubscribe.addEventListener('click', () => {
+            elements.subscribeModal.classList.add('hidden');
+            elements.subscribeModal.classList.remove('flex');
+        });
+
+        // Close modal when clicking outside
+        elements.subscribeModal.addEventListener('click', (e) => {
+            if (e.target === elements.subscribeModal) {
+                elements.subscribeModal.classList.add('hidden');
+                elements.subscribeModal.classList.remove('flex');
+            }
+        });
+
+        elements.searchInput.addEventListener('input', (e) => {
+            searchQuery = e.target.value;
+            applyFilters();
+        });
+
+        // Filter buttons
+        document.querySelectorAll('.filter-btn').forEach(btn => {
+            btn.addEventListener('click', () => {
+                document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+                currentFilter = btn.dataset.filter;
+                applyFilters();
+            });
+        });
+
+        // Event delegation for dynamic content
+        document.addEventListener('click', async (e) => {
+            // Heart button
+            if (e.target.closest('.heart-btn')) {
+                const btn = e.target.closest('.heart-btn');
+                const id = btn.dataset.id;
+                
+                if (!heartedPosts[id]) {
+                    heartedPosts[id] = true;
+                    localStorage.setItem('heartedPosts', JSON.stringify(heartedPosts));
+                    
+                    try {
+                        await updateDoc(doc(db, dropsCollectionPath, id), {
+                            hearts: increment(1)
+                        });
+                    } catch (error) {
+                        console.error('Error updating hearts:', error);
+                    }
+                }
+            }
+            
+            // Share button
+            if (e.target.closest('.share-btn')) {
+                const btn = e.target.closest('.share-btn');
+                const link = btn.dataset.link;
+                const title = btn.dataset.title;
+                
+                if (navigator.share) {
+                    try {
+                        await navigator.share({
+                            title: title,
+                            url: link
+                        });
+                    } catch (err) {
+                        console.log('Share cancelled');
+                    }
+                } else {
+                    // Fallback to clipboard
+                    navigator.clipboard.writeText(link);
+                    showToast('Link copied to clipboard!');
+                }
+            }
+            
+            // Delete button
+            if (e.target.closest('.delete-btn')) {
+                if (!isAdmin) {
+                    showToast('Admin access required', 'error');
+                    return;
+                }
+                const btn = e.target.closest('.delete-btn');
+                dropToDelete = btn.dataset.id;
+                document.getElementById('delete-confirmation-input').value = '';
+                document.getElementById('confirm-delete').disabled = true;
+                elements.deleteModal.classList.remove('hidden');
+                elements.deleteModal.classList.add('flex');
+            }
+            
+            // Edit draft button
+            if (e.target.closest('.edit-draft-btn')) {
+                if (!isAdmin) {
+                    showToast('Admin access required', 'error');
+                    return;
+                }
+                const btn = e.target.closest('.edit-draft-btn');
+                const dropId = btn.dataset.id;
+                const drop = allDrops.find(d => d.id === dropId);
+                
+                if (drop) {
+                    editingDrop = dropId;
+                    document.getElementById('drop-title').value = drop.title;
+                    document.getElementById('drop-description').value = drop.description;
+                    document.getElementById('drop-link').value = drop.link;
+                    document.getElementById('drop-type').value = drop.contentType;
+                    document.getElementById('drop-access').value = drop.access;
+                    document.getElementById('drop-image').value = drop.imageUrl || '';
+                    
+                    if (drop.status === 'scheduled' && drop.scheduledDate) {
+                        showScheduleOptions = true;
+                        elements.scheduleOptions.classList.remove('hidden');
+                        const schedDate = new Date(drop.scheduledDate);
+                        elements.scheduleDate.value = schedDate.toISOString().split('T')[0];
+                        elements.scheduleTime.value = schedDate.toTimeString().slice(0, 5);
+                    }
+                    
+                    elements.publishBtn.innerHTML = `
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-8l-4-4m0 0L8 8m4-4v12"></path>
+                        </svg>
+                        Update
+                    `;
+                    
+                    // Scroll to form
+                    elements.adminPanel.scrollIntoView({ behavior: 'smooth' });
+                }
+            }
+            
+            // Publish draft button
+            if (e.target.closest('.publish-draft-btn')) {
+                if (!isAdmin) {
+                    showToast('Admin access required', 'error');
+                    return;
+                }
+                const btn = e.target.closest('.publish-draft-btn');
+                const dropId = btn.dataset.id;
+                
+                try {
+                    await updateDoc(doc(db, dropsCollectionPath, dropId), {
+                        status: 'published',
+                        publishedDate: new Date().toISOString(),
+                        day: getCurrentDay()
+                    });
+                    showToast('Draft published successfully!');
+                } catch (error) {
+                    console.error('Error publishing draft:', error);
+                    showToast('Error publishing draft', 'error');
+                }
+            }
+            
+            // Delete draft button
+            if (e.target.closest('.delete-draft-btn')) {
+                if (!isAdmin) {
+                    showToast('Admin access required', 'error');
+                    return;
+                }
+                const btn = e.target.closest('.delete-draft-btn');
+                dropToDelete = btn.dataset.id;
+                document.getElementById('delete-confirmation-input').value = '';
+                document.getElementById('confirm-delete').disabled = true;
+                elements.deleteModal.classList.remove('hidden');
+                elements.deleteModal.classList.add('flex');
+            }
+        });
+        
+        // Delete confirmation with typing requirement
+        if (deleteConfirmationInput) {
+            deleteConfirmationInput.addEventListener('input', (e) => {
+                const confirmBtn = document.getElementById('confirm-delete');
+                if (confirmBtn) {
+                    if (e.target.value === 'DELETE') {
+                        confirmBtn.disabled = false;
+                        confirmBtn.classList.remove('opacity-50');
+                    } else {
+                        confirmBtn.disabled = true;
+                        confirmBtn.classList.add('opacity-50');
+                    }
+                }
+            });
+        }
+
+        elements.confirmDelete.addEventListener('click', async () => {
+            if (dropToDelete && document.getElementById('delete-confirmation-input').value === 'DELETE') {
+                try {
+                    await deleteDoc(doc(db, dropsCollectionPath, dropToDelete));
+                    showToast('Drop deleted successfully');
+                } catch (error) {
+                    console.error('Error deleting drop:', error);
+                    showToast('Error deleting drop', 'error');
+                }
+                
+                dropToDelete = null;
+                elements.deleteModal.classList.add('hidden');
+                elements.deleteModal.classList.remove('flex');
+            }
+        });
+
+        elements.cancelDelete.addEventListener('click', () => {
+            dropToDelete = null;
+            elements.deleteModal.classList.add('hidden');
+            elements.deleteModal.classList.remove('flex');
+            document.getElementById('delete-confirmation-input').value = '';
+        });
+
+        // Initialize Firestore listener
+        const q = query(collection(db, dropsCollectionPath), orderBy('timestamp', 'desc'));
+        onSnapshot(q, (snapshot) => {
+            allDrops = snapshot.docs.map(doc => ({
+                id: doc.id,
+                ...doc.data()
+            }));
+            
+            applyFilters();
+        });
+
+        // Update progress periodically
+        updateProgress();
+        setInterval(updateProgress, 60000); // Update every minute
+        
+        // Check for scheduled posts to publish
+        checkScheduledPosts();
+        setInterval(checkScheduledPosts, 60000); // Check every minute
+    </script>
+</body>
+</html>
