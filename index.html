@@ -3,12 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Kimberly's Dropathon - 50 Days of Creative Output</title>
-    <meta name="description" content="Join Kimberly's 50-day creative challenge. Beating back perfectionism one drop at a time.">
+    <title>Kimberly's Dropathon - 75 Days of Creative Output</title>
+    <meta name="description" content="Join Kimberly's 75-day creative challenge. Beating back perfectionism one drop at a time.">
     
     <!-- Open Graph Tags -->
     <meta property="og:title" content="Kimberly's Dropathon">
-    <meta property="og:description" content="50 days of creative output. Beating back perfectionism one drop at a time.">
+    <meta property="og:description" content="75 days of creative output. Beating back perfectionism one drop at a time.">
     <meta property="og:image" content="kdrop4.png">
     <meta property="og:type" content="website">
     
@@ -370,8 +370,8 @@
         <!-- Hero Section -->
         <section class="text-center py-12">
             <img src="kdrop4.png" alt="Kimberly's Dropathon" class="mx-auto w-full max-w-md mb-6">
-            <h1 class="text-3xl md:text-4xl font-bold mb-4">Beating back perfectionism one drop at a time</h1>
-            <p class="text-lg text-muted mb-2">September 12 — October 31, 2025</p>
+            <h1 class="text-3xl md:text-4xl font-bold mb-4">Beating back perfectionism one drop at a time.</h1>
+            <p class="text-lg text-muted mb-2">September 12 — November 26, 2025</p>
             
             <!-- Stats Overview -->
             <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mt-8 max-w-2xl mx-auto">
@@ -732,86 +732,96 @@
         }
 
         // Drop Card Creation
-        function createDropCard(drop) {
-            const card = document.createElement('div');
-            card.className = 'card overflow-hidden';
-            card.dataset.id = drop.id;
+function createDropCard(drop) {
+    const card = document.createElement('div');
+    card.className = 'card overflow-hidden';
+    card.dataset.id = drop.id;
+    
+    const isHearted = heartedPosts[drop.id];
+    const dropTime = new Date(drop.timestamp).toLocaleTimeString([], { 
+        hour: 'numeric', 
+        minute: '2-digit' 
+    });
+    
+    const imageUrl = drop.imageUrl || `https://placehold.co/400x300/7c3aed/ffffff?text=${encodeURIComponent(drop.contentType)}`;
+    
+    card.innerHTML = `
+        <div class="flex flex-col md:flex-row">
+            <div class="md:w-48 aspect-[4/3]">
+                <img src="${escapeHtml(imageUrl)}" 
+                     alt="${escapeHtml(drop.title)}" 
+                     class="w-full h-full object-cover"
+                     loading="lazy"
+                     onerror="this.src='https://placehold.co/400x300/7c3aed/ffffff?text=${encodeURIComponent(drop.contentType)}'">
+            </div>
             
-            const isHearted = heartedPosts[drop.id];
-            const dropTime = new Date(drop.timestamp).toLocaleTimeString([], { 
-                hour: 'numeric', 
-                minute: '2-digit' 
-            });
-            
-            const imageUrl = drop.imageUrl || `https://placehold.co/400x300/7c3aed/ffffff?text=${encodeURIComponent(drop.contentType)}`;
-            
-            card.innerHTML = `
-                <div class="flex flex-col md:flex-row">
-                    <div class="md:w-48 aspect-[4/3]">
-                        <img src="${escapeHtml(imageUrl)}" 
-                             alt="${escapeHtml(drop.title)}" 
-                             class="w-full h-full object-cover"
-                             loading="lazy"
-                             onerror="this.src='https://placehold.co/400x300/7c3aed/ffffff?text=${encodeURIComponent(drop.contentType)}'">
+            <div class="flex-1 p-6">
+                <!-- Top utility strip with metadata -->
+                <div class="flex items-center justify-between mb-3 pb-2 border-b border-white/5">
+                    <div class="flex items-center gap-3 text-xs text-muted">
+                        <span>${dropTime}</span>
+                        <span>•</span>
+                        <span>${drop.contentType}</span>
                     </div>
                     
-                    <div class="flex-1 p-6">
-                        <div class="flex items-start justify-between mb-3">
-                            <div class="flex items-center gap-3">
-                                <span class="tag ${drop.access === 'Paid' ? 'tag-paid' : 'tag-free'}">
-                                    ${drop.access}
-                                </span>
-                                <span class="text-sm text-muted">${drop.contentType}</span>
-                            </div>
-                            
-                            ${isAdmin ? `
-                                <button class="delete-btn text-error hover:text-red-400 transition-colors" data-id="${drop.id}">
-                                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"></path>
-                                    </svg>
-                                </button>
-                            ` : ''}
-                        </div>
+                    <div class="flex items-center gap-3">
+                        <button class="heart-btn flex items-center gap-1 text-xs ${isHearted ? 'text-heart' : 'text-muted hover:text-heart'}" 
+                                data-id="${drop.id}">
+                            <svg class="w-4 h-4" fill="${isHearted ? 'currentColor' : 'none'}" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.25l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.5l-1.318-1.182a4.5 4.5 0 00-6.364 0z"></path>
+                            </svg>
+                            <span>${drop.hearts || 0}</span>
+                        </button>
                         
-                        <h3 class="text-xl font-bold mb-2">
-                            <a href="${escapeHtml(drop.link)}" 
-                               target="_blank" 
-                               rel="noopener noreferrer"
-                               class="hover:text-accent transition-colors">
-                                ${escapeHtml(drop.title)}
-                                <svg class="inline w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path>
+                        <button class="share-btn text-muted hover:text-primary text-xs" 
+                                data-link="${escapeHtml(drop.link)}" 
+                                data-title="${escapeHtml(drop.title)}">
+                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8.684 13.342C8.886 12.938 9 12.482 9 12c0-.482-.114-.938-.316-1.342m0 2.684a3 3 0 110-2.684m9.032 4.026a3 3 0 10-2.684-2.684m0 0a3 3 0 00-2.684 2.684M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                            </svg>
+                        </button>
+                        
+                        ${isAdmin ? `
+                            <button class="delete-btn text-muted hover:text-error text-xs" data-id="${drop.id}">
+                                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"></path>
                                 </svg>
-                            </a>
-                        </h3>
-                        
-                        <p class="text-muted mb-4 line-clamp-2">${escapeHtml(drop.description)}</p>
-                        
-                        <div class="flex items-center justify-between">
-                            <span class="text-sm text-muted">Dropped at ${dropTime}</span>
-                            
-                            <div class="flex items-center gap-4">
-                                <button class="heart-btn flex items-center gap-2 ${isHearted ? 'hearted' : ''}" 
-                                        data-id="${drop.id}">
-                                    <svg class="w-5 h-5" fill="${isHearted ? 'currentColor' : 'none'}" stroke="currentColor" viewBox="0 0 24 24">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.25l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.5l-1.318-1.182a4.5 4.5 0 00-6.364 0z"></path>
-                                    </svg>
-                                    <span class="text-sm font-medium">${drop.hearts || 0}</span>
-                                </button>
-                                
-                                <button class="share-btn" data-link="${escapeHtml(drop.link)}" data-title="${escapeHtml(drop.title)}">
-                                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8.684 13.342C8.886 12.938 9 12.482 9 12c0-.482-.114-.938-.316-1.342m0 2.684a3 3 0 110-2.684m9.032 4.026a3 3 0 10-2.684-2.684m0 0a3 3 0 00-2.684 2.684M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
-                                    </svg>
-                                </button>
-                            </div>
-                        </div>
+                            </button>
+                        ` : ''}
                     </div>
                 </div>
-            `;
-            
-            return card;
-        }
+                
+                <!-- Main content area -->
+                <div class="space-y-3">
+                    <!-- Access badge -->
+                    <div>
+                        <span class="tag ${drop.access === 'Paid' ? 'tag-paid' : 'tag-free'}">
+                            ${drop.access}
+                        </span>
+                    </div>
+                    
+                    <!-- Title - larger and more prominent -->
+                    <h3 class="text-lg md:text-xl font-semibold leading-tight hover:text-accent transition-colors">
+                        <a href="${escapeHtml(drop.link)}" 
+                           target="_blank" 
+                           rel="noopener noreferrer"
+                           class="inline-flex items-center gap-1">
+                            ${escapeHtml(drop.title)}
+                            <svg class="w-4 h-4 opacity-50" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path>
+                            </svg>
+                        </a>
+                    </h3>
+                    
+                    <!-- Description - ensure 2 line clamp -->
+                    <p class="text-sm text-muted line-clamp-2">${escapeHtml(drop.description)}</p>
+                </div>
+            </div>
+        </div>
+    `;
+    
+    return card;
+}
 
         // Filtering and Search
         function applyFilters() {
