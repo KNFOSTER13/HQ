@@ -3,618 +3,826 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Kimberly's AI Focus</title>
+    <title>Kimberly's Dropathon - 75 Days of Creative Output</title>
+    <meta name="description" content="Join Kimberly's 75-day creative challenge. Beating back perfectionism one drop at a time.">
+
+    <link rel="canonical" href="http://knf.kim/drops">
+    <meta property="og:title" content="Kimberly's Dropathon - 75 Days of Creative Output">
+    <meta property="og:description" content="Join Kimberly's 75-day creative challenge. Beating back perfectionism one drop at a time.">
+    <meta property="og:image" content="https://knfoster13.github.io/HQ/kdrop6.png">
+    <meta property="og:url" content="http://knf.kim/drops">
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="Kimberly's Dropathon">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Kimberly's Dropathon - 75 Days of Creative Output">
+    <meta name="twitter:description" content="Join Kimberly's 75-day creative challenge. Beating back perfectionism one drop at a time.">
+    <meta name="twitter:image" content="https://knfoster13.github.io/HQ/kdrop6.png">
+    <meta name="twitter:creator" content="@kimberlynfoster">
+
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebSite",
+      "name": "Kimberly's Dropathon",
+      "description": "75 Days of Creative Output",
+      "url": "http://knf.kim/drops",
+      "publisher": {
+        "@type": "Person",
+        "name": "Kimberly Nicole Foster"
+      }
+    }
+    </script>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preconnect" href="https://www.gstatic.com">
+    <link rel="preload" href="https://knfoster13.github.io/HQ/kdrop4.png" as="image" fetchpriority="high">
+    <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    
     <script src="https://cdn.tailwindcss.com"></script>
-    <script src="https://unpkg.com/lucide@latest"></script>
-    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet">
     <style>
-        :root {
-            --primary1: #6204BF;
-            --primary2: #B272F2;
-            --primary3: #9781ED;
-            --primary4: #5D04D9;
-            --primary5: #914BF2;
-            --bg-dark: #202124;
-            --bg-darker: #16171a;
-            --border: rgba(255, 255, 255, 0.1);
-            --text: #fff;
-            --text-muted: rgba(255, 255, 255, 0.6);
-        }
+      :root {
+        --bg-dark: #1a0f26;
+        --bg-center: #2d1b42;
+        --bg-edge: #241538;
+        --surface: rgba(42, 26, 61, 0.85);
+        --surface-hover: rgba(52, 36, 71, 0.95);
+        --accent: #a78bfa;
+        --accent-bright: #c4b5fd;
+        --cta: #f472b6;
+        --cta-hover: #ec4899;
+        --text-primary: #f3f4f6;
+        --text-secondary: #d1d5db;
+        --text-muted: #9ca3af;
+        --tag-free: #86efac;
+        --tag-paid: #fde047;
+        --heart: #f472b6;
+        --success: #34d399;
+        --warning: #fbbf24;
+        --error: #f87171;
+        --border-color: rgba(167, 139, 250, 0.15);
+        --border-color-hover: rgba(167, 139, 250, 0.3);
+      }
 
-        body {
-            background-color: var(--bg-dark);
-            color: var(--text);
-            font-family: 'DM Sans', sans-serif;
-        }
+      /* Base & Typography */
+      html { scroll-behavior: smooth; }
+      body {
+        font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+        background: linear-gradient(135deg, var(--bg-center) 0%, var(--bg-edge) 100%);
+        min-height: 100vh;
+        color: var(--text-primary);
+        line-height: 1.6;
+        transition: all 0.3s ease;
+      }
+      .brand-font { font-family: 'DM Serif Display', serif; }
+      .line-clamp-2 {
+        display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden;
+      }
 
-        .btn-focus {
-            background: linear-gradient(135deg, var(--primary3), var(--primary5));
-            box-shadow: 0 0 20px rgba(151, 129, 237, 0.3);
-            transition: all 0.3s ease;
-        }
+      /* Accessibility */
+      *:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; border-radius: 0.25rem; }
+      .skip-to-content { position: absolute; top: -40px; left: 0; background: var(--accent); color: white; padding: 8px; text-decoration: none; z-index: 1000; border-radius: 0 0 0.5rem 0; }
+      .skip-to-content:focus { top: 0; }
 
-        .btn-focus:hover:not(:disabled) {
-            transform: translateY(-2px);
-            box-shadow: 0 8px 24px rgba(151, 129, 237, 0.4);
-        }
+      /* Components */
+      .sticky-header {
+        background: rgba(26, 15, 38, 0.8);
+        backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
+        border-bottom: 1px solid var(--border-color);
+        position: sticky; top: 0; z-index: 50;
+        transition: all 0.3s ease;
+      }
+      .card {
+        background: var(--surface);
+        border: 1px solid var(--border-color);
+        backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
+        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        border-radius: 1rem;
+        overflow: hidden;
+      }
+      .card:hover {
+        transform: translateY(-4px);
+        background: var(--surface-hover);
+        border-color: var(--border-color-hover);
+        box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2), 0 0 20px rgba(167, 139, 250, 0.1);
+      }
+      .btn {
+        font-weight: 600; padding: 0.625rem 1.5rem; border-radius: 9999px;
+        transition: all 0.3s ease; border: none; cursor: pointer;
+        display: inline-flex; align-items: center; justify-content: center; gap: 0.5rem;
+      }
+      .btn-primary { background: linear-gradient(135deg, var(--cta) 0%, var(--cta-hover) 100%); color: white; }
+      .btn-primary:hover:not(:disabled) { transform: scale(1.05); box-shadow: 0 10px 25px rgba(244, 114, 182, 0.3); }
+      .btn-primary:disabled { opacity: 0.5; cursor: not-allowed; transform: scale(1); }
+      .btn-secondary { background: rgba(167, 139, 250, 0.1); color: var(--accent-bright); border: 1px solid rgba(167, 139, 250, 0.3); }
+      .btn-secondary:hover:not(:disabled) { background: rgba(167, 139, 250, 0.2); border-color: rgba(167, 139, 250, 0.5); }
+      .form-input {
+        background: rgba(0, 0, 0, 0.2); border: 1px solid rgba(167, 139, 250, 0.2);
+        color: var(--text-primary); padding: 0.75rem 1rem; border-radius: 0.5rem;
+        width: 100%; transition: all 0.2s ease;
+      }
+      .form-input:focus { outline: none; border-color: var(--accent); box-shadow: 0 0 0 3px rgba(167, 139, 250, 0.1); }
+      .form-input.error { border-color: var(--error); }
+      .tag { font-size: 0.75rem; font-weight: 600; padding: 0.25rem 0.75rem; border-radius: 9999px; }
+      .tag-free { background: rgba(134, 239, 172, 0.15); color: var(--tag-free); border: 1px solid rgba(134, 239, 172, 0.3); }
+      .tag-paid { background: rgba(253, 224, 71, 0.15); color: var(--tag-paid); border: 1px solid rgba(253, 224, 71, 0.3); }
+      
+      /* Heart Animation */
+      .heart-btn { transition: all 0.2s ease; cursor: pointer; user-select: none; }
+      .heart-btn:hover svg { transform: scale(1.1); }
+      .heart-btn.hearted svg { fill: var(--heart); stroke: var(--heart); animation: heartPulse 0.3s ease; }
+      @keyframes heartPulse { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.2); } }
+      
+      /* Progress Bar */
+      .progress-bar { height: 8px; background: rgba(167, 139, 250, 0.1); border-radius: 4px; overflow: hidden; }
+      .progress-fill { height: 100%; background: linear-gradient(90deg, var(--accent) 0%, var(--cta) 100%); transition: width 1.5s cubic-bezier(0.4, 0, 0.2, 1); }
 
-        .btn-add {
-            background: linear-gradient(135deg, var(--primary3), var(--primary5));
-            box-shadow: 0 4px 20px rgba(151, 129, 237, 0.3);
-            transition: all 0.3s ease;
-        }
-        .btn-add:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 8px 30px rgba(151, 129, 237, 0.5);
-        }
+      /* Toast Notifications */
+      .toast {
+        position: fixed; bottom: 2rem; left: 50%;
+        transform: translateX(-50%) translateY(100px);
+        background: var(--surface); color: var(--text-primary); padding: 1rem 1.5rem;
+        border-radius: 0.75rem; box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+        opacity: 0; transition: all 0.3s ease; z-index: 1000;
+        display: flex; align-items: center; gap: 0.75rem;
+        border: 1px solid var(--border-color);
+      }
+      .toast.show { transform: translateX(-50%) translateY(0); opacity: 1; }
+      .toast.error { border-color: var(--error); }
+      .toast.warning { border-color: var(--warning); }
 
-        .task-input:focus {
-            border-color: var(--primary3);
-            box-shadow: 0 0 30px rgba(151, 129, 237, 0.3), inset 0 0 10px rgba(151, 129, 237, 0.1);
-            background: rgba(151, 129, 237, 0.05);
-        }
-        
-        .task-item:hover {
-            background: rgba(151, 129, 237, 0.05);
-            border-color: rgba(151, 129, 237, 0.3);
-            transform: translateX(5px);
-        }
+      /* Spinners & Skeletons */
+      .loading-spinner { border: 2px solid rgba(167, 139, 250, 0.2); border-radius: 50%; border-top: 2px solid var(--accent); width: 20px; height: 20px; animation: spin 1s linear infinite; }
+      @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
+      .skeleton-card { background: var(--surface); border: 1px solid var(--border-color); border-radius: 1rem; padding: 1rem; }
+      .skeleton-line { height: 1rem; margin-bottom: 0.5rem; background: linear-gradient(90deg, rgba(167, 139, 250, 0.1) 0%, rgba(167, 139, 250, 0.2) 50%, rgba(167, 139, 250, 0.1) 100%); background-size: 200% 100%; animation: shimmer 1.5s ease-in-out infinite; border-radius: 0.25rem; }
+      @keyframes shimmer { 0% { background-position: 200% 0; } 100% { background-position: -200% 0; } }
 
-        .task-item .task-actions {
-            opacity: 0;
-            transition: opacity 0.3s ease;
-        }
-        .task-item:hover .task-actions, .task-item.loading .task-actions {
-            opacity: 1;
-        }
-
-        @keyframes spin { to { transform: rotate(360deg); } }
-        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
-        @keyframes slideUp { from { transform: translateY(50px); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
-        @keyframes sparkle {
-            0%, 100% { transform: scale(1) rotate(0deg); opacity: 0.7; }
-            50% { transform: scale(1.2) rotate(15deg); opacity: 1; }
-        }
-        .animate-spin { animation: spin 1s linear infinite; }
-        .animate-fadeIn { animation: fadeIn 0.3s ease-out; }
-        .animate-slideUp { animation: slideUp 0.3s ease-out; }
-        .animate-sparkle { animation: sparkle 2s ease-in-out infinite; }
-
-        .hidden { display: none; }
+      /* Custom Scrollbar */
+      ::-webkit-scrollbar { width: 8px; }
+      ::-webkit-scrollbar-track { background: rgba(0, 0, 0, 0.1); }
+      ::-webkit-scrollbar-thumb { background: var(--accent); border-radius: 4px; }
+      ::-webkit-scrollbar-thumb:hover { background: var(--accent-bright); }
     </style>
 </head>
-<body class="min-h-screen">
+<body class="bg-bg-dark">
+    <a href="#content-feed" class="skip-to-content">Skip to content</a>
 
-    <div id="app-container">
-        <!-- Header -->
-        <header class="sticky top-0 z-10 border-b border-[--border] bg-[rgba(32,33,36,0.8)] backdrop-blur-xl">
-            <div class="max-w-6xl mx-auto flex items-center justify-between flex-wrap gap-4 p-4">
-                <h1 class="text-3xl font-medium text-shadow flex items-center gap-2" style="text-shadow: 0 0 20px rgba(151, 129, 237, 0.5);">
-                    <i data-lucide="sparkles" class="text-[--primary2]"></i>
-                    Kimberly's AI Focus
-                </h1>
-                <button id="start-focus-btn" class="btn-focus px-6 py-2.5 rounded-full text-white font-semibold text-base disabled:opacity-50 disabled:cursor-not-allowed">
-                    Focus Mode
-                </button>
-            </div>
-        </header>
-
-        <!-- Main Content -->
-        <main id="main-content" class="max-w-6xl mx-auto p-8">
-            <!-- Hero Section -->
-            <div id="hero-section" class="text-center py-16">
-                <h2 class="text-6xl font-light leading-tight mb-4" style="background: linear-gradient(135deg, var(--primary2), var(--primary3)); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">
-                    AI-Powered Task Breakdown
-                </h2>
-                <p class="text-xl text-[--text-muted] mb-12">Turn overwhelming goals into tiny, doable steps.</p>
-            </div>
-
-            <!-- Add Task Input -->
-            <div class="mb-12 flex gap-4">
-                <input id="new-task-input" type="text" placeholder="What do you want to achieve?" class="task-input flex-1 p-4 rounded-xl bg-[--bg-darker] border-2 border-[rgba(151,129,237,0.2)] text-lg transition-all duration-300 outline-none">
-                <button id="add-task-btn" class="btn-add px-8 py-4 rounded-xl text-white font-semibold text-lg">Add Task</button>
-            </div>
-            
-            <!-- API Error Message -->
-            <div id="api-error" class="hidden text-center text-red-500 bg-red-500/10 p-4 rounded-xl border border-red-500/30 mb-8"></div>
-
-            <!-- Task List -->
-            <div id="task-list" class="flex flex-col gap-2"></div>
-
-            <!-- Info Section -->
-            <div id="info-section" class="hidden text-center mt-16 text-[--text-muted] text-base">
-                <p><kbd class="bg-white/10 px-2 py-1 rounded-md font-mono text-sm">+</kbd> Add subtasks manually</p>
-                <p class="my-2"><kbd class="bg-white/10 px-2 py-1 rounded-md font-mono text-sm"><i data-lucide="sparkles" class="w-3 h-3 inline-block align-middle"></i></kbd> Use AI to break down tasks automatically</p>
-                <p>Click <strong>Focus Mode</strong> to work on one small step at a time</p>
-            </div>
-        </main>
-    </div>
-
-    <!-- Focus Mode Overlay -->
-    <div id="focus-mode-overlay" class="hidden fixed inset-0 bg-gradient-to-br from-[--bg-dark] to-[rgba(151,129,237,0.05)] flex items-center justify-center p-8 z-50">
-        <div class="text-center max-w-3xl w-full">
-            <h2 id="focus-task-text" class="text-6xl font-light mb-16 leading-tight" style="text-shadow: 0 0 30px rgba(151, 129, 237, 0.3);"></h2>
-            <div class="flex gap-6 justify-center mb-12">
-                <button id="complete-focus-task-btn" class="flex items-center gap-2 px-10 py-4 rounded-full font-semibold text-lg text-white" style="background: linear-gradient(135deg, var(--primary3), var(--primary5)); box-shadow: 0 8px 30px rgba(151, 129, 237, 0.4);">
-                    <i data-lucide="check" class="w-5 h-5"></i> Complete
-                </button>
-                <button id="next-focus-task-btn" class="flex items-center gap-2 px-10 py-4 rounded-full font-semibold text-lg text-white bg-transparent border-2 border-[rgba(151,129,237,0.5)]">
-                    <i data-lucide="shuffle" class="w-5 h-5"></i> Next
-                </button>
-            </div>
-            <button id="exit-focus-btn" class="bg-transparent border-none text-[--text-muted] underline underline-offset-4 text-base">Exit Focus Mode</button>
-        </div>
-    </div>
-    
-    <!-- Modals Container -->
-    <div id="modals-container"></div>
-
-
-    <script>
-        document.addEventListener('DOMContentLoaded', () => {
-            // --- STATE MANAGEMENT ---
-            let state = {
-                tasks: [],
-                focusMode: false,
-                currentFocusTask: null,
-                expandedTasks: new Set(),
-                isLoadingAI: {},
-                showSuggestions: {},
-                suggestions: {},
-                apiError: null,
-                showWelcome: true,
-            };
-
-            // --- DOM ELEMENTS ---
-            const taskListContainer = document.getElementById('task-list');
-            const newTaskInput = document.getElementById('new-task-input');
-            const addTaskBtn = document.getElementById('add-task-btn');
-            const startFocusBtn = document.getElementById('start-focus-btn');
-            const focusModeOverlay = document.getElementById('focus-mode-overlay');
-            const focusTaskText = document.getElementById('focus-task-text');
-            const completeFocusTaskBtn = document.getElementById('complete-focus-task-btn');
-            const nextFocusTaskBtn = document.getElementById('next-focus-task-btn');
-            const exitFocusBtn = document.getElementById('exit-focus-btn');
-            const heroSection = document.getElementById('hero-section');
-            const infoSection = document.getElementById('info-section');
-            const apiErrorDiv = document.getElementById('api-error');
-            const modalsContainer = document.getElementById('modals-container');
-
-
-            // --- CORE LOGIC ---
-
-            // Generate unique ID
-            const generateId = () => Math.random().toString(36).substr(2, 9);
-
-            // Add new task
-            const addTask = (parentId = null, taskText = '') => {
-                const text = taskText || newTaskInput.value.trim();
-                if (!text) return;
-
-                const newTask = {
-                    id: generateId(),
-                    text: text,
-                    completed: false,
-                    subtasks: []
-                };
-
-                if (parentId) {
-                    const parentTask = findTaskById(state.tasks, parentId);
-                    if (parentTask) {
-                        parentTask.subtasks.push(newTask);
-                        state.expandedTasks.add(parentId);
-                    }
-                } else {
-                    state.tasks.push(newTask);
-                    newTaskInput.value = '';
-                }
-                render();
-            };
-            
-            // Find a task by its ID in the nested structure
-            const findTaskById = (tasks, taskId) => {
-                for (const task of tasks) {
-                    if (task.id === taskId) return task;
-                    if (task.subtasks.length > 0) {
-                        const found = findTaskById(task.subtasks, taskId);
-                        if (found) return found;
-                    }
-                }
-                return null;
-            };
-
-            // Toggle task completion
-            const toggleTask = (taskId) => {
-                const task = findTaskById(state.tasks, taskId);
-                if (task) {
-                    task.completed = !task.completed;
-                }
-                render();
-            };
-
-            // Delete task
-            const deleteTask = (taskId) => {
-                const removeTask = (tasks) => {
-                    return tasks.filter(task => {
-                        if (task.id === taskId) return false;
-                        if (task.subtasks.length > 0) {
-                            task.subtasks = removeTask(task.subtasks);
-                        }
-                        return true;
-                    });
-                };
-                state.tasks = removeTask(state.tasks);
-                render();
-            };
-
-            // Toggle expand/collapse
-            const toggleExpand = (taskId) => {
-                if (state.expandedTasks.has(taskId)) {
-                    state.expandedTasks.delete(taskId);
-                } else {
-                    state.expandedTasks.add(taskId);
-                }
-                render();
-            };
-            
-            // Add suggested subtasks
-            const addSuggestedSubtasks = (parentId, selectedSubtasks) => {
-                const parentTask = findTaskById(state.tasks, parentId);
-                if (!parentTask) return;
-
-                selectedSubtasks.forEach(subtaskText => {
-                    parentTask.subtasks.push({
-                        id: generateId(),
-                        text: subtaskText,
-                        completed: false,
-                        subtasks: []
-                    });
-                });
-
-                state.expandedTasks.add(parentId);
-                state.showSuggestions[parentId] = false;
-                render();
-            };
-
-            // --- GEMINI API INTEGRATION ---
-            const getAISubtasks = async (taskId, taskText) => {
-                state.isLoadingAI[taskId] = true;
-                state.apiError = null;
-                render();
-
-                const systemPrompt = `You are an expert productivity assistant. Your goal is to break down a user's task into small, actionable, and clear subtasks.
-                - Return between 5 and 7 subtasks.
-                - Each subtask should be a clear, concise action item.
-                - The response must be a valid JSON array of strings. For example: ["First step", "Second step", "Third step"]`;
-
-                const userQuery = `Break down this task: "${taskText}"`;
-                const apiKey = ""; // Canvas will provide the key
-                const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-preview-05-20:generateContent?key=${apiKey}`;
-
-                const payload = {
-                    contents: [{ parts: [{ text: userQuery }] }],
-                    systemInstruction: { parts: [{ text: systemPrompt }] },
-                    generationConfig: {
-                        responseMimeType: "application/json",
-                        responseSchema: { type: "ARRAY", items: { type: "STRING" } }
-                    }
-                };
-
-                try {
-                    const response = await fetch(apiUrl, {
-                        method: 'POST',
-                        headers: { 'Content-Type': 'application/json' },
-                        body: JSON.stringify(payload)
-                    });
-
-                    if (!response.ok) throw new Error(`API error: ${response.status}`);
-
-                    const result = await response.json();
-                    if (result.candidates?.[0]?.content?.parts?.[0]?.text) {
-                        const subtasks = JSON.parse(result.candidates[0].content.parts[0].text);
-                        state.suggestions[taskId] = subtasks;
-                        state.showSuggestions[taskId] = true;
-                    } else {
-                        throw new Error("Unexpected API response structure.");
-                    }
-                } catch (error) {
-                    console.error("Error fetching AI subtasks:", error);
-                    state.apiError = "Sorry, the AI is having trouble. Please try again later.";
-                    const genericSteps = [
-                        `Research best practices for ${taskText.toLowerCase()}`,
-                        `Break down "${taskText}" into main components`,
-                        `Gather necessary tools or resources`,
-                        `Create a simple action plan`,
-                        `Start with the easiest part first`,
-                    ];
-                    state.suggestions[taskId] = genericSteps;
-                    state.showSuggestions[taskId] = true;
-                } finally {
-                    state.isLoadingAI[taskId] = false;
-                    render();
-                }
-            };
-
-            // --- FOCUS MODE ---
-            const getLeafTasks = (taskList = state.tasks) => {
-                let leafTasks = [];
-                taskList.forEach(task => {
-                    if (!task.completed) {
-                        if (task.subtasks.length === 0) {
-                            leafTasks.push(task);
-                        } else {
-                            leafTasks = [...leafTasks, ...getLeafTasks(task.subtasks)];
-                        }
-                    }
-                });
-                return leafTasks;
-            };
-
-            const startFocusMode = () => {
-                const leafTasks = getLeafTasks();
-                if (leafTasks.length > 0) {
-                    state.currentFocusTask = leafTasks[Math.floor(Math.random() * leafTasks.length)];
-                    state.focusMode = true;
-                    render();
-                }
-            };
-
-            const nextTask = () => {
-                const leafTasks = getLeafTasks();
-                if (leafTasks.length > 0) {
-                    const availableTasks = leafTasks.filter(task => task.id !== state.currentFocusTask?.id);
-                    if (availableTasks.length > 0) {
-                        state.currentFocusTask = availableTasks[Math.floor(Math.random() * availableTasks.length)];
-                    } else {
-                        state.currentFocusTask = leafTasks[0];
-                    }
-                } else {
-                    state.focusMode = false;
-                    state.currentFocusTask = null;
-                }
-                render();
-            };
-
-            const completeFocusTask = () => {
-                if (state.currentFocusTask) {
-                    toggleTask(state.currentFocusTask.id); // This will call render
-                    nextTask(); // This will also call render
-                }
-            };
-
-            // --- RENDERING ---
-            const renderTask = (task, depth = 0) => {
-                const isExpanded = state.expandedTasks.has(task.id);
-                const hasSubtasks = task.subtasks.length > 0;
-
-                const taskContainer = document.createElement('div');
-                taskContainer.className = 'mb-2';
+    <header class="sticky-header" role="banner">
+        <div class="max-w-6xl mx-auto px-4 py-3">
+            <div class="flex items-center justify-between">
+                <a href="#" class="flex items-center gap-3" aria-label="Dropathon Home">
+                    <img src="https://knfoster13.github.io/HQ/KNFLAV10PX.png" alt="Logo" class="h-8 w-auto">
+                    <span class="hidden sm:inline font-bold text-lg text-white brand-font" style="text-shadow: 0 2px 4px rgba(0,0,0,0.3);">Drop it like it's hot, Kim!</span>
+                </a>
                 
-                let subtasksHtml = '';
-                if (isExpanded && hasSubtasks) {
-                    subtasksHtml = `<div class="mt-2">${task.subtasks.map(subtask => renderTask(subtask, depth + 1)).join('')}</div>`;
-                }
-
-                const actionButtons = `
-                    ${!hasSubtasks ? `
-                        <button data-action="add-manual" data-id="${task.id}" data-text="${task.text}" title="Add subtask manually" class="action-btn w-8 h-8 flex items-center justify-center bg-white/5 border border-white/10 rounded-lg text-white/60 hover:bg-[--primary3]/20 hover:border-[--primary3]/50 hover:text-white transition-all">
-                            <i data-lucide="plus" class="w-4 h-4"></i>
-                        </button>
-                        <button data-action="ai-breakdown" data-id="${task.id}" data-text="${task.text}" title="Break down with AI" class="action-btn w-auto px-3 h-8 flex items-center gap-1.5 bg-white/5 border border-white/10 rounded-lg text-white/60 hover:bg-[--primary3]/20 hover:border-[--primary3]/50 hover:text-white transition-all disabled:opacity-50 disabled:cursor-not-allowed" ${state.isLoadingAI[task.id] ? 'disabled' : ''}>
-                            ${state.isLoadingAI[task.id] ? `
-                                <div class="w-4 h-4 border-2 border-[--primary3] border-t-transparent rounded-full animate-spin"></div>
-                                <span class="text-xs">Thinking...</span>
-                            ` : `
-                                <i data-lucide="sparkles" class="w-4 h-4 text-[--primary3]"></i>
-                                <span class="text-xs">Break down</span>
-                            `}
-                        </button>
-                    ` : `
-                        <button data-action="expand" data-id="${task.id}" title="Toggle subtasks" class="action-btn w-8 h-8 flex items-center justify-center bg-white/5 border border-white/10 rounded-lg text-white/60 hover:bg-[--primary3]/20 hover:border-[--primary3]/50 hover:text-white transition-all">
-                            <i data-lucide="${isExpanded ? 'chevron-down' : 'chevron-right'}" class="w-4 h-4"></i>
-                        </button>
-                    `}
-                    <button data-action="delete" data-id="${task.id}" title="Delete task" class="action-btn w-8 h-8 flex items-center justify-center bg-white/5 border border-white/10 rounded-lg text-white/60 hover:bg-red-500/20 hover:border-red-500/50 hover:text-red-400 transition-all">
-                        <i data-lucide="x" class="w-4 h-4"></i>
-                    </button>
-                `;
-
-                taskContainer.innerHTML = `
-                    <div class="task-item flex items-center p-4 bg-white/5 border border-white/10 rounded-xl transition-all duration-300 ${task.completed ? 'opacity-50' : ''} ${state.isLoadingAI[task.id] ? 'loading' : ''}" style="margin-left: ${depth * 24}px;">
-                        <button data-action="toggle" data-id="${task.id}" class="w-6 h-6 border-2 border-[--primary3]/50 rounded-md flex-shrink-0 mr-4 flex items-center justify-center cursor-pointer hover:border-[--primary3] hover:bg-[--primary3]/10 transition-all">
-                            ${task.completed ? `<i data-lucide="check" class="w-4 h-4 text-[--primary3]"></i>` : ''}
-                        </button>
-                        <span class="flex-1 ${task.completed ? 'line-through text-white/40' : ''}">${task.text}</span>
-                        <div class="task-actions flex items-center gap-2 ml-4">
-                            ${actionButtons}
+                <div class="flex items-center gap-3">
+                    <div class="hidden md:flex items-center gap-3">
+                        <div class="bg-white/5 backdrop-blur px-4 py-2 rounded-full text-sm" aria-live="polite">
+                            <span id="current-day">Day 1</span> of <span id="total-days">75</span>
+                        </div>
+                        <div class="progress-bar w-32" role="progressbar" aria-label="Challenge progress" aria-valuemin="0" aria-valuemax="75" aria-valuenow="1" id="main-progress">
+                            <div class="progress-fill" id="progress-bar" style="width: 0%"></div>
+                        </div>
+                        <div class="bg-white/5 backdrop-blur px-4 py-2 rounded-full text-sm" aria-live="polite">
+                            <span id="total-drops">0</span> Drops
                         </div>
                     </div>
-                    ${subtasksHtml}
-                `;
+                    
+                    <button id="admin-signin-btn" class="btn btn-secondary px-3" title="Admin sign in" aria-label="Admin sign in">
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 16l-4-4m0 0l4-4m-4 4h14m-5 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h7a3 3 0 013 3v1"></path></svg>
+                    </button>
+                    
+                    <button id="admin-signout-btn" class="btn btn-secondary px-3 hidden" title="Admin sign out" aria-label="Admin sign out">
+                         <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1"></path></svg>
+                    </button>
+                    
+                    <button id="subscribe-btn" class="btn btn-primary" aria-label="Subscribe to updates">
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9"></path></svg>
+                        <span class="hidden sm:inline">Subscribe</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </header>
 
-                return taskContainer.innerHTML;
+    <main class="max-w-6xl mx-auto px-4 py-8" role="main" id="main-content">
+        <section class="text-center py-12" aria-labelledby="hero-title">
+            <img src="https://knfoster13.github.io/HQ/kdrop4.png" alt="Kimberly's Dropathon" class="mx-auto w-full max-w-md mb-6" fetchpriority="high" decoding="async" loading="eager">
+            <h1 id="hero-title" class="text-3xl md:text-4xl font-bold mb-4 brand-font">Beating back perfectionism one drop at a time.</h1>
+            <p class="text-lg text-muted mb-2"><span id="challenge-dates">September 13 — November 26, 2025</span></p>
+            
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mt-8 max-w-2xl mx-auto" role="region" aria-label="Challenge statistics">
+                <div class="card p-4 text-center"><div class="text-2xl font-bold text-accent" id="today-count" aria-live="polite">0</div><div class="text-sm text-muted">Today's Drops</div></div>
+                <div class="card p-4 text-center"><div class="text-2xl font-bold text-cta" id="streak-count" aria-live="polite">0</div><div class="text-sm text-muted">Day Streak</div></div>
+                <div class="card p-4 text-center"><div class="text-2xl font-bold text-success" id="free-count" aria-live="polite">0</div><div class="text-sm text-muted">Free Content</div></div>
+                <div class="card p-4 text-center"><div class="text-2xl font-bold text-warning" id="paid-count" aria-live="polite">0</div><div class="text-sm text-muted">Premium</div></div>
+            </div>
+        </section>
+
+        <section id="admin-panel" class="hidden mb-8 transition-all duration-500" aria-label="Admin panel">
+            <div class="card p-6">
+                <h2 class="text-2xl font-bold mb-4 flex items-center gap-2"><svg class="w-6 h-6 text-accent" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6"></path></svg>Add or Edit Drop</h2>
+                <form id="drop-form" class="space-y-4" novalidate>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        <div><label for="drop-title" class="block text-sm font-medium mb-1">Title *</label><input type="text" id="drop-title" class="form-input" required maxlength="200" aria-required="true"><span class="text-xs text-red-400 hidden mt-1" id="title-error"></span></div>
+                        <div><label for="drop-type" class="block text-sm font-medium mb-1">Content Type *</label><select id="drop-type" class="form-input" aria-required="true"><option>Video</option><option>Podcast</option><option>Essay</option><option>Social Post</option><option>Newsletter</option><option>Tutorial</option><option>Other</option></select></div>
+                    </div>
+                    <div><label for="drop-description" class="block text-sm font-medium mb-1">Description *</label><textarea id="drop-description" class="form-input" rows="2" required maxlength="500" aria-required="true"></textarea><span class="text-xs text-red-400 hidden mt-1" id="description-error"></span></div>
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                        <div><label for="drop-link" class="block text-sm font-medium mb-1">Link *</label><input type="url" id="drop-link" class="form-input" required aria-required="true"><span class="text-xs text-red-400 hidden mt-1" id="link-error"></span></div>
+                        <div><label for="drop-image" class="block text-sm font-medium mb-1">Image URL</label><input type="url" id="drop-image" class="form-input"><span class="text-xs text-red-400 hidden mt-1" id="image-error"></span></div>
+                        <div><label for="drop-access" class="block text-sm font-medium mb-1">Access Level</label><select id="drop-access" class="form-input"><option>Free</option><option>Paid</option></select></div>
+                    </div>
+                    
+                    <div class="pt-4 border-t border-white/10"><label class="flex items-center gap-2 cursor-pointer"><input type="checkbox" id="schedule-toggle" class="form-checkbox h-4 w-4 rounded bg-white/10 border-white/20 text-accent focus:ring-accent"><span class="text-sm font-medium">Schedule for later</span></label></div>
+                    <div id="schedule-options" class="hidden grid grid-cols-2 gap-4">
+                        <div><label for="schedule-date" class="block text-sm font-medium mb-1">Date</label><input type="date" id="schedule-date" class="form-input"></div>
+                        <div><label for="schedule-time" class="block text-sm font-medium mb-1">Time (Local)</label><input type="time" id="schedule-time" class="form-input"></div>
+                    </div>
+                    
+                    <div class="flex items-center gap-4 pt-2">
+                        <button type="submit" id="publish-btn" class="btn btn-primary" disabled><span class="loading-spinner hidden"></span><svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8"></path></svg><span id="publish-btn-text">Drop It!</span></button>
+                        <button type="button" id="cancel-edit-btn" class="btn btn-secondary hidden">Cancel Edit</button>
+                    </div>
+                </form>
+            </div>
+            <div id="scheduled-section" class="hidden mt-8">
+                <h3 class="text-xl font-bold mb-4 brand-font">Scheduled Drops</h3>
+                <div id="scheduled-drops" class="space-y-4"></div>
+            </div>
+        </section>
+
+        <section class="mb-6" aria-label="Search, filter and sort drops">
+            <div class="card p-4">
+                <div class="grid md:grid-cols-3 gap-4">
+                    <div class="relative md:col-span-1">
+                        <input type="text" id="search-input" class="form-input pl-10" placeholder="Search drops..." aria-label="Search drops">
+                        <svg class="w-5 h-5 absolute left-3 top-1/2 -translate-y-1/2 text-muted" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path></svg>
+                    </div>
+                    <div class="flex items-center gap-2 justify-between md:col-span-2">
+                        <div class="flex gap-2 flex-wrap" role="group" aria-label="Filter options">
+                            <button class="filter-btn active" data-filter="all" aria-pressed="true">All</button>
+                            <button class="filter-btn" data-filter="Video" aria-pressed="false">Videos</button>
+                            <button class="filter-btn" data-filter="Podcast" aria-pressed="false">Podcasts</button>
+                            <button class="filter-btn" data-filter="Essay" aria-pressed="false">Essays</button>
+                        </div>
+                        <select id="sort-select" class="form-input w-36" aria-label="Sort drops">
+                            <option value="newest">Newest</option>
+                            <option value="oldest">Oldest</option>
+                            <option value="most-loved">Most Loved</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="content-feed" class="space-y-8" aria-label="Content feed">
+            <div id="skeleton-loaders">
+                <h2 class="text-2xl md:text-3xl font-bold mb-4 brand-font animate-pulse">Loading drops...</h2>
+                <div class="space-y-6">
+                    <div class="skeleton-card"><div class="flex flex-col md:flex-row gap-4"><div class="md:w-48 h-32 skeleton-line rounded-lg"></div><div class="flex-1 space-y-2"><div class="skeleton-line w-3/4"></div><div class="skeleton-line w-1/2"></div><div class="skeleton-line w-full"></div></div></div></div>
+                    <div class="skeleton-card"><div class="flex flex-col md:flex-row gap-4"><div class="md:w-48 h-32 skeleton-line rounded-lg"></div><div class="flex-1 space-y-2"><div class="skeleton-line w-3/4"></div><div class="skeleton-line w-1/2"></div><div class="skeleton-line w-full"></div></div></div></div>
+                </div>
+            </div>
+            
+            <div id="today-section" class="hidden"><h2 class="text-2xl md:text-3xl font-bold mb-4 flex items-center gap-2"><span class="w-2 h-2 bg-green-500 rounded-full animate-pulse"></span><span class="text-white brand-font">Today's Drops</span></h2><div id="today-drops" class="grid gap-6"></div></div>
+            <div id="previous-section" class="hidden"><h2 class="text-2xl font-bold mb-4 brand-font">Previous Drops</h2><div id="previous-drops" class="grid gap-6"></div></div>
+            
+            <div id="empty-state" class="text-center py-12 hidden"><svg class="w-24 h-24 mx-auto mb-4 text-muted opacity-50" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20 13V6a2 2 0 00-2-2H6a2 2 0 00-2 2v7m16 0v5a2 2 0 01-2 2H6a2 2 0 01-2-2v-5m16 0h-2.586a1 1 0 00-.707.293l-2.414 2.414a1 1 0 01-.707.293h-3.172a1 1 0 01-.707-.293l-2.414-2.414A1 1 0 006.586 13H4"></path></svg><p class="text-lg text-muted" id="empty-state-message">No drops yet. Check back soon!</p></div>
+        </section>
+    </main>
+
+    <footer class="text-center py-8 mt-12 text-sm text-muted" role="contentinfo">
+        <p>&copy; 2025 Kimberly's Dropathon. All rights reserved.</p>
+    </footer>
+
+    <div id="subscribe-modal" class="fixed inset-0 bg-black/50 backdrop-blur-sm hidden items-center justify-center p-4 z-50" role="dialog" aria-labelledby="subscribe-modal-title" aria-modal="true">
+        <div class="card max-w-lg w-full p-6 relative">
+            <button id="close-subscribe" class="absolute top-4 right-4 text-muted hover:text-primary transition-colors" aria-label="Close modal"><svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg></button>
+            <h2 id="subscribe-modal-title" class="text-2xl font-bold mb-4 text-center brand-font">Join the Dropathon!</h2>
+            <p class="text-muted mb-6 text-center">Get exclusive updates, behind-the-scenes content, and early access to drops straight to your inbox!</p>
+            <div class="bg-white rounded-lg p-1"><iframe src="https://kimberlynfoster.substack.com/embed" width="100%" height="320" style="border:1px solid #EEE; background:white;" frameborder="0" scrolling="no" title="Subscribe to newsletter"></iframe></div>
+        </div>
+    </div>
+
+    <div id="admin-login-modal" class="fixed inset-0 bg-black/50 backdrop-blur-sm hidden items-center justify-center p-4 z-50" role="dialog" aria-labelledby="admin-login-title" aria-modal="true">
+        <div class="card max-w-md w-full p-8 relative">
+            <button id="close-admin-login" class="absolute top-4 right-4 text-muted hover:text-primary transition-colors" aria-label="Close modal"><svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg></button>
+            <h2 id="admin-login-title" class="text-2xl font-bold mb-6 text-center brand-font">Admin Sign In</h2>
+            <form id="admin-login-form" class="space-y-4">
+                <div><label for="admin-email" class="block text-sm font-medium mb-1">Email</label><input type="email" id="admin-email" class="form-input" required autocomplete="email"></div>
+                <div><label for="admin-password" class="block text-sm font-medium mb-1">Password</label>
+                    <div class="relative"><input type="password" id="admin-password" class="form-input pr-10" required autocomplete="current-password"><button type="button" id="toggle-password" class="absolute inset-y-0 right-0 px-3 flex items-center text-muted" aria-label="Show password"><svg id="eye-icon" class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" /><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" /></svg></button></div>
+                </div>
+                <button type="submit" id="admin-login-submit" class="btn btn-primary w-full !mt-6"><span class="loading-spinner hidden"></span><span>Sign In</span></button>
+            </form>
+        </div>
+    </div>
+
+    <div id="toast" class="toast" role="alert" aria-live="polite">
+        <svg id="toast-icon" class="w-5 h-5 text-success" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+        <span id="toast-message">Action completed successfully!</span>
+    </div>
+
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
+        import { getAuth, signInAnonymously, signInWithEmailAndPassword, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
+        import { getFirestore, collection, addDoc, onSnapshot, query, where, orderBy, doc, deleteDoc, updateDoc, increment, serverTimestamp, runTransaction } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
+
+        // --- CONFIGURATION ---
+        const firebaseConfig = {
+            // IMPORTANT: Replace with your actual Firebase config
+            apiKey: "AIzaSyDTd4lvs1lzjKeGu7Ee91lM30-8v88h-ng",
+            authDomain: "productivity-tracker-knf13.firebaseapp.com",
+            projectId: "productivity-tracker-knf13",
+            storageBucket: "productivity-tracker-knf13.appspot.com",
+            messagingSenderId: "762035393571",
+            appId: "1:762035393571:web:7d474a6a57cc031b860d96"
+        };
+        const START_DATE = new Date('2025-09-13T00:00:00');
+        const END_DATE = new Date('2025-11-26T23:59:59');
+        const TOTAL_DAYS = Math.ceil((END_DATE - START_DATE) / (1000 * 60 * 60 * 24)) + 1;
+
+        // --- INITIALIZATION ---
+        let db, auth, currentUser = null, isAdmin = false;
+        try {
+            const app = initializeApp(firebaseConfig);
+            auth = getAuth(app);
+            db = getFirestore(app);
+            await signInAnonymously(auth);
+        } catch (error) {
+            console.error("Firebase initialization failed:", error);
+            showToast("Error connecting to database", "error");
+        }
+        
+        // --- GLOBAL STATE ---
+        let allDrops = [], filteredDrops = [], scheduledDrops = [];
+        let currentFilter = 'all', currentSort = 'newest', searchQuery = '';
+        let heartedPosts = JSON.parse(localStorage.getItem('heartedPosts') || '{}');
+        let editingDropId = null;
+        let unsubscribeDrops;
+        
+        // --- DOM ELEMENTS ---
+        const DOMElements = {
+            // ... (All your document.getElementById calls)
+            // Header & Stats
+            currentDay: document.getElementById('current-day'),
+            progressBar: document.getElementById('progress-bar'),
+            mainProgress: document.getElementById('main-progress'),
+            totalDrops: document.getElementById('total-drops'),
+            todayCount: document.getElementById('today-count'),
+            streakCount: document.getElementById('streak-count'),
+            freeCount: document.getElementById('free-count'),
+            paidCount: document.getElementById('paid-count'),
+            challengeDates: document.getElementById('challenge-dates'),
+            totalDays: document.getElementById('total-days'),
+            
+            // Admin
+            adminPanel: document.getElementById('admin-panel'),
+            adminSigninBtn: document.getElementById('admin-signin-btn'),
+            adminSignoutBtn: document.getElementById('admin-signout-btn'),
+            adminLoginModal: document.getElementById('admin-login-modal'),
+            closeAdminLogin: document.getElementById('close-admin-login'),
+            adminLoginForm: document.getElementById('admin-login-form'),
+            togglePassword: document.getElementById('toggle-password'),
+            
+            // Drop Form
+            dropForm: document.getElementById('drop-form'),
+            publishBtn: document.getElementById('publish-btn'),
+            publishBtnText: document.getElementById('publish-btn-text'),
+            cancelEditBtn: document.getElementById('cancel-edit-btn'),
+            scheduleToggle: document.getElementById('schedule-toggle'),
+            scheduleOptions: document.getElementById('schedule-options'),
+            
+            // Filtering & Content
+            searchInput: document.getElementById('search-input'),
+            sortSelect: document.getElementById('sort-select'),
+            skeletonLoaders: document.getElementById('skeleton-loaders'),
+            todaySection: document.getElementById('today-section'),
+            todayDrops: document.getElementById('today-drops'),
+            previousSection: document.getElementById('previous-section'),
+            previousDrops: document.getElementById('previous-drops'),
+            scheduledSection: document.getElementById('scheduled-section'),
+            scheduledDrops: document.getElementById('scheduled-drops'),
+            emptyState: document.getElementById('empty-state'),
+            emptyStateMessage: document.getElementById('empty-state-message'),
+            
+            // Modals & Toasts
+            subscribeBtn: document.getElementById('subscribe-btn'),
+            subscribeModal: document.getElementById('subscribe-modal'),
+            closeSubscribe: document.getElementById('close-subscribe'),
+            toast: document.getElementById('toast'),
+            toastMessage: document.getElementById('toast-message'),
+            toastIcon: document.getElementById('toast-icon'),
+        };
+
+        // --- UTILITY FUNCTIONS ---
+        const getCurrentDay = () => {
+            const now = new Date();
+            if (now < START_DATE) return 0;
+            if (now > END_DATE) return TOTAL_DAYS;
+            return Math.floor((now - START_DATE) / (1000 * 60 * 60 * 24)) + 1;
+        };
+        const escapeHtml = (str) => {
+            const div = document.createElement('div');
+            div.textContent = str;
+            return div.innerHTML;
+        };
+        const debounce = (func, wait) => {
+            let timeout;
+            return (...args) => {
+                clearTimeout(timeout);
+                timeout = setTimeout(() => func.apply(this, args), wait);
+            };
+        };
+
+        // --- UI & FEEDBACK FUNCTIONS ---
+        const updateProgress = () => {
+            const day = getCurrentDay();
+            const progress = (day / TOTAL_DAYS) * 100;
+            DOMElements.currentDay.textContent = `Day ${day}`;
+            DOMElements.progressBar.style.width = `${progress}%`;
+            DOMElements.mainProgress.setAttribute('aria-valuenow', day);
+        };
+        
+        const showToast = (message, type = 'success') => {
+            DOMElements.toastMessage.textContent = message;
+            DOMElements.toast.className = 'toast'; // Reset classes
+            DOMElements.toastIcon.className = 'w-5 h-5';
+            
+            const icons = {
+                success: { path: `<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>`, color: 'text-success' },
+                error: { path: `<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>`, color: 'text-error' },
+                warning: { path: `<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"></path>`, color: 'text-warning' }
+            };
+
+            DOMElements.toast.classList.add(type);
+            DOMElements.toastIcon.innerHTML = icons[type].path;
+            DOMElements.toastIcon.classList.add(icons[type].color);
+            
+            DOMElements.toast.classList.add('show');
+            setTimeout(() => DOMElements.toast.classList.remove('show'), 3000);
+        };
+
+        const toggleModal = (modal, show) => {
+            if (show) {
+                modal.classList.remove('hidden');
+                modal.classList.add('flex');
+            } else {
+                modal.classList.add('hidden');
+                modal.classList.remove('flex');
+            }
+        };
+        
+        // --- FORM HANDLING ---
+        const resetForm = () => {
+            DOMElements.dropForm.reset();
+            editingDropId = null;
+            DOMElements.publishBtnText.textContent = 'Drop It!';
+            DOMElements.cancelEditBtn.classList.add('hidden');
+            DOMElements.scheduleOptions.classList.add('hidden');
+            checkFormValidity();
+        };
+
+        const populateFormForEdit = (drop) => {
+            editingDropId = drop.id;
+            document.getElementById('drop-title').value = drop.title;
+            document.getElementById('drop-description').value = drop.description;
+            document.getElementById('drop-link').value = drop.link;
+            document.getElementById('drop-image').value = drop.imageUrl || '';
+            document.getElementById('drop-type').value = drop.contentType;
+            document.getElementById('drop-access').value = drop.access;
+
+            DOMElements.publishBtnText.textContent = 'Update Drop';
+            DOMElements.cancelEditBtn.classList.remove('hidden');
+            window.scrollTo({ top: DOMElements.adminPanel.offsetTop - 80, behavior: 'smooth' });
+            checkFormValidity();
+        };
+
+        const checkFormValidity = () => {
+            const title = document.getElementById('drop-title').value.trim();
+            const desc = document.getElementById('drop-description').value.trim();
+            const link = document.getElementById('drop-link').value.trim();
+            try {
+                new URL(link);
+                DOMElements.publishBtn.disabled = !(title && desc && link);
+            } catch {
+                DOMElements.publishBtn.disabled = true;
+            }
+        };
+        
+        // --- RENDER FUNCTIONS ---
+        const createDropCardHTML = (drop, isScheduled = false) => {
+            const isHearted = heartedPosts[drop.id];
+            const dropDate = drop.timestamp?.toDate() || new Date(drop.scheduledFor);
+            const time = dropDate.toLocaleTimeString([], { hour: 'numeric', minute: '2-digit' });
+            const date = dropDate.toLocaleDateString([], { month: 'short', day: 'numeric' });
+
+            const fallbackImage = `https://placehold.co/400x300/7c3aed/ffffff?text=${encodeURIComponent(drop.contentType)}`;
+            const imageUrl = drop.imageUrl || fallbackImage;
+
+            const adminButtons = isAdmin ? `
+                <button class="edit-btn text-muted hover:text-accent" data-id="${drop.id}" aria-label="Edit drop">
+                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.5L16.732 3.732z"></path></svg>
+                </button>
+                <button class="delete-btn text-muted hover:text-error" data-id="${drop.id}" aria-label="Delete drop">
+                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"></path></svg>
+                </button>
+            ` : '';
+            
+            return `
+            <div class="card flex flex-col md:flex-row" data-id="${drop.id}">
+                <div class="md:w-48 aspect-[4/3] flex-shrink-0">
+                    <img src="${escapeHtml(imageUrl)}" alt="${escapeHtml(drop.title)}" class="w-full h-full object-cover" loading="lazy" onerror="this.onerror=null;this.src='${fallbackImage}';">
+                </div>
+                <div class="flex-1 p-4 md:p-5 flex flex-col">
+                    <div class="flex items-center justify-between mb-2 text-xs text-muted">
+                        <div class="flex items-center gap-2">
+                            <span>${isScheduled ? `Scheduled for ${date}` : `Day ${drop.day} • ${time}`}</span>
+                            <span>•</span>
+                            <span>${drop.contentType}</span>
+                        </div>
+                        <div class="flex items-center gap-3">
+                            ${isScheduled ? `
+                                <button class="publish-now-btn btn btn-secondary !p-1 !text-xs" data-id="${drop.id}">Publish Now</button>
+                                ${adminButtons}
+                            ` : `
+                                <button class="heart-btn flex items-center gap-1 ${isHearted ? 'text-heart hearted' : 'text-muted hover:text-heart'}" data-id="${drop.id}" aria-label="${isHearted ? 'Remove heart' : 'Add heart'}">
+                                    <svg class="w-4 h-4" fill="${isHearted ? 'currentColor' : 'none'}" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.25l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.5l-1.318-1.182a4.5 4.5 0 00-6.364 0z"></path></svg>
+                                    <span class="font-mono">${drop.hearts || 0}</span>
+                                </button>
+                                ${adminButtons}
+                            `}
+                        </div>
+                    </div>
+                    <div class="flex-grow space-y-2">
+                        <span class="tag ${drop.access === 'Paid' ? 'tag-paid' : 'tag-free'}">${drop.access}</span>
+                        <h3 class="text-lg font-semibold leading-tight hover:text-accent transition-colors">
+                            <a href="${escapeHtml(drop.link)}" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1.5">
+                                ${escapeHtml(drop.title)}
+                                <svg class="w-4 h-4 opacity-50 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path></svg>
+                            </a>
+                        </h3>
+                        <p class="text-sm text-muted line-clamp-2">${escapeHtml(drop.description)}</p>
+                    </div>
+                </div>
+            </div>`;
+        };
+        
+        const renderDrops = () => {
+            DOMElements.skeletonLoaders.classList.add('hidden');
+            const day = getCurrentDay();
+            const todaysDrops = filteredDrops.filter(d => d.day === day);
+            const previousDrops = filteredDrops.filter(d => d.day < day);
+
+            // Update stats
+            const publishedDropsCount = allDrops.filter(d => d.status === 'published').length;
+            DOMElements.totalDrops.textContent = publishedDropsCount;
+            DOMElements.todayCount.textContent = todaysDrops.length;
+            DOMElements.freeCount.textContent = allDrops.filter(d => d.access === 'Free' && d.status === 'published').length;
+            DOMElements.paidCount.textContent = allDrops.filter(d => d.access === 'Paid' && d.status === 'published').length;
+            const daysWithDrops = new Set(allDrops.filter(d => d.status === 'published').map(d => d.day)).size;
+            DOMElements.streakCount.textContent = daysWithDrops;
+
+            // Render sections
+            DOMElements.todaySection.classList.toggle('hidden', todaysDrops.length === 0);
+            DOMElements.todayDrops.innerHTML = todaysDrops.map(d => createDropCardHTML(d)).join('');
+            
+            DOMElements.previousSection.classList.toggle('hidden', previousDrops.length === 0);
+            DOMElements.previousDrops.innerHTML = previousDrops.map(d => createDropCardHTML(d)).join('');
+            
+            // Handle Empty State
+            if (filteredDrops.length === 0) {
+                DOMElements.emptyState.classList.remove('hidden');
+                DOMElements.emptyStateMessage.textContent = (searchQuery || currentFilter !== 'all') ? 'No drops found matching your criteria.' : 'No drops yet. Check back soon!';
+            } else {
+                DOMElements.emptyState.classList.add('hidden');
+            }
+        };
+
+        const renderScheduledDrops = () => {
+            DOMElements.scheduledSection.classList.toggle('hidden', scheduledDrops.length === 0);
+            DOMElements.scheduledDrops.innerHTML = scheduledDrops.map(d => createDropCardHTML(d, true)).join('');
+        };
+        
+        // --- DATA LOGIC ---
+        const applyFiltersAndSort = () => {
+            const publishedDrops = allDrops.filter(d => d.status === 'published');
+            filteredDrops = publishedDrops.filter(drop => {
+                const search = searchQuery.toLowerCase();
+                const matchesSearch = !search || drop.title.toLowerCase().includes(search) || drop.description.toLowerCase().includes(search);
+                const matchesFilter = currentFilter === 'all' || drop.contentType === currentFilter;
+                return matchesSearch && matchesFilter;
+            });
+
+            filteredDrops.sort((a, b) => {
+                switch (currentSort) {
+                    case 'oldest': return a.timestamp.toMillis() - b.timestamp.toMillis();
+                    case 'most-loved': return (b.hearts || 0) - (a.hearts || 0);
+                    default: return b.timestamp.toMillis() - a.timestamp.toMillis();
+                }
+            });
+
+            scheduledDrops = allDrops.filter(d => d.status === 'scheduled').sort((a, b) => new Date(a.scheduledFor) - new Date(b.scheduledFor));
+
+            renderDrops();
+            if(isAdmin) renderScheduledDrops();
+        };
+
+        const setupFirestoreListener = (isAdminFlag) => {
+            if (unsubscribeDrops) unsubscribeDrops(); // Unsubscribe from previous listener
+            
+            const q = isAdminFlag 
+                ? query(collection(db, 'drops'), orderBy('timestamp', 'desc'))
+                : query(collection(db, 'drops'), where('status', '==', 'published'), orderBy('timestamp', 'desc'));
+
+            unsubscribeDrops = onSnapshot(q, (snapshot) => {
+                allDrops = snapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
+                applyFiltersAndSort();
+            }, (error) => {
+                console.error("Firestore listener error:", error);
+                showToast("Error loading drops. Please refresh.", "error");
+            });
+        };
+
+        // --- EVENT LISTENERS & HANDLERS ---
+        const handleAdminFormSubmit = async (e) => {
+            e.preventDefault();
+            const dropData = {
+                title: document.getElementById('drop-title').value.trim(),
+                description: document.getElementById('drop-description').value.trim(),
+                link: document.getElementById('drop-link').value.trim(),
+                imageUrl: document.getElementById('drop-image').value.trim(),
+                contentType: document.getElementById('drop-type').value,
+                access: document.getElementById('drop-access').value,
             };
             
-            const renderModals = () => {
-                modalsContainer.innerHTML = ''; // Clear previous modals
+            // Client-side validation
+            try { new URL(dropData.link) } catch { showToast("Please enter a valid link.", "error"); return; }
+            if (dropData.imageUrl) { try { new URL(dropData.imageUrl) } catch { showToast("Please enter a valid image URL.", "error"); return; } }
+            
+            const btnSpinner = DOMElements.publishBtn.querySelector('.loading-spinner');
+            btnSpinner.classList.remove('hidden');
+            DOMElements.publishBtn.disabled = true;
 
-                // Welcome Modal
-                if (state.showWelcome && state.tasks.length === 0) {
-                     modalsContainer.innerHTML += `
-                        <div id="welcome-modal" class="fixed inset-0 bg-black/80 flex items-center justify-center z-[100] p-8 animate-fadeIn">
-                            <div class="bg-gradient-to-br from-[--bg-darker] to-[rgba(151,129,237,0.05)] rounded-2xl p-12 max-w-2xl w-full border border-[--primary3] shadow-2xl shadow-[--primary3]/30 animate-slideUp text-center">
-                                <div class="text-6xl mb-4 animate-sparkle">✨</div>
-                                <h2 class="text-3xl mb-4 text-[--primary2] font-medium">Welcome to Kimberly's AI Focus</h2>
-                                <p class="text-[--text] mb-8 text-lg leading-relaxed">Break down any goal into tiny, actionable steps. Use AI suggestions or add your own. The magic is in making tasks so small they're impossible to procrastinate on.</p>
-                                <div class="text-left bg-white/5 rounded-xl p-6 mb-8">
-                                    <h3 class="text-[--primary3] mb-4 text-lg">How it works:</h3>
-                                    <ol class="list-none p-0 flex flex-col gap-3">
-                                        <li class="flex items-start gap-3"><span class="text-[--primary3] font-bold">1.</span><span>Type any goal, dream, or project</span></li>
-                                        <li class="flex items-start gap-3"><span class="text-[--primary3] font-bold">2.</span><span>AI instantly breaks it down OR add steps manually</span></li>
-                                        <li class="flex items-start gap-3"><span class="text-[--primary3] font-bold">3.</span><span>Keep breaking down until tasks are tiny</span></li>
-                                        <li class="flex items-start gap-3"><span class="text-[--primary3] font-bold">4.</span><span>Focus Mode helps you tackle one step at a time</span></li>
-                                    </ol>
-                                </div>
-                                <button id="close-welcome-btn" class="px-12 py-4 rounded-full text-white text-lg font-semibold transition-all" style="background: linear-gradient(135deg, var(--primary3), var(--primary5)); box-shadow: 0 8px 30px rgba(151, 129, 237, 0.4);">Let's Get Started</button>
-                            </div>
-                        </div>
-                    `;
+            try {
+                if (DOMElements.scheduleToggle.checked) {
+                    const date = document.getElementById('schedule-date').value;
+                    const time = document.getElementById('schedule-time').value;
+                    if (!date || !time) throw new Error("Please select a valid schedule date and time.");
+                    
+                    dropData.status = 'scheduled';
+                    dropData.scheduledFor = new Date(`${date}T${time}`).toISOString();
+                    dropData.timestamp = null; // Will be set on publish
+                } else {
+                    dropData.status = 'published';
+                    dropData.day = getCurrentDay();
+                    dropData.timestamp = serverTimestamp();
                 }
 
-                // Suggestions Modal
-                Object.entries(state.showSuggestions).forEach(([taskId, show]) => {
-                    if (!show || !state.suggestions[taskId]) return;
-                    const task = findTaskById(state.tasks, taskId);
-                    if (!task) return;
+                if (editingDropId) {
+                    await updateDoc(doc(db, 'drops', editingDropId), dropData);
+                    showToast('Drop updated successfully!');
+                } else {
+                    dropData.hearts = 0; // Only set on new doc
+                    await addDoc(collection(db, 'drops'), dropData);
+                    showToast('Drop added successfully!');
+                }
+                resetForm();
+            } catch (error) {
+                console.error("Error submitting drop:", error);
+                showToast(error.message || "Could not save drop.", "error");
+            } finally {
+                btnSpinner.classList.add('hidden');
+                checkFormValidity();
+            }
+        };
 
-                    modalsContainer.innerHTML += `
-                        <div data-modal-id="${taskId}" class="suggestions-modal fixed inset-0 bg-black/80 flex items-center justify-center z-[100] p-8 animate-fadeIn">
-                            <div class="bg-[--bg-darker] rounded-2xl p-8 max-w-2xl w-full max-h-[80vh] overflow-y-auto border border-[--primary3] shadow-2xl shadow-[--primary3]/30 animate-slideUp">
-                                <h3 class="text-2xl mb-4 text-[--primary2] flex items-center gap-2"><i data-lucide="sparkles" class="w-6 h-6"></i>AI broke down: "${task.text}"</h3>
-                                <div class="flex justify-between items-center mb-6">
-                                    <p class="text-[--text-muted]">Uncheck any steps you don't want:</p>
-                                    <button data-action="toggle-all" data-id="${taskId}" class="bg-transparent border border-[--border] rounded-lg px-3 py-1.5 text-sm transition-all hover:bg-white/10">Select All</button>
-                                </div>
-                                <div class="flex flex-col gap-2 mb-6 suggestion-list">
-                                    ${state.suggestions[taskId].map((suggestion, index) => `
-                                        <div data-index="${index}" class="suggestion-item p-4 bg-white/5 border-2 border-transparent rounded-xl cursor-pointer transition-all flex items-center gap-4 selected" style="animation: fadeIn 0.3s ease-out ${index * 0.05}s both;">
-                                            <div class="w-5 h-5 border-2 border-[--primary3] rounded-md flex items-center justify-center bg-[--primary3] transition-all">
-                                                <i data-lucide="check" class="w-3 h-3 text-white"></i>
-                                            </div>
-                                            <span>${suggestion}</span>
-                                        </div>
-                                    `).join('')}
-                                </div>
-                                <div class="flex gap-4 justify-end">
-                                    <button data-action="cancel-suggestions" data-id="${taskId}" class="px-6 py-3 bg-transparent border border-[--border] rounded-lg text-white transition-all hover:bg-white/10">Cancel</button>
-                                    <button data-action="add-suggestions" data-id="${taskId}" class="px-6 py-3 rounded-lg text-white font-semibold transition-all" style="background: linear-gradient(135deg, var(--primary3), var(--primary5));">Add Steps</button>
-                                </div>
-                            </div>
-                        </div>
-                    `;
+        const handleContentClick = async (e) => {
+            const btn = e.target.closest('button');
+            if (!btn) return;
+            
+            const dropId = btn.dataset.id;
+            if (!dropId) return;
+
+            if (btn.classList.contains('delete-btn')) {
+                if (confirm('Delete this drop? This cannot be undone.')) {
+                    await deleteDoc(doc(db, 'drops', dropId));
+                    showToast('Drop deleted.');
+                }
+            } else if (btn.classList.contains('edit-btn')) {
+                const dropToEdit = allDrops.find(d => d.id === dropId);
+                if (dropToEdit) populateFormForEdit(dropToEdit);
+            } else if (btn.classList.contains('heart-btn')) {
+                const isHearted = heartedPosts[dropId];
+                const incrementValue = isHearted ? -1 : 1;
+                heartedPosts[dropId] = !isHearted;
+
+                // Optimistic UI update
+                btn.classList.toggle('hearted', !isHearted);
+                const heartCountSpan = btn.querySelector('span');
+                heartCountSpan.textContent = parseInt(heartCountSpan.textContent) + incrementValue;
+
+                localStorage.setItem('heartedPosts', JSON.stringify(heartedPosts));
+                await updateDoc(doc(db, 'drops', dropId), { hearts: increment(incrementValue) });
+            } else if (btn.classList.contains('publish-now-btn')) {
+                await updateDoc(doc(db, 'drops', dropId), {
+                    status: 'published',
+                    day: getCurrentDay(),
+                    timestamp: serverTimestamp()
                 });
-            };
+                showToast('Drop published!');
+            }
+        };
 
-            const render = () => {
-                // Render tasks
-                taskListContainer.innerHTML = state.tasks.map(task => renderTask(task)).join('');
-                
-                // Render modals
-                renderModals();
-
-                // Update UI based on state
-                heroSection.classList.toggle('hidden', state.tasks.length > 0);
-                infoSection.classList.toggle('hidden', state.tasks.length === 0);
-                startFocusBtn.disabled = getLeafTasks().length === 0;
-
-                if (state.apiError) {
-                    apiErrorDiv.textContent = state.apiError;
-                    apiErrorDiv.classList.remove('hidden');
-                } else {
-                    apiErrorDiv.classList.add('hidden');
-                }
-
-                // Focus mode
-                if (state.focusMode && state.currentFocusTask) {
-                    focusTaskText.textContent = state.currentFocusTask.text;
-                    focusModeOverlay.classList.remove('hidden');
-                } else {
-                    focusModeOverlay.classList.add('hidden');
-                }
-
-                // Final step: render icons
-                lucide.createIcons();
-            };
-
-            // --- EVENT LISTENERS ---
-            addTaskBtn.addEventListener('click', () => addTask());
-            newTaskInput.addEventListener('keypress', (e) => {
-                if (e.key === 'Enter') addTask();
-            });
+        const handleAdminLogin = async (e) => {
+            e.preventDefault();
+            const email = document.getElementById('admin-email').value;
+            const password = document.getElementById('admin-password').value;
+            const btnSpinner = DOMElements.adminLoginForm.querySelector('.loading-spinner');
+            btnSpinner.classList.remove('hidden');
             
-            startFocusBtn.addEventListener('click', startFocusMode);
-            exitFocusBtn.addEventListener('click', () => {
-                state.focusMode = false;
-                render();
-            });
-            completeFocusTaskBtn.addEventListener('click', completeFocusTask);
-            nextFocusTaskBtn.addEventListener('click', nextTask);
+            try {
+                await signInWithEmailAndPassword(auth, email, password);
+                toggleModal(DOMElements.adminLoginModal, false);
+                showToast('Signed in successfully!');
+            } catch (error) {
+                showToast('Invalid credentials.', 'error');
+            } finally {
+                btnSpinner.classList.add('hidden');
+            }
+        };
 
-            // Delegated event listener for dynamic content
-            document.body.addEventListener('click', (e) => {
-                const target = e.target.closest('[data-action]');
-                if (!target) return;
-
-                const { action, id, text } = target.dataset;
-
-                switch (action) {
-                    case 'toggle':
-                        toggleTask(id);
-                        break;
-                    case 'delete':
-                        deleteTask(id);
-                        break;
-                    case 'expand':
-                        toggleExpand(id);
-                        break;
-                    case 'add-manual':
-                        const subtaskText = prompt(`Add a subtask for "${text}"`);
-                        if (subtaskText) addTask(id, subtaskText);
-                        break;
-                    case 'ai-breakdown':
-                        getAISubtasks(id, text);
-                        break;
-                    case 'cancel-suggestions':
-                        state.showSuggestions[id] = false;
-                        render();
-                        break;
-                    case 'add-suggestions':
-                        const modal = target.closest('.suggestions-modal');
-                        const selectedItems = modal.querySelectorAll('.suggestion-item.selected');
-                        const selectedSubtasks = Array.from(selectedItems).map(item => state.suggestions[id][item.dataset.index]);
-                        addSuggestedSubtasks(id, selectedSubtasks);
-                        break;
-                    case 'toggle-all':
-                        const suggestionList = document.querySelector(`.suggestions-modal[data-modal-id="${id}"] .suggestion-list`);
-                        const allItems = suggestionList.querySelectorAll('.suggestion-item');
-                        const areAllSelected = Array.from(allItems).every(item => item.classList.contains('selected'));
-                        allItems.forEach(item => {
-                            item.classList.toggle('selected', !areAllSelected);
-                            const checkIcon = item.querySelector('[data-lucide="check"]');
-                            const checkbox = item.querySelector('div:first-child');
-                            checkbox.style.backgroundColor = areAllSelected ? 'transparent' : 'var(--primary3)';
-                            checkIcon.style.display = areAllSelected ? 'none' : 'block';
-                        });
-                        target.textContent = areAllSelected ? 'Select All' : 'Deselect All';
-                        break;
-                }
-            });
+        // --- AUTH STATE CHANGE ---
+        onAuthStateChanged(auth, async (user) => {
+            currentUser = user;
+            if (user && !user.isAnonymous) {
+                const idTokenResult = await user.getIdTokenResult();
+                isAdmin = !!idTokenResult.claims.admin;
+            } else {
+                isAdmin = false;
+            }
             
-            // Listener for welcome modal close button
-            modalsContainer.addEventListener('click', (e) => {
-                if (e.target.id === 'close-welcome-btn' || e.target.id === 'welcome-modal') {
-                    state.showWelcome = false;
-                    render();
-                }
-            });
+            // Update UI based on auth state
+            document.body.classList.toggle('is-admin', isAdmin);
+            DOMElements.adminPanel.classList.toggle('hidden', !isAdmin);
+            DOMElements.adminSigninBtn.classList.toggle('hidden', isAdmin);
+            DOMElements.adminSignoutBtn.classList.toggle('hidden', !isAdmin);
             
-             // Listener for suggestion items
-            modalsContainer.addEventListener('click', (e) => {
-                const item = e.target.closest('.suggestion-item');
-                if (item) {
-                    item.classList.toggle('selected');
-                    const checkIcon = item.querySelector('[data-lucide="check"]');
-                    const checkbox = item.querySelector('div:first-child');
-                    const isSelected = item.classList.contains('selected');
-                    checkbox.style.backgroundColor = isSelected ? 'var(--primary3)' : 'transparent';
-                    checkIcon.style.display = isSelected ? 'block' : 'none';
-                }
-            });
-
-
-            // --- INITIAL RENDER ---
-            render();
+            // Re-render and re-subscribe to data
+            setupFirestoreListener(isAdmin);
+            applyFiltersAndSort();
         });
+
+        // --- INITIAL SETUP ---
+        document.addEventListener('DOMContentLoaded', () => {
+            // Static content setup
+            DOMElements.challengeDates.textContent = `${START_DATE.toLocaleDateString('en-US', { month: 'long', day: 'numeric' })} — ${END_DATE.toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' })}`;
+            DOMElements.totalDays.textContent = TOTAL_DAYS;
+            updateProgress();
+            setInterval(updateProgress, 60000);
+
+            // Event Listeners
+            DOMElements.dropForm.addEventListener('submit', handleAdminFormSubmit);
+            DOMElements.dropForm.addEventListener('input', checkFormValidity);
+            document.getElementById('content-feed').addEventListener('click', handleContentClick);
+            DOMElements.scheduledDrops.addEventListener('click', handleContentClick);
+            DOMElements.searchInput.addEventListener('input', debounce(() => {
+                searchQuery = DOMElements.searchInput.value;
+                applyFiltersAndSort();
+            }, 300));
+            DOMElements.sortSelect.addEventListener('change', (e) => {
+                currentSort = e.target.value;
+                applyFiltersAndSort();
+            });
+            document.querySelectorAll('.filter-btn').forEach(btn => btn.addEventListener('click', (e) => {
+                document.querySelector('.filter-btn.active').classList.remove('active');
+                e.target.classList.add('active');
+                currentFilter = e.target.dataset.filter;
+                applyFiltersAndSort();
+            }));
+
+            // Modals
+            DOMElements.subscribeBtn.addEventListener('click', () => toggleModal(DOMElements.subscribeModal, true));
+            DOMElements.closeSubscribe.addEventListener('click', () => toggleModal(DOMElements.subscribeModal, false));
+            DOMElements.adminSigninBtn.addEventListener('click', () => toggleModal(DOMElements.adminLoginModal, true));
+            DOMElements.closeAdminLogin.addEventListener('click', () => toggleModal(DOMElements.adminLoginModal, false));
+            DOMElements.adminSignoutBtn.addEventListener('click', () => signOut(auth));
+            DOMElements.adminLoginForm.addEventListener('submit', handleAdminLogin);
+            DOMElements.togglePassword.addEventListener('click', () => {
+                const pwField = document.getElementById('admin-password');
+                const isPassword = pwField.type === 'password';
+                pwField.type = isPassword ? 'text' : 'password';
+            });
+            
+            // Form enhancements
+            DOMElements.scheduleToggle.addEventListener('change', (e) => {
+                DOMElements.scheduleOptions.classList.toggle('hidden', !e.target.checked);
+            });
+            DOMElements.cancelEditBtn.addEventListener('click', resetForm);
+        });
+
     </script>
 </body>
 </html>
