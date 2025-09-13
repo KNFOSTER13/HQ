@@ -7,13 +7,13 @@
     <meta name="description" content="Join Kimberly's 75-day creative challenge. Beating back perfectionism one drop at a time.">
     
     <!-- Canonical URL -->
-    <link rel="canonical" href="http://knf.kim/drops">
+    <link rel="canonical" href="https://dropathon.kimberlynfoster.com">
     
     <!-- Open Graph Tags -->
     <meta property="og:title" content="Kimberly's Dropathon - 75 Days of Creative Output">
     <meta property="og:description" content="Join Kimberly's 75-day creative challenge. Beating back perfectionism one drop at a time.">
-    <meta property="og:image" content="https://knfoster13.github.io/HQ/kdrop6.png">
-    <meta property="og:url" content="http://knf.kim/drops">
+    <meta property="og:image" content="https://dropathon.kimberlynfoster.com/kdrop4.png">
+    <meta property="og:url" content="https://dropathon.kimberlynfoster.com">
     <meta property="og:type" content="website">
     <meta property="og:site_name" content="Kimberly's Dropathon">
     
@@ -21,7 +21,7 @@
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="Kimberly's Dropathon - 75 Days of Creative Output">
     <meta name="twitter:description" content="Join Kimberly's 75-day creative challenge. Beating back perfectionism one drop at a time.">
-    <meta name="twitter:image" content="https://knfoster13.github.io/HQ/kdrop6.png">
+    <meta name="twitter:image" content="https://dropathon.kimberlynfoster.com/kdrop4.png">
     <meta name="twitter:creator" content="@kimberlynfoster">
     
     <!-- JSON-LD Structured Data -->
@@ -31,7 +31,7 @@
         "@type": "WebSite",
         "name": "Kimberly's Dropathon",
         "description": "75 Days of Creative Output",
-        "url": "http://knf.kim/drops",
+        "url": "https://dropathon.kimberlynfoster.com",
         "publisher": {
             "@type": "Person",
             "name": "Kimberly Nicole Foster"
@@ -469,7 +469,7 @@
             <div class="flex items-center justify-between">
                 <a href="#" class="flex items-center gap-3" aria-label="Dropathon Home">
                     <img src="KNFLAV10PX.png" alt="Logo" class="h-8 w-auto">
-                    <span class="hidden sm:inline font-bold text-lg text-white brand-font" style="text-shadow: 0 2px 4px rgba(0,0,0,0.3);">Kimberly's Dropathon</span>
+                    <span class="hidden sm:inline font-bold text-lg text-white brand-font" style="text-shadow: 0 2px 4px rgba(0,0,0,0.3);">Drop it like it's hot, Kim!</span>
                 </a>
                 
                 <div class="flex items-center gap-3">
@@ -513,7 +513,8 @@
         <!-- Hero Section -->
         <section class="text-center py-12" aria-labelledby="hero-title">
             <img src="kdrop4.png" alt="Kimberly's Dropathon" class="mx-auto w-full max-w-md mb-6" 
-                 fetchpriority="high" decoding="async" loading="eager">
+                 fetchpriority="high" decoding="async" loading="eager"
+                 onerror="this.style.display='none'">
             <h1 id="hero-title" class="text-3xl md:text-4xl font-bold mb-4 brand-font">Beating back perfectionism one drop at a time.</h1>
             <p class="text-lg text-muted mb-2"><span id="challenge-dates">September 13 — November 26, 2025</span></p>
             
@@ -1143,8 +1144,7 @@
             if (user) {
                 // Check if user has admin claim
                 const idTokenResult = await user.getIdTokenResult();
-                // Temporary admin check - replace with your actual email 
-                isAdmin = user.email === 'submissions@forharriet.com';
+                isAdmin = idTokenResult.claims.admin === true;
                 
                 if (isAdmin) {
                     elements.adminPanel.classList.remove('hidden');
@@ -1446,9 +1446,27 @@
                 access: document.getElementById('drop-access').value,
                 imageUrl: document.getElementById('drop-image').value.trim(),
                 timestamp: serverTimestamp(),
-                day: getCurrentDay(),
                 hearts: 0
             };
+            
+            // Check if scheduling
+            if (elements.scheduleToggle.checked && elements.scheduleDate.value && elements.scheduleTime.value) {
+                const scheduledDate = new Date(`${elements.scheduleDate.value}T${elements.scheduleTime.value}`);
+                
+                if (scheduledDate <= new Date()) {
+                    showToast('Scheduled date must be in the future', 'error');
+                    elements.publishBtn.disabled = false;
+                    elements.publishBtn.querySelector('.loading-spinner').classList.add('hidden');
+                    return;
+                }
+                
+                dropData.status = 'scheduled';
+                dropData.scheduledDate = scheduledDate.toISOString();
+                dropData.day = null; // Will be set when published
+            } else {
+                dropData.status = 'published';
+                dropData.day = getCurrentDay();
+            }
             
             const errors = validateDropData(dropData);
             if (Object.keys(errors).length > 0) {
@@ -1461,12 +1479,15 @@
             try {
                 if (editingDrop) {
                     await updateDoc(doc(db, dropsCollectionPath, editingDrop), dropData);
-                    showToast('Drop updated!');
+                    showToast(dropData.status === 'scheduled' ? 'Drop scheduled!' : 'Drop updated!');
                 } else {
                     await addDoc(collection(db, dropsCollectionPath), dropData);
-                    showToast('Drop added successfully!');
+                    showToast(dropData.status === 'scheduled' ? 'Drop scheduled successfully!' : 'Drop added successfully!');
                 }
                 resetForm();
+                if (dropData.status === 'scheduled') {
+                    renderScheduledPosts();
+                }
             } catch (error) {
                 console.error('Error adding drop:', error);
                 showToast('Error adding drop. Please try again.', 'error');
