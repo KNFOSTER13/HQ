@@ -5,12 +5,30 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Kimberly's Dropathon - 75 Days of Creative Output</title>
     <meta name="description" content="Join Kimberly's 75-day creative challenge. Beating back perfectionism one drop at a time.">
+    <meta name="theme-color" content="#1a0f26">
+    <meta name="robots" content="index, follow">
 
-    <link rel="canonical" href="http://knf.kim/drops">
+    
+    <meta http-equiv="Content-Security-Policy" content="
+        default-src 'self';
+        script-src 'self' https://www.gstatic.com https://cdn.tailwindcss.com 'unsafe-inline';
+        style-src 'self' https://fonts.googleapis.com 'unsafe-inline';
+        font-src 'self' https://fonts.gstatic.com data:;
+        img-src 'self' https: data:;
+        connect-src 'self' https://firestore.googleapis.com https://identitytoolkit.googleapis.com;
+        frame-src 'self' https://kimberlynfoster.substack.com;
+        object-src 'none';
+        base-uri 'self';
+        form-action 'self' https:;
+        upgrade-insecure-requests;
+    ">
+
+    <link rel="canonical" href="https://knf.kim/drops">
     <meta property="og:title" content="Kimberly's Dropathon - 75 Days of Creative Output">
     <meta property="og:description" content="Join Kimberly's 75-day creative challenge. Beating back perfectionism one drop at a time.">
     <meta property="og:image" content="https://knfoster13.github.io/HQ/kdrop6.png">
-    <meta property="og:url" content="http://knf.kim/drops">
+    <meta property="og:image:alt" content="Kimberly's 75-day Dropathon">
+    <meta property="og:url" content="https://knf.kim/drops">
     <meta property="og:type" content="website">
     <meta property="og:site_name" content="Kimberly's Dropathon">
     <meta name="twitter:card" content="summary_large_image">
@@ -25,13 +43,15 @@
       "@type": "WebSite",
       "name": "Kimberly's Dropathon",
       "description": "75 Days of Creative Output",
-      "url": "http://knf.kim/drops",
+      "url": "https://knf.kim/drops",
       "publisher": {
         "@type": "Person",
         "name": "Kimberly Nicole Foster"
       }
     }
     </script>
+    <script type="application/ld+json" id="itemListSchema"></script>
+
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -219,7 +239,7 @@
     <a href="#content-feed" class="skip-to-content">Skip to content</a>
 
     <header class="sticky-header relative" role="banner">
-        <div class="max-w-6xl mx-auto px-4 py-3">
+        <nav class="max-w-6xl mx-auto px-4 py-3" aria-label="Primary">
             <div class="flex items-center justify-between">
                 <a href="#" class="flex items-center gap-3" aria-label="Dropathon Home">
                     <img src="LARGE-PASTEL-1.png" alt="Logo" class="h-8 w-auto">
@@ -255,7 +275,7 @@
                     </button>
                 </div>
             </div>
-        </div>
+        </nav>
         <div class="absolute bottom-0 left-0 w-full h-1 bg-white/5">
             <div id="header-progress-bar" class="header-progress-fill" style="width: 0%;"></div>
         </div>
@@ -263,7 +283,7 @@
 
     <main class="max-w-6xl mx-auto px-4 py-8" role="main" id="main-content">
         <section class="text-center py-12" aria-labelledby="hero-title">
-            <img src="https://knfoster13.github.io/HQ/kdrop4.png" alt="Kimberly's Dropathon" class="mx-auto w-full max-w-md mb-6" fetchpriority="high" decoding="async" loading="eager">
+            <img src="https://knfoster13.github.io/HQ/kdrop4.png" alt="Kimberly's Dropathon" class="mx-auto w-full max-w-md mb-6" width="1024" height="768" fetchpriority="high" decoding="async" loading="eager">
             <h1 id="hero-title" class="text-3xl md:text-4xl font-bold mb-4 brand-font text-gradient">Beating back perfectionism one drop at a time.</h1>
             <p class="text-lg text-muted mb-2"><span id="challenge-dates">September 13 — November 26, 2025</span></p>
             
@@ -290,21 +310,11 @@
                         <div><label for="drop-access" class="block text-sm font-medium mb-1">Access Level</label><select id="drop-access" class="form-input"><option>Free</option><option>Paid</option></select></div>
                     </div>
                     
-                    <div class="pt-4 border-t border-white/10"><label class="flex items-center gap-2 cursor-pointer"><input type="checkbox" id="schedule-toggle" class="form-checkbox h-4 w-4 rounded bg-white/10 border-white/20 text-accent focus:ring-accent"><span class="text-sm font-medium">Schedule for later</span></label></div>
-                    <div id="schedule-options" class="hidden grid grid-cols-2 gap-4">
-                        <div><label for="schedule-date" class="block text-sm font-medium mb-1">Date</label><input type="date" id="schedule-date" class="form-input"></div>
-                        <div><label for="schedule-time" class="block text-sm font-medium mb-1">Time (Local)</label><input type="time" id="schedule-time" class="form-input"></div>
-                    </div>
-                    
                     <div class="flex items-center gap-4 pt-2">
                         <button type="submit" id="publish-btn" class="btn btn-primary" disabled><span class="loading-spinner hidden"></span><svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8"></path></svg><span id="publish-btn-text">Drop It!</span></button>
                         <button type="button" id="cancel-edit-btn" class="btn btn-secondary hidden">Cancel Edit</button>
                     </div>
                 </form>
-            </div>
-            <div id="scheduled-section" class="hidden mt-8">
-                <h3 class="text-xl font-bold mb-4 brand-font text-gradient">Scheduled Drops</h3>
-                <div id="scheduled-drops" class="space-y-4"></div>
             </div>
         </section>
 
@@ -332,7 +342,7 @@
             </div>
         </section>
 
-        <section id="content-feed" class="space-y-8" aria-label="Content feed">
+        <section id="content-feed" class="space-y-8" aria-label="Content feed" aria-busy="true">
             <div id="skeleton-loaders">
                 <h2 class="text-2xl md:text-3xl font-bold mb-4 brand-font animate-pulse">Loading drops...</h2>
                 <div class="space-y-6">
@@ -350,6 +360,40 @@
             
             <div id="empty-state" class="text-center py-12 hidden"><svg class="w-24 h-24 mx-auto mb-4 text-muted opacity-50" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20 13V6a2 2 0 00-2-2H6a2 2 0 00-2 2v7m16 0v5a2 2 0 01-2 2H6a2 2 0 01-2-2v-5m16 0h-2.586a1 1 0 00-.707.293l-2.414 2.414a1 1 0 01-.707.293h-3.172a1 1 0 01-.707-.293l-2.414-2.414A1 1 0 006.586 13H4"></path></svg><p class="text-lg text-muted" id="empty-state-message">No drops yet. Check back soon!</p></div>
         </section>
+        
+        <nav class="mt-12" aria-label="Quick links">
+            <h2 class="text-2xl font-bold mb-6 text-center brand-font text-gradient">Quick Links</h2>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-4 max-w-3xl mx-auto">
+                <a href="https://www.patreon.com/kimberlynfoster" class="card p-6 flex items-center gap-4 hover:scale-105" rel="noopener noreferrer" target="_blank">
+                    <div class="p-3 rounded-full bg-pink-500/20">
+                        <svg class="w-6 h-6 text-pink-400" fill="currentColor" viewBox="0 0 20 20" aria-hidden="true">
+                            <path fill-rule="evenodd" d="M3.172 5.172a4 4 0 015.656 0L10 6.343l1.172-1.171a4 4 0 115.656 5.656L10 17.657l-6.828-6.829a4 4 0 010-5.656z" clip-rule="evenodd"/>
+                        </svg>
+                    </div>
+                    <span class="font-semibold">Support on Patreon</span>
+                </a>
+                
+                <a href="https://discord.gg/your-invite" class="card p-6 flex items-center gap-4 hover:scale-105" rel="noopener noreferrer" target="_blank">
+                    <div class="p-3 rounded-full bg-blue-500/20">
+                        <svg class="w-6 h-6 text-blue-400" fill="currentColor" viewBox="0 0 20 20" aria-hidden="true">
+                            <path d="M2 5a2 2 0 012-2h7a2 2 0 012 2v4a2 2 0 01-2 2H9l-3 3v-3H4a2 2 0 01-2-2V5z"/>
+                            <path d="M15 7v2a4 4 0 01-4 4H9.828l-1.766 1.767c.28.149.599.233.938.233h2l3 3v-3h2a2 2 0 002-2V9a2 2 0 00-2-2h-1z"/>
+                        </svg>
+                    </div>
+                    <span class="font-semibold">Join Discord</span>
+                </a>
+                
+                <a href="https://kimberlynfoster.substack.com" class="card p-6 flex items-center gap-4 hover:scale-105" rel="noopener noreferrer" target="_blank">
+                    <div class="p-3 rounded-full bg-green-500/20">
+                        <svg class="w-6 h-6 text-green-400" fill="currentColor" viewBox="0 0 20 20" aria-hidden="true">
+                            <path d="M2.003 5.884L10 9.882l7.997-3.998A2 2 0 0016 4H4a2 2 0 00-1.997 1.884z"/>
+                            <path d="M18 8.118l-8 4-8-4V14a2 2 0 002 2h12a2 2 0 002-2V8.118z"/>
+                        </svg>
+                    </div>
+                    <span class="font-semibold">Newsletter</span>
+                </a>
+            </div>
+        </nav>
     </main>
 
     <footer class="text-center py-8 mt-12 text-sm text-muted" role="contentinfo">
@@ -387,7 +431,65 @@
     <script type="module">
         import { initializeApp } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-app.js";
         import { getAuth, signInAnonymously, signInWithEmailAndPassword, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-auth.js";
-        import { getFirestore, collection, addDoc, onSnapshot, query, where, orderBy, doc, deleteDoc, updateDoc, increment, serverTimestamp, runTransaction } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-firestore.js";
+        import { getFirestore, collection, addDoc, onSnapshot, query, where, orderBy, doc, deleteDoc, updateDoc, increment, serverTimestamp, runTransaction, getDoc, getDocs, writeBatch } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-firestore.js";
+
+        // --- TYPE DEFINITIONS (JSDoc) ---
+        /**
+         * @typedef {object} Drop
+         * @property {string} id - The document ID.
+         * @property {string} title - The title of the drop.
+         * @property {string} description - A short description.
+         * @property {string} link - URL to the content.
+         * @property {string} contentType - The type of content (e.g., Video, Essay).
+         * @property {string} access - Access level ('Free' or 'Paid').
+         * @property {string} [imageUrl] - Optional URL for a thumbnail image.
+         * @property {number} day - The day of the challenge this was dropped on.
+         * @property {number} hearts - The number of hearts.
+         * @property {'published' | 'scheduled'} status - The publication status.
+         * @property {import("firebase/firestore").Timestamp} timestamp - Firestore server timestamp.
+         */
+
+        /**
+         * @typedef {object} UIElements
+         * @property {HTMLElement} headerDay
+         * @property {HTMLElement} headerProgressBar
+         * @property {HTMLElement} headerDrops
+         * @property {HTMLElement} todayCount
+         * @property {HTMLElement} streakCount
+         * @property {HTMLElement} headerStreak
+         * @property {HTMLElement} freeCount
+         * @property {HTMLElement} paidCount
+         * @property {HTMLElement} challengeDates
+         * @property {HTMLElement} adminPanel
+         * @property {HTMLElement} adminSigninBtn
+         * @property {HTMLElement} adminSignoutBtn
+         * @property {HTMLElement} adminLoginModal
+         * @property {HTMLElement} closeAdminLogin
+         * @property {HTMLFormElement} adminLoginForm
+         * @property {HTMLElement} togglePassword
+         * @property {HTMLFormElement} dropForm
+         * @property {HTMLElement} publishBtn
+         * @property {HTMLElement} publishBtnText
+         * @property {HTMLElement} cancelEditBtn
+         * @property {HTMLInputElement} searchInput
+         * @property {HTMLSelectElement} sortSelect
+         * @property {HTMLElement} skeletonLoaders
+         * @property {HTMLElement} todaySection
+         * @property {HTMLElement} todayDrops
+         * @property {HTMLElement} previousSection
+         * @property {HTMLElement} previousDrops
+         * @property {HTMLElement} loadMoreContainer
+         * @property {HTMLElement} emptyState
+         * @property {HTMLElement} emptyStateMessage
+         * @property {HTMLElement} subscribeBtn
+         * @property {HTMLElement} subscribeModal
+         * @property {HTMLElement} closeSubscribe
+         * @property {HTMLElement} toast
+         * @property {HTMLElement} toastMessage
+         * @property {HTMLElement} toastIcon
+         * @property {HTMLElement} contentFeed
+         */
+
 
         // --- CONFIGURATION ---
         const firebaseConfig = {
@@ -400,17 +502,27 @@
         };
         const START_DATE = new Date('2025-09-13T00:00:00');
         const END_DATE = new Date('2025-11-26T23:59:59');
-        const TOTAL_DAYS = Math.ceil((END_DATE - START_DATE) / (1000 * 60 * 60 * 24)) + 1;
+        const MS_PER_DAY = 1000 * 60 * 60 * 24;
+        
+        function startOfDay(d) {
+            const date = new Date(d);
+            date.setHours(0,0,0,0);
+            return date;
+        }
+        
+        const TOTAL_DAYS = Math.floor((startOfDay(END_DATE) - startOfDay(START_DATE)) / MS_PER_DAY) + 1;
+
         const dropsCollectionPath = `artifacts/${firebaseConfig.projectId}/public/data/drops`;
         
-        // --- UTILITY FUNCTIONS (Hoisted) ---
+        // --- UTILITY FUNCTIONS ---
         const getCurrentDay = () => {
             const now = new Date();
             if (now < START_DATE) return 0;
             if (now > END_DATE) return TOTAL_DAYS;
-            return Math.floor((now - START_DATE) / (1000 * 60 * 60 * 24)) + 1;
+            return Math.floor((startOfDay(now) - startOfDay(START_DATE)) / MS_PER_DAY) + 1;
         };
         const escapeHtml = (str) => {
+            if (!str) return '';
             const div = document.createElement('div');
             div.textContent = str;
             return div.innerHTML;
@@ -422,23 +534,17 @@
                 timeout = setTimeout(() => func.apply(this, args), wait);
             };
         };
-
+        const toJsDate = (v) => {
+            if (!v) return new Date();
+            if (v.toDate) return v.toDate();
+            return new Date(v);
+        };
 
         // --- INITIALIZATION ---
         let db, auth, currentUser = null, isAdmin = false;
-        try {
-            const app = initializeApp(firebaseConfig);
-            auth = getAuth(app);
-            db = getFirestore(app);
-            await signInAnonymously(auth);
-            addSampleDataIfNeeded(); // Add sample data on first load
-        } catch (error) {
-            console.error("Firebase initialization failed:", error);
-            showToast("Error connecting to database", "error");
-        }
         
         // --- GLOBAL STATE ---
-        let allDrops = [], filteredDrops = [], scheduledDrops = [];
+        let allDrops = [], filteredDrops = [];
         let currentFilter = 'all', currentSort = 'newest', searchQuery = '';
         let heartedPosts = JSON.parse(localStorage.getItem('heartedPosts') || '{}');
         let editingDropId = null;
@@ -447,6 +553,7 @@
         const DROPS_PER_PAGE = 5;
 
         // --- DOM ELEMENTS ---
+        /** @type {UIElements} */
         const DOMElements = {
             headerDay: document.getElementById('header-day'),
             headerProgressBar: document.getElementById('header-progress-bar'),
@@ -457,7 +564,6 @@
             freeCount: document.getElementById('free-count'),
             paidCount: document.getElementById('paid-count'),
             challengeDates: document.getElementById('challenge-dates'),
-            totalDays: document.getElementById('total-days'),
             adminPanel: document.getElementById('admin-panel'),
             adminSigninBtn: document.getElementById('admin-signin-btn'),
             adminSignoutBtn: document.getElementById('admin-signout-btn'),
@@ -469,8 +575,6 @@
             publishBtn: document.getElementById('publish-btn'),
             publishBtnText: document.getElementById('publish-btn-text'),
             cancelEditBtn: document.getElementById('cancel-edit-btn'),
-            scheduleToggle: document.getElementById('schedule-toggle'),
-            scheduleOptions: document.getElementById('schedule-options'),
             searchInput: document.getElementById('search-input'),
             sortSelect: document.getElementById('sort-select'),
             skeletonLoaders: document.getElementById('skeleton-loaders'),
@@ -479,8 +583,6 @@
             previousSection: document.getElementById('previous-section'),
             previousDrops: document.getElementById('previous-drops'),
             loadMoreContainer: document.getElementById('load-more-container'),
-            scheduledSection: document.getElementById('scheduled-section'),
-            scheduledDrops: document.getElementById('scheduled-drops'),
             emptyState: document.getElementById('empty-state'),
             emptyStateMessage: document.getElementById('empty-state-message'),
             subscribeBtn: document.getElementById('subscribe-btn'),
@@ -489,6 +591,7 @@
             toast: document.getElementById('toast'),
             toastMessage: document.getElementById('toast-message'),
             toastIcon: document.getElementById('toast-icon'),
+            contentFeed: document.getElementById('content-feed'),
         };
 
         // --- UI & FEEDBACK FUNCTIONS ---
@@ -502,7 +605,7 @@
         const showToast = (message, type = 'success') => {
             DOMElements.toastMessage.textContent = message;
             DOMElements.toast.className = 'toast'; // Reset classes
-            DOMElements.toastIcon.setAttribute('class', 'w-5 h-5'); // FIX: Use setAttribute for SVG
+            DOMElements.toastIcon.setAttribute('class', 'w-5 h-5');
             
             const icons = {
                 success: { path: `<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>`, color: 'text-green-500' },
@@ -517,24 +620,29 @@
             DOMElements.toast.classList.add('show');
             setTimeout(() => DOMElements.toast.classList.remove('show'), 3000);
         };
-
-        const toggleModal = (modal, show) => {
-            if (show) {
-                modal.classList.remove('hidden');
-                modal.classList.add('flex');
-            } else {
-                modal.classList.add('hidden');
-                modal.classList.remove('flex');
+        
+        let modalOpener;
+        const toggleModal = (modal, show, opener) => {
+            if (modal) {
+                if (show) {
+                    modalOpener = opener;
+                    modal.classList.remove('hidden');
+                    modal.classList.add('flex');
+                    setupFocusTrap(modal);
+                } else {
+                    modal.classList.add('hidden');
+                    modal.classList.remove('flex');
+                    removeFocusTrap();
+                }
             }
         };
         
         // --- FORM HANDLING ---
         const resetForm = () => {
-            DOMElements.dropForm.reset();
+            if(DOMElements.dropForm) DOMElements.dropForm.reset();
             editingDropId = null;
-            DOMElements.publishBtnText.textContent = 'Drop It!';
-            DOMElements.cancelEditBtn.classList.add('hidden');
-            DOMElements.scheduleOptions.classList.add('hidden');
+            if(DOMElements.publishBtnText) DOMElements.publishBtnText.textContent = 'Drop It!';
+            if(DOMElements.cancelEditBtn) DOMElements.cancelEditBtn.classList.add('hidden');
             checkFormValidity();
         };
 
@@ -554,6 +662,7 @@
         };
 
         const checkFormValidity = () => {
+            if (!DOMElements.dropForm) return;
             const title = document.getElementById('drop-title').value.trim();
             const desc = document.getElementById('drop-description').value.trim();
             const link = document.getElementById('drop-link').value.trim();
@@ -567,11 +676,19 @@
         
         // --- SAMPLE DATA ---
         async function addSampleDataIfNeeded() {
-            if (localStorage.getItem('sampleDataAdded_v4')) {
+            const sampleDataFlag = 'sampleDataAdded_v5';
+            if (localStorage.getItem(sampleDataFlag)) {
                 return;
             }
 
             const day = getCurrentDay();
+            const dropsCollectionRef = collection(db, dropsCollectionPath);
+            const snapshot = await getDocs(query(dropsCollectionRef));
+            if (!snapshot.empty) {
+                localStorage.setItem(sampleDataFlag, 'true'); // Mark as done if db is not empty
+                return;
+            }
+
 
             const sampleDrops = [
                 {
@@ -635,17 +752,15 @@
                     imageUrl: "https://placehold.co/400x300/34d399/ffffff?text=Tutorial"
                 }
             ];
+            
+            const batch = writeBatch(db);
+            sampleDrops.forEach((drop) => {
+                const docRef = doc(collection(db, dropsCollectionPath));
+                batch.set(docRef, drop);
+            });
+            await batch.commit();
 
-            const dropsCollectionRef = collection(db, dropsCollectionPath);
-            for (const drop of sampleDrops) {
-                try {
-                    await addDoc(dropsCollectionRef, drop);
-                } catch (e) {
-                    console.error("Error adding document: ", e);
-                }
-            }
-
-            localStorage.setItem('sampleDataAdded_v4', 'true');
+            localStorage.setItem(sampleDataFlag, 'true');
             console.log("Sample data added.");
         }
 
@@ -653,7 +768,7 @@
         // --- RENDER FUNCTIONS ---
         const createDropCardHTML = (drop, isScheduled = false) => {
             const isHearted = heartedPosts[drop.id];
-            const dropDate = drop.timestamp?.toDate() || new Date(drop.scheduledFor);
+            const dropDate = toJsDate(isScheduled ? drop.scheduledFor : drop.timestamp);
             const time = dropDate.toLocaleTimeString([], { hour: 'numeric', minute: '2-digit' });
             const date = dropDate.toLocaleDateString([], { month: 'short', day: 'numeric' });
 
@@ -669,47 +784,62 @@
                 </button>
             ` : '';
             
-            return `
-            <div class="card flex flex-col md:flex-row" data-id="${drop.id}">
+            const card = document.createElement('div');
+            card.className = 'card flex flex-col md:flex-row';
+            card.dataset.id = drop.id;
+
+            const titleElement = document.createElement('h3');
+            titleElement.className = 'text-lg font-semibold leading-tight hover:text-accent transition-colors';
+            const linkElement = document.createElement('a');
+            linkElement.href = drop.link;
+            linkElement.target = '_blank';
+            linkElement.rel = 'noopener noreferrer';
+            linkElement.className = 'inline-flex items-center gap-1.5';
+            linkElement.textContent = drop.title;
+            linkElement.innerHTML += ` <svg class="w-4 h-4 opacity-50 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path></svg>`;
+            titleElement.appendChild(linkElement);
+
+            const descriptionElement = document.createElement('p');
+            descriptionElement.className = 'text-sm text-muted line-clamp-2';
+            descriptionElement.textContent = drop.description;
+
+            card.innerHTML = `
                 <div class="md:w-48 aspect-[4/3] flex-shrink-0">
-                    <img src="${escapeHtml(imageUrl)}" alt="${escapeHtml(drop.title)}" class="w-full h-full object-cover" loading="lazy" onerror="this.onerror=null;this.src='${fallbackImage}';">
+                    <img src="${escapeHtml(imageUrl)}" alt="${escapeHtml(drop.title)}" class="w-full h-full object-cover" loading="lazy" decoding="async" onerror="this.onerror=null;this.src='${fallbackImage}';">
                 </div>
                 <div class="flex-1 p-4 md:p-5 flex flex-col">
                     <div class="flex items-center justify-between mb-2 text-xs text-muted">
                         <div class="flex items-center gap-2">
-                            <span>${isScheduled ? `Scheduled for ${date}` : `Day ${drop.day} • ${time}`}</span>
+                            <span>Day ${drop.day} • ${time}</span>
                             <span>•</span>
                             <span>${drop.contentType}</span>
                         </div>
                         <div class="flex items-center gap-3">
-                            ${isScheduled ? `
-                                <button class="publish-now-btn btn btn-secondary !p-1 !text-xs" data-id="${drop.id}">Publish Now</button>
-                                ${adminButtons}
-                            ` : `
-                                <button class="heart-btn flex items-center gap-1 ${isHearted ? 'text-heart hearted' : 'text-muted hover:text-heart'}" data-id="${drop.id}" aria-label="${isHearted ? 'Remove heart' : 'Add heart'}">
-                                    <svg class="w-4 h-4" fill="${isHearted ? 'currentColor' : 'none'}" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.25l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.5l-1.318-1.182a4.5 4.5 0 00-6.364 0z"></path></svg>
-                                    <span class="font-mono">${drop.hearts || 0}</span>
-                                </button>
-                                ${adminButtons}
-                            `}
+                            <button class="heart-btn flex items-center gap-1 ${isHearted ? 'text-heart hearted' : 'text-muted hover:text-heart'}" data-id="${drop.id}" aria-label="${isHearted ? 'Remove heart' : 'Add heart'}">
+                                <svg class="w-4 h-4" fill="${isHearted ? 'currentColor' : 'none'}" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.25l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.5l-1.318-1.182a4.5 4.5 0 00-6.364 0z"></path></svg>
+                                <span class="font-mono">${drop.hearts || 0}</span>
+                            </button>
+                            ${adminButtons}
                         </div>
                     </div>
                     <div class="flex-grow space-y-2">
                         <span class="tag ${drop.access === 'Paid' ? 'tag-paid' : 'tag-free'}">${drop.access}</span>
-                        <h3 class="text-lg font-semibold leading-tight hover:text-accent transition-colors">
-                            <a href="${escapeHtml(drop.link)}" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1.5">
-                                ${escapeHtml(drop.title)}
-                                <svg class="w-4 h-4 opacity-50 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path></svg>
-                            </a>
-                        </h3>
-                        <p class="text-sm text-muted line-clamp-2">${escapeHtml(drop.description)}</p>
                     </div>
                 </div>
-            </div>`;
+            `;
+            const contentContainer = card.querySelector('.flex-grow.space-y-2');
+            contentContainer.appendChild(titleElement);
+            contentContainer.appendChild(descriptionElement);
+
+            return card;
         };
         
         const renderDrops = () => {
-            if (DOMElements.skeletonLoaders) DOMElements.skeletonLoaders.classList.add('hidden');
+            if (DOMElements.skeletonLoaders) {
+                DOMElements.skeletonLoaders.classList.add('hidden');
+                DOMElements.contentFeed.setAttribute('aria-busy', 'false');
+            }
+
             const day = getCurrentDay();
             const todaysDrops = filteredDrops.filter(d => d.day === day);
             const previousDrops = filteredDrops.filter(d => d.day < day);
@@ -728,12 +858,18 @@
 
             // Render Today's drops
             if (DOMElements.todaySection) DOMElements.todaySection.classList.toggle('hidden', todaysDrops.length === 0);
-            if (DOMElements.todayDrops) DOMElements.todayDrops.innerHTML = todaysDrops.map(d => createDropCardHTML(d)).join('');
-            
+            if (DOMElements.todayDrops) {
+                DOMElements.todayDrops.innerHTML = '';
+                todaysDrops.forEach(d => DOMElements.todayDrops.appendChild(createDropCardHTML(d)));
+            }
+
             // Render Previous Drops with "Load More"
             const previousToShow = previousDrops.slice(0, visiblePreviousDrops);
             if (DOMElements.previousSection) DOMElements.previousSection.classList.toggle('hidden', previousToShow.length === 0);
-            if (DOMElements.previousDrops) DOMElements.previousDrops.innerHTML = previousToShow.map(d => createDropCardHTML(d)).join('');
+            if (DOMElements.previousDrops) {
+                DOMElements.previousDrops.innerHTML = '';
+                 previousToShow.forEach(d => DOMElements.previousDrops.appendChild(createDropCardHTML(d)));
+            }
             
             if (DOMElements.loadMoreContainer) {
                 DOMElements.loadMoreContainer.innerHTML = ''; 
@@ -755,13 +891,9 @@
             } else {
                 if (DOMElements.emptyState) DOMElements.emptyState.classList.add('hidden');
             }
+            updateItemListSchema(publishedDrops.slice(0, 10)); // Update schema with top drops
         };
 
-        const renderScheduledDrops = () => {
-            if(DOMElements.scheduledSection) DOMElements.scheduledSection.classList.toggle('hidden', scheduledDrops.length === 0);
-            if(DOMElements.scheduledDrops) DOMElements.scheduledDrops.innerHTML = scheduledDrops.map(d => createDropCardHTML(d, true)).join('');
-        };
-        
         // --- DATA LOGIC ---
         const applyFiltersAndSort = () => {
             visiblePreviousDrops = DROPS_PER_PAGE; // Reset pagination on filter change
@@ -783,11 +915,7 @@
                     default: return timeB - timeA;
                 }
             });
-
-            scheduledDrops = allDrops.filter(d => d.status === 'scheduled').sort((a, b) => new Date(a.scheduledFor) - new Date(b.scheduledFor));
-
             renderDrops();
-            if(isAdmin) renderScheduledDrops();
         };
 
         const setupFirestoreListener = (isAdminFlag) => {
@@ -808,6 +936,20 @@
             });
         };
 
+        const updateItemListSchema = (drops) => {
+            const itemListElement = {
+                "@context": "https://schema.org",
+                "@type": "ItemList",
+                "itemListElement": drops.map((drop, index) => ({
+                    "@type": "ListItem",
+                    "position": index + 1,
+                    "url": drop.link,
+                    "name": drop.title
+                }))
+            };
+            document.getElementById('itemListSchema').textContent = JSON.stringify(itemListElement);
+        };
+        
         // --- EVENT LISTENERS & HANDLERS ---
         const handleAdminFormSubmit = async (e) => {
             e.preventDefault();
@@ -828,20 +970,11 @@
             DOMElements.publishBtn.disabled = true;
 
             try {
-                if (DOMElements.scheduleToggle.checked) {
-                    const date = document.getElementById('schedule-date').value;
-                    const time = document.getElementById('schedule-time').value;
-                    if (!date || !time) throw new Error("Please select a valid schedule date and time.");
-                    
-                    dropData.status = 'scheduled';
-                    dropData.scheduledFor = new Date(`${date}T${time}`).toISOString();
-                    dropData.timestamp = null; 
-                } else {
-                    dropData.status = 'published';
-                    dropData.day = getCurrentDay();
-                    dropData.timestamp = serverTimestamp();
-                }
-
+                // Simplified: Removing scheduling logic for now
+                dropData.status = 'published';
+                dropData.day = getCurrentDay();
+                dropData.timestamp = serverTimestamp();
+                
                 if (editingDropId) {
                     await updateDoc(doc(db, dropsCollectionPath, editingDropId), dropData);
                     showToast('Drop updated successfully!');
@@ -876,23 +1009,30 @@
                 const dropToEdit = allDrops.find(d => d.id === dropId);
                 if (dropToEdit) populateFormForEdit(dropToEdit);
             } else if (btn.classList.contains('heart-btn')) {
-                const isHearted = heartedPosts[dropId];
-                const incrementValue = isHearted ? -1 : 1;
-                heartedPosts[dropId] = !isHearted;
+                if (!currentUser || currentUser.isAnonymous) {
+                    showToast('Please sign in to heart posts.', 'warning');
+                    return;
+                }
 
-                btn.classList.toggle('hearted', !isHearted);
-                const heartCountSpan = btn.querySelector('span');
-                heartCountSpan.textContent = parseInt(heartCountSpan.textContent) + incrementValue;
+                const heartRef = doc(db, `${dropsCollectionPath}/${dropId}/hearts/${currentUser.uid}`);
+                const dropRef = doc(db, dropsCollectionPath, dropId);
 
-                localStorage.setItem('heartedPosts', JSON.stringify(heartedPosts));
-                await updateDoc(doc(db, dropsCollectionPath, dropId), { hearts: increment(incrementValue) });
-            } else if (btn.classList.contains('publish-now-btn')) {
-                await updateDoc(doc(db, dropsCollectionPath, dropId), {
-                    status: 'published',
-                    day: getCurrentDay(),
-                    timestamp: serverTimestamp()
+                await runTransaction(db, async (transaction) => {
+                    const heartDoc = await transaction.get(heartRef);
+                    if (heartDoc.exists()) {
+                        // Unhearting
+                        transaction.delete(heartRef);
+                        transaction.update(dropRef, { hearts: increment(-1) });
+                        delete heartedPosts[dropId];
+                    } else {
+                        // Hearting
+                        transaction.set(heartRef, { timestamp: serverTimestamp() });
+                        transaction.update(dropRef, { hearts: increment(1) });
+                        heartedPosts[dropId] = true;
+                    }
                 });
-                showToast('Drop published!');
+                
+                localStorage.setItem('heartedPosts', JSON.stringify(heartedPosts));
             }
         };
 
@@ -915,45 +1055,104 @@
         };
 
         // --- AUTH STATE CHANGE ---
-        onAuthStateChanged(auth, async (user) => {
-            currentUser = user;
-            if (user && !user.isAnonymous) {
-                const idTokenResult = await user.getIdTokenResult(true); 
-                isAdmin = !!idTokenResult.claims.admin;
-            } else {
-                isAdmin = false;
+        
+        async function initializeAppAndAuth() {
+            try {
+                const app = initializeApp(firebaseConfig);
+                auth = getAuth(app);
+                db = getFirestore(app);
+                await signInAnonymously(auth);
+                await addSampleDataIfNeeded(); // Add sample data on first load
+
+                if (auth) {
+                    onAuthStateChanged(auth, async (user) => {
+                        currentUser = user;
+                        if (user && !user.isAnonymous) {
+                            const idTokenResult = await user.getIdTokenResult(true); 
+                            isAdmin = !!idTokenResult.claims.admin;
+                        } else {
+                            isAdmin = false;
+                        }
+                        
+                        document.body.classList.toggle('is-admin', isAdmin);
+                        DOMElements.adminPanel.classList.toggle('hidden', !isAdmin);
+                        DOMElements.adminSigninBtn.classList.toggle('hidden', isAdmin);
+                        DOMElements.adminSignoutBtn.classList.toggle('hidden', !isAdmin);
+                        
+                        setupFirestoreListener(isAdmin);
+                        applyFiltersAndSort();
+                    });
+                }
+            } catch (error) {
+                console.error("Firebase initialization failed:", error);
+                showToast("Error connecting to database", "error");
             }
-            
-            document.body.classList.toggle('is-admin', isAdmin);
-            DOMElements.adminPanel.classList.toggle('hidden', !isAdmin);
-            DOMElements.adminSigninBtn.classList.toggle('hidden', isAdmin);
-            DOMElements.adminSignoutBtn.classList.toggle('hidden', !isAdmin);
-            
-            setupFirestoreListener(isAdmin);
-            applyFiltersAndSort();
-        });
+        }
+        
+        function setupFocusTrap(modal) {
+            const focusableElements = modal.querySelectorAll(
+                'button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])'
+            );
+            const firstFocusableElement = focusableElements[0];
+            const lastFocusableElement = focusableElements[focusableElements.length - 1];
+
+            modal.addEventListener('keydown', (e) => {
+                if (e.key !== 'Tab') return;
+                if (e.shiftKey) { // shift + tab
+                    if (document.activeElement === firstFocusableElement) {
+                        lastFocusableElement.focus();
+                        e.preventDefault();
+                    }
+                } else { // tab
+                    if (document.activeElement === lastFocusableElement) {
+                        firstFocusableElement.focus();
+                        e.preventDefault();
+                    }
+                }
+            });
+            if(firstFocusableElement) {
+               firstFocusableElement.focus();
+            }
+        }
+
+        function removeFocusTrap() {
+            if(modalOpener) {
+                modalOpener.focus();
+                modalOpener = null;
+            }
+        }
+
 
         // --- INITIAL SETUP ---
         document.addEventListener('DOMContentLoaded', () => {
+            initializeAppAndAuth();
+
             DOMElements.challengeDates.textContent = `${START_DATE.toLocaleDateString('en-US', { month: 'long', day: 'numeric' })} — ${END_DATE.toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' })}`;
-            DOMElements.totalDays.textContent = TOTAL_DAYS;
+            
             updateProgress();
             setInterval(updateProgress, 60000);
 
-            DOMElements.dropForm.addEventListener('submit', handleAdminFormSubmit);
-            DOMElements.dropForm.addEventListener('input', checkFormValidity);
-            document.getElementById('content-feed').addEventListener('click', handleContentClick);
-            if(DOMElements.scheduledDrops) {
-                DOMElements.scheduledDrops.addEventListener('click', handleContentClick);
+            if(DOMElements.dropForm) {
+                DOMElements.dropForm.addEventListener('submit', handleAdminFormSubmit);
+                DOMElements.dropForm.addEventListener('input', checkFormValidity);
             }
-            DOMElements.searchInput.addEventListener('input', debounce(() => {
-                searchQuery = DOMElements.searchInput.value;
-                applyFiltersAndSort();
-            }, 300));
-            DOMElements.sortSelect.addEventListener('change', (e) => {
-                currentSort = e.target.value;
-                applyFiltersAndSort();
-            });
+            
+            document.getElementById('content-feed').addEventListener('click', handleContentClick);
+            
+            if(DOMElements.searchInput) {
+                 DOMElements.searchInput.addEventListener('input', debounce(() => {
+                    searchQuery = DOMElements.searchInput.value;
+                    applyFiltersAndSort();
+                }, 300));
+            }
+           
+            if(DOMElements.sortSelect) {
+                 DOMElements.sortSelect.addEventListener('change', (e) => {
+                    currentSort = e.target.value;
+                    applyFiltersAndSort();
+                });
+            }
+           
             document.querySelectorAll('.filter-btn').forEach(btn => btn.addEventListener('click', (e) => {
                 document.querySelector('.filter-btn.active').classList.remove('active');
                 e.currentTarget.classList.add('active');
@@ -961,21 +1160,20 @@
                 applyFiltersAndSort();
             }));
 
-            DOMElements.subscribeBtn.addEventListener('click', () => toggleModal(DOMElements.subscribeModal, true));
-            DOMElements.closeSubscribe.addEventListener('click', () => toggleModal(DOMElements.subscribeModal, false));
-            DOMElements.adminSigninBtn.addEventListener('click', () => toggleModal(DOMElements.adminLoginModal, true));
-            DOMElements.closeAdminLogin.addEventListener('click', () => toggleModal(DOMElements.adminLoginModal, false));
-            DOMElements.adminSignoutBtn.addEventListener('click', () => signOut(auth));
-            DOMElements.adminLoginForm.addEventListener('submit', handleAdminLogin);
-            DOMElements.togglePassword.addEventListener('click', () => {
-                const pwField = document.getElementById('admin-password');
-                pwField.type = pwField.type === 'password' ? 'text' : 'password';
-            });
+            if(DOMElements.subscribeBtn) DOMElements.subscribeBtn.addEventListener('click', (e) => toggleModal(DOMElements.subscribeModal, true, e.currentTarget));
+            if(DOMElements.closeSubscribe) DOMElements.closeSubscribe.addEventListener('click', () => toggleModal(DOMElements.subscribeModal, false));
+            if(DOMElements.adminSigninBtn) DOMElements.adminSigninBtn.addEventListener('click', (e) => toggleModal(DOMElements.adminLoginModal, true, e.currentTarget));
+            if(DOMElements.closeAdminLogin) DOMElements.closeAdminLogin.addEventListener('click', () => toggleModal(DOMElements.adminLoginModal, false));
+            if(DOMElements.adminSignoutBtn) DOMElements.adminSignoutBtn.addEventListener('click', () => signOut(auth));
+            if(DOMElements.adminLoginForm) DOMElements.adminLoginForm.addEventListener('submit', handleAdminLogin);
+            if(DOMElements.togglePassword) {
+                DOMElements.togglePassword.addEventListener('click', () => {
+                    const pwField = document.getElementById('admin-password');
+                    pwField.type = pwField.type === 'password' ? 'text' : 'password';
+                });
+            }
             
-            DOMElements.scheduleToggle.addEventListener('change', (e) => {
-                DOMElements.scheduleOptions.classList.toggle('hidden', !e.target.checked);
-            });
-            DOMElements.cancelEditBtn.addEventListener('click', resetForm);
+            if(DOMElements.cancelEditBtn) DOMElements.cancelEditBtn.addEventListener('click', resetForm);
         });
 
     </script>
