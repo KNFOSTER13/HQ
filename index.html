@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Kimberly's Dropathon - 75 Days Creative Dash</title>
+    <title>Kimberly's Dropathon - 75 Days of Creative Output</title>
     <meta name="description" content="Join Kimberly's 75-day creative challenge. Beating back perfectionism one drop at a time.">
     <meta name="theme-color" content="#1a0f26">
     <meta name="robots" content="index, follow">
@@ -885,9 +885,9 @@
                     </div>
                      <p class="text-xs text-muted mt-4">Day ${drop.day} • ${drop.contentType} • ${time}</p>
                     <div class="flex items-center gap-3 mt-4 pt-3 border-t border-white/10">
-                         <button class="heart-btn flex items-center gap-1 ${isHearted ? 'text-heart hearted' : 'text-muted hover:text-heart'}" data-id="${drop.id}" aria-label="${isHearted ? 'Remove heart' : 'Add heart'}">
-                            <svg class="w-4 h-4" fill="${isHearted ? 'currentColor' : 'none'}" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.25l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.5l-1.318-1.182a4.5 4.5 0 00-6.364 0z"></path></svg>
-                            <span class="font-mono">${drop.hearts || 0}</span>
+                         <button class="heart-btn flex items-center gap-1.5 ${isHearted ? 'text-heart hearted' : 'text-muted hover:text-heart'}" data-id="${drop.id}" aria-label="${isHearted ? 'Remove heart' : 'Add heart'}">
+                            <svg class="w-5 h-5" fill="${isHearted ? 'currentColor' : 'none'}" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.25l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.5l-1.318-1.182a4.5 4.5 0 00-6.364 0z"></path></svg>
+                            <span class="font-mono text-sm">${drop.hearts || 0}</span>
                         </button>
                         <button class="share-btn text-sm text-muted hover:text-primary ml-2" data-link="${escapeHtml(drop.link)}" data-title="${escapeHtml(drop.title)}">
                             Share
@@ -1232,7 +1232,7 @@
         document.addEventListener('DOMContentLoaded', () => {
             initializeAppAndAuth();
 
-            DOMElements.challengeDates.textContent = `${START_DATE.toLocaleDateString('en-US', { month: 'long', day: 'numeric' })} — ${END_DATE.toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' })}`;
+            DOMElements.challengeDates.innerHTML = `${START_DATE.toLocaleDateString('en-US', { month: 'long', day: 'numeric' })} &mdash; ${END_DATE.toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' })}`;
             
             updateProgress();
             setInterval(updateProgress, 60000);
