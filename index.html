@@ -258,44 +258,52 @@
     <a href="#content-feed" class="skip-to-content">Skip to content</a>
 
     <header class="sticky top-0 z-50 frosted-header" role="banner">
-        <nav class="max-w-6xl mx-auto px-4 pt-3 pb-3" aria-label="Primary">
-            <div class="flex items-baseline justify-between">
-                <a href="#" class="flex items-center gap-3" aria-label="Dropathon Home">
-                    <img src="LARGE-PASTEL-1.png" alt="Logo" class="h-11 w-auto">
+        <nav class="max-w-6xl mx-auto px-4 py-4" aria-label="Primary">
+            <div class="flex items-center justify-between">
+                <!-- Left Zone: Logo & Title -->
+                <a href="#" class="flex items-center gap-2" aria-label="Dropathon Home">
+                    <img src="LARGE-PASTEL-1.png" alt="Logo" class="h-10 w-auto">
                     <span class="hidden sm:inline font-bold text-xl brand-font text-gradient" style="text-shadow: 0 1px 2px rgba(0,0,0,0.1);">Kimberly's Sprint</span>
                 </a>
-                
-                <div class="hidden md:flex items-baseline gap-8 text-center">
-                    <div class="flex flex-col-reverse">
-                        <span class="text-xs uppercase tracking-wider text-muted">Day of 75</span>
-                        <span id="header-day" class="text-lg font-bold">1</span>
+    
+                <!-- Center Zone: Counters & Progress -->
+                <div class="hidden md:flex flex-col items-center">
+                    <div class="flex items-center gap-6 text-center">
+                        <div class="flex flex-col">
+                            <span id="header-day" class="text-base font-bold">1</span>
+                            <span class="text-xs uppercase tracking-wider text-muted">Day</span>
+                        </div>
+                        <div class="h-6 w-px bg-white/10"></div> <!-- Divider -->
+                        <div class="flex flex-col">
+                             <span id="header-drops" class="text-base font-bold">0</span>
+                             <span class="text-xs uppercase tracking-wider text-muted">Drops</span>
+                        </div>
+                        <div class="h-6 w-px bg-white/10"></div> <!-- Divider -->
+                        <div class="flex flex-col">
+                             <span id="header-streak" class="text-base font-bold">0</span>
+                             <span class="text-xs uppercase tracking-wider text-muted">Streak</span>
+                        </div>
                     </div>
-                    <div class="flex flex-col-reverse">
-                        <span class="text-xs uppercase tracking-wider text-muted">Drops</span>
-                        <span id="header-drops" class="text-lg font-bold">0</span>
-                    </div>
-                    <div class="flex flex-col-reverse">
-                        <span class="text-xs uppercase tracking-wider text-muted">Streak</span>
-                        <span id="header-streak" class="text-lg font-bold">0</span>
+                    <!-- Progress Bar -->
+                    <div id="header-progress-bar" role="progressbar" aria-valuemin="0" aria-valuemax="75" aria-valuenow="1" class="w-full max-w-xs mt-2 header-progress-bar !h-2">
+                        <div class="header-progress-fill" style="width: 1%;"></div>
                     </div>
                 </div>
-                
+    
+                <!-- Right Zone: Buttons -->
                 <div class="flex items-center gap-3">
-                    <button id="admin-signin-btn" class="btn btn-secondary px-4" title="Admin sign in" aria-label="Admin sign in">
+                    <button id="admin-signin-btn" class="btn btn-secondary !bg-transparent !text-sm !px-3 !py-1.5" title="Admin sign in" aria-label="Admin sign in">
                         Admin
                     </button>
                     
-                    <button id="admin-signout-btn" class="btn btn-secondary px-4 hidden" title="Admin sign out" aria-label="Admin sign out">
+                    <button id="admin-signout-btn" class="btn btn-secondary !bg-transparent !text-sm !px-3 !py-1.5 hidden" title="Admin sign out" aria-label="Admin sign out">
                          Sign Out
                     </button>
                     
-                    <button id="subscribe-btn" class="btn btn-peach" aria-label="Subscribe to updates">
+                    <button id="subscribe-btn" class="btn btn-primary" aria-label="Subscribe to updates">
                         <span class="hidden sm:inline">Subscribe</span>
                     </button>
                 </div>
-            </div>
-            <div id="header-progress-bar" role="progressbar" aria-valuemin="0" aria-valuemax="75" aria-valuenow="1" class="w-full mt-3 header-progress-bar">
-                <div class="header-progress-fill" style="width: 1%;"></div>
             </div>
         </nav>
     </header>
@@ -1309,4 +1317,3 @@
     </script>
 </body>
 </html>
-
