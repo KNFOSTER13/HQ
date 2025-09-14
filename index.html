@@ -90,7 +90,7 @@
       html { scroll-behavior: smooth; }
       body {
         font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
-        background: linear-gradient(135deg, var(--bg-center) 0%, var(--bg-edge) 100%);
+        background: radial-gradient(circle at 50% 35%, var(--bg-center) 0%, var(--bg-edge) 100%);
         min-height: 100vh;
         color: var(--text-primary);
         line-height: 1.6;
@@ -125,14 +125,15 @@
         border: 1px solid var(--border-color);
         backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
         transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-        border-radius: 1rem;
+        border-radius: 0.75rem; /* rounded-xl */
         overflow: hidden;
+        box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.1);
       }
       .card:hover {
         transform: translateY(-4px);
         background: var(--surface-hover);
         border-color: var(--border-color-hover);
-        box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2), 0 0 20px rgba(167, 139, 250, 0.1);
+        box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2), 0 0 20px rgba(167, 139, 250, 0.1), inset 0 0 0 1px rgba(255, 255, 255, 0.1);
       }
       .btn {
         font-weight: 600; padding: 0.625rem 1.5rem; border-radius: 9999px;
@@ -178,6 +179,7 @@
         background: linear-gradient(90deg, var(--accent-start) 0%, var(--accent-end) 100%);
         transition: width 1.5s cubic-bezier(0.4, 0, 0.2, 1);
         animation: progressShimmer 2s ease-in-out infinite;
+        box-shadow: 0 0 8px var(--accent-start);
       }
 
       @keyframes progressShimmer {
@@ -414,16 +416,16 @@
     </footer>
 
     <div id="subscribe-modal" class="fixed inset-0 bg-black/50 backdrop-blur-sm hidden items-center justify-center p-4 z-50" role="dialog" aria-labelledby="subscribe-modal-title" aria-modal="true">
-        <div class="card max-w-lg w-full p-6 relative">
+        <div class="card p-6 relative max-w-lg w-full">
             <button id="close-subscribe" class="absolute top-4 right-4 text-muted hover:text-primary transition-colors" aria-label="Close modal"><svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg></button>
             <h2 id="subscribe-modal-title" class="text-2xl font-bold mb-4 text-center brand-font text-gradient">Join the Dropathon!</h2>
             <p class="text-muted mb-6 text-center">Get exclusive updates, behind-the-scenes content, and early access to drops straight to your inbox!</p>
-            <div class="bg-white rounded-lg p-1"><iframe src="https://kimberlynfoster.substack.com/embed" width="100%" height="320" style="border:1px solid #EEE; background:white;" frameborder="0" scrolling="no" title="Subscribe to newsletter"></iframe></div>
+            <div class="bg-white rounded-xl p-1"><iframe src="https://kimberlynfoster.substack.com/embed" width="100%" height="320" style="border:1px solid #EEE; background:white;" frameborder="0" scrolling="no" title="Subscribe to newsletter"></iframe></div>
         </div>
     </div>
 
     <div id="admin-login-modal" class="fixed inset-0 bg-black/50 backdrop-blur-sm hidden items-center justify-center p-4 z-50" role="dialog" aria-labelledby="admin-login-title" aria-modal="true">
-        <div class="card max-w-md w-full p-8 relative">
+        <div class="card p-8 relative max-w-md w-full">
             <button id="close-admin-login" class="absolute top-4 right-4 text-muted hover:text-primary transition-colors" aria-label="Close modal"><svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg></button>
             <h2 id="admin-login-title" class="text-2xl font-bold mb-6 text-center brand-font text-gradient">Admin Sign In</h2>
             <form id="admin-login-form" class="space-y-4">
@@ -559,7 +561,7 @@
         let db, auth, currentUser = null, isAdmin = false;
         
         // --- GLOBAL STATE ---
-        let allDrops = [], filteredDrops = [];
+        let allDrops = [], filteredDrops = [], scheduledDrops = [];
         let currentFilter = 'all', currentSort = 'newest', searchQuery = '';
         let heartedPosts = JSON.parse(localStorage.getItem('heartedPosts') || '{}');
         let editingDropId = null;
@@ -1004,9 +1006,19 @@
             DOMElements.publishBtn.disabled = true;
 
             try {
-                dropData.status = 'published';
-                dropData.day = getCurrentDay();
-                dropData.timestamp = serverTimestamp();
+                if (DOMElements.scheduleToggle.checked) {
+                    const date = document.getElementById('schedule-date').value;
+                    const time = document.getElementById('schedule-time').value;
+                    if (!date || !time) throw new Error("Please select a valid schedule date and time.");
+                    
+                    dropData.status = 'scheduled';
+                    dropData.scheduledFor = new Date(`${date}T${time}`).toISOString();
+                    dropData.timestamp = null; 
+                } else {
+                    dropData.status = 'published';
+                    dropData.day = getCurrentDay();
+                    dropData.timestamp = serverTimestamp();
+                }
                 
                 if (editingDropId) {
                     await updateDoc(doc(db, dropsCollectionPath, editingDropId), dropData);
@@ -1220,6 +1232,11 @@
                         localStorage.removeItem('sampleDataAdded_v5');
                         showToast('All data cleared.');
                     }
+                });
+            }
+            if(DOMElements.scheduleToggle) {
+                 DOMElements.scheduleToggle.addEventListener('change', (e) => {
+                    DOMElements.scheduleOptions.classList.toggle('hidden', !e.target.checked);
                 });
             }
         });
