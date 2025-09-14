@@ -5,296 +5,188 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Kimberly's Dropathon - 75 Days of Creative Output</title>
     <meta name="description" content="Join Kimberly's 75-day creative challenge. Beating back perfectionism one drop at a time.">
-    
-      
-    <!-- Canonical URL -->
+
     <link rel="canonical" href="http://knf.kim/drops">
-    
-    <!-- Open Graph Tags -->
     <meta property="og:title" content="Kimberly's Dropathon - 75 Days of Creative Output">
     <meta property="og:description" content="Join Kimberly's 75-day creative challenge. Beating back perfectionism one drop at a time.">
     <meta property="og:image" content="https://knfoster13.github.io/HQ/kdrop6.png">
     <meta property="og:url" content="http://knf.kim/drops">
     <meta property="og:type" content="website">
     <meta property="og:site_name" content="Kimberly's Dropathon">
-    
-    <!-- Twitter Card Tags -->
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="Kimberly's Dropathon - 75 Days of Creative Output">
     <meta name="twitter:description" content="Join Kimberly's 75-day creative challenge. Beating back perfectionism one drop at a time.">
     <meta name="twitter:image" content="https://knfoster13.github.io/HQ/kdrop6.png">
     <meta name="twitter:creator" content="@kimberlynfoster">
-    
-    <!-- JSON-LD Structured Data -->
+
     <script type="application/ld+json">
     {
-        "@context": "https://schema.org",
-        "@type": "WebSite",
-        "name": "Kimberly's Dropathon",
-        "description": "75 Days of Creative Output",
-        "url": "http://knf.kim/drops",
-        "publisher": {
-            "@type": "Person",
-            "name": "Kimberly Nicole Foster"
-        }
+      "@context": "https://schema.org",
+      "@type": "WebSite",
+      "name": "Kimberly's Dropathon",
+      "description": "75 Days of Creative Output",
+      "url": "http://knf.kim/drops",
+      "publisher": {
+        "@type": "Person",
+        "name": "Kimberly Nicole Foster"
+      }
     }
     </script>
-    
-    <!-- Preload critical assets -->
-    <link rel="preload" href="KNFLAV10PX.png" as="image">
-    <link rel="preload" href="kdrop4.png" as="image" fetchpriority="high">
-    
-    <script src="https://cdn.tailwindcss.com"></script>
+
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preconnect" href="https://www.gstatic.com">
+    <link rel="preload" href="https://knfoster13.github.io/HQ/kdrop4.png" as="image" fetchpriority="high">
     <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     
+    <script src="https://cdn.tailwindcss.com"></script>
     <style>
-        :root {
-            --bg-dark: #1a0f26;
-            --bg-center: #2d1b42;
-            --bg-edge: #241538;
-            --surface: rgba(42, 26, 61, 0.85);
-            --surface-hover: rgba(52, 36, 71, 0.95);
-            --accent: #a78bfa;
-            --accent-bright: #c4b5fd;
-            --accent-start: #C6B6F7;
-            --accent-end: #FFD9C0;
-            --cta: #f472b6;
-            --cta-hover: #ec4899;
-            --text-primary: #f3f4f6;
-            --text-secondary: #d1d5db;
-            --text-muted: #9ca3af;
-            --tag-free: #86efac;
-            --tag-paid: #fde047;
-            --heart: #f472b6;
-            --success: #34d399;
-            --warning: #fbbf24;
-            --error: #f87171;
-        }
+      :root {
+        --bg-dark: #1a0f26;
+        --bg-center: #2d1b42;
+        --bg-edge: #241538;
+        --surface: rgba(42, 26, 61, 0.85);
+        --surface-hover: rgba(52, 36, 71, 0.95);
+        --accent: #a78bfa;
+        --accent-bright: #c4b5fd;
+        --accent-start: #C6B6F7;   /* a soft lavender */
+        --accent-end:   #FFD9C0;     /* a warm peach */
+        --cta: #f472b6;
+        --cta-hover: #ec4899;
+        --text-primary: #FFFAF0; /* FloralWhite, a warm ivory */
+        --text-secondary: #EAE0D5; /* A warmer, lighter gray */
+        --text-muted: #A69C90; /* A warmer muted tone */
+        --tag-free: #86efac;
+        --tag-paid: #fde047;
+        --heart: #f472b6;
+        --success: #34d399;
+        --warning: #fbbf24;
+        --error: #f87171;
+        --border-color: rgba(167, 139, 250, 0.15);
+        --border-color-hover: rgba(167, 139, 250, 0.3);
+      }
 
-        /* Brand fonts */
-        .brand-font {
-            font-family: 'DM Serif Display', serif;
-        }
+      /* Base & Typography */
+      html { scroll-behavior: smooth; }
+      body {
+        font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+        background: linear-gradient(135deg, var(--bg-center) 0%, var(--bg-edge) 100%);
+        min-height: 100vh;
+        color: var(--text-primary);
+        line-height: 1.6;
+        transition: all 0.3s ease;
+      }
+      .brand-font { font-family: 'DM Serif Display', serif; }
+      .line-clamp-2 {
+        display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden;
+      }
+      .text-gradient {
+        background: linear-gradient(to right, var(--accent-start), var(--accent-end));
+        -webkit-background-clip: text;
+        background-clip: text;
+        color: transparent;
+      }
 
-        /* Custom text color utilities */
-        .text-muted { color: var(--text-muted); }
-        .text-accent { color: var(--accent); }
-        .text-cta { color: var(--cta); }
-        .text-success { color: var(--success); }
-        .text-warning { color: var(--warning); }
-        .text-error { color: var(--error); }
-        .text-primary { color: var(--text-primary); }
-        .text-secondary { color: var(--text-secondary); }
-        .text-heart { color: var(--heart); }
+      /* Accessibility */
+      *:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; border-radius: 0.25rem; }
+      .skip-to-content { position: absolute; top: -40px; left: 0; background: var(--accent); color: white; padding: 8px; text-decoration: none; z-index: 1000; border-radius: 0 0 0.5rem 0; }
+      .skip-to-content:focus { top: 0; }
 
-        /* Custom background utilities */
-        .bg-success { background-color: var(--success); }
-        .bg-warning { background-color: var(--warning); }
-        .bg-error { background-color: var(--error); }
+      /* Components */
+      .sticky-header {
+        background: rgba(26, 15, 38, 0.8);
+        backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
+        border-bottom: 1px solid var(--border-color);
+        position: sticky; top: 0; z-index: 50;
+        transition: all 0.3s ease;
+      }
+      .card {
+        background: var(--surface);
+        border: 1px solid var(--border-color);
+        backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
+        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        border-radius: 1rem;
+        overflow: hidden;
+      }
+      .card:hover {
+        transform: translateY(-4px);
+        background: var(--surface-hover);
+        border-color: var(--border-color-hover);
+        box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2), 0 0 20px rgba(167, 139, 250, 0.1);
+      }
+      .btn {
+        font-weight: 600; padding: 0.625rem 1.5rem; border-radius: 9999px;
+        transition: all 0.3s ease; border: none; cursor: pointer;
+        display: inline-flex; align-items: center; justify-content: center; gap: 0.5rem;
+      }
+      .btn-primary { background: linear-gradient(135deg, var(--cta) 0%, var(--cta-hover) 100%); color: white; }
+      .btn-primary:hover:not(:disabled) { transform: scale(1.05); box-shadow: 0 10px 25px rgba(244, 114, 182, 0.3); }
+      .btn-primary:disabled { opacity: 0.5; cursor: not-allowed; transform: scale(1); }
+      .btn-secondary { background: rgba(167, 139, 250, 0.1); color: var(--accent-bright); border: 1px solid rgba(167, 139, 250, 0.3); }
+      .btn-secondary:hover:not(:disabled) { background: rgba(167, 139, 250, 0.2); border-color: rgba(167, 139, 250, 0.5); }
+      .btn-peach {
+        background-color: var(--accent-end);
+        color: #5d422d; /* Darker text for contrast */
+      }
+      .btn-peach:hover:not(:disabled) {
+        background-color: #ffc7a1; /* Lighter peach on hover */
+        transform: scale(1.05);
+        box-shadow: 0 10px 25px rgba(255, 217, 192, 0.3);
+      }
+      .form-input {
+        background: rgba(0, 0, 0, 0.2); border: 1px solid rgba(167, 139, 250, 0.2);
+        color: var(--text-primary); padding: 0.75rem 1rem; border-radius: 0.5rem;
+        width: 100%; transition: all 0.2s ease;
+      }
+      .form-input:focus { outline: none; border-color: var(--accent); box-shadow: 0 0 0 3px rgba(167, 139, 250, 0.1); }
+      .form-input.error { border-color: var(--error); }
+      .tag { font-size: 0.75rem; font-weight: 600; padding: 0.25rem 0.75rem; border-radius: 9999px; }
+      .tag-free { background: rgba(134, 239, 172, 0.15); color: var(--tag-free); border: 1px solid rgba(134, 239, 172, 0.3); }
+      .tag-paid { background: rgba(253, 224, 71, 0.15); color: var(--tag-paid); border: 1px solid rgba(253, 224, 71, 0.3); }
+      
+      /* Heart Animation */
+      .heart-btn { transition: all 0.2s ease; cursor: pointer; user-select: none; }
+      .heart-btn:hover svg { transform: scale(1.1); }
+      .heart-btn.hearted svg { fill: var(--heart); stroke: var(--heart); animation: heartPulse 0.3s ease; }
+      @keyframes heartPulse { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.2); } }
+      
+      /* Progress Bar */
+      .progress-bar { height: 8px; background: rgba(167, 139, 250, 0.1); border-radius: 4px; overflow: hidden; }
+      .progress-fill { height: 100%; background: linear-gradient(90deg, var(--accent) 0%, var(--cta) 100%); transition: width 1.5s cubic-bezier(0.4, 0, 0.2, 1); }
+      .header-progress-fill {
+        height: 100%;
+        background: linear-gradient(90deg, var(--accent-start) 0%, var(--accent-end) 100%);
+        transition: width 1.5s cubic-bezier(0.4, 0, 0.2, 1);
+        animation: progressShimmer 2s ease-in-out infinite;
+      }
 
-        /* Line clamp utility */
-        .line-clamp-2 {
-            display: -webkit-box;
-            -webkit-line-clamp: 2;
-            -webkit-box-orient: vertical;
-            overflow: hidden;
-        }
+      @keyframes progressShimmer {
+          0% { opacity: 0.7; }
+          50% { opacity: 1; }
+          100% { opacity: 0.7; }
+      }
 
-        .line-clamp-1 {
-            display: -webkit-box;
-            -webkit-line-clamp: 1;
-            -webkit-box-orient: vertical;
-            overflow: hidden;
-        }
+      /* Toast Notifications */
+      .toast {
+        position: fixed; bottom: 2rem; left: 50%;
+        transform: translateX(-50%) translateY(100px);
+        background: var(--surface); color: var(--text-primary); padding: 1rem 1.5rem;
+        border-radius: 0.75rem; box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+        opacity: 0; transition: all 0.3s ease; z-index: 1000;
+        display: flex; align-items: center; gap: 0.75rem;
+        border: 1px solid var(--border-color);
+      }
+      .toast.show { transform: translateX(-50%) translateY(0); opacity: 1; }
+      .toast.error { border-color: var(--error); }
+      .toast.warning { border-color: var(--warning); }
 
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        body {
-            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
-            background: linear-gradient(135deg, var(--bg-center) 0%, var(--bg-edge) 100%);
-            min-height: 100vh;
-            color: var(--text-primary);
-            line-height: 1.6;
-            transition: all 0.3s ease;
-        }
-
-        /* Content visibility for performance */
-        .content-feed-section {
-            content-visibility: auto;
-            contain-intrinsic-size: auto 500px;
-        }
-
-        .sticky-header {
-            background: rgba(26, 15, 38, 0.8);
-            backdrop-filter: blur(12px);
-            -webkit-backdrop-filter: blur(12px);
-            border-bottom: 1px solid rgba(167, 139, 250, 0.1);
-            position: sticky;
-            top: 0;
-            z-index: 50;
-            transition: all 0.3s ease;
-        }
-
-        .card {
-            background: var(--surface);
-            border: 1px solid rgba(167, 139, 250, 0.15);
-            backdrop-filter: blur(12px);
-            -webkit-backdrop-filter: blur(12px);
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-            border-radius: 1rem;
-            overflow: hidden;
-        }
-
-        .card:hover {
-            transform: translateY(-4px);
-            background: var(--surface-hover);
-            border-color: rgba(167, 139, 250, 0.3);
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2),
-                        0 0 20px rgba(167, 139, 250, 0.1);
-        }
-
-        .btn-primary {
-            background: linear-gradient(135deg, var(--cta) 0%, var(--cta-hover) 100%);
-            color: white;
-            font-weight: 600;
-            padding: 0.625rem 1.5rem;
-            border-radius: 9999px;
-            transition: all 0.3s ease;
-            border: none;
-            cursor: pointer;
-            display: inline-flex;
-            align-items: center;
-            gap: 0.5rem;
-        }
-
-        .btn-primary:hover:not(:disabled) {
-            transform: scale(1.05);
-            box-shadow: 0 10px 25px rgba(244, 114, 182, 0.3);
-        }
-
-        .btn-primary:disabled {
-            opacity: 0.5;
-            cursor: not-allowed;
-            transform: scale(1);
-        }
-
-        .btn-secondary {
-            background: rgba(167, 139, 250, 0.1);
-            color: var(--accent-bright);
-            font-weight: 500;
-            padding: 0.5rem 1.25rem;
-            border-radius: 9999px;
-            transition: all 0.2s ease;
-            border: 1px solid rgba(167, 139, 250, 0.3);
-            cursor: pointer;
-        }
-
-        .btn-secondary:hover:not(:disabled) {
-            background: rgba(167, 139, 250, 0.2);
-            border-color: rgba(167, 139, 250, 0.5);
-        }
-
-        .btn-secondary:disabled {
-            opacity: 0.5;
-            cursor: not-allowed;
-        }
-
-        .tag {
-            font-size: 0.75rem;
-            font-weight: 600;
-            padding: 0.25rem 0.75rem;
-            border-radius: 9999px;
-            display: inline-flex;
-            align-items: center;
-            gap: 0.25rem;
-        }
-
-        .tag-free {
-            background: rgba(134, 239, 172, 0.15);
-            color: var(--tag-free);
-            border: 1px solid rgba(134, 239, 172, 0.3);
-        }
-
-        .tag-paid {
-            background: rgba(253, 224, 71, 0.15);
-            color: var(--tag-paid);
-            border: 1px solid rgba(253, 224, 71, 0.3);
-        }
-
-        .form-input {
-            background: rgba(0, 0, 0, 0.2);
-            border: 1px solid rgba(167, 139, 250, 0.2);
-            color: var(--text-primary);
-            padding: 0.75rem 1rem;
-            border-radius: 0.5rem;
-            width: 100%;
-            transition: all 0.2s ease;
-        }
-
-        .form-input:focus {
-            outline: none;
-            border-color: var(--accent);
-            box-shadow: 0 0 0 3px rgba(167, 139, 250, 0.1);
-        }
-
-        .form-input.error {
-            border-color: var(--error);
-        }
-
-        .error-message {
-            color: var(--error);
-            font-size: 0.75rem;
-            margin-top: 0.25rem;
-        }
-
-        .heart-btn {
-            transition: all 0.2s ease;
-            cursor: pointer;
-            user-select: none;
-        }
-
-        .heart-btn:hover svg {
-            transform: scale(1.1);
-        }
-
-        .heart-btn.hearted svg {
-            fill: var(--heart);
-            stroke: var(--heart);
-            animation: heartPulse 0.3s ease;
-        }
-
-        @keyframes heartPulse {
-            0%, 100% { transform: scale(1); }
-            50% { transform: scale(1.2); }
-        }
-
-        .progress-bar {
-            height: 8px;
-            background: rgba(167, 139, 250, 0.1);
-            border-radius: 4px;
-            overflow: hidden;
-        }
-
-        .progress-fill {
-            height: 100%;
-            background: linear-gradient(90deg, var(--accent) 0%, var(--cta) 100%);
-            transition: width 1.5s cubic-bezier(0.4, 0, 0.2, 1);
-            animation: progressShimmer 2s ease infinite;
-        }
-
-        @keyframes progressShimmer {
-            0% { opacity: 0.8; }
-            50% { opacity: 1; }
-            100% { opacity: 0.8; }
-        }
-
-        .filter-btn {
+      /* Spinners & Skeletons */
+      .loading-spinner { border: 2px solid rgba(167, 139, 250, 0.2); border-radius: 50%; border-top: 2px solid var(--accent); width: 20px; height: 20px; animation: spin 1s linear infinite; }
+      @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
+      .skeleton-card { background: var(--surface); border: 1px solid var(--border-color); border-radius: 1rem; padding: 1rem; }
+      .skeleton-line { height: 1rem; margin-bottom: 0.5rem; background: linear-gradient(90deg, rgba(167, 139, 250, 0.1) 0%, rgba(167, 139, 250, 0.2) 50%, rgba(167, 139, 250, 0.1) 100%); background-size: 200% 100%; animation: shimmer 1.5s ease-in-out infinite; border-radius: 0.25rem; }
+      @keyframes shimmer { 0% { background-position: 200% 0; } 100% { background-position: -200% 0; } }
+       .filter-btn {
             padding: 0.5rem 1rem;
             background: transparent;
             border: 1px solid rgba(167, 139, 250, 0.2);
@@ -316,575 +208,251 @@
             border-color: var(--accent);
         }
 
-        .toast {
-            position: fixed;
-            bottom: 2rem;
-            left: 50%;
-            transform: translateX(-50%) translateY(100px);
-            background: var(--surface);
-            color: var(--text-primary);
-            padding: 1rem 1.5rem;
-            border-radius: 0.75rem;
-            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
-            opacity: 0;
-            transition: all 0.3s ease;
-            z-index: 100;
-            display: flex;
-            align-items: center;
-            gap: 0.75rem;
-            border: 1px solid rgba(167, 139, 250, 0.2);
-        }
-
-        .toast.show {
-            transform: translateX(-50%) translateY(0);
-            opacity: 1;
-        }
-
-        .toast.error {
-            border-color: var(--error);
-        }
-
-        .toast.warning {
-            border-color: var(--warning);
-        }
-
-        .loading-spinner {
-            border: 2px solid rgba(167, 139, 250, 0.2);
-            border-radius: 50%;
-            border-top: 2px solid var(--accent);
-            width: 20px;
-            height: 20px;
-            animation: spin 1s linear infinite;
-        }
-
-        @keyframes spin {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
-        }
-
-        /* Skeleton Loaders */
-        .skeleton {
-            background: linear-gradient(90deg, rgba(167, 139, 250, 0.1) 0%, rgba(167, 139, 250, 0.2) 50%, rgba(167, 139, 250, 0.1) 100%);
-            background-size: 200% 100%;
-            animation: shimmer 1.5s ease-in-out infinite;
-            border-radius: 0.5rem;
-        }
-
-        .skeleton-card {
-            background: var(--surface);
-            border: 1px solid rgba(167, 139, 250, 0.15);
-            border-radius: 1rem;
-            padding: 1rem;
-            margin-bottom: 1rem;
-        }
-
-        .skeleton-line {
-            height: 1rem;
-            margin-bottom: 0.5rem;
-            background: linear-gradient(90deg, rgba(167, 139, 250, 0.1) 0%, rgba(167, 139, 250, 0.2) 50%, rgba(167, 139, 250, 0.1) 100%);
-            background-size: 200% 100%;
-            animation: shimmer 1.5s ease-in-out infinite;
-            border-radius: 0.25rem;
-        }
-
-        @keyframes shimmer {
-            0% { background-position: 200% 0; }
-            100% { background-position: -200% 0; }
-        }
-
-        /* Focus visible for accessibility */
-        *:focus-visible {
-            outline: 2px solid var(--accent);
-            outline-offset: 2px;
-            border-radius: 0.25rem;
-        }
-
-        /* Skip to content link for accessibility */
-        .skip-to-content {
-            position: absolute;
-            top: -40px;
-            left: 0;
-            background: var(--accent);
-            color: white;
-            padding: 8px;
-            text-decoration: none;
-            z-index: 100;
-            border-radius: 0 0 0.5rem 0;
-        }
-
-        .skip-to-content:focus {
-            top: 0;
-        }
-
-        /* Sort dropdown styles */
-        .sort-select {
-            appearance: none;
-            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke='%239ca3af'%3E%3Cpath stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M19 9l-7 7-7-7'/%3E%3C/svg%3E");
-            background-repeat: no-repeat;
-            background-position: right 0.5rem center;
-            background-size: 1.5rem;
-            padding-right: 2.5rem;
-        }
-
-        @media (max-width: 640px) {
-            .sticky-header {
-                padding: 0.75rem;
-            }
-            
-            .card {
-                border-radius: 0.75rem;
-            }
-        }
-
-        /* Smooth scrolling */
-        html {
-            scroll-behavior: smooth;
-        }
-
-        /* Custom scrollbar */
-        ::-webkit-scrollbar {
-            width: 8px;
-        }
-
-        ::-webkit-scrollbar-track {
-            background: rgba(0, 0, 0, 0.1);
-        }
-
-        ::-webkit-scrollbar-thumb {
-            background: var(--accent);
-            border-radius: 4px;
-        }
-
-        ::-webkit-scrollbar-thumb:hover {
-            background: var(--accent-bright);
-        }
+      /* Custom Scrollbar */
+      ::-webkit-scrollbar { width: 8px; }
+      ::-webkit-scrollbar-track { background: rgba(0, 0, 0, 0.1); }
+      ::-webkit-scrollbar-thumb { background: var(--accent); border-radius: 4px; }
+      ::-webkit-scrollbar-thumb:hover { background: var(--accent-bright); }
     </style>
 </head>
-<body>
-    <!-- Skip to content for accessibility -->
+<body class="bg-bg-dark">
     <a href="#content-feed" class="skip-to-content">Skip to content</a>
 
-    <!-- Sticky Header -->
-    <header class="sticky-header" role="banner">
-        <div class="max-w-6xl mx-auto px-4 py-4">
+    <header class="sticky-header relative" role="banner">
+        <div class="max-w-6xl mx-auto px-4 py-3">
             <div class="flex items-center justify-between">
                 <a href="#" class="flex items-center gap-3" aria-label="Dropathon Home">
-                    <img src="KNFLAV10PX.png" alt="Logo" class="h-8 w-auto">
-                    <span class="hidden sm:inline font-bold text-lg text-white brand-font" style="text-shadow: 0 2px 4px rgba(0,0,0,0.3);">Drop it like it's hot, Kim!</span>
+                    <img src="LARGE-PASTEL-1.png" alt="Logo" class="h-8 w-auto">
+                    <span class="hidden sm:inline font-bold text-lg brand-font text-gradient" style="text-shadow: 0 1px 2px rgba(0,0,0,0.1);">Kimberly's Creative Dash</span>
                 </a>
                 
-                <div class="flex items-center gap-3">
-                    <div class="hidden md:flex items-center gap-3">
-                        <div class="bg-white/5 backdrop-blur px-4 py-2 rounded-full text-sm" aria-live="polite">
-                            <span id="current-day">Day 1</span> of <span id="total-days">75</span>
-                        </div>
-                        <div class="progress-bar w-32" role="progressbar" aria-label="Challenge progress" aria-valuemin="0" aria-valuemax="75" aria-valuenow="1" id="main-progress">
-                            <div class="progress-fill" id="progress-bar" style="width: 0%"></div>
-                        </div>
-                        <div class="bg-white/5 backdrop-blur px-4 py-2 rounded-full text-sm" aria-live="polite">
-                            <span id="total-drops">0</span> Drops
-                        </div>
+                <div class="hidden md:flex items-center gap-8 text-center">
+                    <div class="flex flex-col-reverse">
+                        <span class="text-xs uppercase tracking-wider text-muted">Day of 75</span>
+                        <span id="header-day" class="text-lg font-bold">1</span>
                     </div>
-                    
-                    <button id="admin-signin" class="btn-secondary p-2 hidden" title="Admin sign in" aria-label="Admin sign in">
-                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 16l-4-4m0 0l4-4m-4 4h14m-5 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h7a3 3 0 013 3v1"></path>
-                        </svg>
+                    <div class="flex flex-col-reverse">
+                        <span class="text-xs uppercase tracking-wider text-muted">Drops</span>
+                        <span id="header-drops" class="text-lg font-bold">0</span>
+                    </div>
+                    <div class="flex flex-col-reverse">
+                        <span class="text-xs uppercase tracking-wider text-muted">Streak</span>
+                        <span id="header-streak" class="text-lg font-bold">0</span>
+                    </div>
+                </div>
+                
+                <div class="flex items-center gap-3">
+                    <button id="admin-signin-btn" class="btn btn-secondary px-4" title="Admin sign in" aria-label="Admin sign in">
+                        Admin
                     </button>
                     
-                    <button id="admin-menu" class="btn-secondary p-2 hidden" title="Admin menu" aria-label="Admin menu">
-                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"></path>
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path>
-                        </svg>
+                    <button id="admin-signout-btn" class="btn btn-secondary px-4 hidden" title="Admin sign out" aria-label="Admin sign out">
+                         Sign Out
                     </button>
                     
-                    <button id="subscribe-btn" class="btn-primary" aria-label="Subscribe to updates">
-                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9"></path>
-                        </svg>
-                        Subscribe
+                    <button id="subscribe-btn" class="btn btn-peach" aria-label="Subscribe to updates">
+                        <span class="hidden sm:inline">Subscribe</span>
                     </button>
                 </div>
             </div>
         </div>
+        <div class="absolute bottom-0 left-0 w-full h-1 bg-white/5">
+            <div id="header-progress-bar" class="header-progress-fill" style="width: 0%;"></div>
+        </div>
     </header>
 
     <main class="max-w-6xl mx-auto px-4 py-8" role="main" id="main-content">
-        <!-- Hero Section -->
         <section class="text-center py-12" aria-labelledby="hero-title">
-            <img src="kdrop4.png" alt="Kimberly's Dropathon" class="mx-auto w-full max-w-md mb-6" 
-                 fetchpriority="high" decoding="async" loading="eager"
-                 onerror="this.style.display='none'">
-            <h1 id="hero-title" class="text-3xl md:text-4xl font-bold mb-4 brand-font">Beating back perfectionism one drop at a time.</h1>
+            <img src="https://knfoster13.github.io/HQ/kdrop4.png" alt="Kimberly's Dropathon" class="mx-auto w-full max-w-md mb-6" fetchpriority="high" decoding="async" loading="eager">
+            <h1 id="hero-title" class="text-3xl md:text-4xl font-bold mb-4 brand-font text-gradient">Beating back perfectionism one drop at a time.</h1>
             <p class="text-lg text-muted mb-2"><span id="challenge-dates">September 13 — November 26, 2025</span></p>
             
-            <!-- Stats Overview -->
             <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mt-8 max-w-2xl mx-auto" role="region" aria-label="Challenge statistics">
-                <div class="card p-4 text-center">
-                    <div class="text-2xl font-bold text-accent" id="today-count" aria-live="polite">0</div>
-                    <div class="text-sm text-muted">Today's Drops</div>
-                </div>
-                <div class="card p-4 text-center">
-                    <div class="text-2xl font-bold text-cta" id="streak-count" aria-live="polite">0</div>
-                    <div class="text-sm text-muted">Day Streak</div>
-                </div>
-                <div class="card p-4 text-center">
-                    <div class="text-2xl font-bold text-success" id="free-count" aria-live="polite">0</div>
-                    <div class="text-sm text-muted">Free Content</div>
-                </div>
-                <div class="card p-4 text-center">
-                    <div class="text-2xl font-bold text-warning" id="paid-count" aria-live="polite">0</div>
-                    <div class="text-sm text-muted">Premium</div>
-                </div>
+                <div class="card p-4 text-center"><div class="text-2xl font-bold text-accent" id="today-count" aria-live="polite">0</div><div class="text-sm text-muted">Today's Drops</div></div>
+                <div class="card p-4 text-center"><div class="text-2xl font-bold text-cta" id="streak-count" aria-live="polite">0</div><div class="text-sm text-muted">Day Streak</div></div>
+                <div class="card p-4 text-center"><div class="text-2xl font-bold text-success" id="free-count" aria-live="polite">0</div><div class="text-sm text-muted">Free Content</div></div>
+                <div class="card p-4 text-center"><div class="text-2xl font-bold text-warning" id="paid-count" aria-live="polite">0</div><div class="text-sm text-muted">Premium</div></div>
             </div>
         </section>
 
-        <!-- Admin Panel -->
-        <section id="admin-panel" class="hidden mb-8" aria-label="Admin panel">
+        <section id="admin-panel" class="hidden mb-8 transition-all duration-500" aria-label="Admin panel">
             <div class="card p-6">
-                <h2 class="text-2xl font-bold mb-4 flex items-center gap-2">
-                    <svg class="w-6 h-6 text-accent" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6"></path>
-                    </svg>
-                    Add New Drop
-                </h2>
-                
+                <h2 class="text-2xl font-bold mb-4 flex items-center gap-2"><svg class="w-6 h-6 text-accent" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6"></path></svg>Add or Edit Drop</h2>
                 <form id="drop-form" class="space-y-4" novalidate>
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-                        <div>
-                            <label for="drop-title" class="block text-sm font-medium mb-2">Title *</label>
-                            <input type="text" id="drop-title" class="form-input" placeholder="e.g., Morning Motivation Video" required maxlength="200" aria-required="true">
-                            <span class="error-message hidden" id="title-error"></span>
-                        </div>
-                        <div>
-                            <label for="drop-type" class="block text-sm font-medium mb-2">Content Type *</label>
-                            <select id="drop-type" class="form-input" aria-required="true">
-                                <option>Video</option>
-                                <option>Podcast</option>
-                                <option>Essay</option>
-                                <option>Social Post</option>
-                                <option>Newsletter</option>
-                                <option>Tutorial</option>
-                                <option>Other</option>
-                            </select>
-                        </div>
+                        <div><label for="drop-title" class="block text-sm font-medium mb-1">Title *</label><input type="text" id="drop-title" class="form-input" required maxlength="200" aria-required="true"><span class="text-xs text-red-400 hidden mt-1" id="title-error"></span></div>
+                        <div><label for="drop-type" class="block text-sm font-medium mb-1">Content Type *</label><select id="drop-type" class="form-input" aria-required="true"><option>Video</option><option>Podcast</option><option>Essay</option><option>Social Post</option><option>Newsletter</option><option>Tutorial</option><option>Other</option></select></div>
                     </div>
-                    
-                    <div>
-                        <label for="drop-description" class="block text-sm font-medium mb-2">Description *</label>
-                        <textarea id="drop-description" class="form-input" rows="2" placeholder="Brief description of the content..." required maxlength="500" aria-required="true"></textarea>
-                        <span class="error-message hidden" id="description-error"></span>
-                    </div>
-                    
+                    <div><label for="drop-description" class="block text-sm font-medium mb-1">Description *</label><textarea id="drop-description" class="form-input" rows="2" required maxlength="500" aria-required="true"></textarea><span class="text-xs text-red-400 hidden mt-1" id="description-error"></span></div>
                     <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
-                        <div>
-                            <label for="drop-link" class="block text-sm font-medium mb-2">Link *</label>
-                            <input type="url" id="drop-link" class="form-input" placeholder="https://..." required aria-required="true">
-                            <span class="error-message hidden" id="link-error"></span>
-                        </div>
-                        <div>
-                            <label for="drop-image" class="block text-sm font-medium mb-2">Image URL</label>
-                            <input type="url" id="drop-image" class="form-input" placeholder="https://...">
-                            <span class="error-message hidden" id="image-error"></span>
-                        </div>
-                        <div>
-                            <label for="drop-access" class="block text-sm font-medium mb-2">Access Level</label>
-                            <select id="drop-access" class="form-input">
-                                <option>Free</option>
-                                <option>Paid</option>
-                            </select>
-                        </div>
+                        <div><label for="drop-link" class="block text-sm font-medium mb-1">Link *</label><input type="url" id="drop-link" class="form-input" required aria-required="true"><span class="text-xs text-red-400 hidden mt-1" id="link-error"></span></div>
+                        <div><label for="drop-image" class="block text-sm font-medium mb-1">Image URL</label><input type="url" id="drop-image" class="form-input"><span class="text-xs text-red-400 hidden mt-1" id="image-error"></span></div>
+                        <div><label for="drop-access" class="block text-sm font-medium mb-1">Access Level</label><select id="drop-access" class="form-input"><option>Free</option><option>Paid</option></select></div>
                     </div>
                     
-                    <div class="flex gap-3">
-                        <button type="submit" id="publish-btn" class="btn-primary" disabled>
-                            <span class="loading-spinner hidden"></span>
-                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8"></path>
-                            </svg>
-                            <span id="publish-btn-text">Drop It!</span>
-                        </button>
+                    <div class="pt-4 border-t border-white/10"><label class="flex items-center gap-2 cursor-pointer"><input type="checkbox" id="schedule-toggle" class="form-checkbox h-4 w-4 rounded bg-white/10 border-white/20 text-accent focus:ring-accent"><span class="text-sm font-medium">Schedule for later</span></label></div>
+                    <div id="schedule-options" class="hidden grid grid-cols-2 gap-4">
+                        <div><label for="schedule-date" class="block text-sm font-medium mb-1">Date</label><input type="date" id="schedule-date" class="form-input"></div>
+                        <div><label for="schedule-time" class="block text-sm font-medium mb-1">Time (Local)</label><input type="time" id="schedule-time" class="form-input"></div>
+                    </div>
+                    
+                    <div class="flex items-center gap-4 pt-2">
+                        <button type="submit" id="publish-btn" class="btn btn-primary" disabled><span class="loading-spinner hidden"></span><svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8"></path></svg><span id="publish-btn-text">Drop It!</span></button>
+                        <button type="button" id="cancel-edit-btn" class="btn btn-secondary hidden">Cancel Edit</button>
                     </div>
                 </form>
             </div>
+            <div id="scheduled-section" class="hidden mt-8">
+                <h3 class="text-xl font-bold mb-4 brand-font text-gradient">Scheduled Drops</h3>
+                <div id="scheduled-drops" class="space-y-4"></div>
+            </div>
         </section>
 
-        <!-- Search, Filters and Sort -->
         <section class="mb-6" aria-label="Search, filter and sort drops">
             <div class="card p-4">
-                <div class="flex flex-col md:flex-row gap-4">
-                    <div class="flex-1">
-                        <div class="relative">
-                            <input type="text" id="search-input" class="form-input pl-10" placeholder="Search drops..." aria-label="Search drops">
-                            <svg class="w-5 h-5 absolute left-3 top-1/2 -translate-y-1/2 text-muted" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
-                            </svg>
-                        </div>
+                <div class="grid md:grid-cols-3 gap-4">
+                    <div class="relative md:col-span-1">
+                        <input type="text" id="search-input" class="form-input pl-10" placeholder="Search drops..." aria-label="Search drops">
+                        <svg class="w-5 h-5 absolute left-3 top-1/2 -translate-y-1/2 text-muted" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path></svg>
                     </div>
-                    
-                    <div class="flex gap-2 items-center">
-                        <select id="sort-select" class="form-input sort-select" aria-label="Sort drops">
+                    <div class="flex items-center gap-2 justify-between md:col-span-2">
+                        <div class="flex gap-2 flex-wrap" role="group" aria-label="Filter options">
+                            <button class="filter-btn active" data-filter="all" aria-pressed="true">All</button>
+                            <button class="filter-btn" data-filter="Video" aria-pressed="false">Videos</button>
+                            <button class="filter-btn" data-filter="Podcast" aria-pressed="false">Podcasts</button>
+                            <button class="filter-btn" data-filter="Essay" aria-pressed="false">Essays</button>
+                        </div>
+                        <select id="sort-select" class="form-input w-36" aria-label="Sort drops">
                             <option value="newest">Newest</option>
                             <option value="oldest">Oldest</option>
                             <option value="most-loved">Most Loved</option>
                         </select>
                     </div>
-                    
-                    <div class="flex gap-2 flex-wrap" role="group" aria-label="Filter options">
-                        <button class="filter-btn active" data-filter="all" aria-pressed="true">All</button>
-                        <button class="filter-btn" data-filter="Video" aria-pressed="false">Videos</button>
-                        <button class="filter-btn" data-filter="Podcast" aria-pressed="false">Podcasts</button>
-                        <button class="filter-btn" data-filter="Essay" aria-pressed="false">Essays</button>
-                        <button class="filter-btn" data-filter="free" aria-pressed="false">Free</button>
-                        <button class="filter-btn" data-filter="paid" aria-pressed="false">Premium</button>
-                    </div>
                 </div>
             </div>
         </section>
 
-        <!-- Content Feed -->
-        <section id="content-feed" class="space-y-8 content-feed-section" aria-label="Content feed">
-            <!-- Skeleton Loaders -->
+        <section id="content-feed" class="space-y-8" aria-label="Content feed">
             <div id="skeleton-loaders">
-                <h2 class="text-2xl md:text-3xl font-bold mb-4">Loading drops...</h2>
-                <div class="skeleton-card">
-                    <div class="flex flex-col md:flex-row">
-                        <div class="md:w-48 h-32 skeleton rounded-lg mb-4 md:mb-0"></div>
-                        <div class="flex-1 p-4">
-                            <div class="skeleton-line w-3/4"></div>
-                            <div class="skeleton-line w-1/2"></div>
-                            <div class="skeleton-line w-full"></div>
-                        </div>
-                    </div>
-                </div>
-                <div class="skeleton-card">
-                    <div class="flex flex-col md:flex-row">
-                        <div class="md:w-48 h-32 skeleton rounded-lg mb-4 md:mb-0"></div>
-                        <div class="flex-1 p-4">
-                            <div class="skeleton-line w-3/4"></div>
-                            <div class="skeleton-line w-1/2"></div>
-                            <div class="skeleton-line w-full"></div>
-                        </div>
-                    </div>
-                </div>
-                <div class="skeleton-card">
-                    <div class="flex flex-col md:flex-row">
-                        <div class="md:w-48 h-32 skeleton rounded-lg mb-4 md:mb-0"></div>
-                        <div class="flex-1 p-4">
-                            <div class="skeleton-line w-3/4"></div>
-                            <div class="skeleton-line w-1/2"></div>
-                            <div class="skeleton-line w-full"></div>
-                        </div>
-                    </div>
+                <h2 class="text-2xl md:text-3xl font-bold mb-4 brand-font animate-pulse">Loading drops...</h2>
+                <div class="space-y-6">
+                    <div class="skeleton-card"><div class="flex flex-col md:flex-row gap-4"><div class="md:w-48 h-32 skeleton-line rounded-lg"></div><div class="flex-1 space-y-2"><div class="skeleton-line w-3/4"></div><div class="skeleton-line w-1/2"></div><div class="skeleton-line w-full"></div></div></div></div>
+                    <div class="skeleton-card"><div class="flex flex-col md:flex-row gap-4"><div class="md:w-48 h-32 skeleton-line rounded-lg"></div><div class="flex-1 space-y-2"><div class="skeleton-line w-3/4"></div><div class="skeleton-line w-1/2"></div><div class="skeleton-line w-full"></div></div></div></div>
                 </div>
             </div>
             
-            <!-- Today's Drops -->
-            <div id="today-section" class="hidden">
-                <h2 class="text-2xl md:text-3xl font-bold mb-4 flex items-center gap-2">
-                    <span class="w-2 h-2 bg-green-500 rounded-full animate-pulse"></span>
-                    <span class="text-white brand-font" style="text-shadow: 0 2px 4px rgba(0,0,0,0.3);">Today's Drops</span>
-                </h2>
-                <div id="today-drops" class="grid gap-6"></div>
-            </div>
+            <div id="today-section" class="hidden"><h2 class="text-2xl md:text-3xl font-bold mb-4 flex items-center gap-2"><span class="w-2 h-2 bg-green-500 rounded-full animate-pulse"></span><span class="text-white brand-font text-gradient">Today's Drops</span></h2><div id="today-drops" class="grid gap-6"></div></div>
+            <div id="previous-section" class="hidden"><h2 class="text-2xl font-bold mb-4 brand-font text-gradient">Previous Drops</h2><div id="previous-drops" class="grid gap-6"></div></div>
             
-            <!-- Previous Drops -->
-            <div id="previous-section" class="hidden">
-                <h2 class="text-2xl font-bold mb-4 brand-font">Previous Drops</h2>
-                <div id="previous-drops" class="grid gap-6"></div>
-            </div>
-            
-            <!-- Empty State -->
-            <div id="empty-state" class="text-center py-12 hidden">
-                <svg class="w-24 h-24 mx-auto mb-4 text-muted opacity-50" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20 13V6a2 2 0 00-2-2H6a2 2 0 00-2 2v7m16 0v5a2 2 0 01-2 2H6a2 2 0 01-2-2v-5m16 0h-2.586a1 1 0 00-.707.293l-2.414 2.414a1 1 0 01-.707.293h-3.172a1 1 0 01-.707-.293l-2.414-2.414A1 1 0 006.586 13H4"></path>
-                </svg>
-                <p class="text-lg text-muted" id="empty-state-message">No drops yet. Check back soon!</p>
-            </div>
-        </section>
-
-        <!-- Quick Links -->
-        <section class="mt-12" aria-label="Quick links">
-            <h2 class="text-2xl font-bold mb-6 text-center brand-font">Quick Links</h2>
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-4 max-w-3xl mx-auto">
-                <a href="https://www.patreon.com/kimberlynfoster" class="card p-6 flex items-center gap-4 hover:scale-105" rel="noopener noreferrer" target="_blank">
-                    <div class="p-3 rounded-full bg-pink-500/20">
-                        <svg class="w-6 h-6 text-pink-400" fill="currentColor" viewBox="0 0 20 20" aria-hidden="true">
-                            <path fill-rule="evenodd" d="M3.172 5.172a4 4 0 015.656 0L10 6.343l1.172-1.171a4 4 0 115.656 5.656L10 17.657l-6.828-6.829a4 4 0 010-5.656z" clip-rule="evenodd"/>
-                        </svg>
-                    </div>
-                    <span class="font-semibold">Support on Patreon</span>
-                </a>
-                
-                <a href="https://discord.gg/your-invite" class="card p-6 flex items-center gap-4 hover:scale-105" rel="noopener noreferrer" target="_blank">
-                    <div class="p-3 rounded-full bg-blue-500/20">
-                        <svg class="w-6 h-6 text-blue-400" fill="currentColor" viewBox="0 0 20 20" aria-hidden="true">
-                            <path d="M2 5a2 2 0 012-2h7a2 2 0 012 2v4a2 2 0 01-2 2H9l-3 3v-3H4a2 2 0 01-2-2V5z"/>
-                            <path d="M15 7v2a4 4 0 01-4 4H9.828l-1.766 1.767c.28.149.599.233.938.233h2l3 3v-3h2a2 2 0 002-2V9a2 2 0 00-2-2h-1z"/>
-                        </svg>
-                    </div>
-                    <span class="font-semibold">Join Discord</span>
-                </a>
-                
-                <a href="https://kimberlynfoster.substack.com" class="card p-6 flex items-center gap-4 hover:scale-105" rel="noopener noreferrer" target="_blank">
-                    <div class="p-3 rounded-full bg-green-500/20">
-                        <svg class="w-6 h-6 text-green-400" fill="currentColor" viewBox="0 0 20 20" aria-hidden="true">
-                            <path d="M2.003 5.884L10 9.882l7.997-3.998A2 2 0 0016 4H4a2 2 0 00-1.997 1.884z"/>
-                            <path d="M18 8.118l-8 4-8-4V14a2 2 0 002 2h12a2 2 0 002-2V8.118z"/>
-                        </svg>
-                    </div>
-                    <span class="font-semibold">Newsletter</span>
-                </a>
-            </div>
+            <div id="empty-state" class="text-center py-12 hidden"><svg class="w-24 h-24 mx-auto mb-4 text-muted opacity-50" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20 13V6a2 2 0 00-2-2H6a2 2 0 00-2 2v7m16 0v5a2 2 0 01-2 2H6a2 2 0 01-2-2v-5m16 0h-2.586a1 1 0 00-.707.293l-2.414 2.414a1 1 0 01-.707.293h-3.172a1 1 0 01-.707-.293l-2.414-2.414A1 1 0 006.586 13H4"></path></svg><p class="text-lg text-muted" id="empty-state-message">No drops yet. Check back soon!</p></div>
         </section>
     </main>
 
-    <!-- Footer -->
     <footer class="text-center py-8 mt-12 text-sm text-muted" role="contentinfo">
         <p>&copy; 2025 Kimberly's Dropathon. All rights reserved.</p>
     </footer>
 
-    <!-- Subscribe Modal -->
     <div id="subscribe-modal" class="fixed inset-0 bg-black/50 backdrop-blur-sm hidden items-center justify-center p-4 z-50" role="dialog" aria-labelledby="subscribe-modal-title" aria-modal="true">
         <div class="card max-w-lg w-full p-6 relative">
-            <button id="close-subscribe" class="absolute top-4 right-4 text-muted hover:text-primary transition-colors" aria-label="Close modal">
-                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
-                </svg>
-            </button>
-            
-            <h2 id="subscribe-modal-title" class="text-2xl font-bold mb-4 text-center brand-font">Join the Dropathon!</h2>
+            <button id="close-subscribe" class="absolute top-4 right-4 text-muted hover:text-primary transition-colors" aria-label="Close modal"><svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg></button>
+            <h2 id="subscribe-modal-title" class="text-2xl font-bold mb-4 text-center brand-font text-gradient">Join the Dropathon!</h2>
             <p class="text-muted mb-6 text-center">Get exclusive updates, behind-the-scenes content, and early access to drops straight to your inbox!</p>
-            
-            <div class="bg-white rounded-lg p-1">
-                <iframe src="https://kimberlynfoster.substack.com/embed"
-                    width="100%" 
-                    height="320" 
-                    style="border:1px solid #EEE; background:white;" 
-                    frameborder="0" 
-                    scrolling="no"
-                    title="Subscribe to newsletter">
-                </iframe>
-            </div>
+            <div class="bg-white rounded-lg p-1"><iframe src="https://kimberlynfoster.substack.com/embed" width="100%" height="320" style="border:1px solid #EEE; background:white;" frameborder="0" scrolling="no" title="Subscribe to newsletter"></iframe></div>
         </div>
     </div>
 
-    <!-- Toast Notification -->
+    <div id="admin-login-modal" class="fixed inset-0 bg-black/50 backdrop-blur-sm hidden items-center justify-center p-4 z-50" role="dialog" aria-labelledby="admin-login-title" aria-modal="true">
+        <div class="card max-w-md w-full p-8 relative">
+            <button id="close-admin-login" class="absolute top-4 right-4 text-muted hover:text-primary transition-colors" aria-label="Close modal"><svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg></button>
+            <h2 id="admin-login-title" class="text-2xl font-bold mb-6 text-center brand-font text-gradient">Admin Sign In</h2>
+            <form id="admin-login-form" class="space-y-4">
+                <div><label for="admin-email" class="block text-sm font-medium mb-1">Email</label><input type="email" id="admin-email" class="form-input" required autocomplete="email"></div>
+                <div><label for="admin-password" class="block text-sm font-medium mb-1">Password</label>
+                    <div class="relative"><input type="password" id="admin-password" class="form-input pr-10" required autocomplete="current-password"><button type="button" id="toggle-password" class="absolute inset-y-0 right-0 px-3 flex items-center text-muted" aria-label="Show password"><svg id="eye-icon" class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" /><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" /></svg></button></div>
+                </div>
+                <button type="submit" id="admin-login-submit" class="btn btn-primary w-full !mt-6"><span class="loading-spinner hidden"></span><span>Sign In</span></button>
+            </form>
+        </div>
+    </div>
+
     <div id="toast" class="toast" role="alert" aria-live="polite">
-        <svg id="toast-icon" class="w-5 h-5 text-success" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
-        </svg>
+        <svg id="toast-icon" class="w-5 h-5 text-success" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
         <span id="toast-message">Action completed successfully!</span>
     </div>
 
-    <!-- Firebase & App Scripts -->
     <script type="module">
         import { initializeApp } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-app.js";
-        import { 
-            getAuth, 
-            signInAnonymously,
-            signInWithEmailAndPassword,
-            onAuthStateChanged,
-            signOut
-        } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-auth.js";
-        import { 
-            getFirestore, 
-            collection, 
-            addDoc, 
-            onSnapshot, 
-            query, 
-            orderBy,
-            doc, 
-            deleteDoc, 
-            updateDoc, 
-            increment,
-            setDoc,
-            getDoc,
-            where,
-            serverTimestamp
-        } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-firestore.js";
+        import { getAuth, signInAnonymously, signInWithEmailAndPassword, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-auth.js";
+        import { getFirestore, collection, addDoc, onSnapshot, query, where, orderBy, doc, deleteDoc, updateDoc, increment, serverTimestamp, runTransaction } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-firestore.js";
 
-        // Configuration
+        // --- CONFIGURATION ---
         const firebaseConfig = {
             apiKey: "AIzaSyDTd4lvs1lzjKeGu7Ee91lM30-8v88h-ng",
             authDomain: "productivity-tracker-knf13.firebaseapp.com",
             projectId: "productivity-tracker-knf13",
-            storageBucket: "productivity-tracker-knf13.firebasestorage.app",
+            storageBucket: "productivity-tracker-knf13.appspot.com",
             messagingSenderId: "762035393571",
             appId: "1:762035393571:web:7d474a6a57cc031b860d96"
         };
-
-        // Date configuration
         const START_DATE = new Date('2025-09-13T00:00:00');
         const END_DATE = new Date('2025-11-26T23:59:59');
-        
-        // Calculate total days dynamically
         const TOTAL_DAYS = Math.ceil((END_DATE - START_DATE) / (1000 * 60 * 60 * 24)) + 1;
-        
-        // Update display
-        document.getElementById('challenge-dates').textContent = 
-            `${START_DATE.toLocaleDateString('en-US', { month: 'long', day: 'numeric' })} — ${END_DATE.toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' })}`;
-        document.getElementById('total-days').textContent = TOTAL_DAYS;
+        const dropsCollectionPath = `artifacts/${firebaseConfig.projectId}/public/data/drops`;
 
-        // Initialize Firebase
-        let db;
-        let auth;
-        let currentUser = null;
-        let isAdmin = false;
-        
+
+        // --- INITIALIZATION ---
+        let db, auth, currentUser = null, isAdmin = false;
         try {
             const app = initializeApp(firebaseConfig);
             auth = getAuth(app);
             db = getFirestore(app);
-            
-            // Sign in anonymously first
             await signInAnonymously(auth);
-            
         } catch (error) {
             console.error("Firebase initialization failed:", error);
             showToast("Error connecting to database", "error");
         }
-
-        // Fixed collection path (no leading slash)
-        const dropsCollectionPath = `artifacts/${firebaseConfig.projectId}/public/data/drops`;
-
-        // State Management
-        let allDrops = [];
-        let filteredDrops = [];
-        let currentFilter = 'all';
-        let currentSort = 'newest';
-        let searchQuery = '';
-        let heartedPosts = {};
-        let editingDrop = null;
         
-        // Modal focus trap state
-        let focusableElements = [];
-        let firstFocusableElement = null;
-        let lastFocusableElement = null;
-        let activeModal = null;
-        let modalOpener = null;
+        // --- GLOBAL STATE ---
+        let allDrops = [], filteredDrops = [], scheduledDrops = [];
+        let currentFilter = 'all', currentSort = 'newest', searchQuery = '';
+        let heartedPosts = JSON.parse(localStorage.getItem('heartedPosts') || '{}');
+        let editingDropId = null;
+        let unsubscribeDrops;
         
-        // DOM Elements
-        const elements = {
-            currentDay: document.getElementById('current-day'),
-            progressBar: document.getElementById('progress-bar'),
-            mainProgress: document.getElementById('main-progress'),
-            totalDrops: document.getElementById('total-drops'),
+        // --- DOM ELEMENTS ---
+        const DOMElements = {
+            headerDay: document.getElementById('header-day'),
+            headerProgressBar: document.getElementById('header-progress-bar'),
+            headerDrops: document.getElementById('header-drops'),
             todayCount: document.getElementById('today-count'),
             streakCount: document.getElementById('streak-count'),
+            headerStreak: document.getElementById('header-streak'),
             freeCount: document.getElementById('free-count'),
             paidCount: document.getElementById('paid-count'),
+            challengeDates: document.getElementById('challenge-dates'),
+            totalDays: document.getElementById('total-days'),
             adminPanel: document.getElementById('admin-panel'),
-            adminSignin: document.getElementById('admin-signin'),
-            adminMenu: document.getElementById('admin-menu'),
+            adminSigninBtn: document.getElementById('admin-signin-btn'),
+            adminSignoutBtn: document.getElementById('admin-signout-btn'),
+            adminLoginModal: document.getElementById('admin-login-modal'),
+            closeAdminLogin: document.getElementById('close-admin-login'),
+            adminLoginForm: document.getElementById('admin-login-form'),
+            togglePassword: document.getElementById('toggle-password'),
             dropForm: document.getElementById('drop-form'),
+            publishBtn: document.getElementById('publish-btn'),
+            publishBtnText: document.getElementById('publish-btn-text'),
+            cancelEditBtn: document.getElementById('cancel-edit-btn'),
+            scheduleToggle: document.getElementById('schedule-toggle'),
+            scheduleOptions: document.getElementById('schedule-options'),
             searchInput: document.getElementById('search-input'),
             sortSelect: document.getElementById('sort-select'),
+            skeletonLoaders: document.getElementById('skeleton-loaders'),
             todaySection: document.getElementById('today-section'),
             todayDrops: document.getElementById('today-drops'),
             previousSection: document.getElementById('previous-section'),
             previousDrops: document.getElementById('previous-drops'),
+            scheduledSection: document.getElementById('scheduled-section'),
+            scheduledDrops: document.getElementById('scheduled-drops'),
             emptyState: document.getElementById('empty-state'),
             emptyStateMessage: document.getElementById('empty-state-message'),
             subscribeBtn: document.getElementById('subscribe-btn'),
@@ -893,791 +461,416 @@
             toast: document.getElementById('toast'),
             toastMessage: document.getElementById('toast-message'),
             toastIcon: document.getElementById('toast-icon'),
-            publishBtn: document.getElementById('publish-btn'),
-            publishBtnText: document.getElementById('publish-btn-text'),
-            skeletonLoaders: document.getElementById('skeleton-loaders'),
-            mainContent: document.getElementById('main-content')
         };
 
-        // Utility Functions
-        function getCurrentDay() {
+        // --- UTILITY FUNCTIONS ---
+        const getCurrentDay = () => {
             const now = new Date();
-            now.setHours(0, 0, 0, 0); // Local midnight
-            
-            const startLocal = new Date(START_DATE);
-            startLocal.setHours(0, 0, 0, 0);
-            
-            if (now < startLocal) return 0;
+            if (now < START_DATE) return 0;
             if (now > END_DATE) return TOTAL_DAYS;
-            
-            const diffTime = Math.abs(now - startLocal);
-            const diffDays = Math.floor(diffTime / (1000 * 60 * 60 * 24)) + 1;
-            return Math.min(diffDays, TOTAL_DAYS);
-        }
-
-        function updateProgress() {
-            const currentDay = getCurrentDay();
-            const progress = (currentDay / TOTAL_DAYS) * 100;
-            
-            elements.currentDay.textContent = `Day ${currentDay}`;
-            elements.progressBar.style.width = `${progress}%`;
-            elements.mainProgress.setAttribute('aria-valuenow', currentDay);
-            elements.mainProgress.setAttribute('aria-valuemax', TOTAL_DAYS);
-            
-            return currentDay;
-        }
-
-        function showToast(message, type = 'success') {
-            elements.toastMessage.textContent = message;
-            elements.toast.classList.remove('error', 'warning');
-            
-            if (type === 'error') {
-                elements.toast.classList.add('error');
-                elements.toastIcon.innerHTML = `<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>`;
-                elements.toastIcon.classList.remove('text-success', 'text-warning');
-                elements.toastIcon.classList.add('text-error');
-            } else if (type === 'warning') {
-                elements.toast.classList.add('warning');
-                elements.toastIcon.innerHTML = `<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"></path>`;
-                elements.toastIcon.classList.remove('text-success', 'text-error');
-                elements.toastIcon.classList.add('text-warning');
-            } else {
-                elements.toastIcon.innerHTML = `<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>`;
-                elements.toastIcon.classList.remove('text-error', 'text-warning');
-                elements.toastIcon.classList.add('text-success');
-            }
-            
-            elements.toast.classList.add('show');
-            
-            setTimeout(() => {
-                elements.toast.classList.remove('show');
-            }, 3000);
-        }
-
-        function escapeHtml(str) {
+            return Math.floor((now - START_DATE) / (1000 * 60 * 60 * 24)) + 1;
+        };
+        const escapeHtml = (str) => {
             const div = document.createElement('div');
             div.textContent = str;
             return div.innerHTML;
-        }
-
-        // Modal Focus Trap
-        function setupFocusTrap(modal) {
-            activeModal = modal;
-            focusableElements = modal.querySelectorAll(
-                'a[href], button, textarea, input[type="text"], input[type="radio"], input[type="checkbox"], select, [tabindex]:not([tabindex="-1"])'
-            );
-            
-            const focusableArr = Array.from(focusableElements);
-            firstFocusableElement = focusableArr[0];
-            lastFocusableElement = focusableArr[focusableArr.length - 1];
-            
-            // Set main content to inert
-            elements.mainContent.setAttribute('inert', '');
-            
-            // Focus first element
-            if (firstFocusableElement) {
-                firstFocusableElement.focus();
-            }
-        }
-
-        function removeFocusTrap() {
-            activeModal = null;
-            elements.mainContent.removeAttribute('inert');
-            
-            // Return focus to opener
-            if (modalOpener) {
-                modalOpener.focus();
-                modalOpener = null;
-            }
-        }
-
-        // Keyboard navigation for modals
-        document.addEventListener('keydown', (e) => {
-            if (activeModal) {
-                if (e.key === 'Escape') {
-                    closeActiveModal();
-                } else if (e.key === 'Tab') {
-                    // Trap focus
-                    if (e.shiftKey) {
-                        if (document.activeElement === firstFocusableElement) {
-                            e.preventDefault();
-                            lastFocusableElement.focus();
-                        }
-                    } else {
-                        if (document.activeElement === lastFocusableElement) {
-                            e.preventDefault();
-                            firstFocusableElement.focus();
-                        }
-                    }
-                }
-            }
-        });
-
-        function closeActiveModal() {
-            if (activeModal === elements.subscribeModal) {
-                elements.subscribeModal.classList.add('hidden');
-                elements.subscribeModal.classList.remove('flex');
-                removeFocusTrap();
-            }
-        }
-
-        // URL State Management
-        function updateURL() {
-            const params = new URLSearchParams();
-            if (searchQuery) params.set('search', searchQuery);
-            if (currentFilter !== 'all') params.set('filter', currentFilter);
-            if (currentSort !== 'newest') params.set('sort', currentSort);
-            
-            const newURL = params.toString() ? `?${params.toString()}` : window.location.pathname;
-            history.replaceState({}, '', newURL);
-        }
-
-        function loadFromURL() {
-            const params = new URLSearchParams(window.location.search);
-            searchQuery = params.get('search') || '';
-            currentFilter = params.get('filter') || 'all';
-            currentSort = params.get('sort') || 'newest';
-            
-            // Update UI
-            elements.searchInput.value = searchQuery;
-            elements.sortSelect.value = currentSort;
-            
-            // Update filter buttons
-            document.querySelectorAll('.filter-btn').forEach(btn => {
-                btn.classList.toggle('active', btn.dataset.filter === currentFilter);
-                btn.setAttribute('aria-pressed', btn.dataset.filter === currentFilter);
-            });
-        }
-
-        // Validation Functions
-        function isValidUrl(string) {
-            try {
-                const url = new URL(string);
-                return url.protocol === "http:" || url.protocol === "https:";
-            } catch (_) {
-                return false;
-            }
-        }
-
-        function validateDropData(data) {
-            const errors = {};
-            
-            if (!data.title || data.title.trim().length === 0) {
-                errors.title = 'Title is required';
-            } else if (data.title.length > 200) {
-                errors.title = 'Title must be less than 200 characters';
-            }
-            
-            if (!data.description || data.description.trim().length === 0) {
-                errors.description = 'Description is required';
-            } else if (data.description.length > 500) {
-                errors.description = 'Description must be less than 500 characters';
-            }
-            
-            if (!data.link || !isValidUrl(data.link)) {
-                errors.link = 'Please enter a valid URL';
-            }
-            
-            if (data.imageUrl && data.imageUrl.trim() !== '' && !isValidUrl(data.imageUrl)) {
-                errors.image = 'Please enter a valid image URL';
-            }
-            
-            return errors;
-        }
-
-        function showValidationErrors(errors) {
-            // Clear previous errors
-            document.querySelectorAll('.error-message').forEach(el => {
-                el.classList.add('hidden');
-                el.textContent = '';
-            });
-            document.querySelectorAll('.form-input').forEach(el => {
-                el.classList.remove('error');
-            });
-            
-            // Show new errors
-            if (errors.title) {
-                document.getElementById('drop-title').classList.add('error');
-                const errorEl = document.getElementById('title-error');
-                errorEl.textContent = errors.title;
-                errorEl.classList.remove('hidden');
-            }
-            
-            if (errors.description) {
-                document.getElementById('drop-description').classList.add('error');
-                const errorEl = document.getElementById('description-error');
-                errorEl.textContent = errors.description;
-                errorEl.classList.remove('hidden');
-            }
-            
-            if (errors.link) {
-                document.getElementById('drop-link').classList.add('error');
-                const errorEl = document.getElementById('link-error');
-                errorEl.textContent = errors.link;
-                errorEl.classList.remove('hidden');
-            }
-            
-            if (errors.image) {
-                document.getElementById('drop-image').classList.add('error');
-                const errorEl = document.getElementById('image-error');
-                errorEl.textContent = errors.image;
-                errorEl.classList.remove('hidden');
-            }
-        }
-
-        // Debounce function for search
-        function debounce(func, wait) {
+        };
+        const debounce = (func, wait) => {
             let timeout;
-            return function executedFunction(...args) {
-                const later = () => {
-                    clearTimeout(timeout);
-                    func(...args);
-                };
+            return (...args) => {
                 clearTimeout(timeout);
-                timeout = setTimeout(later, wait);
+                timeout = setTimeout(() => func.apply(this, args), wait);
             };
-        }
-        
-        // Auth State Observer
-        onAuthStateChanged(auth, async (user) => {
-            currentUser = user;
-            
-            if (user) {
-                // Check if user has admin claim
-                const idTokenResult = await user.getIdTokenResult();
-                isAdmin = idTokenResult.claims.admin === true;
-                
-                if (isAdmin) {
-                    elements.adminPanel.classList.remove('hidden');
-                    elements.adminMenu.classList.remove('hidden');
-                    elements.adminSignin.classList.add('hidden');
-                } else {
-                    elements.adminPanel.classList.add('hidden');
-                    elements.adminMenu.classList.add('hidden');
-                    elements.adminSignin.classList.remove('hidden');
-                }
-                
-                // Load user's hearted posts
-                if (user.uid) {
-                    const userDoc = await getDoc(doc(db, 'users', user.uid));
-                    if (userDoc.exists()) {
-                        heartedPosts = userDoc.data().heartedPosts || {};
-                    }
-                }
-            } else {
-                elements.adminPanel.classList.add('hidden');
-                elements.adminMenu.classList.add('hidden');
-                elements.adminSignin.classList.remove('hidden');
-                isAdmin = false;
-            }
-            
-            renderDrops();
-        });
+        };
 
-        // Drop Card Creation with lazy loading
-        function createDropCard(drop) {
-            const card = document.createElement('div');
-            card.className = 'card overflow-hidden';
-            card.dataset.id = drop.id;
+        // --- UI & FEEDBACK FUNCTIONS ---
+        const updateProgress = () => {
+            const day = getCurrentDay();
+            const progress = (day / TOTAL_DAYS) * 100;
+            if (DOMElements.headerDay) DOMElements.headerDay.textContent = day;
+            if (DOMElements.headerProgressBar) DOMElements.headerProgressBar.style.width = `${progress}%`;
+        };
+        
+        const showToast = (message, type = 'success') => {
+            DOMElements.toastMessage.textContent = message;
+            DOMElements.toast.className = 'toast'; // Reset classes
+            DOMElements.toastIcon.setAttribute('class', 'w-5 h-5'); // FIX: Use setAttribute for SVG
             
+            const icons = {
+                success: { path: `<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>`, color: 'text-green-500' },
+                error: { path: `<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>`, color: 'text-red-500' },
+                warning: { path: `<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"></path>`, color: 'text-yellow-500' }
+            };
+
+            DOMElements.toast.classList.add(type);
+            DOMElements.toastIcon.innerHTML = icons[type].path;
+            DOMElements.toastIcon.classList.add(icons[type].color);
+            
+            DOMElements.toast.classList.add('show');
+            setTimeout(() => DOMElements.toast.classList.remove('show'), 3000);
+        };
+
+        const toggleModal = (modal, show) => {
+            if (show) {
+                modal.classList.remove('hidden');
+                modal.classList.add('flex');
+            } else {
+                modal.classList.add('hidden');
+                modal.classList.remove('flex');
+            }
+        };
+        
+        // --- FORM HANDLING ---
+        const resetForm = () => {
+            DOMElements.dropForm.reset();
+            editingDropId = null;
+            DOMElements.publishBtnText.textContent = 'Drop It!';
+            DOMElements.cancelEditBtn.classList.add('hidden');
+            DOMElements.scheduleOptions.classList.add('hidden');
+            checkFormValidity();
+        };
+
+        const populateFormForEdit = (drop) => {
+            editingDropId = drop.id;
+            document.getElementById('drop-title').value = drop.title;
+            document.getElementById('drop-description').value = drop.description;
+            document.getElementById('drop-link').value = drop.link;
+            document.getElementById('drop-image').value = drop.imageUrl || '';
+            document.getElementById('drop-type').value = drop.contentType;
+            document.getElementById('drop-access').value = drop.access;
+
+            DOMElements.publishBtnText.textContent = 'Update Drop';
+            DOMElements.cancelEditBtn.classList.remove('hidden');
+            window.scrollTo({ top: DOMElements.adminPanel.offsetTop - 80, behavior: 'smooth' });
+            checkFormValidity();
+        };
+
+        const checkFormValidity = () => {
+            const title = document.getElementById('drop-title').value.trim();
+            const desc = document.getElementById('drop-description').value.trim();
+            const link = document.getElementById('drop-link').value.trim();
+            try {
+                new URL(link);
+                DOMElements.publishBtn.disabled = !(title && desc && link);
+            } catch {
+                DOMElements.publishBtn.disabled = true;
+            }
+        };
+        
+        // --- RENDER FUNCTIONS ---
+        const createDropCardHTML = (drop, isScheduled = false) => {
             const isHearted = heartedPosts[drop.id];
-            const dropDate = new Date(drop.timestamp);
-            const dropTime = dropDate.toLocaleTimeString([], { 
-                hour: 'numeric', 
-                minute: '2-digit' 
-            });
-            
-            // Create a safe fallback image URL
+            const dropDate = drop.timestamp?.toDate() || new Date(drop.scheduledFor);
+            const time = dropDate.toLocaleTimeString([], { hour: 'numeric', minute: '2-digit' });
+            const date = dropDate.toLocaleDateString([], { month: 'short', day: 'numeric' });
+
             const fallbackImage = `https://placehold.co/400x300/7c3aed/ffffff?text=${encodeURIComponent(drop.contentType)}`;
             const imageUrl = drop.imageUrl || fallbackImage;
+
+            const adminButtons = isAdmin ? `
+                <button class="edit-btn text-muted hover:text-accent" data-id="${drop.id}" aria-label="Edit drop">
+                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.5L16.732 3.732z"></path></svg>
+                </button>
+                <button class="delete-btn text-muted hover:text-error" data-id="${drop.id}" aria-label="Delete drop">
+                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"></path></svg>
+                </button>
+            ` : '';
             
-            card.innerHTML = `
-                <div class="flex flex-col md:flex-row">
-                    <div class="md:w-48 aspect-[4/3]">
-                        <img src="${escapeHtml(imageUrl)}" 
-                             alt="${escapeHtml(drop.title)}" 
-                             class="w-full h-full object-cover drop-image"
-                             loading="lazy"
-                             width="192"
-                             height="144"
-                             data-fallback="${fallbackImage}">
+            return `
+            <div class="card flex flex-col md:flex-row" data-id="${drop.id}">
+                <div class="md:w-48 aspect-[4/3] flex-shrink-0">
+                    <img src="${escapeHtml(imageUrl)}" alt="${escapeHtml(drop.title)}" class="w-full h-full object-cover" loading="lazy" onerror="this.onerror=null;this.src='${fallbackImage}';">
+                </div>
+                <div class="flex-1 p-4 md:p-5 flex flex-col">
+                    <div class="flex items-center justify-between mb-2 text-xs text-muted">
+                        <div class="flex items-center gap-2">
+                            <span>${isScheduled ? `Scheduled for ${date}` : `Day ${drop.day} • ${time}`}</span>
+                            <span>•</span>
+                            <span>${drop.contentType}</span>
+                        </div>
+                        <div class="flex items-center gap-3">
+                            ${isScheduled ? `
+                                <button class="publish-now-btn btn btn-secondary !p-1 !text-xs" data-id="${drop.id}">Publish Now</button>
+                                ${adminButtons}
+                            ` : `
+                                <button class="heart-btn flex items-center gap-1 ${isHearted ? 'text-heart hearted' : 'text-muted hover:text-heart'}" data-id="${drop.id}" aria-label="${isHearted ? 'Remove heart' : 'Add heart'}">
+                                    <svg class="w-4 h-4" fill="${isHearted ? 'currentColor' : 'none'}" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.25l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.5l-1.318-1.182a4.5 4.5 0 00-6.364 0z"></path></svg>
+                                    <span class="font-mono">${drop.hearts || 0}</span>
+                                </button>
+                                ${adminButtons}
+                            `}
+                        </div>
                     </div>
-                    
-                    <div class="flex-1 p-6">
-                        <!-- Top utility strip with metadata -->
-                        <div class="flex items-center justify-between mb-3 pb-2 border-b border-white/5">
-                            <div class="flex items-center gap-3 text-xs text-muted">
-                                <span>Day ${drop.day}</span>
-                                <span>•</span>
-                                <span>${dropTime}</span>
-                                <span>•</span>
-                                <span>${drop.contentType}</span>
-                            </div>
-                            
-                            <div class="flex items-center gap-3">
-                                <button class="heart-btn flex items-center gap-1 text-xs ${isHearted ? 'text-heart hearted' : 'text-muted hover:text-heart'}" 
-                                        data-id="${drop.id}"
-                                        aria-label="${isHearted ? 'Remove heart' : 'Add heart'} (${drop.hearts || 0} hearts)">
-                                    <svg class="w-4 h-4" fill="${isHearted ? 'currentColor' : 'none'}" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.25l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.5l-1.318-1.182a4.5 4.5 0 00-6.364 0z"></path>
-                                    </svg>
-                                    <span>${drop.hearts || 0}</span>
-                                </button>
-                                
-                                <button class="share-btn text-muted hover:text-primary text-xs" 
-                                        data-link="${escapeHtml(drop.link)}" 
-                                        data-title="${escapeHtml(drop.title)}"
-                                        aria-label="Share drop">
-                                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8.684 13.342C8.886 12.938 9 12.482 9 12c0-.482-.114-.938-.316-1.342m0 2.684a3 3 0 110-2.684m9.032 4.026a3 3 0 10-2.684-2.684m0 0a3 3 0 00-2.684 2.684M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
-                                    </svg>
-                                </button>
-                                
-                                ${isAdmin ? `
-                                    <button class="delete-btn text-muted hover:text-error text-xs" data-id="${drop.id}" aria-label="Delete drop">
-                                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"></path>
-                                        </svg>
-                                    </button>
-                                ` : ''}
-                            </div>
-                        </div>
-                        
-                        <!-- Main content area -->
-                        <div class="space-y-3">
-                            <!-- Access badge -->
-                            <div>
-                                <span class="tag ${drop.access === 'Paid' ? 'tag-paid' : 'tag-free'}">
-                                    ${drop.access}
-                                </span>
-                            </div>
-                            
-                            <!-- Title - larger and more prominent -->
-                            <h3 class="text-lg md:text-xl font-semibold leading-tight hover:text-accent transition-colors">
-                                <a href="${escapeHtml(drop.link)}" 
-                                   target="_blank" 
-                                   rel="noopener noreferrer"
-                                   class="inline-flex items-center gap-1">
-                                    ${escapeHtml(drop.title)}
-                                    <svg class="w-4 h-4 opacity-50" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path>
-                                    </svg>
-                                </a>
-                            </h3>
-                            
-                            <!-- Description - ensure 2 line clamp -->
-                            <p class="text-sm text-muted line-clamp-2">${escapeHtml(drop.description)}</p>
-                        </div>
+                    <div class="flex-grow space-y-2">
+                        <span class="tag ${drop.access === 'Paid' ? 'tag-paid' : 'tag-free'}">${drop.access}</span>
+                        <h3 class="text-lg font-semibold leading-tight hover:text-accent transition-colors">
+                            <a href="${escapeHtml(drop.link)}" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1.5">
+                                ${escapeHtml(drop.title)}
+                                <svg class="w-4 h-4 opacity-50 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path></svg>
+                            </a>
+                        </h3>
+                        <p class="text-sm text-muted line-clamp-2">${escapeHtml(drop.description)}</p>
                     </div>
                 </div>
-            `;
-            
-            // Add proper image error handling after card is created
-            const img = card.querySelector('.drop-image');
-            if (img) {
-                let errorCount = 0;
-                img.onerror = function() {
-                    if (errorCount === 0) {
-                        errorCount++;
-                        this.src = this.dataset.fallback;
-                    }
-                };
-            }
-            
-            return card;
-        }
+            </div>`;
+        };
+        
+        const renderDrops = () => {
+            if (DOMElements.skeletonLoaders) DOMElements.skeletonLoaders.classList.add('hidden');
+            const day = getCurrentDay();
+            const todaysDrops = filteredDrops.filter(d => d.day === day);
+            const previousDrops = filteredDrops.filter(d => d.day < day);
 
-        // Filtering and Sorting
-        function applyFiltersAndSort() {
-            // Filter drops
-            filteredDrops = allDrops.filter(drop => {
-                // Apply content filter
-                if (currentFilter !== 'all') {
-                    if (currentFilter === 'free' && drop.access !== 'Free') return false;
-                    if (currentFilter === 'paid' && drop.access !== 'Paid') return false;
-                    if (!['free', 'paid', 'all'].includes(currentFilter) && drop.contentType !== currentFilter) return false;
-                }
-                
-                // Apply search filter (case-insensitive)
-                if (searchQuery) {
-                    const search = searchQuery.toLowerCase();
-                    return drop.title.toLowerCase().includes(search) || 
-                           drop.description.toLowerCase().includes(search);
-                }
-                
-                return true;
-            });
-            
-            // Sort drops
-            filteredDrops.sort((a, b) => {
-                switch (currentSort) {
-                    case 'oldest':
-                        return new Date(a.timestamp) - new Date(b.timestamp);
-                    case 'most-loved':
-                        return (b.hearts || 0) - (a.hearts || 0);
-                    case 'newest':
-                    default:
-                        return new Date(b.timestamp) - new Date(a.timestamp);
-                }
-            });
-            
-            updateURL();
-            renderDrops();
-        }
-
-        // Reset form function
-        function resetForm() {
-            elements.dropForm.reset();
-            editingDrop = null;
-            elements.publishBtnText.textContent = 'Drop It!';
-            elements.publishBtn.disabled = false;
-            showValidationErrors({});
-        }
-
-        // Enable/disable form submit button based on validation
-        function checkFormValidity() {
-            const title = document.getElementById('drop-title').value;
-            const description = document.getElementById('drop-description').value;
-            const link = document.getElementById('drop-link').value;
-            
-            const isValid = title.trim() && description.trim() && isValidUrl(link);
-            elements.publishBtn.disabled = !isValid;
-        }
-
-        // Add real-time validation
-        document.getElementById('drop-title').addEventListener('input', checkFormValidity);
-        document.getElementById('drop-description').addEventListener('input', checkFormValidity);
-        document.getElementById('drop-link').addEventListener('input', checkFormValidity);
-
-        // Render Functions - Consolidated
-        function renderDropSection(drops, sectionElement, containerElement, sectionTitle) {
-            if (drops.length === 0) {
-                sectionElement.classList.add('hidden');
-                return;
-            }
-            
-            sectionElement.classList.remove('hidden');
-            containerElement.innerHTML = '';
-            
-            drops.forEach(drop => {
-                containerElement.appendChild(createDropCard(drop));
-            });
-        }
-
-        function renderDrops() {
-            // Hide skeleton loaders
-            elements.skeletonLoaders.classList.add('hidden');
-            
-            const currentDay = getCurrentDay();
-            const todaysDrops = filteredDrops.filter(d => d.day === currentDay);
-            const previousDrops = filteredDrops.filter(d => d.day < currentDay);
-            
             // Update stats
-            elements.totalDrops.textContent = allDrops.length;
-            elements.todayCount.textContent = todaysDrops.length;
-            elements.freeCount.textContent = allDrops.filter(d => d.access === 'Free').length;
-            elements.paidCount.textContent = allDrops.filter(d => d.access === 'Paid').length;
+            const publishedDrops = allDrops.filter(d => d.status === 'published');
+            const publishedDropsCount = publishedDrops.length;
             
-            // Calculate streak
-            const daysWithDrops = new Set(allDrops.map(d => d.day)).size;
-            elements.streakCount.textContent = daysWithDrops;
-            
+            if (DOMElements.headerDrops) DOMElements.headerDrops.textContent = publishedDropsCount;
+            if (DOMElements.todayCount) DOMElements.todayCount.textContent = todaysDrops.length;
+            if (DOMElements.freeCount) DOMElements.freeCount.textContent = publishedDrops.filter(d => d.access === 'Free').length;
+            if (DOMElements.paidCount) DOMElements.paidCount.textContent = publishedDrops.filter(d => d.access === 'Paid').length;
+            const daysWithDrops = new Set(publishedDrops.map(d => d.day)).size;
+            if (DOMElements.streakCount) DOMElements.streakCount.textContent = daysWithDrops;
+            if (DOMElements.headerStreak) DOMElements.headerStreak.textContent = daysWithDrops;
+
             // Render sections
-            renderDropSection(todaysDrops, elements.todaySection, elements.todayDrops, "Today's Drops");
-            renderDropSection(previousDrops, elements.previousSection, elements.previousDrops, "Previous Drops");
+            if (DOMElements.todaySection) DOMElements.todaySection.classList.toggle('hidden', todaysDrops.length === 0);
+            if (DOMElements.todayDrops) DOMElements.todayDrops.innerHTML = todaysDrops.map(d => createDropCardHTML(d)).join('');
             
-            // Update empty state message based on context
+            if (DOMElements.previousSection) DOMElements.previousSection.classList.toggle('hidden', previousDrops.length === 0);
+            if (DOMElements.previousDrops) DOMElements.previousDrops.innerHTML = previousDrops.map(d => createDropCardHTML(d)).join('');
+            
             if (filteredDrops.length === 0) {
-                elements.emptyState.classList.remove('hidden');
-                if (searchQuery || currentFilter !== 'all') {
-                    elements.emptyStateMessage.textContent = 'No drops found matching your search or filter. Try adjusting your criteria.';
-                } else {
-                    elements.emptyStateMessage.textContent = 'No drops yet. Check back soon!';
-                }
+                if (DOMElements.emptyState) DOMElements.emptyState.classList.remove('hidden');
+                if (DOMElements.emptyStateMessage) DOMElements.emptyStateMessage.textContent = (searchQuery || currentFilter !== 'all') ? 'No drops found matching your criteria.' : 'No drops yet. Check back soon!';
             } else {
-                elements.emptyState.classList.add('hidden');
+                if (DOMElements.emptyState) DOMElements.emptyState.classList.add('hidden');
             }
-        }
+        };
 
-        // Event Handlers
+        const renderScheduledDrops = () => {
+            if(DOMElements.scheduledSection) DOMElements.scheduledSection.classList.toggle('hidden', scheduledDrops.length === 0);
+            if(DOMElements.scheduledDrops) DOMElements.scheduledDrops.innerHTML = scheduledDrops.map(d => createDropCardHTML(d, true)).join('');
+        };
         
-        // Admin sign in
-        elements.adminSignin.addEventListener('click', async () => {
-            // This would open a sign-in modal/form
-            // For now, we'll use a prompt for demo
-            const email = prompt('Admin email:');
-            const password = prompt('Admin password:');
-            
-            if (email && password) {
-                try {
-                    await signInWithEmailAndPassword(auth, email, password);
-                    showToast('Signed in successfully');
-                } catch (error) {
-                    showToast('Invalid credentials', 'error');
+        // --- DATA LOGIC ---
+        const applyFiltersAndSort = () => {
+            const publishedDrops = allDrops.filter(d => d.status === 'published');
+            filteredDrops = publishedDrops.filter(drop => {
+                const search = searchQuery.toLowerCase();
+                const matchesSearch = !search || drop.title.toLowerCase().includes(search) || drop.description.toLowerCase().includes(search);
+                const matchesFilter = currentFilter === 'all' || drop.contentType === currentFilter;
+                return matchesSearch && matchesFilter;
+            });
+
+            filteredDrops.sort((a, b) => {
+                // FIX: Add null checks for timestamps which might not exist on all documents
+                const timeA = a.timestamp?.toMillis ? a.timestamp.toMillis() : 0;
+                const timeB = b.timestamp?.toMillis ? b.timestamp.toMillis() : 0;
+                
+                switch (currentSort) {
+                    case 'oldest': return timeA - timeB;
+                    case 'most-loved': return (b.hearts || 0) - (a.hearts || 0);
+                    default: return timeB - timeA;
                 }
-            }
-        });
-        
-        // Admin menu
-        elements.adminMenu.addEventListener('click', async () => {
-            if (confirm('Sign out?')) {
-                await signOut(auth);
-                showToast('Signed out');
-            }
-        });
+            });
 
-        // Main form submission
-        elements.dropForm.addEventListener('submit', async (e) => {
+            scheduledDrops = allDrops.filter(d => d.status === 'scheduled').sort((a, b) => new Date(a.scheduledFor) - new Date(b.scheduledFor));
+
+            renderDrops();
+            if(isAdmin) renderScheduledDrops();
+        };
+
+        const setupFirestoreListener = (isAdminFlag) => {
+            if (unsubscribeDrops) unsubscribeDrops(); // Unsubscribe from previous listener
+            
+            const dropsCollectionRef = collection(db, dropsCollectionPath);
+
+            // FIX: Removed orderBy from non-admin query to prevent index error. Sorting is handled client-side.
+            const q = isAdminFlag 
+                ? query(dropsCollectionRef)
+                : query(dropsCollectionRef, where('status', '==', 'published'));
+
+            unsubscribeDrops = onSnapshot(q, (snapshot) => {
+                allDrops = snapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
+                applyFiltersAndSort();
+            }, (error) => {
+                console.error("Firestore listener error:", error);
+                showToast("Error loading drops. Please refresh.", "error");
+            });
+        };
+
+        // --- EVENT LISTENERS & HANDLERS ---
+        const handleAdminFormSubmit = async (e) => {
             e.preventDefault();
-            
-            if (!isAdmin) {
-                showToast('Admin access required', 'error');
-                return;
-            }
-            
-            // Show loading state
-            elements.publishBtn.disabled = true;
-            elements.publishBtn.querySelector('.loading-spinner').classList.remove('hidden');
-            
             const dropData = {
                 title: document.getElementById('drop-title').value.trim(),
                 description: document.getElementById('drop-description').value.trim(),
                 link: document.getElementById('drop-link').value.trim(),
+                imageUrl: document.getElementById('drop-image').value.trim(),
                 contentType: document.getElementById('drop-type').value,
                 access: document.getElementById('drop-access').value,
-                imageUrl: document.getElementById('drop-image').value.trim(),
-                timestamp: serverTimestamp(),
-                hearts: 0
             };
             
-            // Check if scheduling
-            if (elements.scheduleToggle.checked && elements.scheduleDate.value && elements.scheduleTime.value) {
-                const scheduledDate = new Date(`${elements.scheduleDate.value}T${elements.scheduleTime.value}`);
-                
-                if (scheduledDate <= new Date()) {
-                    showToast('Scheduled date must be in the future', 'error');
-                    elements.publishBtn.disabled = false;
-                    elements.publishBtn.querySelector('.loading-spinner').classList.add('hidden');
-                    return;
-                }
-                
-                dropData.status = 'scheduled';
-                dropData.scheduledDate = scheduledDate.toISOString();
-                dropData.day = null; // Will be set when published
-            } else {
-                dropData.status = 'published';
-                dropData.day = getCurrentDay();
-            }
+            try { new URL(dropData.link) } catch { showToast("Please enter a valid link.", "error"); return; }
+            if (dropData.imageUrl) { try { new URL(dropData.imageUrl) } catch { showToast("Please enter a valid image URL.", "error"); return; } }
             
-            const errors = validateDropData(dropData);
-            if (Object.keys(errors).length > 0) {
-                showValidationErrors(errors);
-                elements.publishBtn.disabled = false;
-                elements.publishBtn.querySelector('.loading-spinner').classList.add('hidden');
-                return;
-            }
-            
+            const btnSpinner = DOMElements.publishBtn.querySelector('.loading-spinner');
+            btnSpinner.classList.remove('hidden');
+            DOMElements.publishBtn.disabled = true;
+
             try {
-                if (editingDrop) {
-                    await updateDoc(doc(db, dropsCollectionPath, editingDrop), dropData);
-                    showToast(dropData.status === 'scheduled' ? 'Drop scheduled!' : 'Drop updated!');
+                if (DOMElements.scheduleToggle.checked) {
+                    const date = document.getElementById('schedule-date').value;
+                    const time = document.getElementById('schedule-time').value;
+                    if (!date || !time) throw new Error("Please select a valid schedule date and time.");
+                    
+                    dropData.status = 'scheduled';
+                    dropData.scheduledFor = new Date(`${date}T${time}`).toISOString();
+                    dropData.timestamp = null; 
                 } else {
+                    dropData.status = 'published';
+                    dropData.day = getCurrentDay();
+                    dropData.timestamp = serverTimestamp();
+                }
+
+                if (editingDropId) {
+                    await updateDoc(doc(db, dropsCollectionPath, editingDropId), dropData);
+                    showToast('Drop updated successfully!');
+                } else {
+                    dropData.hearts = 0; // Only set on new doc
                     await addDoc(collection(db, dropsCollectionPath), dropData);
-                    showToast(dropData.status === 'scheduled' ? 'Drop scheduled successfully!' : 'Drop added successfully!');
+                    showToast('Drop added successfully!');
                 }
                 resetForm();
-                if (dropData.status === 'scheduled') {
-                    renderScheduledPosts();
-                }
             } catch (error) {
-                console.error('Error adding drop:', error);
-                showToast('Error adding drop. Please try again.', 'error');
+                console.error("Error submitting drop:", error);
+                showToast(error.message || "Could not save drop.", "error");
             } finally {
-                elements.publishBtn.disabled = false;
-                elements.publishBtn.querySelector('.loading-spinner').classList.add('hidden');
+                btnSpinner.classList.add('hidden');
+                checkFormValidity();
             }
-        });
+        };
 
-        // Subscribe modal handlers
-        elements.subscribeBtn.addEventListener('click', () => {
-            modalOpener = elements.subscribeBtn;
-            elements.subscribeModal.classList.remove('hidden');
-            elements.subscribeModal.classList.add('flex');
-            setupFocusTrap(elements.subscribeModal);
-        });
+        const handleContentClick = async (e) => {
+            const btn = e.target.closest('button');
+            if (!btn) return;
+            
+            const dropId = btn.dataset.id;
+            if (!dropId) return;
 
-        elements.closeSubscribe.addEventListener('click', () => {
-            closeActiveModal();
-        });
+            if (btn.classList.contains('delete-btn')) {
+                if (confirm('Delete this drop? This cannot be undone.')) {
+                    await deleteDoc(doc(db, dropsCollectionPath, dropId));
+                    showToast('Drop deleted.');
+                }
+            } else if (btn.classList.contains('edit-btn')) {
+                const dropToEdit = allDrops.find(d => d.id === dropId);
+                if (dropToEdit) populateFormForEdit(dropToEdit);
+            } else if (btn.classList.contains('heart-btn')) {
+                const isHearted = heartedPosts[dropId];
+                const incrementValue = isHearted ? -1 : 1;
+                heartedPosts[dropId] = !isHearted;
 
-        // Close modal when clicking outside
-        elements.subscribeModal.addEventListener('click', (e) => {
-            if (e.target === elements.subscribeModal) {
-                closeActiveModal();
-            }
-        });
+                btn.classList.toggle('hearted', !isHearted);
+                const heartCountSpan = btn.querySelector('span');
+                heartCountSpan.textContent = parseInt(heartCountSpan.textContent) + incrementValue;
 
-        // Debounced search
-        const debouncedSearch = debounce(() => {
-            searchQuery = elements.searchInput.value;
-            applyFiltersAndSort();
-        }, 300);
-        
-        elements.searchInput.addEventListener('input', debouncedSearch);
-        
-        // Sort handler
-        elements.sortSelect.addEventListener('change', () => {
-            currentSort = elements.sortSelect.value;
-            applyFiltersAndSort();
-        });
-
-        // Filter buttons
-        document.querySelectorAll('.filter-btn').forEach(btn => {
-            btn.addEventListener('click', () => {
-                document.querySelectorAll('.filter-btn').forEach(b => {
-                    b.classList.remove('active');
-                    b.setAttribute('aria-pressed', 'false');
+                localStorage.setItem('heartedPosts', JSON.stringify(heartedPosts));
+                await updateDoc(doc(db, dropsCollectionPath, dropId), { hearts: increment(incrementValue) });
+            } else if (btn.classList.contains('publish-now-btn')) {
+                await updateDoc(doc(db, dropsCollectionPath, dropId), {
+                    status: 'published',
+                    day: getCurrentDay(),
+                    timestamp: serverTimestamp()
                 });
-                btn.classList.add('active');
-                btn.setAttribute('aria-pressed', 'true');
-                currentFilter = btn.dataset.filter;
+                showToast('Drop published!');
+            }
+        };
+
+        const handleAdminLogin = async (e) => {
+            e.preventDefault();
+            const email = document.getElementById('admin-email').value;
+            const password = document.getElementById('admin-password').value;
+            const btnSpinner = DOMElements.adminLoginForm.querySelector('.loading-spinner');
+            btnSpinner.classList.remove('hidden');
+            
+            try {
+                await signInWithEmailAndPassword(auth, email, password);
+                toggleModal(DOMElements.adminLoginModal, false);
+                showToast('Signed in successfully!');
+            } catch (error) {
+                showToast('Invalid credentials.', 'error');
+            } finally {
+                btnSpinner.classList.add('hidden');
+            }
+        };
+
+        // --- AUTH STATE CHANGE ---
+        onAuthStateChanged(auth, async (user) => {
+            currentUser = user;
+            if (user && !user.isAnonymous) {
+                const idTokenResult = await user.getIdTokenResult(true); // Force refresh
+                isAdmin = !!idTokenResult.claims.admin;
+            } else {
+                isAdmin = false;
+            }
+            
+            document.body.classList.toggle('is-admin', isAdmin);
+            DOMElements.adminPanel.classList.toggle('hidden', !isAdmin);
+            DOMElements.adminSigninBtn.classList.toggle('hidden', isAdmin);
+            DOMElements.adminSignoutBtn.classList.toggle('hidden', !isAdmin);
+            
+            setupFirestoreListener(isAdmin);
+            applyFiltersAndSort();
+        });
+
+        // --- INITIAL SETUP ---
+        document.addEventListener('DOMContentLoaded', () => {
+            DOMElements.challengeDates.textContent = `${START_DATE.toLocaleDateString('en-US', { month: 'long', day: 'numeric' })} — ${END_DATE.toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' })}`;
+            DOMElements.totalDays.textContent = TOTAL_DAYS;
+            updateProgress();
+            setInterval(updateProgress, 60000);
+
+            DOMElements.dropForm.addEventListener('submit', handleAdminFormSubmit);
+            DOMElements.dropForm.addEventListener('input', checkFormValidity);
+            document.getElementById('content-feed').addEventListener('click', handleContentClick);
+            DOMElements.scheduledDrops.addEventListener('click', handleContentClick);
+            DOMElements.searchInput.addEventListener('input', debounce(() => {
+                searchQuery = DOMElements.searchInput.value;
+                applyFiltersAndSort();
+            }, 300));
+            DOMElements.sortSelect.addEventListener('change', (e) => {
+                currentSort = e.target.value;
                 applyFiltersAndSort();
             });
-        });
+            document.querySelectorAll('.filter-btn').forEach(btn => btn.addEventListener('click', (e) => {
+                document.querySelector('.filter-btn.active').classList.remove('active');
+                e.currentTarget.classList.add('active');
+                currentFilter = e.currentTarget.dataset.filter;
+                applyFiltersAndSort();
+            }));
 
-        // Event delegation for dynamic content
-        document.addEventListener('click', async (e) => {
-            // Heart button - One heart per user
-            if (e.target.closest('.heart-btn')) {
-                const btn = e.target.closest('.heart-btn');
-                const dropId = btn.dataset.id;
-                
-                if (!currentUser) {
-                    showToast('Please sign in to heart drops', 'warning');
-                    return;
-                }
-                
-                const heartRef = doc(db, `${dropsCollectionPath}/${dropId}/hearts`, currentUser.uid);
-                
-                if (!heartedPosts[dropId]) {
-                    // Optimistic UI update
-                    heartedPosts[dropId] = true;
-                    btn.classList.add('hearted');
-                    const heartCount = btn.querySelector('span');
-                    if (heartCount) {
-                        heartCount.textContent = parseInt(heartCount.textContent) + 1;
-                    }
-                    
-                    try {
-                        // Create heart document (will fail if exists)
-                        await setDoc(heartRef, {
-                            timestamp: serverTimestamp()
-                        });
-                        
-                        // Update drop heart count
-                        await updateDoc(doc(db, dropsCollectionPath, dropId), {
-                            hearts: increment(1)
-                        });
-                        
-                        // Save to user profile
-                        await setDoc(doc(db, 'users', currentUser.uid), {
-                            heartedPosts: heartedPosts
-                        }, { merge: true });
-                        
-                    } catch (error) {
-                        // Rollback on error
-                        delete heartedPosts[dropId];
-                        btn.classList.remove('hearted');
-                        if (heartCount) {
-                            heartCount.textContent = parseInt(heartCount.textContent) - 1;
-                        }
-                        showToast('You already hearted this drop', 'warning');
-                    }
-                }
-            }
-            
-            // Share button
-            if (e.target.closest('.share-btn')) {
-                const btn = e.target.closest('.share-btn');
-                const link = btn.dataset.link;
-                const title = btn.dataset.title;
-                
-                if (navigator.share) {
-                    try {
-                        await navigator.share({
-                            title: title,
-                            url: link
-                        });
-                    } catch (err) {
-                        if (err.name !== 'AbortError') {
-                            console.log('Share error:', err);
-                        }
-                    }
-                } else {
-                    // Fallback to clipboard
-                    try {
-                        await navigator.clipboard.writeText(link);
-                        showToast('Link copied to clipboard!');
-                    } catch (err) {
-                        showToast('Could not copy link', 'error');
-                    }
-                }
-            }
-            
-            // Delete button (admin only)
-            if (e.target.closest('.delete-btn')) {
-                if (!isAdmin) {
-                    showToast('Admin access required', 'error');
-                    return;
-                }
-                
-                const btn = e.target.closest('.delete-btn');
-                const dropId = btn.dataset.id;
-                
-                if (confirm('Delete this drop? This cannot be undone.')) {
-                    try {
-                        await deleteDoc(doc(db, dropsCollectionPath, dropId));
-                        showToast('Drop deleted successfully');
-                    } catch (error) {
-                        console.error('Error deleting drop:', error);
-                        showToast('Error deleting drop', 'error');
-                    }
-                }
-            }
-        });
-
-        // Initialize Firestore listener
-        if (db) {
-            const q = query(collection(db, dropsCollectionPath), orderBy('timestamp', 'desc'));
-            const unsubscribe = onSnapshot(q, 
-                (snapshot) => {
-                    allDrops = snapshot.docs.map(doc => ({
-                        id: doc.id,
-                        ...doc.data()
-                    }));
-                    
-                    applyFiltersAndSort();
-                },
-                (error) => {
-                    console.error('Firestore listener error:', error);
-                    showToast('Error loading drops. Please refresh.', 'error');
-                    elements.skeletonLoaders.classList.add('hidden');
-                }
-            );
-            
-            // Clean up on page unload
-            window.addEventListener('beforeunload', () => {
-                unsubscribe();
+            DOMElements.subscribeBtn.addEventListener('click', () => toggleModal(DOMElements.subscribeModal, true));
+            DOMElements.closeSubscribe.addEventListener('click', () => toggleModal(DOMElements.subscribeModal, false));
+            DOMElements.adminSigninBtn.addEventListener('click', () => toggleModal(DOMElements.adminLoginModal, true));
+            DOMElements.closeAdminLogin.addEventListener('click', () => toggleModal(DOMElements.adminLoginModal, false));
+            DOMElements.adminSignoutBtn.addEventListener('click', () => signOut(auth));
+            DOMElements.adminLoginForm.addEventListener('submit', handleAdminLogin);
+            DOMElements.togglePassword.addEventListener('click', () => {
+                const pwField = document.getElementById('admin-password');
+                pwField.type = pwField.type === 'password' ? 'text' : 'password';
             });
-        }
+            
+            DOMElements.scheduleToggle.addEventListener('change', (e) => {
+                DOMElements.scheduleOptions.classList.toggle('hidden', !e.target.checked);
+            });
+            DOMElements.cancelEditBtn.addEventListener('click', resetForm);
+        });
 
-        // Initialize
-        loadFromURL();
-        updateProgress();
-        setInterval(updateProgress, 60000); // Update every minute
-        
-        // Show admin signin if available
-        elements.adminSignin.classList.remove('hidden');
     </script>
 </body>
 </html>
+
+
+
