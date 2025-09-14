@@ -313,6 +313,7 @@
                     <div class="flex items-center gap-4 pt-2">
                         <button type="submit" id="publish-btn" class="btn btn-primary" disabled><span class="loading-spinner hidden"></span><svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8"></path></svg><span id="publish-btn-text">Drop It!</span></button>
                         <button type="button" id="cancel-edit-btn" class="btn btn-secondary hidden">Cancel Edit</button>
+                        <button type="button" id="clear-data-btn" class="btn btn-secondary !bg-red-500/10 !text-red-400 !border-red-500/20 ml-auto">Clear All Data</button>
                     </div>
                 </form>
             </div>
@@ -488,6 +489,7 @@
          * @property {HTMLElement} toastMessage
          * @property {HTMLElement} toastIcon
          * @property {HTMLElement} contentFeed
+         * @property {HTMLElement} clearDataBtn
          */
 
 
@@ -575,6 +577,7 @@
             publishBtn: document.getElementById('publish-btn'),
             publishBtnText: document.getElementById('publish-btn-text'),
             cancelEditBtn: document.getElementById('cancel-edit-btn'),
+            clearDataBtn: document.getElementById('clear-data-btn'),
             searchInput: document.getElementById('search-input'),
             sortSelect: document.getElementById('sort-select'),
             skeletonLoaders: document.getElementById('skeleton-loaders'),
@@ -893,7 +896,7 @@
             }
             updateItemListSchema(publishedDrops.slice(0, 10)); // Update schema with top drops
         };
-
+        
         // --- DATA LOGIC ---
         const applyFiltersAndSort = () => {
             visiblePreviousDrops = DROPS_PER_PAGE; // Reset pagination on filter change
@@ -1174,6 +1177,21 @@
             }
             
             if(DOMElements.cancelEditBtn) DOMElements.cancelEditBtn.addEventListener('click', resetForm);
+            if(DOMElements.clearDataBtn) {
+                 DOMElements.clearDataBtn.addEventListener('click', async () => {
+                    if (confirm('Are you sure you want to delete ALL drops? This cannot be undone.')) {
+                        const dropsCollectionRef = collection(db, dropsCollectionPath);
+                        const snapshot = await getDocs(query(dropsCollectionRef));
+                        const batch = writeBatch(db);
+                        snapshot.docs.forEach(doc => {
+                            batch.delete(doc.ref);
+                        });
+                        await batch.commit();
+                        localStorage.removeItem('sampleDataAdded_v5');
+                        showToast('All data cleared.');
+                    }
+                });
+            }
         });
 
     </script>
