@@ -8,7 +8,7 @@
     <meta name="theme-color" content="#1a0f26">
     <meta name="robots" content="index, follow">
 
-    
+
     <meta http-equiv="Content-Security-Policy" content="
         default-src 'self';
         script-src 'self' https://www.gstatic.com https://cdn.tailwindcss.com 'unsafe-inline';
@@ -57,8 +57,8 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link rel="preconnect" href="https://www.gstatic.com">
     <link rel="preload" href="https://knfoster13.github.io/HQ/kdrop4.png" as="image" fetchpriority="high">
-    <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-    
+    <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&amp;family=Inter:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet">
+
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
       :root {
@@ -160,36 +160,36 @@
       }
       .form-input:focus { outline: none; border-color: var(--accent); box-shadow: 0 0 0 3px rgba(167, 139, 250, 0.1); }
       .form-input.error { border-color: var(--error); }
-      .tag { 
-        font-size: 0.875rem; 
-        font-weight: 600; 
-        padding: 0.375rem 1rem; 
+      .tag {
+        font-size: 0.875rem;
+        font-weight: 600;
+        padding: 0.375rem 1rem;
         border-radius: 9999px;
       }
-      .tag-free { 
-        background: rgba(134, 239, 172, 0.15); 
-        color: var(--tag-free); 
+      .tag-free {
+        background: rgba(134, 239, 172, 0.15);
+        color: var(--tag-free);
         border: 1px solid rgba(134, 239, 172, 0.3);
         box-shadow: 0 0 10px rgba(134, 239, 172, 0.2);
       }
-      .tag-paid { 
-        background: rgba(253, 224, 71, 0.15); 
-        color: var(--tag-paid); 
+      .tag-paid {
+        background: rgba(253, 224, 71, 0.15);
+        color: var(--tag-paid);
         border: 1px solid rgba(253, 224, 71, 0.3);
         box-shadow: 0 0 10px rgba(253, 224, 71, 0.2);
       }
       .title-glow {
         text-shadow: 0 0 8px rgba(255, 255, 255, 0.1);
       }
-      
+
       /* Heart Animation */
       .heart-btn { transition: all 0.2s ease; cursor: pointer; user-select: none; }
       .heart-btn:hover svg { transform: scale(1.1); }
       .heart-btn.hearted svg { fill: var(--heart); stroke: var(--heart); animation: heartPulse 0.3s ease; }
       @keyframes heartPulse { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.2); } }
-      
+
       /* Progress Bar */
-      .header-progress-bar { 
+      .header-progress-bar {
         height: 0.75rem; /* h-3 */
         background-color: rgba(255,255,255,0.1);
         border: 1px solid rgba(255,255,255,0.1);
@@ -269,7 +269,7 @@
                     <img src="LARGE-PASTEL-1.png" alt="Logo" class="h-11 w-auto">
                     <span class="hidden sm:inline font-bold text-xl brand-font text-gradient" style="text-shadow: 0 1px 2px rgba(0,0,0,0.1);">Kimberly's Creative Dash</span>
                 </a>
-                
+
                 <div class="hidden md:flex items-center gap-8 text-center">
                     <div class="flex flex-col-reverse">
                         <span class="text-xs uppercase tracking-wider text-muted">Day of 75</span>
@@ -284,16 +284,16 @@
                         <span id="header-streak" class="text-lg font-bold">0</span>
                     </div>
                 </div>
-                
+
                 <div class="flex items-center gap-3">
                     <button id="admin-signin-btn" class="btn btn-secondary px-4" title="Admin sign in" aria-label="Admin sign in">
                         Admin
                     </button>
-                    
+
                     <button id="admin-signout-btn" class="btn btn-secondary px-4 hidden" title="Admin sign out" aria-label="Admin sign out">
                          Sign Out
                     </button>
-                    
+
                     <button id="subscribe-btn" class="btn btn-peach" aria-label="Subscribe to updates">
                         <span class="hidden sm:inline">Subscribe</span>
                     </button>
@@ -310,7 +310,7 @@
             <img src="https://knfoster13.github.io/HQ/kdrop4.png" alt="Kimberly's Dropathon" class="mx-auto w-full max-w-md mb-6" width="1024" height="768" fetchpriority="high" decoding="async" loading="eager">
             <h1 id="hero-title" class="text-3xl md:text-4xl font-bold mb-4 brand-font text-gradient">Beating back perfectionism one drop at a time.</h1>
             <p class="text-lg text-muted mb-2"><span id="challenge-dates">September 13 — November 26, 2025</span></p>
-            
+
             <div id="day-dots-container" class="flex gap-0.5 overflow-x-auto max-w-full py-2 px-4"></div>
 
             <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mt-8 max-w-2xl mx-auto" role="region" aria-label="Challenge statistics">
@@ -335,13 +335,13 @@
                         <div><label for="drop-image" class="block text-sm font-medium mb-1">Image URL</label><input type="url" id="drop-image" class="form-input"><span class="text-xs text-red-400 hidden mt-1" id="image-error"></span></div>
                         <div><label for="drop-access" class="block text-sm font-medium mb-1">Access Level</label><select id="drop-access" class="form-input"><option>Free</option><option>Paid</option></select></div>
                     </div>
-                    
+
                     <div class="pt-4 border-t border-white/10"><label class="flex items-center gap-2 cursor-pointer"><input type="checkbox" id="schedule-toggle" class="form-checkbox h-4 w-4 rounded bg-white/10 border-white/20 text-accent focus:ring-accent"><span class="text-sm font-medium">Schedule for later</span></label></div>
                     <div id="schedule-options" class="hidden grid grid-cols-2 gap-4">
                         <div><label for="schedule-date" class="block text-sm font-medium mb-1">Date</label><input type="date" id="schedule-date" class="form-input"></div>
                         <div><label for="schedule-time" class="block text-sm font-medium mb-1">Time (Local)</label><input type="time" id="schedule-time" class="form-input"></div>
                     </div>
-                    
+
                     <div class="flex items-center gap-4 pt-2">
                         <button type="submit" id="publish-btn" class="btn btn-primary" disabled><span class="loading-spinner hidden"></span><svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8"></path></svg><span id="publish-btn-text">Drop It!</span></button>
                         <button type="button" id="cancel-edit-btn" class="btn btn-secondary hidden">Cancel Edit</button>
@@ -387,17 +387,17 @@
                     <div class="skeleton-card"><div class="flex flex-col md:flex-row gap-4"><div class="md:w-48 h-32 skeleton-line rounded-lg"></div><div class="flex-1 space-y-2"><div class="skeleton-line w-3/4"></div><div class="skeleton-line w-1/2"></div><div class="skeleton-line w-full"></div></div></div></div>
                 </div>
             </div>
-            
+
             <div id="today-section" class="hidden"><h2 class="text-2xl md:text-3xl font-bold mb-4 flex items-center gap-2"><span class="w-2 h-2 bg-green-500 rounded-full animate-pulse"></span><span class="text-white brand-font text-gradient">Today's Drops</span></h2><div id="today-drops" class="grid gap-6"></div></div>
             <div id="previous-section" class="hidden">
                 <h2 class="text-2xl font-bold mb-4 brand-font text-gradient">Previous Drops</h2>
                 <div id="previous-drops" class="grid gap-6"></div>
                 <div id="load-more-container" class="text-center mt-8"></div>
             </div>
-            
+
             <div id="empty-state" class="text-center py-12 hidden"><svg class="w-24 h-24 mx-auto mb-4 text-muted opacity-50" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20 13V6a2 2 0 00-2-2H6a2 2 0 00-2 2v7m16 0v5a2 2 0 01-2 2H6a2 2 0 01-2-2v-5m16 0h-2.586a1 1 0 00-.707.293l-2.414 2.414a1 1 0 01-.707.293h-3.172a1 1 0 01-.707-.293l-2.414-2.414A1 1 0 006.586 13H4"></path></svg><p class="text-lg text-muted" id="empty-state-message">No drops yet. Check back soon!</p></div>
         </section>
-        
+
         <nav class="mt-12" aria-label="Quick links">
             <h2 class="text-2xl font-bold mb-6 text-center brand-font text-gradient">Quick Links</h2>
             <div class="grid grid-cols-1 md:grid-cols-3 gap-4 max-w-3xl mx-auto">
@@ -409,7 +409,7 @@
                     </div>
                     <span class="font-semibold">Support on Patreon</span>
                 </a>
-                
+
                 <a href="https://discord.gg/your-invite" class="card p-6 flex items-center gap-4 hover:scale-105" rel="noopener noreferrer" target="_blank">
                     <div class="p-3 rounded-full bg-blue-500/20">
                         <svg class="w-6 h-6 text-blue-400" fill="currentColor" viewBox="0 0 20 20" aria-hidden="true">
@@ -419,7 +419,7 @@
                     </div>
                     <span class="font-semibold">Join Discord</span>
                 </a>
-                
+
                 <a href="https://kimberlynfoster.substack.com" class="card p-6 flex items-center gap-4 hover:scale-105" rel="noopener noreferrer" target="_blank">
                     <div class="p-3 rounded-full bg-green-500/20">
                         <svg class="w-6 h-6 text-green-400" fill="currentColor" viewBox="0 0 20 20" aria-hidden="true">
@@ -543,17 +543,17 @@
         const START_DATE = new Date('2025-09-13T00:00:00');
         const END_DATE = new Date('2025-11-26T23:59:59');
         const MS_PER_DAY = 1000 * 60 * 60 * 24;
-        
+
         function startOfDay(d) {
             const date = new Date(d);
             date.setHours(0,0,0,0);
             return date;
         }
-        
+
         const TOTAL_DAYS = Math.floor((startOfDay(END_DATE) - startOfDay(START_DATE)) / MS_PER_DAY) + 1;
 
         const dropsCollectionPath = `artifacts/${firebaseConfig.projectId}/public/data/drops`;
-        
+
         // --- UTILITY FUNCTIONS ---
         const getCurrentDay = () => {
             const now = new Date();
@@ -582,7 +582,7 @@
 
         // --- INITIALIZATION ---
         let db, auth, currentUser = null, isAdmin = false;
-        
+
         // --- GLOBAL STATE ---
         let allDrops = [], filteredDrops = [];
         let currentFilter = 'all', currentSort = 'newest', searchQuery = '';
@@ -651,14 +651,14 @@
                 DOMElements.headerProgressBar.setAttribute('aria-valuenow', day);
             }
         };
-        
+
         let toastTimeout;
         const showToast = (message, type = 'success') => {
             clearTimeout(toastTimeout);
             DOMElements.toastMessage.textContent = message;
             DOMElements.toast.className = 'toast'; // Reset classes
             DOMElements.toastIcon.setAttribute('class', 'w-5 h-5');
-            
+
             const icons = {
                 success: { path: `<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>`, color: 'text-green-500' },
                 error: { path: `<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>`, color: 'text-red-500' },
@@ -668,11 +668,11 @@
             DOMElements.toast.classList.add(type);
             DOMElements.toastIcon.innerHTML = icons[type].path;
             DOMElements.toastIcon.classList.add(icons[type].color);
-            
+
             DOMElements.toast.classList.add('show');
             toastTimeout = setTimeout(() => DOMElements.toast.classList.remove('show'), 5000);
         };
-        
+
         let modalOpener;
         const toggleModal = (modal, show, opener) => {
             if (modal) {
@@ -688,7 +688,7 @@
                 }
             }
         };
-        
+
         // --- FORM HANDLING ---
         const resetForm = () => {
             if(DOMElements.dropForm) DOMElements.dropForm.reset();
@@ -725,7 +725,7 @@
                 DOMElements.publishBtn.disabled = true;
             }
         };
-        
+
         // --- SAMPLE DATA ---
         async function addSampleDataIfNeeded() {
             const sampleDataFlag = 'sampleDataAdded_v5';
@@ -750,7 +750,7 @@
                     contentType: "Video",
                     access: "Free",
                     status: 'published',
-                    day: day > 0 ? day : 1, 
+                    day: day > 0 ? day : 1,
                     hearts: 25,
                     timestamp: serverTimestamp(),
                     imageUrl: "https://placehold.co/400x300/f472b6/ffffff?text=Welcome!"
@@ -804,7 +804,7 @@
                     imageUrl: "https://placehold.co/400x300/34d399/ffffff?text=Tutorial"
                 }
             ];
-            
+
             const batch = writeBatch(db);
             sampleDrops.forEach((drop) => {
                 const docRef = doc(collection(db, dropsCollectionPath));
@@ -834,7 +834,7 @@
                     <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"></path></svg>
                 </button>
             ` : '';
-            
+
             const card = document.createElement('div');
             card.className = 'card flex flex-col md:flex-row relative';
             card.dataset.id = drop.id;
@@ -861,7 +861,7 @@
                 <div class="flex-1 p-4 md:p-5 flex flex-col">
                     <span class="tag ${drop.access === 'Paid' ? 'tag-paid' : 'tag-free'} absolute top-3 right-3">${drop.access}</span>
                     <div class="flex-grow space-y-2 mt-4">
-                        
+
                     </div>
                      <p class="text-xs text-muted mt-4">Day ${drop.day} • ${drop.contentType} • ${time}</p>
                     <div class="flex items-center gap-3 mt-4 pt-3 border-t border-white/10">
@@ -884,7 +884,7 @@
 
             return card;
         };
-        
+
         const renderDrops = () => {
             if (DOMElements.skeletonLoaders) {
                 DOMElements.skeletonLoaders.classList.add('hidden');
@@ -898,7 +898,7 @@
             // Update stats
             const publishedDrops = allDrops.filter(d => d.status === 'published');
             const publishedDropsCount = publishedDrops.length;
-            
+
             if (DOMElements.headerDrops) DOMElements.headerDrops.textContent = publishedDropsCount;
             if (DOMElements.todayCount) DOMElements.todayCount.textContent = todaysDrops.length;
             if (DOMElements.freeCount) DOMElements.freeCount.textContent = publishedDrops.filter(d => d.access === 'Free').length;
@@ -921,9 +921,9 @@
                 DOMElements.previousDrops.innerHTML = '';
                  previousToShow.forEach(d => DOMElements.previousDrops.appendChild(createDropCard(d)));
             }
-            
+
             if (DOMElements.loadMoreContainer) {
-                DOMElements.loadMoreContainer.innerHTML = ''; 
+                DOMElements.loadMoreContainer.innerHTML = '';
                 if (previousDrops.length > visiblePreviousDrops) {
                     const loadMoreBtn = document.createElement('button');
                     loadMoreBtn.textContent = 'Load More Drops';
@@ -944,7 +944,7 @@
             }
             updateItemListSchema(publishedDrops.slice(0, 10)); // Update schema with top drops
         };
-        
+
         // --- DATA LOGIC ---
         const applyFiltersAndSort = () => {
             visiblePreviousDrops = DROPS_PER_PAGE; // Reset pagination on filter change
@@ -959,7 +959,7 @@
             filteredDrops.sort((a, b) => {
                 const timeA = a.timestamp?.toMillis ? a.timestamp.toMillis() : 0;
                 const timeB = b.timestamp?.toMillis ? b.timestamp.toMillis() : 0;
-                
+
                 switch (currentSort) {
                     case 'oldest': return timeA - timeB;
                     case 'most-loved': return (b.hearts || 0) - (a.hearts || 0);
@@ -971,11 +971,11 @@
         };
 
         const setupFirestoreListener = (isAdminFlag) => {
-            if (unsubscribeDrops) unsubscribeDrops(); 
-            
+            if (unsubscribeDrops) unsubscribeDrops();
+
             const dropsCollectionRef = collection(db, dropsCollectionPath);
 
-            const q = isAdminFlag 
+            const q = isAdminFlag
                 ? query(dropsCollectionRef)
                 : query(dropsCollectionRef, where('status', '==', 'published'));
 
@@ -1013,7 +1013,7 @@
                 }
             }
         }
-        
+
         // --- EVENT LISTENERS & HANDLERS ---
         const handleAdminFormSubmit = async (e) => {
             e.preventDefault();
@@ -1025,10 +1025,10 @@
                 contentType: document.getElementById('drop-type').value,
                 access: document.getElementById('drop-access').value,
             };
-            
+
             try { new URL(dropData.link) } catch { showToast("Please enter a valid link.", "error"); return; }
             if (dropData.imageUrl) { try { new URL(dropData.imageUrl) } catch { showToast("Please enter a valid image URL.", "error"); return; } }
-            
+
             const btnSpinner = DOMElements.publishBtn.querySelector('.loading-spinner');
             btnSpinner.classList.remove('hidden');
             DOMElements.publishBtn.disabled = true;
@@ -1038,21 +1038,21 @@
                     const date = document.getElementById('schedule-date').value;
                     const time = document.getElementById('schedule-time').value;
                     if (!date || !time) throw new Error("Please select a valid schedule date and time.");
-                    
+
                     dropData.status = 'scheduled';
                     dropData.scheduledFor = new Date(`${date}T${time}`).toISOString();
-                    dropData.timestamp = null; 
+                    dropData.timestamp = null;
                 } else {
                     dropData.status = 'published';
                     dropData.day = getCurrentDay();
                     dropData.timestamp = serverTimestamp();
                 }
-                
+
                 if (editingDropId) {
                     await updateDoc(doc(db, dropsCollectionPath, editingDropId), dropData);
                     showToast('Drop updated successfully!');
                 } else {
-                    dropData.hearts = 0; 
+                    dropData.hearts = 0;
                     await addDoc(collection(db, dropsCollectionPath), dropData);
                     showToast('Drop added successfully!');
                 }
@@ -1069,9 +1069,9 @@
         const handleContentClick = async (e) => {
             const btn = e.target.closest('button');
             if (!btn) return;
-            
+
             const dropId = btn.dataset.id;
-            
+
             if (btn.classList.contains('share-btn')) {
                 const { link, title } = btn.dataset;
                  if (navigator.share) {
@@ -1116,7 +1116,7 @@
                         heartedPosts[dropId] = true;
                     }
                 });
-                
+
                 localStorage.setItem('heartedPosts', JSON.stringify(heartedPosts));
             }
         };
@@ -1127,7 +1127,7 @@
             const password = document.getElementById('admin-password').value;
             const btnSpinner = DOMElements.adminLoginForm.querySelector('.loading-spinner');
             btnSpinner.classList.remove('hidden');
-            
+
             try {
                 await signInWithEmailAndPassword(auth, email, password);
                 toggleModal(DOMElements.adminLoginModal, false);
@@ -1140,7 +1140,7 @@
         };
 
         // --- AUTH STATE CHANGE ---
-        
+
         async function initializeAppAndAuth() {
             try {
                 const app = initializeApp(firebaseConfig);
@@ -1153,17 +1153,17 @@
                     onAuthStateChanged(auth, async (user) => {
                         currentUser = user;
                         if (user && !user.isAnonymous) {
-                            const idTokenResult = await user.getIdTokenResult(true); 
+                            const idTokenResult = await user.getIdTokenResult(true);
                             isAdmin = !!idTokenResult.claims.admin;
                         } else {
                             isAdmin = false;
                         }
-                        
+
                         document.body.classList.toggle('is-admin', isAdmin);
                         DOMElements.adminPanel.classList.toggle('hidden', !isAdmin);
                         DOMElements.adminSigninBtn.classList.toggle('hidden', isAdmin);
                         DOMElements.adminSignoutBtn.classList.toggle('hidden', !isAdmin);
-                        
+
                         setupFirestoreListener(isAdmin);
                         applyFiltersAndSort();
                     });
@@ -1173,7 +1173,7 @@
                 showToast("Error connecting to database", "error");
             }
         }
-        
+
         function setupFocusTrap(modal) {
             const focusableElements = modal.querySelectorAll(
                 'button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])'
@@ -1213,7 +1213,7 @@
             initializeAppAndAuth();
 
             DOMElements.challengeDates.textContent = `${START_DATE.toLocaleDateString('en-US', { month: 'long', day: 'numeric' })} — ${END_DATE.toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' })}`;
-            
+
             updateProgress();
             setInterval(updateProgress, 60000);
 
@@ -1221,23 +1221,23 @@
                 DOMElements.dropForm.addEventListener('submit', handleAdminFormSubmit);
                 DOMElements.dropForm.addEventListener('input', checkFormValidity);
             }
-            
+
             document.getElementById('content-feed').addEventListener('click', handleContentClick);
-            
+
             if(DOMElements.searchInput) {
                  DOMElements.searchInput.addEventListener('input', debounce(() => {
                     searchQuery = DOMElements.searchInput.value;
                     applyFiltersAndSort();
                 }, 300));
             }
-           
+
             if(DOMElements.sortSelect) {
                  DOMElements.sortSelect.addEventListener('change', (e) => {
                     currentSort = e.target.value;
                     applyFiltersAndSort();
                 });
             }
-           
+
             document.querySelectorAll('.filter-btn').forEach(btn => btn.addEventListener('click', (e) => {
                 document.querySelector('.filter-btn.active').classList.remove('active');
                 e.currentTarget.classList.add('active');
@@ -1257,7 +1257,7 @@
                     pwField.type = pwField.type === 'password' ? 'text' : 'password';
                 });
             }
-            
+
             if(DOMElements.cancelEditBtn) DOMElements.cancelEditBtn.addEventListener('click', resetForm);
             if(DOMElements.clearDataBtn) {
                  DOMElements.clearDataBtn.addEventListener('click', async () => {
