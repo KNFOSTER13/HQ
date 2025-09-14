@@ -8,9 +8,6 @@
     <meta name="theme-color" content="#1a0f26">
     <meta name="robots" content="index, follow">
 
-    
-
-
     <link rel="canonical" href="https://knf.kim/drops">
     <meta property="og:title" content="Kimberly's Dropathon - 75 Days of Creative Output">
     <meta property="og:description" content="Join Kimberly's 75-day creative challenge. Beating back perfectionism one drop at a time.">
@@ -370,6 +367,8 @@
                             <button class="filter-btn" data-filter="Video" aria-pressed="false">Videos</button>
                             <button class="filter-btn" data-filter="Podcast" aria-pressed="false">Podcasts</button>
                             <button class="filter-btn" data-filter="Essay" aria-pressed="false">Essays</button>
+                             <button class="filter-btn" data-filter="Free" aria-pressed="false">Free</button>
+                            <button class="filter-btn" data-filter="Paid" aria-pressed="false">Premium</button>
                         </div>
                         <select id="sort-select" class="form-input w-36" aria-label="Sort drops">
                             <option value="newest">Newest</option>
@@ -473,6 +472,7 @@
         import { getAuth, signInAnonymously, signInWithEmailAndPassword, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-auth.js";
         import { getFirestore, collection, addDoc, onSnapshot, query, where, orderBy, doc, deleteDoc, updateDoc, increment, serverTimestamp, runTransaction, getDoc, getDocs, writeBatch, limit, startAfter } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-firestore.js";
         import { getStorage, ref, uploadBytes, getDownloadURL } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-storage.js";
+        import { getAnalytics, logEvent } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-analytics.js";
 
         // --- TYPE DEFINITIONS (JSDoc) ---
         /**
@@ -584,7 +584,7 @@
         };
 
         // --- INITIALIZATION ---
-        let db, auth, storage, currentUser = null, isAdmin = false;
+        let db, auth, storage, analytics, currentUser = null, isAdmin = false;
         
         // --- GLOBAL STATE ---
         let allDrops = [], filteredDrops = [];
@@ -960,7 +960,16 @@
             filteredDrops = publishedDrops.filter(drop => {
                 const search = searchQuery.toLowerCase();
                 const matchesSearch = !search || drop.title.toLowerCase().includes(search) || drop.description.toLowerCase().includes(search);
-                const matchesFilter = currentFilter === 'all' || drop.contentType === currentFilter;
+                
+                let matchesFilter;
+                if (currentFilter === 'all') {
+                    matchesFilter = true;
+                } else if (currentFilter === 'Free' || currentFilter === 'Paid') {
+                    matchesFilter = drop.access === currentFilter;
+                } else {
+                    matchesFilter = drop.contentType === currentFilter;
+                }
+                
                 return matchesSearch && matchesFilter;
             });
 
@@ -1154,6 +1163,7 @@
                 const app = initializeApp(firebaseConfig);
                 auth = getAuth(app);
                 db = getFirestore(app);
+                analytics = getAnalytics(app);
                 await signInAnonymously(auth);
                 await addSampleDataIfNeeded(); // Add sample data on first load
 
