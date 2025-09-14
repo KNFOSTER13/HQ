@@ -53,9 +53,9 @@
         --accent-end:   #FFD9C0;     /* a warm peach */
         --cta: #f472b6;
         --cta-hover: #ec4899;
-        --text-primary: #FFFAF0; /* FloralWhite, a warm ivory */
-        --text-secondary: #EAE0D5; /* A warmer, lighter gray */
-        --text-muted: #A69C90; /* A warmer muted tone */
+        --text-primary: #FFFFF0;   /* Ivory */
+        --text-secondary: #E0D8CC; /* Lighter warm gray */
+        --text-muted: #B0A89F;   /* Lighter muted tone */
         --tag-free: #86efac;
         --tag-paid: #fde047;
         --heart: #f472b6;
@@ -223,7 +223,7 @@
             <div class="flex items-center justify-between">
                 <a href="#" class="flex items-center gap-3" aria-label="Dropathon Home">
                     <img src="LARGE-PASTEL-1.png" alt="Logo" class="h-8 w-auto">
-                    <span class="hidden sm:inline font-bold text-lg brand-font text-gradient" style="text-shadow: 0 1px 2px rgba(0,0,0,0.1);">Kimberly's Creative Dash</span>
+                    <span class="hidden sm:inline font-bold text-xl brand-font text-gradient" style="text-shadow: 0 1px 2px rgba(0,0,0,0.1);">Kimberly's Creative Dash</span>
                 </a>
                 
                 <div class="hidden md:flex items-center gap-8 text-center">
@@ -342,7 +342,11 @@
             </div>
             
             <div id="today-section" class="hidden"><h2 class="text-2xl md:text-3xl font-bold mb-4 flex items-center gap-2"><span class="w-2 h-2 bg-green-500 rounded-full animate-pulse"></span><span class="text-white brand-font text-gradient">Today's Drops</span></h2><div id="today-drops" class="grid gap-6"></div></div>
-            <div id="previous-section" class="hidden"><h2 class="text-2xl font-bold mb-4 brand-font text-gradient">Previous Drops</h2><div id="previous-drops" class="grid gap-6"></div></div>
+            <div id="previous-section" class="hidden">
+                <h2 class="text-2xl font-bold mb-4 brand-font text-gradient">Previous Drops</h2>
+                <div id="previous-drops" class="grid gap-6"></div>
+                <div id="load-more-container" class="text-center mt-8"></div>
+            </div>
             
             <div id="empty-state" class="text-center py-12 hidden"><svg class="w-24 h-24 mx-auto mb-4 text-muted opacity-50" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20 13V6a2 2 0 00-2-2H6a2 2 0 00-2 2v7m16 0v5a2 2 0 01-2 2H6a2 2 0 01-2-2v-5m16 0h-2.586a1 1 0 00-.707.293l-2.414 2.414a1 1 0 01-.707.293h-3.172a1 1 0 01-.707-.293l-2.414-2.414A1 1 0 006.586 13H4"></path></svg><p class="text-lg text-muted" id="empty-state-message">No drops yet. Check back soon!</p></div>
         </section>
@@ -398,6 +402,26 @@
         const END_DATE = new Date('2025-11-26T23:59:59');
         const TOTAL_DAYS = Math.ceil((END_DATE - START_DATE) / (1000 * 60 * 60 * 24)) + 1;
         const dropsCollectionPath = `artifacts/${firebaseConfig.projectId}/public/data/drops`;
+        
+        // --- UTILITY FUNCTIONS (Hoisted) ---
+        const getCurrentDay = () => {
+            const now = new Date();
+            if (now < START_DATE) return 0;
+            if (now > END_DATE) return TOTAL_DAYS;
+            return Math.floor((now - START_DATE) / (1000 * 60 * 60 * 24)) + 1;
+        };
+        const escapeHtml = (str) => {
+            const div = document.createElement('div');
+            div.textContent = str;
+            return div.innerHTML;
+        };
+        const debounce = (func, wait) => {
+            let timeout;
+            return (...args) => {
+                clearTimeout(timeout);
+                timeout = setTimeout(() => func.apply(this, args), wait);
+            };
+        };
 
 
         // --- INITIALIZATION ---
@@ -407,6 +431,7 @@
             auth = getAuth(app);
             db = getFirestore(app);
             await signInAnonymously(auth);
+            addSampleDataIfNeeded(); // Add sample data on first load
         } catch (error) {
             console.error("Firebase initialization failed:", error);
             showToast("Error connecting to database", "error");
@@ -418,7 +443,9 @@
         let heartedPosts = JSON.parse(localStorage.getItem('heartedPosts') || '{}');
         let editingDropId = null;
         let unsubscribeDrops;
-        
+        let visiblePreviousDrops = 5;
+        const DROPS_PER_PAGE = 5;
+
         // --- DOM ELEMENTS ---
         const DOMElements = {
             headerDay: document.getElementById('header-day'),
@@ -451,6 +478,7 @@
             todayDrops: document.getElementById('today-drops'),
             previousSection: document.getElementById('previous-section'),
             previousDrops: document.getElementById('previous-drops'),
+            loadMoreContainer: document.getElementById('load-more-container'),
             scheduledSection: document.getElementById('scheduled-section'),
             scheduledDrops: document.getElementById('scheduled-drops'),
             emptyState: document.getElementById('empty-state'),
@@ -461,26 +489,6 @@
             toast: document.getElementById('toast'),
             toastMessage: document.getElementById('toast-message'),
             toastIcon: document.getElementById('toast-icon'),
-        };
-
-        // --- UTILITY FUNCTIONS ---
-        const getCurrentDay = () => {
-            const now = new Date();
-            if (now < START_DATE) return 0;
-            if (now > END_DATE) return TOTAL_DAYS;
-            return Math.floor((now - START_DATE) / (1000 * 60 * 60 * 24)) + 1;
-        };
-        const escapeHtml = (str) => {
-            const div = document.createElement('div');
-            div.textContent = str;
-            return div.innerHTML;
-        };
-        const debounce = (func, wait) => {
-            let timeout;
-            return (...args) => {
-                clearTimeout(timeout);
-                timeout = setTimeout(() => func.apply(this, args), wait);
-            };
         };
 
         // --- UI & FEEDBACK FUNCTIONS ---
@@ -557,6 +565,91 @@
             }
         };
         
+        // --- SAMPLE DATA ---
+        async function addSampleDataIfNeeded() {
+            if (localStorage.getItem('sampleDataAdded_v4')) {
+                return;
+            }
+
+            const day = getCurrentDay();
+
+            const sampleDrops = [
+                {
+                    title: "Today's Welcome Video!",
+                    description: "Kicking off the day with a warm welcome and what to expect from today's drops.",
+                    link: "https://www.youtube.com/watch?v=dQw4w9WgXcQ",
+                    contentType: "Video",
+                    access: "Free",
+                    status: 'published',
+                    day: day > 0 ? day : 1, 
+                    hearts: 25,
+                    timestamp: serverTimestamp(),
+                    imageUrl: "https://placehold.co/400x300/f472b6/ffffff?text=Welcome!"
+                },
+                {
+                    title: "Deep Dive Podcast on Creative Blocks",
+                    description: "Exploring the psychology of creative blocks and how to overcome them. Special guest joins the show.",
+                    link: "https://www.youtube.com/watch?v=dQw4w9WgXcQ",
+                    contentType: "Podcast",
+                    access: "Paid",
+                    status: 'published',
+                    day: day > 1 ? day - 1 : 1,
+                    hearts: 22,
+                    timestamp: serverTimestamp(),
+                    imageUrl: "https://placehold.co/400x300/a78bfa/ffffff?text=Podcast"
+                },
+                {
+                    title: "My Favorite Productivity Tools (Essay)",
+                    description: "A written piece on the top 5 tools I use every day to stay organized and productive during this challenge.",
+                    link: "https://www.youtube.com/watch?v=dQw4w9WgXcQ",
+                    contentType: "Essay",
+                    access: "Free",
+                    status: 'published',
+                    day: day > 2 ? day - 2 : 1,
+                    hearts: 8,
+                    timestamp: serverTimestamp(),
+                    imageUrl: "https://placehold.co/400x300/86efac/ffffff?text=Essay"
+                },
+                 {
+                    title: "Quick Social Media Tip",
+                    description: "A short and punchy tip for growing your audience on social media. Easy to implement today!",
+                    link: "https://www.youtube.com/watch?v=dQw4w9WgXcQ",
+                    contentType: "Social Post",
+                    access: "Free",
+                    status: 'published',
+                    day: day > 3 ? day - 3 : 1,
+                    hearts: 30,
+                    timestamp: serverTimestamp(),
+                    imageUrl: "https://placehold.co/400x300/fde047/ffffff?text=Social"
+                },
+                {
+                    title: "How to Set Up Your Workspace for Creativity",
+                    description: "A step-by-step tutorial on organizing your physical and digital space to foster creativity and focus.",
+                    link: "https://www.youtube.com/watch?v=dQw4w9WgXcQ",
+                    contentType: "Tutorial",
+                    access: "Paid",
+                    status: 'published',
+                    day: day > 4 ? day - 4 : 1,
+                    hearts: 18,
+                    timestamp: serverTimestamp(),
+                    imageUrl: "https://placehold.co/400x300/34d399/ffffff?text=Tutorial"
+                }
+            ];
+
+            const dropsCollectionRef = collection(db, dropsCollectionPath);
+            for (const drop of sampleDrops) {
+                try {
+                    await addDoc(dropsCollectionRef, drop);
+                } catch (e) {
+                    console.error("Error adding document: ", e);
+                }
+            }
+
+            localStorage.setItem('sampleDataAdded_v4', 'true');
+            console.log("Sample data added.");
+        }
+
+
         // --- RENDER FUNCTIONS ---
         const createDropCardHTML = (drop, isScheduled = false) => {
             const isHearted = heartedPosts[drop.id];
@@ -633,14 +726,30 @@
             if (DOMElements.streakCount) DOMElements.streakCount.textContent = daysWithDrops;
             if (DOMElements.headerStreak) DOMElements.headerStreak.textContent = daysWithDrops;
 
-            // Render sections
+            // Render Today's drops
             if (DOMElements.todaySection) DOMElements.todaySection.classList.toggle('hidden', todaysDrops.length === 0);
             if (DOMElements.todayDrops) DOMElements.todayDrops.innerHTML = todaysDrops.map(d => createDropCardHTML(d)).join('');
             
-            if (DOMElements.previousSection) DOMElements.previousSection.classList.toggle('hidden', previousDrops.length === 0);
-            if (DOMElements.previousDrops) DOMElements.previousDrops.innerHTML = previousDrops.map(d => createDropCardHTML(d)).join('');
+            // Render Previous Drops with "Load More"
+            const previousToShow = previousDrops.slice(0, visiblePreviousDrops);
+            if (DOMElements.previousSection) DOMElements.previousSection.classList.toggle('hidden', previousToShow.length === 0);
+            if (DOMElements.previousDrops) DOMElements.previousDrops.innerHTML = previousToShow.map(d => createDropCardHTML(d)).join('');
             
-            if (filteredDrops.length === 0) {
+            if (DOMElements.loadMoreContainer) {
+                DOMElements.loadMoreContainer.innerHTML = ''; 
+                if (previousDrops.length > visiblePreviousDrops) {
+                    const loadMoreBtn = document.createElement('button');
+                    loadMoreBtn.textContent = 'Load More Drops';
+                    loadMoreBtn.className = 'btn btn-secondary';
+                    loadMoreBtn.onclick = () => {
+                        visiblePreviousDrops += DROPS_PER_PAGE;
+                        renderDrops();
+                    };
+                    DOMElements.loadMoreContainer.appendChild(loadMoreBtn);
+                }
+            }
+
+            if (filteredDrops.length === 0 && todaysDrops.length === 0) {
                 if (DOMElements.emptyState) DOMElements.emptyState.classList.remove('hidden');
                 if (DOMElements.emptyStateMessage) DOMElements.emptyStateMessage.textContent = (searchQuery || currentFilter !== 'all') ? 'No drops found matching your criteria.' : 'No drops yet. Check back soon!';
             } else {
@@ -655,6 +764,7 @@
         
         // --- DATA LOGIC ---
         const applyFiltersAndSort = () => {
+            visiblePreviousDrops = DROPS_PER_PAGE; // Reset pagination on filter change
             const publishedDrops = allDrops.filter(d => d.status === 'published');
             filteredDrops = publishedDrops.filter(drop => {
                 const search = searchQuery.toLowerCase();
@@ -664,7 +774,6 @@
             });
 
             filteredDrops.sort((a, b) => {
-                // FIX: Add null checks for timestamps which might not exist on all documents
                 const timeA = a.timestamp?.toMillis ? a.timestamp.toMillis() : 0;
                 const timeB = b.timestamp?.toMillis ? b.timestamp.toMillis() : 0;
                 
@@ -682,11 +791,10 @@
         };
 
         const setupFirestoreListener = (isAdminFlag) => {
-            if (unsubscribeDrops) unsubscribeDrops(); // Unsubscribe from previous listener
+            if (unsubscribeDrops) unsubscribeDrops(); 
             
             const dropsCollectionRef = collection(db, dropsCollectionPath);
 
-            // FIX: Removed orderBy from non-admin query to prevent index error. Sorting is handled client-side.
             const q = isAdminFlag 
                 ? query(dropsCollectionRef)
                 : query(dropsCollectionRef, where('status', '==', 'published'));
@@ -738,7 +846,7 @@
                     await updateDoc(doc(db, dropsCollectionPath, editingDropId), dropData);
                     showToast('Drop updated successfully!');
                 } else {
-                    dropData.hearts = 0; // Only set on new doc
+                    dropData.hearts = 0; 
                     await addDoc(collection(db, dropsCollectionPath), dropData);
                     showToast('Drop added successfully!');
                 }
@@ -810,7 +918,7 @@
         onAuthStateChanged(auth, async (user) => {
             currentUser = user;
             if (user && !user.isAnonymous) {
-                const idTokenResult = await user.getIdTokenResult(true); // Force refresh
+                const idTokenResult = await user.getIdTokenResult(true); 
                 isAdmin = !!idTokenResult.claims.admin;
             } else {
                 isAdmin = false;
@@ -835,7 +943,9 @@
             DOMElements.dropForm.addEventListener('submit', handleAdminFormSubmit);
             DOMElements.dropForm.addEventListener('input', checkFormValidity);
             document.getElementById('content-feed').addEventListener('click', handleContentClick);
-            DOMElements.scheduledDrops.addEventListener('click', handleContentClick);
+            if(DOMElements.scheduledDrops) {
+                DOMElements.scheduledDrops.addEventListener('click', handleContentClick);
+            }
             DOMElements.searchInput.addEventListener('input', debounce(() => {
                 searchQuery = DOMElements.searchInput.value;
                 applyFiltersAndSort();
@@ -871,6 +981,4 @@
     </script>
 </body>
 </html>
-
-
 
