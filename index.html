@@ -276,8 +276,8 @@
                 </div>
             </div>
         </nav>
-        <div class="absolute bottom-0 left-0 w-full h-1 bg-white/5">
-            <div id="header-progress-bar" class="header-progress-fill" style="width: 0%;"></div>
+        <div id="header-progress-bar" role="progressbar" aria-valuemin="0" aria-valuemax="75" aria-valuenow="1" class="absolute bottom-0 left-0 w-full h-1 bg-white/5">
+            <div class="header-progress-fill" style="width: 1%;"></div>
         </div>
     </header>
 
@@ -287,6 +287,8 @@
             <h1 id="hero-title" class="text-3xl md:text-4xl font-bold mb-4 brand-font text-gradient">Beating back perfectionism one drop at a time.</h1>
             <p class="text-lg text-muted mb-2"><span id="challenge-dates">September 13 — November 26, 2025</span></p>
             
+            <div id="day-dots-container" class="flex gap-0.5 overflow-x-auto max-w-full py-2 px-4"></div>
+
             <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mt-8 max-w-2xl mx-auto" role="region" aria-label="Challenge statistics">
                 <div class="card p-4 text-center"><div class="text-2xl font-bold text-accent" id="today-count" aria-live="polite">0</div><div class="text-sm text-muted">Today's Drops</div></div>
                 <div class="card p-4 text-center"><div class="text-2xl font-bold text-cta" id="streak-count" aria-live="polite">0</div><div class="text-sm text-muted">Day Streak</div></div>
@@ -310,12 +312,22 @@
                         <div><label for="drop-access" class="block text-sm font-medium mb-1">Access Level</label><select id="drop-access" class="form-input"><option>Free</option><option>Paid</option></select></div>
                     </div>
                     
+                    <div class="pt-4 border-t border-white/10"><label class="flex items-center gap-2 cursor-pointer"><input type="checkbox" id="schedule-toggle" class="form-checkbox h-4 w-4 rounded bg-white/10 border-white/20 text-accent focus:ring-accent"><span class="text-sm font-medium">Schedule for later</span></label></div>
+                    <div id="schedule-options" class="hidden grid grid-cols-2 gap-4">
+                        <div><label for="schedule-date" class="block text-sm font-medium mb-1">Date</label><input type="date" id="schedule-date" class="form-input"></div>
+                        <div><label for="schedule-time" class="block text-sm font-medium mb-1">Time (Local)</label><input type="time" id="schedule-time" class="form-input"></div>
+                    </div>
+                    
                     <div class="flex items-center gap-4 pt-2">
                         <button type="submit" id="publish-btn" class="btn btn-primary" disabled><span class="loading-spinner hidden"></span><svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8"></path></svg><span id="publish-btn-text">Drop It!</span></button>
                         <button type="button" id="cancel-edit-btn" class="btn btn-secondary hidden">Cancel Edit</button>
                         <button type="button" id="clear-data-btn" class="btn btn-secondary !bg-red-500/10 !text-red-400 !border-red-500/20 ml-auto">Clear All Data</button>
                     </div>
                 </form>
+            </div>
+            <div id="scheduled-section" class="hidden mt-8">
+                <h3 class="text-xl font-bold mb-4 brand-font text-gradient">Scheduled Drops</h3>
+                <div id="scheduled-drops" class="space-y-4"></div>
             </div>
         </section>
 
@@ -490,6 +502,7 @@
          * @property {HTMLElement} toastIcon
          * @property {HTMLElement} contentFeed
          * @property {HTMLElement} clearDataBtn
+         * @property {HTMLElement} dayDotsContainer
          */
 
 
@@ -595,6 +608,9 @@
             toastMessage: document.getElementById('toast-message'),
             toastIcon: document.getElementById('toast-icon'),
             contentFeed: document.getElementById('content-feed'),
+            dayDotsContainer: document.getElementById('day-dots-container'),
+            scheduleToggle: document.getElementById('schedule-toggle'),
+            scheduleOptions: document.getElementById('schedule-options'),
         };
 
         // --- UI & FEEDBACK FUNCTIONS ---
@@ -602,7 +618,13 @@
             const day = getCurrentDay();
             const progress = (day / TOTAL_DAYS) * 100;
             if (DOMElements.headerDay) DOMElements.headerDay.textContent = day;
-            if (DOMElements.headerProgressBar) DOMElements.headerProgressBar.style.width = `${progress}%`;
+            if (DOMElements.headerProgressBar) {
+                const progressBar = DOMElements.headerProgressBar.querySelector('.header-progress-fill');
+                if (progressBar) {
+                    progressBar.style.width = `${progress}%`;
+                }
+                DOMElements.headerProgressBar.setAttribute('aria-valuenow', day);
+            }
         };
         
         const showToast = (message, type = 'success') => {
@@ -769,11 +791,10 @@
 
 
         // --- RENDER FUNCTIONS ---
-        const createDropCardHTML = (drop, isScheduled = false) => {
+        const createDropCard = (drop) => {
             const isHearted = heartedPosts[drop.id];
-            const dropDate = toJsDate(isScheduled ? drop.scheduledFor : drop.timestamp);
+            const dropDate = toJsDate(drop.timestamp);
             const time = dropDate.toLocaleTimeString([], { hour: 'numeric', minute: '2-digit' });
-            const date = dropDate.toLocaleDateString([], { month: 'short', day: 'numeric' });
 
             const fallbackImage = `https://placehold.co/400x300/7c3aed/ffffff?text=${encodeURIComponent(drop.contentType)}`;
             const imageUrl = drop.imageUrl || fallbackImage;
@@ -788,7 +809,7 @@
             ` : '';
             
             const card = document.createElement('div');
-            card.className = 'card flex flex-col md:flex-row';
+            card.className = 'card flex flex-col md:flex-row relative';
             card.dataset.id = drop.id;
 
             const titleElement = document.createElement('h3');
@@ -811,22 +832,19 @@
                     <img src="${escapeHtml(imageUrl)}" alt="${escapeHtml(drop.title)}" class="w-full h-full object-cover" loading="lazy" decoding="async" onerror="this.onerror=null;this.src='${fallbackImage}';">
                 </div>
                 <div class="flex-1 p-4 md:p-5 flex flex-col">
-                    <div class="flex items-center justify-between mb-2 text-xs text-muted">
-                        <div class="flex items-center gap-2">
-                            <span>Day ${drop.day} • ${time}</span>
-                            <span>•</span>
-                            <span>${drop.contentType}</span>
-                        </div>
-                        <div class="flex items-center gap-3">
-                            <button class="heart-btn flex items-center gap-1 ${isHearted ? 'text-heart hearted' : 'text-muted hover:text-heart'}" data-id="${drop.id}" aria-label="${isHearted ? 'Remove heart' : 'Add heart'}">
-                                <svg class="w-4 h-4" fill="${isHearted ? 'currentColor' : 'none'}" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.25l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.5l-1.318-1.182a4.5 4.5 0 00-6.364 0z"></path></svg>
-                                <span class="font-mono">${drop.hearts || 0}</span>
-                            </button>
-                            ${adminButtons}
-                        </div>
+                    <span class="tag ${drop.access === 'Paid' ? 'tag-paid' : 'tag-free'} absolute top-3 right-3">${drop.access}</span>
+                    <div class="flex-grow space-y-2 mt-4">
+                        
                     </div>
-                    <div class="flex-grow space-y-2">
-                        <span class="tag ${drop.access === 'Paid' ? 'tag-paid' : 'tag-free'}">${drop.access}</span>
+                     <p class="text-xs text-muted mt-4">Day ${drop.day} • ${drop.contentType} • ${time}</p>
+                    <div class="flex items-center gap-3 mt-4 pt-3 border-t border-white/10">
+                         <button class="heart-btn flex items-center gap-1 ${isHearted ? 'text-heart hearted' : 'text-muted hover:text-heart'}" data-id="${drop.id}" aria-label="${isHearted ? 'Remove heart' : 'Add heart'}">
+                            <svg class="w-4 h-4" fill="${isHearted ? 'currentColor' : 'none'}" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.25l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.5l-1.318-1.182a4.5 4.5 0 00-6.364 0z"></path></svg>
+                            <span class="font-mono">${drop.hearts || 0}</span>
+                        </button>
+                        <div class="ml-auto flex items-center gap-3">
+                           ${adminButtons}
+                        </div>
                     </div>
                 </div>
             `;
@@ -863,7 +881,7 @@
             if (DOMElements.todaySection) DOMElements.todaySection.classList.toggle('hidden', todaysDrops.length === 0);
             if (DOMElements.todayDrops) {
                 DOMElements.todayDrops.innerHTML = '';
-                todaysDrops.forEach(d => DOMElements.todayDrops.appendChild(createDropCardHTML(d)));
+                todaysDrops.forEach(d => DOMElements.todayDrops.appendChild(createDropCard(d)));
             }
 
             // Render Previous Drops with "Load More"
@@ -871,7 +889,7 @@
             if (DOMElements.previousSection) DOMElements.previousSection.classList.toggle('hidden', previousToShow.length === 0);
             if (DOMElements.previousDrops) {
                 DOMElements.previousDrops.innerHTML = '';
-                 previousToShow.forEach(d => DOMElements.previousDrops.appendChild(createDropCardHTML(d)));
+                 previousToShow.forEach(d => DOMElements.previousDrops.appendChild(createDropCard(d)));
             }
             
             if (DOMElements.loadMoreContainer) {
@@ -919,6 +937,7 @@
                 }
             });
             renderDrops();
+            renderDayDots();
         };
 
         const setupFirestoreListener = (isAdminFlag) => {
@@ -952,6 +971,18 @@
             };
             document.getElementById('itemListSchema').textContent = JSON.stringify(itemListElement);
         };
+
+        const renderDayDots = () => {
+            const currentDay = getCurrentDay();
+            if (DOMElements.dayDotsContainer) {
+                DOMElements.dayDotsContainer.innerHTML = '';
+                for (let i = 1; i <= TOTAL_DAYS; i++) {
+                    const dot = document.createElement('div');
+                    dot.className = `w-2 h-2 rounded-full ${i < currentDay ? 'bg-accent' : 'bg-muted'}`;
+                    DOMElements.dayDotsContainer.appendChild(dot);
+                }
+            }
+        }
         
         // --- EVENT LISTENERS & HANDLERS ---
         const handleAdminFormSubmit = async (e) => {
@@ -973,7 +1004,6 @@
             DOMElements.publishBtn.disabled = true;
 
             try {
-                // Simplified: Removing scheduling logic for now
                 dropData.status = 'published';
                 dropData.day = getCurrentDay();
                 dropData.timestamp = serverTimestamp();
