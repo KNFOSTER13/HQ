@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Kimberly Nicole Foster — Cultural Critic, Creator, Host</title>
+  <meta name="description" content="The official landing page for Kimberly Nicole Foster — essays, videos, livestreams, and the multi‑brand media ecosystem behind For Harriet, KNF, Taste of Kimberly, and more." />
+  <meta name="theme-color" content="#1a0f26" />
+  <meta name="robots" content="index, follow" />
+
+  <!-- Social -->
+  <link rel="canonical" href="https://knf.kim" />
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="Kimberly Nicole Foster" />
+  <meta property="og:title" content="Kimberly Nicole Foster — Cultural Critic, Creator, Host" />
+  <meta property="og:description" content="Essays, videos, livestreams, and a multi‑brand ecosystem: For Harriet, KNF, Taste of Kimberly, Making Things Is Hard, Black Women in the Wild." />
+  <meta property="og:image" content="https://knfoster13.github.io/HQ/kdrop6.png" />
+  <meta property="og:url" content="https://knf.kim" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:creator" content="@kimberlynfoster" />
+
+  <!-- Schema: person + itemlist shells (filled later) -->
+  <script type="application/ld+json" id="personSchema">{
+    "@context":"https://schema.org",
+    "@type":"Person",
+    "name":"Kimberly Nicole Foster",
+    "url":"https://knf.kim",
+    "sameAs":[
+      "https://www.youtube.com/@ForHarriet",
+      "https://www.instagram.com/kimberlynfoster/",
+      "https://www.instagram.com/forharriet/",
+      "https://www.patreon.com/kimberlynfoster"
+    ],
+    "jobTitle":"Writer, Cultural Critic, Host",
+    "brand":{"@type":"Brand","name":"For Harriet"}
+  }</script>
+  <script type="application/ld+json" id="itemListSchema"></script>
+
+  <!-- Fonts & Tailwind -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    :root{
+      --bg-dark:#1a0f26; --bg-center:#2d1b42; --bg-edge:#241538;
+      --surface:rgba(42,26,61,.85); --surface-hover:rgba(52,36,71,.95);
+      --accent:#a78bfa; --accent-bright:#c4b5fd;
+      --accent-start:#C6B6F7; --accent-end:#FFD9C0;
+      --cta:#f472b6; --cta-hover:#ec4899;
+      --text-primary:#FCFBF7; --text-secondary:#E5E1DA; --text-muted:#BDB6AE;
+      --border-color:rgba(167,139,250,.15); --border-color-hover:rgba(167,139,250,.3);
+      --purple-glow:rgba(150,129,237,.4);
+    }
+    html{scroll-behavior:smooth}
+    body{font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,"Helvetica Neue",Arial,"Apple Color Emoji","Segoe UI Emoji";min-height:100vh;color:var(--text-primary);background:radial-gradient(ellipse at top center,var(--bg-center),var(--bg-edge));}
+    .brand-font{font-family:'DM Serif Display',serif}
+    .text-gradient{background:linear-gradient(to right,var(--accent-start),var(--accent-end));-webkit-background-clip:text;background-clip:text;color:transparent}
+    .frosted{background:rgba(26,15,38,.8);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border-bottom:1px solid rgba(255,255,255,.1)}
+    .card{background:var(--surface);border:1px solid var(--border-color);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);border-radius:.85rem;box-shadow:inset 0 0 0 1px rgba(255,255,255,.08);transition:.2s}
+    .card:hover{transform:translateY(-2px);background:var(--surface-hover);border-color:var(--border-color-hover);}
+    .btn{display:inline-flex;align-items:center;justify-content:center;gap:.5rem;font-weight:600;border:none;border-radius:9999px;padding:.7rem 1.2rem;cursor:pointer;transition:.2s}
+    .btn-primary{background:linear-gradient(135deg,var(--cta),var(--cta-hover));color:#fff}
+    .btn-primary:hover{transform:scale(1.04);box-shadow:0 12px 28px rgba(244,114,182,.28)}
+    .btn-secondary{background:rgba(167,139,250,.1);color:var(--accent-bright);border:1px solid rgba(167,139,250,.3)}
+    .btn-secondary:hover{background:rgba(167,139,250,.18)}
+    .pill{border:1px solid rgba(167,139,250,.3);background:rgba(167,139,250,.12);color:var(--accent-bright);border-radius:9999px;padding:.35rem .7rem;font-size:.8rem;font-weight:600}
+    .header-progress{height:.5rem;border-radius:9999px;background:rgba(255,255,255,.1);position:relative;overflow:hidden}
+    .header-progress > span{position:absolute;inset:0;background:linear-gradient(90deg,var(--accent-start),var(--accent-end));width:24%;box-shadow:0 0 8px var(--accent-start);animation:shine 2s ease-in-out infinite}
+    @keyframes shine{0%,100%{opacity:.7}50%{opacity:1}}
+    .form-input{background:rgba(0,0,0,.2);border:1px solid rgba(167,139,250,.2);color:var(--text-primary);padding:.75rem 1rem;border-radius:.6rem;width:100%}
+  </style>
+</head>
+<body>
+  <!-- Header -->
+  <header class="frosted sticky top-0 z-50">
+    <nav class="max-w-6xl mx-auto px-4 py-4 flex items-center gap-4 justify-between">
+      <a href="#" class="flex items-center gap-2" aria-label="Home">
+        <img src="https://knfoster13.github.io/HQ/GRADIENT-HEART-LOGO_trimmed.png" alt="KNF Logo" class="h-9 w-auto" />
+        <span class="hidden sm:inline brand-font text-xl text-gradient">Kimberly Nicole Foster</span>
+      </a>
+      <div class="hidden md:flex items-center gap-6 text-sm">
+        <a href="#brands" class="hover:underline">Brands</a>
+        <a href="#features" class="hover:underline">Featured</a>
+        <a href="#events" class="hover:underline">Events</a>
+        <a href="#press" class="hover:underline">Press</a>
+      </div>
+      <div class="flex items-center gap-2">
+        <a href="#subscribe" class="btn btn-secondary">Subscribe</a>
+        <a href="https://www.patreon.com/kimberlynfoster" target="_blank" rel="noopener" class="btn btn-primary">Patreon</a>
+      </div>
+    </nav>
+    <div class="max-w-6xl mx-auto px-4 pb-3">
+      <div class="header-progress"><span style="width:24%"></span></div>
+    </div>
+  </header>
+
+  <main id="main" class="max-w-6xl mx-auto px-4 py-10">
+    <!-- Hero -->
+    <section class="text-center">
+      <p class="pill inline-flex">Writer • Cultural Critic • Host</p>
+      <h1 class="brand-font text-3xl md:text-5xl mt-4 leading-tight">
+        Essays, videos, and live conversations that take pop culture seriously.
+      </h1>
+      <p class="text-lg text-[color:var(--text-secondary)] mt-3 max-w-2xl mx-auto">
+        I build worlds across For Harriet, KNF, Taste of Kimberly, and more—bridging Black feminist analysis, media criticism, and everyday life.
+      </p>
+      <div class="mt-6 flex flex-wrap gap-3 justify-center">
+        <a href="#features" class="btn btn-primary">Watch / Read</a>
+        <a href="#brands" class="btn btn-secondary">Explore the Ecosystem</a>
+      </div>
+    </section>
+
+    <!-- Brand Tiles -->
+    <section id="brands" class="mt-14">
+      <h2 class="brand-font text-2xl md:text-3xl text-gradient text-center">The KNF Ecosystem</h2>
+      <p class="text-center text-[color:var(--text-secondary)] mt-2">A portfolio of shows and spaces—distinct vibes, shared values.</p>
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 mt-6">
+        <!-- For Harriet -->
+        <a href="https://www.youtube.com/@ForHarriet" target="_blank" rel="noopener" class="card p-5 flex items-start gap-4">
+          <div class="p-3 rounded-xl bg-pink-500/20"><svg class="w-6 h-6 text-pink-300" viewBox="0 0 24 24" fill="currentColor"><path d="M10 17l5-5-5-5v10z"/></svg></div>
+          <div>
+            <h3 class="brand-font text-xl">For Harriet</h3>
+            <p class="text-[color:var(--text-muted)] mt-1">Feminist cultural analysis and politics with receipts.</p>
+          </div>
+        </a>
+        <!-- KNF -->
+        <a href="https://www.youtube.com/@kimberlynfoster" target="_blank" rel="noopener" class="card p-5 flex items-start gap-4">
+          <div class="p-3 rounded-xl bg-violet-500/20"><svg class="w-6 h-6 text-violet-300" viewBox="0 0 24 24" fill="none" stroke="currentColor"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 00.33 1.82l.06.06a2 2 0 11-2.83 2.83l-.06-.06a1.65 1.65 0 00-1.82-.33 1.65 1.65 0 00-1 1.51V21a2 2 0 11-4 0v-.09A1.65 1.65 0 008.4 19.4a1.65 1.65 0 00-1.82.33l-.06.06a2 2 0 11-2.83-2.83l.06-.06A1.65 1.65 0 003 15.6a1.65 1.65 0 00-1.51-1H1a2 2 0 110-4h.09A1.65 1.65 0 003 8.4a1.65 1.65 0 00-.33-1.82l-.06-.06a2 2 0 112.83-2.83l.06.06A1.65 1.65 0 007.6 3a1.65 1.65 0 001-1.51V1a2 2 0 114 0v.09A1.65 1.65 0 0015.6 3a1.65 1.65 0 001.82-.33l.06-.06a2 2 0 112.83 2.83l-.06.06A1.65 1.65 0 0019 8.4a1.65 1.65 0 001.51 1H21a2 2 0 110 4h-.09A1.65 1.65 0 0019.4 15z"/></svg></div>
+          <div>
+            <h3 class="brand-font text-xl">KNF</h3>
+            <p class="text-[color:var(--text-muted)] mt-1">Pop culture talk, smart and spicy, Tuesday–Friday.</p>
+          </div>
+        </a>
+        <!-- Taste of Kimberly -->
+        <a href="https://www.instagram.com/tasteofkimberly" target="_blank" rel="noopener" class="card p-5 flex items-start gap-4">
+          <div class="p-3 rounded-xl bg-rose-500/20"><svg class="w-6 h-6 text-rose-300" viewBox="0 0 24 24" fill="currentColor"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg></div>
+          <div>
+            <h3 class="brand-font text-xl">Taste of Kimberly</h3>
+            <p class="text-[color:var(--text-muted)] mt-1">Fashion, interiors, and the joy of pretty things.</p>
+          </div>
+        </a>
+        <!-- Making Things Is Hard -->
+        <a href="https://makingthingsishard.com" target="_blank" rel="noopener" class="card p-5 flex items-start gap-4">
+          <div class="p-3 rounded-xl bg-amber-500/20"><svg class="w-6 h-6 text-amber-300" viewBox="0 0 24 24" fill="currentColor"><path d="M3 3h18v4H3zM3 10h18v4H3zM3 17h18v4H3z"/></svg></div>
+          <div>
+            <h3 class="brand-font text-xl">Making Things Is Hard</h3>
+            <p class="text-[color:var(--text-muted)] mt-1">Creator economy, tech, and building in public.</p>
+          </div>
+        </a>
+        <!-- Black Women in the Wild -->
+        <a href="https://blackwomeninthewild.com" target="_blank" rel="noopener" class="card p-5 flex items-start gap-4">
+          <div class="p-3 rounded-xl bg-emerald-500/20"><svg class="w-6 h-6 text-emerald-300" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3 7h7l-5.5 4 2 7-6.5-4.5L5.5 20l2-7L2 9h7z"/></svg></div>
+          <div>
+            <h3 class="brand-font text-xl">Black Women in the Wild</h3>
+            <p class="text-[color:var(--text-muted)] mt-1">Meet‑ups, joy, rest, and liberation IRL.</p>
+          </div>
+        </a>
+        <!-- The Shallow Side -->
+        <a href="https://youtube.com/@kimberlynfoster/shorts" target="_blank" rel="noopener" class="card p-5 flex items-start gap-4">
+          <div class="p-3 rounded-xl bg-sky-500/20"><svg class="w-6 h-6 text-sky-300" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg></div>
+          <div>
+            <h3 class="brand-font text-xl">The Shallow Side</h3>
+            <p class="text-[color:var(--text-muted)] mt-1">Quick takes with a brain.</p>
+          </div>
+        </a>
+      </div>
+    </section>
+
+    <!-- Featured (auto‑fillable shells) -->
+    <section id="features" class="mt-16">
+      <h2 class="brand-font text-2xl md:text-3xl text-gradient text-center">Featured Work</h2>
+      <p class="text-center text-[color:var(--text-secondary)] mt-2">Latest videos, essays, and appearances.</p>
+      <div id="feature-grid" class="grid sm:grid-cols-2 lg:grid-cols-3 gap-4 mt-6"></div>
+      <div class="text-center mt-4">
+        <a href="https://www.youtube.com/@ForHarriet" target="_blank" rel="noopener" class="btn btn-secondary">More on YouTube</a>
+      </div>
+    </section>
+
+    <!-- Events / Appearances -->
+    <section id="events" class="mt-16">
+      <div class="card p-6">
+        <div class="flex items-start justify-between gap-6 flex-col md:flex-row">
+          <div>
+            <h3 class="brand-font text-xl">Upcoming Events & Live Shows</h3>
+            <p class="text-[color:var(--text-secondary)] mt-1">Live tapings, meet‑ups, and speaking—Dallas + travel.</p>
+          </div>
+          <a href="https://lu.ma/forharriet" target="_blank" rel="noopener" class="btn btn-primary">RSVP on Lu.ma</a>
+        </div>
+        <div class="mt-4 grid sm:grid-cols-2 lg:grid-cols-3 gap-3" id="event-grid">
+          <!-- simple placeholders; swap with calendar feed when ready -->
+          <div class="p-4 rounded-lg border border-[color:var(--border-color)]">
+            <p class="text-sm text-[color:var(--text-muted)]">Oct 25</p>
+            <p class="font-semibold">Black Women in the Wild — Dallas Outing</p>
+            <p class="text-sm text-[color:var(--text-secondary)]">Tickets via Lu.ma</p>
+          </div>
+          <div class="p-4 rounded-lg border border-[color:var(--border-color)]">
+            <p class="text-sm text-[color:var(--text-muted)]">TBD</p>
+            <p class="font-semibold">Live: Breakfast with Kimberly</p>
+            <p class="text-sm text-[color:var(--text-secondary)]">YouTube</p>
+          </div>
+          <div class="p-4 rounded-lg border border-[color:var(--border-color)]">
+            <p class="text-sm text-[color:var(--text-muted)]">TBD</p>
+            <p class="font-semibold">The Learning Kurve (Podcast)</p>
+            <p class="text-sm text-[color:var(--text-secondary)]">New episode taping</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Press -->
+    <section id="press" class="mt-16">
+      <h2 class="brand-font text-2xl md:text-3xl text-gradient text-center">Press & Collaborations</h2>
+      <p class="text-center text-[color:var(--text-secondary)] mt-2">Select features, interviews, and partnerships.</p>
+      <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-4 mt-6">
+        <article class="card p-5">
+          <h3 class="font-semibold">Interview — Culture & Power</h3>
+          <p class="text-sm text-[color:var(--text-muted)] mt-1">On why pop culture deserves rigorous critique.</p>
+          <a class="btn btn-secondary mt-3" href="#" aria-disabled="true">Coming Soon</a>
+        </article>
+        <article class="card p-5">
+          <h3 class="font-semibold">Partnership — Creator Economy</h3>
+          <p class="text-sm text-[color:var(--text-muted)] mt-1">Tools & workflows for independent media.</p>
+          <a class="btn btn-secondary mt-3" href="#" aria-disabled="true">Coming Soon</a>
+        </article>
+        <article class="card p-5">
+          <h3 class="font-semibold">Feature — Fashion & Taste</h3>
+          <p class="text-sm text-[color:var(--text-muted)] mt-1">The pretty things that keep us going.</p>
+          <a class="btn btn-secondary mt-3" href="#" aria-disabled="true">Coming Soon</a>
+        </article>
+      </div>
+    </section>
+
+    <!-- Subscribe -->
+    <section id="subscribe" class="mt-16">
+      <div class="card p-6">
+        <div class="flex flex-col md:flex-row items-center gap-6">
+          <div class="flex-1">
+            <h3 class="brand-font text-xl">Subscribe to the Newsletter</h3>
+            <p class="text-[color:var(--text-secondary)] mt-1">Thoughtful dispatches on culture, politics, and the creator economy.</p>
+          </div>
+          <div class="bg-white rounded-xl p-1 w-full md:w-[480px]">
+            <iframe src="https://kimberlynfoster.substack.com/embed" width="100%" height="300" style="border:1px solid #EEE; background:white;" frameborder="0" scrolling="no" title="Subscribe to newsletter"></iframe>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Quick Links -->
+    <section class="mt-14">
+      <h2 class="brand-font text-2xl md:text-3xl text-gradient text-center">Quick Links</h2>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-4 max-w-3xl mx-auto mt-6">
+        <a href="https://www.patreon.com/kimberlynfoster" class="card p-6 flex items-center gap-4" target="_blank" rel="noopener">
+          <div class="p-3 rounded-full bg-pink-500/20"><svg class="w-6 h-6 text-pink-400" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M3.172 5.172a4 4 0 015.656 0L10 6.343l1.172-1.171a4 4 0 115.656 5.656L10 17.657l-6.828-6.829a4 4 0 010-5.656z" clip-rule="evenodd"/></svg></div>
+          <span class="font-semibold">Support on Patreon</span>
+        </a>
+        <a href="https://discord.gg/your-invite" class="card p-6 flex items-center gap-4" target="_blank" rel="noopener">
+          <div class="p-3 rounded-full bg-blue-500/20"><svg class="w-6 h-6 text-blue-400" viewBox="0 0 20 20" fill="currentColor"><path d="M2 5a2 2 0 012-2h7a2 2 0 012 2v4a2 2 0 01-2 2H9l-3 3v-3H4a2 2 0 01-2-2V5z"/><path d="M15 7v2a4 4 0 01-4 4H9.828l-1.766 1.767c.28.149.599.233.938.233h2l3 3v-3h2a2 2 0 002-2V9a2 2 0 00-2-2h-1z"/></svg></div>
+          <span class="font-semibold">Join Discord</span>
+        </a>
+        <a href="https://kimberlynfoster.substack.com" class="card p-6 flex items-center gap-4" target="_blank" rel="noopener">
+          <div class="p-3 rounded-full bg-green-500/20"><svg class="w-6 h-6 text-green-400" viewBox="0 0 20 20" fill="currentColor"><path d="M2.003 5.884L10 9.882l7.997-3.998A2 2 0 0016 4H4a2 2 0 00-1.997 1.884z"/><path d="M18 8.118l-8 4-8-4V14a2 2 0 002 2h12a2 2 0 002-2V8.118z"/></svg></div>
+          <span class="font-semibold">Newsletter</span>
+        </a>
+      </div>
+    </section>
+  </main>
+
+  <footer class="text-center py-10 mt-12 text-sm" style="color:var(--text-muted)">
+    <p>© <span id="y"></span> Kimberly Nicole Foster. All rights reserved.</p>
+  </footer>
+
+  <script>
+    // Simple dynamic year
+    document.getElementById('y').textContent = new Date().getFullYear();
+
+    // Feature shells inspired by Dropathon structure
+    const features = [
+      { title: "Breakfast with Kimberly — Today’s Headlines", kind:"Video", url:"https://www.youtube.com/@ForHarriet", img:"https://placehold.co/800x500/f472b6/ffffff?text=Video" },
+      { title: "The Learning Kurve — Why Live Versions Hit Different", kind:"Podcast", url:"#", img:"https://placehold.co/800x500/a78bfa/ffffff?text=Podcast" },
+      { title: "Essay — The Hollow Spectacle of Celebrity Feminism", kind:"Essay", url:"#", img:"https://placehold.co/800x500/86efac/ffffff?text=Essay" },
+      { title: "Read & React — Beyoncé, Capital, and Us", kind:"Video", url:"#", img:"https://placehold.co/800x500/fde047/111?text=Read+%26+React" },
+      { title: "Taste — The Pretty Things Roundup", kind:"Newsletter", url:"https://kimberlynfoster.substack.com", img:"https://placehold.co/800x500/34d399/ffffff?text=Newsletter" },
+      { title: "Making Things Is Hard — Creator Systems", kind:"Article", url:"https://makingthingsishard.com", img:"https://placehold.co/800x500/7c3aed/ffffff?text=MTIH" }
+    ];
+
+    const grid = document.getElementById('feature-grid');
+    const listSchema = [];
+    features.forEach((f, i) => {
+      const a = document.createElement('a');
+      a.href = f.url; a.target = '_blank'; a.rel='noopener';
+      a.className = 'card overflow-hidden block';
+      a.innerHTML = `
+        <div class="aspect-[16/10] w-full bg-black/20">
+          <img src="${f.img}" alt="${f.title}" class="w-full h-full object-cover" loading="lazy" />
+        </div>
+        <div class="p-4">
+          <span class="pill">${f.kind}</span>
+          <h3 class="mt-2 font-semibold leading-tight">${f.title}</h3>
+        </div>`;
+      grid.appendChild(a);
+      listSchema.push({"@type":"ListItem","position":i+1,"name":f.title,"url":f.url});
+    });
+
+    document.getElementById('itemListSchema').textContent = JSON.stringify({
+      "@context":"https://schema.org","@type":"ItemList","itemListElement":listSchema
+    });
+  </script>
+</body>
+</html>
