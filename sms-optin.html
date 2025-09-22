@@ -2,112 +2,125 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Get Dropathon SMS Alerts | Kimberly Nicole Foster</title>
+  <title>Dropathon SMS Alerts | Kimberly Nicole Foster</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <!-- Google Fonts to match main site -->
+  <!-- Fonts -->
   <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=Inter:wght@400;600&display=swap" rel="stylesheet">
   <style>
     body {
-      background: radial-gradient(ellipse at top center, #2d1b42, #241538);
-      color: #FCFBF7;
-      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
-      min-height: 100vh;
       margin: 0;
+      font-family: 'Inter', sans-serif;
+      background: radial-gradient(ellipse at top center, #2d1b42, #1a0f26);
+      color: #FCFBF7;
       display: flex;
-      flex-direction: column;
       justify-content: center;
       align-items: center;
+      min-height: 100vh;
+      padding: 2rem;
     }
-    .optin-container {
-      background: rgba(42, 26, 61, 0.85);
-      border: 1.5px solid #A78BFA;
-      border-radius: 1.25rem;
-      box-shadow: 0 8px 32px rgba(26, 15, 38, 0.22);
-      max-width: 420px;
+
+    .optin-wrapper {
+      max-width: 480px;
       width: 100%;
-      padding: 2.5rem 2rem 2rem 2rem;
-      margin: 48px 0;
+      background: rgba(42, 26, 61, 0.9);
+      border: 1px solid rgba(167, 139, 250, 0.25);
+      border-radius: 1rem;
+      padding: 2.5rem 2rem;
+      box-shadow: 0 12px 32px rgba(0,0,0,0.4);
       text-align: center;
     }
-    .optin-header {
+
+    .optin-title {
       font-family: 'DM Serif Display', serif;
       font-size: 2rem;
+      margin-bottom: 0.6em;
       background: linear-gradient(to right, #C6B6F7, #ffe3dc);
       -webkit-background-clip: text;
       background-clip: text;
       color: transparent;
-      margin-bottom: 0.4em;
-      font-weight: bold;
     }
+
     .optin-desc {
       color: #BDB6AE;
-      font-size: 1.13rem;
-      margin-bottom: 1.8em;
-      font-weight: 500;
+      font-size: 1.05rem;
+      margin-bottom: 2rem;
     }
-    /* Style the TextMagic form fields/buttons if allowed */
-    .tm-widget-form input,
-    .tm-widget-form select {
-      background: rgba(0,0,0,0.20)!important;
-      color: #FCFBF7!important;
-      border: 1px solid #A78BFA!important;
-      border-radius: 0.5rem!important;
-      padding: 0.8em!important;
-      font-size: 1em;
+    .optin-desc strong {
+      color: #f472b6;
+    }
+
+    /* OVERRIDES for TextMagic */
+    .tm-widget-form {
+      text-align: left;
     }
     .tm-widget-form label {
-      color: #E5E1DA!important;
+      color: #E5E1DA !important;
       font-weight: 600;
-      font-size: 0.97em;
+      font-size: 0.95rem;
+    }
+    .tm-widget-form input,
+    .tm-widget-form select {
+      background: rgba(0,0,0,0.2) !important;
+      border: 1px solid rgba(167,139,250,0.3) !important;
+      color: #FCFBF7 !important;
+      padding: 0.75rem !important;
+      border-radius: 0.5rem !important;
+      margin-bottom: 1rem !important;
+      font-size: 1rem !important;
+      width: 100%;
+    }
+    .tm-widget-form input::placeholder {
+      color: #BDB6AE !important;
     }
     .tm-widget-form button,
     .tm-widget-form input[type="submit"] {
-      background: linear-gradient(to right, #C6B6F7, #ffe3dc)!important;
-      color: #3d3128!important;
-      border: none!important;
-      font-weight: 600!important;
-      border-radius: 9999px!important;
-      padding: 0.9em 1.7em!important;
-      font-size: 1.1em;
-      margin-top: 0.8em;
+      background: linear-gradient(to right, #C6B6F7, #ffe3dc) !important;
+      color: #3d3128 !important;
+      font-weight: 600 !important;
+      border-radius: 9999px !important;
+      padding: 0.9rem 1.5rem !important;
+      font-size: 1rem !important;
+      border: none !important;
       cursor: pointer;
-      transition: transform 0.1s;
-      box-shadow: 0 0 16px rgba(150,129,237,0.20);
+      display: block;
+      width: 100%;
+      transition: transform 0.15s ease, box-shadow 0.15s ease;
     }
     .tm-widget-form button:hover {
-      transform: scale(1.03);
-      background: linear-gradient(to right, #C6B6F7, #f472b6)!important;
+      transform: translateY(-2px);
+      box-shadow: 0 8px 20px rgba(167,139,250,0.3);
     }
+
     .tm-widget-form .tm-widget-success {
-      color: #34d399!important;
-      background: rgba(42, 26, 61, 0.93);
+      color: #34d399 !important;
+      background: rgba(42,26,61,0.95);
+      padding: 1rem;
       border-radius: 0.75rem;
-      padding: 1em 0.5em;
-      margin-top: 1em;
-      font-size: 1.1em;
-      font-weight: bold;
+      margin-top: 1rem;
+      text-align: center;
+      font-weight: 600;
     }
-    /* Mobile tweaks */
-    @media (max-width: 540px) {
-      .optin-container { padding: 1.4rem 0.5rem; }
-      .optin-header { font-size: 1.5rem; }
+
+    .tm-widget-form .tm-widget-disclaimer {
+      color: #8c7ea7 !important;
+      font-size: 0.8rem !important;
+      line-height: 1.4;
     }
   </style>
 </head>
 <body>
-  <div class="optin-container">
-    <div class="optin-header">Get Dropathon SMS Alerts</div>
-    <div class="optin-desc">
-      Be the first to know when new drops go live, get daily reminders, and receive exclusive tips—straight to your phone.<br>
-      <span style="color:#f472b6; font-weight:600;">No spam. Opt out anytime.</span>
-    </div>
-    <!-- TextMagic SMS Opt-In Embed -->
+  <div class="optin-wrapper">
+    <h1 class="optin-title">Get Dropathon SMS Alerts</h1>
+    <p class="optin-desc">
+      Be the first to know when new drops go live, get daily reminders, and receive exclusive Behind-the-scenes—straight to your phone.<br>
+      <strong>No spam. Opt out anytime.</strong>
+    </p>
+
+    <!-- TextMagic Embed -->
     <script src="https://widgets.textmagic.com/widget-script.js"
       data-code="ca975eb0fab8d2e"
       data-type="subscribe"
-      defer>
-    </script>
-    <!-- /TextMagic embed -->
+      defer></script>
   </div>
 </body>
 </html>
