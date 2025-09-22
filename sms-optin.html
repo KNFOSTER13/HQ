@@ -1,44 +1,113 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>SMS Opt-In – Kimberly's Dropathon</title>
-  <meta name="description" content="Sign up for SMS alerts about new creative drops from Kimberly Nicole Foster.">
-  <script src="https://cdn.tailwindcss.com"></script>
+  <meta charset="UTF-8">
+  <title>Get Dropathon SMS Alerts | Kimberly Nicole Foster</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- Google Fonts to match main site -->
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=Inter:wght@400;600&display=swap" rel="stylesheet">
   <style>
     body {
-      background: radial-gradient(ellipse at top center, #2d1b42, #1a0f26);
-      font-family: 'Inter', sans-serif;
+      background: radial-gradient(ellipse at top center, #2d1b42, #241538);
+      color: #FCFBF7;
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      min-height: 100vh;
+      margin: 0;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+    }
+    .optin-container {
+      background: rgba(42, 26, 61, 0.85);
+      border: 1.5px solid #A78BFA;
+      border-radius: 1.25rem;
+      box-shadow: 0 8px 32px rgba(26, 15, 38, 0.22);
+      max-width: 420px;
+      width: 100%;
+      padding: 2.5rem 2rem 2rem 2rem;
+      margin: 48px 0;
+      text-align: center;
+    }
+    .optin-header {
+      font-family: 'DM Serif Display', serif;
+      font-size: 2rem;
+      background: linear-gradient(to right, #C6B6F7, #ffe3dc);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      margin-bottom: 0.4em;
+      font-weight: bold;
+    }
+    .optin-desc {
+      color: #BDB6AE;
+      font-size: 1.13rem;
+      margin-bottom: 1.8em;
+      font-weight: 500;
+    }
+    /* Style the TextMagic form fields/buttons if allowed */
+    .tm-widget-form input,
+    .tm-widget-form select {
+      background: rgba(0,0,0,0.20)!important;
+      color: #FCFBF7!important;
+      border: 1px solid #A78BFA!important;
+      border-radius: 0.5rem!important;
+      padding: 0.8em!important;
+      font-size: 1em;
+    }
+    .tm-widget-form label {
+      color: #E5E1DA!important;
+      font-weight: 600;
+      font-size: 0.97em;
+    }
+    .tm-widget-form button,
+    .tm-widget-form input[type="submit"] {
+      background: linear-gradient(to right, #C6B6F7, #ffe3dc)!important;
+      color: #3d3128!important;
+      border: none!important;
+      font-weight: 600!important;
+      border-radius: 9999px!important;
+      padding: 0.9em 1.7em!important;
+      font-size: 1.1em;
+      margin-top: 0.8em;
+      cursor: pointer;
+      transition: transform 0.1s;
+      box-shadow: 0 0 16px rgba(150,129,237,0.20);
+    }
+    .tm-widget-form button:hover {
+      transform: scale(1.03);
+      background: linear-gradient(to right, #C6B6F7, #f472b6)!important;
+    }
+    .tm-widget-form .tm-widget-success {
+      color: #34d399!important;
+      background: rgba(42, 26, 61, 0.93);
+      border-radius: 0.75rem;
+      padding: 1em 0.5em;
+      margin-top: 1em;
+      font-size: 1.1em;
+      font-weight: bold;
+    }
+    /* Mobile tweaks */
+    @media (max-width: 540px) {
+      .optin-container { padding: 1.4rem 0.5rem; }
+      .optin-header { font-size: 1.5rem; }
     }
   </style>
 </head>
-<body class="min-h-screen text-white flex items-center justify-center px-4 py-16">
-  <div class="w-full max-w-xl bg-white/5 backdrop-blur-sm border border-white/10 rounded-xl shadow-xl p-8">
-    <h1 class="text-3xl font-bold mb-6 text-center text-gradient bg-clip-text text-transparent bg-gradient-to-r from-purple-300 via-pink-300 to-yellow-200">
-      Sign Up for SMS Updates 📱
-    </h1>
-    <p class="text-sm text-muted mb-6 text-center text-gray-300">
-      Stay in the loop! Get text alerts for new creative drops, livestream reminders, and behind-the-scenes updates.
-    </p>
-
-    <form id="sms-optin-form" method="POST" action="#">
-      <label for="phone" class="block text-sm font-medium text-white mb-1">
-        Phone Number
-      </label>
-      <input type="tel" id="phone" name="phone" placeholder="+1 555-555-5555" required
-             class="w-full px-4 py-2 rounded-md bg-white text-black mb-4 shadow-sm focus:outline-none focus:ring-2 focus:ring-purple-300">
-
-      <label class="flex items-start gap-2 text-sm text-white mb-4">
-        <input type="checkbox" name="sms-consent" required class="mt-1">
-        I agree to receive SMS alerts from Kimberly Nicole Foster about new creative drops, livestreams, and updates. Message & data rates may apply. Reply STOP to unsubscribe.
-      </label>
-
-      <button type="submit"
-              class="w-full py-2 rounded-full bg-gradient-to-r from-pink-400 to-yellow-300 text-black font-semibold hover:scale-105 transition-transform duration-200">
-        Sign Up for SMS Alerts
-      </button>
-    </form>
+<body>
+  <div class="optin-container">
+    <div class="optin-header">Get Dropathon SMS Alerts</div>
+    <div class="optin-desc">
+      Be the first to know when new drops go live, get daily reminders, and receive exclusive tips—straight to your phone.<br>
+      <span style="color:#f472b6; font-weight:600;">No spam. Opt out anytime.</span>
+    </div>
+    <!-- TextMagic SMS Opt-In Embed -->
+    <script src="https://widgets.textmagic.com/widget-script.js"
+      data-code="ca975eb0fab8d2e"
+      data-type="subscribe"
+      defer>
+    </script>
+    <!-- /TextMagic embed -->
   </div>
 </body>
 </html>
