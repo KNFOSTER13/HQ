@@ -284,6 +284,71 @@
       ::-webkit-scrollbar-track { background: rgba(0, 0, 0, 0.1); }
       ::-webkit-scrollbar-thumb { background: var(--accent); border-radius: 4px; }
       ::-webkit-scrollbar-thumb:hover { background: var(--accent-bright); }
+        
+      /* --- TextMagic Widget Overrides --- */
+      #sms-modal .tm-widget-form {
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+        text-align: left;
+      }
+      #sms-modal .tm-widget-form label {
+        color: var(--text-secondary) !important;
+        font-weight: 600;
+        font-size: 0.9rem;
+      }
+      #sms-modal .tm-widget-form input {
+        background: rgba(0, 0, 0, 0.2) !important;
+        border: 1px solid var(--border-color) !important;
+        color: var(--text-primary) !important;
+        padding: 0.85rem 1rem !important;
+        border-radius: 0.5rem !important;
+        font-size: 1rem !important;
+        width: 100% !important;
+        transition: all 0.2s ease;
+      }
+      #sms-modal .tm-widget-form input::placeholder { color: var(--text-muted) !important; }
+      #sms-modal .tm-widget-form input:focus {
+        outline: none !important;
+        border-color: var(--accent) !important;
+        box-shadow: 0 0 0 3px rgba(167, 139, 250, 0.2) !important;
+      }
+      #sms-modal .tm-widget-form button,
+      #sms-modal .tm-widget-form input[type="submit"] {
+        background: var(--accent) !important;
+        color: var(--text-primary) !important;
+        font-weight: 600 !important;
+        border-radius: 9999px !important;
+        padding: 0.9rem 1.5rem !important;
+        font-size: 1rem !important;
+        border: none !important;
+        cursor: pointer;
+        width: 100% !important;
+        margin-top: 0.75rem;
+        transition: all 0.2s ease;
+      }
+      #sms-modal .tm-widget-form button:hover {
+        background: var(--accent-bright) !important;
+        color: var(--bg-dark) !important;
+        transform: translateY(-2px);
+      }
+      #sms-modal .tm-widget-form .tm-widget-success {
+        color: #34d399 !important;
+        background: rgba(52, 211, 153, 0.1) !important;
+        border: 1px solid rgba(52, 211, 153, 0.3) !important;
+        padding: 1rem;
+        border-radius: 0.75rem;
+        text-align: center;
+        font-weight: 600;
+      }
+      #sms-modal .tm-widget-form .tm-widget-disclaimer {
+        color: var(--text-muted) !important;
+        font-size: 0.8rem !important;
+        line-height: 1.5;
+        margin-top: 0.5rem;
+        text-align: center;
+      }
+
 
       /* Media Queries for header */
       @media (max-width: 768px) {
@@ -354,8 +419,8 @@
                          </svg>
                     </button>
                     
-                    <button id="subscribe-btn" class="btn btn-subscribe" aria-label="Subscribe to updates">
-                        <span class="hidden sm:inline">Subscribe</span>
+                    <button id="subscribe-btn" class="btn btn-subscribe" aria-label="Subscribe to SMS updates">
+                        <span class="hidden sm:inline">Subscribe 📱</span>
                     </button>
                 </div>
             </div>
@@ -504,12 +569,25 @@
         <p>&copy; 2025 Kimberly's Dropathon. All rights reserved.</p>
     </footer>
 
+    <!-- Newsletter Modal -->
     <div id="subscribe-modal" class="fixed inset-0 bg-black/50 backdrop-blur-sm hidden items-center justify-center p-4 z-50" role="dialog" aria-labelledby="subscribe-modal-title" aria-modal="true">
         <div class="card p-6 relative max-w-lg w-full">
             <button id="close-subscribe" class="absolute top-4 right-4 text-muted hover:text-primary transition-colors" aria-label="Close modal"><svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg></button>
-            <h2 id="subscribe-modal-title" class="text-2xl font-bold mb-4 text-center brand-font text-gradient">Join the Dropathon!</h2>
+            <h2 id="subscribe-modal-title" class="text-2xl font-bold mb-4 text-center brand-font text-gradient">Join the Newsletter!</h2>
             <p class="text-muted mb-6 text-center">Get exclusive updates, behind-the-scenes content, and early access to drops straight to your inbox!</p>
             <div class="bg-white rounded-xl p-1"><iframe src="https://kimberlynfoster.substack.com/embed" width="100%" height="320" style="border:1px solid #EEE; background:white;" frameborder="0" scrolling="no" title="Subscribe to newsletter"></iframe></div>
+        </div>
+    </div>
+
+    <!-- SMS Modal -->
+    <div id="sms-modal" class="fixed inset-0 bg-black/50 backdrop-blur-sm hidden items-center justify-center p-4 z-50" role="dialog" aria-labelledby="sms-modal-title" aria-modal="true">
+        <div class="card p-8 relative max-w-lg w-full">
+            <button id="close-sms-modal" class="absolute top-4 right-4 text-muted hover:text-primary transition-colors" aria-label="Close SMS modal"><svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg></button>
+            <h2 id="sms-modal-title" class="text-2xl font-bold mb-2 text-center brand-font text-gradient">Get SMS Alerts</h2>
+            <p class="text-muted mb-6 text-center">Be the first to know when new drops go live, get reminders, and receive exclusive tips.</p>
+            <div class="tm-widget-container">
+                <script src="https://widgets.textmagic.com/widget-script.js" data-code="ca975eb0fab8d2e" data-type="subscribe" defer></script>
+            </div>
         </div>
     </div>
 
@@ -589,8 +667,11 @@
          * @property {HTMLElement} emptyState
          * @property {HTMLElement} emptyStateMessage
          * @property {HTMLElement} subscribeBtn
+         * @property {HTMLElement} heroSubscribeBtn
          * @property {HTMLElement} subscribeModal
          * @property {HTMLElement} closeSubscribe
+         * @property {HTMLElement} smsModal
+         * @property {HTMLElement} closeSmsModal
          * @property {HTMLElement} toast
          * @property {HTMLElement} toastMessage
          * @property {HTMLElement} toastIcon
@@ -702,6 +783,8 @@
             heroSubscribeBtn: document.getElementById('hero-subscribe-btn'),
             subscribeModal: document.getElementById('subscribe-modal'),
             closeSubscribe: document.getElementById('close-subscribe'),
+            smsModal: document.getElementById('sms-modal'),
+            closeSmsModal: document.getElementById('close-sms-modal'),
             toast: document.getElementById('toast'),
             toastMessage: document.getElementById('toast-message'),
             toastIcon: document.getElementById('toast-icon'),
@@ -1343,9 +1426,12 @@
                 applyFiltersAndSort();
             }));
 
-            if(DOMElements.subscribeBtn) DOMElements.subscribeBtn.addEventListener('click', (e) => toggleModal(DOMElements.subscribeModal, true, e.currentTarget));
+            if(DOMElements.subscribeBtn) DOMElements.subscribeBtn.addEventListener('click', (e) => toggleModal(DOMElements.smsModal, true, e.currentTarget));
             if(DOMElements.heroSubscribeBtn) DOMElements.heroSubscribeBtn.addEventListener('click', (e) => toggleModal(DOMElements.subscribeModal, true, e.currentTarget));
+            
             if(DOMElements.closeSubscribe) DOMElements.closeSubscribe.addEventListener('click', () => toggleModal(DOMElements.subscribeModal, false));
+            if(DOMElements.closeSmsModal) DOMElements.closeSmsModal.addEventListener('click', () => toggleModal(DOMElements.smsModal, false));
+            
             if(DOMElements.adminSigninBtn) DOMElements.adminSigninBtn.addEventListener('click', (e) => toggleModal(DOMElements.adminLoginModal, true, e.currentTarget));
             if(DOMElements.closeAdminLogin) DOMElements.closeAdminLogin.addEventListener('click', () => toggleModal(DOMElements.adminLoginModal, false));
             if(DOMElements.adminSignoutBtn) DOMElements.adminSignoutBtn.addEventListener('click', () => signOut(auth));
@@ -1390,3 +1476,4 @@
     </script>
 </body>
 </html>
+
