@@ -1,126 +1,140 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
+  <meta charset="UTF-8" />
   <title>Dropathon SMS Alerts | Kimberly Nicole Foster</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <!-- Fonts -->
-  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=Inter:wght@400;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=Inter:wght@400;600&display=swap" rel="stylesheet" />
   <style>
-    body {
-      margin: 0;
-      font-family: 'Inter', sans-serif;
-      background: radial-gradient(ellipse at top center, #2d1b42, #1a0f26);
-      color: #FCFBF7;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      min-height: 100vh;
-      padding: 2rem;
+    /* Base */
+    :root{
+      --ivory:#FCFBF7; --muted:#BDB6AE;
+      --grad-a:#C6B6F7; --grad-b:#ffe3dc;
+      --bg1:#2d1b42; --bg2:#1a0f26;
+      --panel:rgba(42,26,61,0.9); --panel-border:rgba(167,139,250,0.25);
+    }
+    *{box-sizing:border-box}
+    body{
+      margin:0;
+      font-family:'Inter',system-ui,-apple-system,Segoe UI,Roboto,sans-serif;
+      color:var(--ivory);
+      background:radial-gradient(ellipse at top center, var(--bg1), var(--bg2));
+      min-height:100vh;
+      display:flex;
+      flex-direction:column;
+    }
+    a{color:inherit;text-decoration:none}
+
+    /* Sticky Header (no Tailwind needed) */
+    .frosted-header{
+      position:sticky; top:0; z-index:50;
+      background-color:rgba(26,15,38,0.8);
+      backdrop-filter:blur(12px);
+      -webkit-backdrop-filter:blur(12px);
+      border-bottom:1px solid rgba(255,255,255,0.1);
+    }
+    .header-inner{
+      max-width:1200px; margin:0 auto;
+      padding:1rem;
+      display:flex; align-items:center; justify-content:space-between;
+      gap:1rem; flex-wrap:wrap;
+    }
+    .logo-link{display:flex; align-items:center; gap:.5rem}
+    .logo-img{height:40px; width:auto; display:block; filter:drop-shadow(0 0 8px #FCE9EB)}
+    .brand-font{font-family:'DM Serif Display',serif}
+    .text-gradient{
+      background:linear-gradient(to right, var(--grad-a), var(--grad-b));
+      -webkit-background-clip:text; background-clip:text; color:transparent;
+      font-weight:700; font-size:1.25rem;
+    }
+    .btn-back-glow{
+      display:inline-flex; align-items:center; justify-content:center; gap:.35rem;
+      padding:.6rem 1.2rem; border-radius:9999px; font-weight:600; font-size:.875rem;
+      background:linear-gradient(to right, var(--grad-a), var(--grad-b));
+      color:#3d3128; box-shadow:0 0 20px rgba(198,182,247,.3);
+      transition:transform .2s ease, box-shadow .2s ease;
+    }
+    .btn-back-glow:hover{transform:scale(1.05); box-shadow:0 5px 30px rgba(150,129,237,.4)}
+
+    /* Mobile stacking for header */
+    @media (max-width: 640px){
+      .header-inner{flex-direction:column; align-items:flex-start}
+      .btn-back-glow{width:100%; text-align:center}
     }
 
-    .optin-wrapper {
-      max-width: 480px;
-      width: 100%;
-      background: rgba(42, 26, 61, 0.9);
-      border: 1px solid rgba(167, 139, 250, 0.25);
-      border-radius: 1rem;
-      padding: 2.5rem 2rem;
-      box-shadow: 0 12px 32px rgba(0,0,0,0.4);
-      text-align: center;
+    /* Opt-in card */
+    main{flex:1; display:flex; align-items:center; justify-content:center; padding:1rem}
+    .optin-wrapper{
+      width:100%; max-width:480px; margin:2rem auto;
+      background:var(--panel); border:1px solid var(--panel-border);
+      border-radius:1rem; padding:2.5rem 2rem; text-align:center;
+      box-shadow:0 12px 32px rgba(0,0,0,.4);
     }
+    .optin-title{
+      font-family:'DM Serif Display',serif; font-size:2rem; margin:0 0 .6em;
+      background:linear-gradient(to right, var(--grad-a), var(--grad-b));
+      -webkit-background-clip:text; background-clip:text; color:transparent;
+    }
+    .optin-desc{color:var(--muted); font-size:1.05rem; margin:0 0 2rem}
+    .optin-desc strong{color:#f472b6}
 
-    .optin-title {
-      font-family: 'DM Serif Display', serif;
-      font-size: 2rem;
-      margin-bottom: 0.6em;
-      background: linear-gradient(to right, #C6B6F7, #ffe3dc);
-      -webkit-background-clip: text;
-      background-clip: text;
-      color: transparent;
+    /* TextMagic overrides (best-effort; iframes may limit) */
+    .tm-widget-form{text-align:left}
+    .tm-widget-form label{color:#E5E1DA!important; font-weight:600; font-size:.95rem}
+    .tm-widget-form input,.tm-widget-form select{
+      background:rgba(0,0,0,.2)!important; color:var(--ivory)!important;
+      border:1px solid rgba(167,139,250,.3)!important;
+      border-radius:.5rem!important; padding:.75rem!important; margin-bottom:1rem!important; width:100%
     }
-
-    .optin-desc {
-      color: #BDB6AE;
-      font-size: 1.05rem;
-      margin-bottom: 2rem;
+    .tm-widget-form input::placeholder{color:var(--muted)!important}
+    .tm-widget-form button,.tm-widget-form input[type="submit"]{
+      width:100%; border:none!important; cursor:pointer;
+      background:linear-gradient(to right, var(--grad-a), var(--grad-b))!important;
+      color:#3d3128!important; font-weight:600!important; border-radius:9999px!important;
+      padding:.9rem 1.5rem!important; font-size:1rem!important;
+      transition:transform .15s ease, box-shadow .15s ease
     }
-    .optin-desc strong {
-      color: #f472b6;
+    .tm-widget-form button:hover{transform:translateY(-2px); box-shadow:0 8px 20px rgba(167,139,250,.3)}
+    .tm-widget-form .tm-widget-success{
+      color:#34d399!important; background:rgba(42,26,61,.95); padding:1rem; border-radius:.75rem; margin-top:1rem; text-align:center; font-weight:600
     }
-
-    /* OVERRIDES for TextMagic */
-    .tm-widget-form {
-      text-align: left;
-    }
-    .tm-widget-form label {
-      color: #E5E1DA !important;
-      font-weight: 600;
-      font-size: 0.95rem;
-    }
-    .tm-widget-form input,
-    .tm-widget-form select {
-      background: rgba(0,0,0,0.2) !important;
-      border: 1px solid rgba(167,139,250,0.3) !important;
-      color: #FCFBF7 !important;
-      padding: 0.75rem !important;
-      border-radius: 0.5rem !important;
-      margin-bottom: 1rem !important;
-      font-size: 1rem !important;
-      width: 100%;
-    }
-    .tm-widget-form input::placeholder {
-      color: #BDB6AE !important;
-    }
-    .tm-widget-form button,
-    .tm-widget-form input[type="submit"] {
-      background: linear-gradient(to right, #C6B6F7, #ffe3dc) !important;
-      color: #3d3128 !important;
-      font-weight: 600 !important;
-      border-radius: 9999px !important;
-      padding: 0.9rem 1.5rem !important;
-      font-size: 1rem !important;
-      border: none !important;
-      cursor: pointer;
-      display: block;
-      width: 100%;
-      transition: transform 0.15s ease, box-shadow 0.15s ease;
-    }
-    .tm-widget-form button:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 8px 20px rgba(167,139,250,0.3);
-    }
-
-    .tm-widget-form .tm-widget-success {
-      color: #34d399 !important;
-      background: rgba(42,26,61,0.95);
-      padding: 1rem;
-      border-radius: 0.75rem;
-      margin-top: 1rem;
-      text-align: center;
-      font-weight: 600;
-    }
-
-    .tm-widget-form .tm-widget-disclaimer {
-      color: #8c7ea7 !important;
-      font-size: 0.8rem !important;
-      line-height: 1.4;
-    }
+    .tm-widget-form .tm-widget-disclaimer{color:#8c7ea7!important; font-size:.8rem!important; line-height:1.4}
+    footer{color:var(--muted); text-align:center; padding:1rem; font-size:.85rem}
   </style>
 </head>
 <body>
-  <div class="optin-wrapper">
-    <h1 class="optin-title">Get Dropathon SMS Alerts📱</h1>
-    <p class="optin-desc">
-      Be the first to know when new drops go live, get livestream reminders, and receive exclusive Behind-the-scenes—straight to your phone.<br>
-      <strong>No spam. Opt out anytime.</strong>
-    </p>
+  <!-- Sticky Header -->
+  <header class="frosted-header" role="banner">
+    <div class="header-inner" aria-label="Primary">
+      <a class="logo-link" href="./index.html" aria-label="Back to Dropathon Home">
+        <img class="logo-img" src="KNF-LOGO-SEPTEMBER-22-2025-3.png" alt="Kimberly Nicole Foster logo" />
+        <span class="brand-font text-gradient">Kimberly's Sprint</span>
+      </a>
+      <a class="btn-back-glow" href="./index.html">&larr; Back to Drops</a>
+    </div>
+  </header>
 
-    <!-- TextMagic Embed -->
-    <script src="https://widgets.textmagic.com/widget-script.js"
-      data-code="ca975eb0fab8d2e"
-      data-type="subscribe"
-      defer></script>
-  </div>
+  <!-- Main -->
+  <main role="main">
+    <div class="optin-wrapper">
+      <h1 class="optin-title">Get Dropathon SMS Alerts 📱</h1>
+      <p class="optin-desc">
+        Be the first to know when new drops go live, get livestream reminders,
+        and receive exclusive behind-the-scenes updates — straight to your phone.<br />
+        <strong>No spam. Opt out anytime.</strong>
+      </p>
+
+      <!-- TextMagic Embed -->
+      <script src="https://widgets.textmagic.com/widget-script.js"
+              data-code="ca975eb0fab8d2e"
+              data-type="subscribe"
+              defer></script>
+    </div>
+  </main>
+
+  <footer role="contentinfo">
+    &copy; 2025 Kimberly's Dropathon. All rights reserved.
+  </footer>
 </body>
 </html>
