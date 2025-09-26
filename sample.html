@@ -3,8 +3,71 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calendar Preview</title>
+    <style>
+        body {
+            background-color: #1a0f26;
+            font-family: 'Inter', sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding: 2rem;
+            margin: 0;
+        }
+        .canvas-container {
+            width: 100%;
+            max-width: 1800px;
+            height: 90vh;
+            background-color: #2d1b42;
+            border-radius: 12px;
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
+            border: 1px solid rgba(167, 139, 250, 0.2);
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+        }
+        .canvas-header {
+            background-color: #141414;
+            padding: 0.75rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            border-bottom: 1px solid rgba(167, 139, 250, 0.2);
+        }
+        .canvas-dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+        }
+        .canvas-content {
+            flex-grow: 1;
+            background-color: #1E1E1E;
+        }
+        .canvas-content iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="canvas-container">
+        <div class="canvas-header">
+            <div class="canvas-dot" style="background-color: #ff5f56;"></div>
+            <div class="canvas-dot" style="background-color: #ffbd2e;"></div>
+            <div class="canvas-dot" style="background-color: #27c93f;"></div>
+        </div>
+        <div class="canvas-content">
+            <iframe srcdoc="
+<!DOCTYPE html>
+<html lang='en'>
+<head>
+    <meta charset='UTF-8'>
+    <meta name='viewport' content='width=device-width, initial-scale=1.0'>
     <title>✨ Dropathon Content Calendar</title>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href='https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Poppins:wght@300;400;500;600;700&display=swap' rel='stylesheet'>
     <style>
         :root {
             --bg-dark: #1E1E1E;
@@ -29,6 +92,8 @@
             background: var(--bg-dark);
             color: var(--text);
             font-size: 16px;
+            margin: 0;
+            padding: 0;
         }
         
         .container {
@@ -80,6 +145,7 @@
             font-family: 'Poppins', sans-serif;
             font-weight: 500;
             color: var(--text-muted);
+            text-transform: capitalize;
         }
 
         .filter-tag.active { color: white; }
@@ -165,7 +231,7 @@
             transition: all 0.2s ease;
             position: relative;
         }
-        .event-item:hover { transform: scale(1.2); z-index: 10; }
+        .event-item:hover { transform: scale(3); z-index: 10; }
         .event-item img { width: 100%; height: 100%; object-fit: cover; border-radius: 4px; }
         .event-item.no-thumb { display: flex; align-items: center; justify-content: center; font-size: 10px; text-align: center; line-height: 1; }
         
@@ -177,7 +243,6 @@
         .black-women-in-the-wild { border-color: var(--black-women-in-the-wild-color); }
         .personal { border-color: var(--personal-color); }
         
-        /* Weekly Theme */
         .week-theme-bar {
             grid-column: 1 / -1;
             padding: 0.5rem;
@@ -190,13 +255,11 @@
             margin-bottom: 0.5rem;
             border: 1px dashed rgba(150, 129, 237, 0.3);
         }
-        .week-theme-bar:hover { background: rgba(150, 129, 237, 0.2); }
         
-        /* Sidebar and Modal Styles are simplified for brevity, assuming they are mostly the same */
         .sidebar { display: flex; flex-direction: column; gap: 1.5rem; }
         .quick-add, .export-controls { background: var(--bg-darker); border-radius: 20px; padding: 2rem; border: 1px solid var(--border); }
         h3 { font-family: 'Poppins', sans-serif; font-size: 1.1em; margin-bottom: 1rem; font-weight: 500; }
-        .add-btn { width: 100%; padding: 1rem; background: rgba(255, 255, 255, 0.05); color: white; border: 1px solid var(--border); border-radius: 12px; cursor: pointer; transition: all 0.3s ease; margin-top: 0.5rem; }
+        .add-btn { width: 100%; padding: 1rem; background: rgba(255, 255, 255, 0.05); color: white; border: 1px solid var(--border); border-radius: 12px; cursor: pointer; margin-top: 0.5rem; }
         .modal { display: none; position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: rgba(0, 0, 0, 0.85); backdrop-filter: blur(20px); z-index: 1000; padding: 1.5rem; overflow-y: auto; }
         .modal-content { background: var(--bg-darker); max-width: 600px; margin: 40px auto; border-radius: 20px; padding: 3rem; position: relative; border: 1px solid var(--purple-primary); box-shadow: 0 0 30px var(--purple-glow); }
         .form-group { margin-bottom: 1.5rem; }
@@ -205,105 +268,108 @@
         .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
         .save-btn { width: 100%; padding: 1rem; background: linear-gradient(135deg, var(--purple-primary), #7759CA); color: white; border: none; border-radius: 12px; font-weight: 600; font-size: 1em; cursor: pointer; margin-top: 1rem; }
         
+        /* Thumbnail Uploader Styles */
+        #thumbnailPreview { max-width: 100px; border-radius: 8px; margin-top: 10px; display: none; }
+
         @media (max-width: 1200px) { .main-layout { grid-template-columns: 1fr; } .sidebar { grid-template-columns: 1fr 1fr; } }
         @media (max-width: 768px) { .header h1 { font-size: 2em; } .sidebar { grid-template-columns: 1fr; } .form-row { grid-template-columns: 1fr; } }
     </style>
 </head>
 <body>
-    <div class="container">
-        <div class="header">
-            <h1><img src="https://knfoster13.github.io/HQ/kdrop4.png" alt="Dropathon Logo"> Content Calendar</h1>
-            <div class="header-controls">
-                </div>
+    <div class='container'>
+        <div class='header'>
+            <h1><img src='https://knfoster13.github.io/HQ/kdrop4.png' alt='Dropathon Logo'> Content Calendar</h1>
         </div>
         
-        <div class="filter-tags" id="filterTags">
-             <div class="filter-tag filter-all active" onclick="toggleFilter('all', this)">All Brands</div>
-            <div class="filter-tag filter-for-harriet" onclick="toggleFilter('For Harriet', this)">For Harriet</div>
-            <div class="filter-tag filter-knf" onclick="toggleFilter('KNF', this)">KNF</div>
-            <div class="filter-tag filter-the-shallow-side" onclick="toggleFilter('The Shallow Side', this)">Shallow Side</div>
-            <div class="filter-tag filter-taste-of-kimberly" onclick="toggleFilter('Taste of Kimberly', this)">Taste of K</div>
-            <div class="filter-tag filter-making-things-is-hard" onclick="toggleFilter('Making Things Is Hard', this)">MTIH</div>
-            <div class="filter-tag filter-black-women-in-the-wild" onclick="toggleFilter('Black Women in the Wild', this)">BWW</div>
-            <div class="filter-tag filter-personal" onclick="toggleFilter('Personal', this)">Personal</div>
+        <div class='filter-tags' id='filterTags'>
+             <div class='filter-tag filter-all active' onclick='toggleFilter(`all`, this)'>All Brands</div>
+            <div class='filter-tag filter-for-harriet' onclick='toggleFilter(`For Harriet`, this)'>For Harriet</div>
+            <div class='filter-tag filter-knf' onclick='toggleFilter(`KNF`, this)'>KNF</div>
+            <div class='filter-tag filter-the-shallow-side' onclick='toggleFilter(`The Shallow Side`, this)'>Shallow Side</div>
+            <div class='filter-tag filter-taste-of-kimberly' onclick='toggleFilter(`Taste of Kimberly`, this)'>Taste of K</div>
+            <div class='filter-tag filter-making-things-is-hard' onclick='toggleFilter(`Making Things Is Hard`, this)'>MTIH</div>
+            <div class='filter-tag filter-black-women-in-the-wild' onclick='toggleFilter(`Black Women in the Wild`, this)'>BWW</div>
+            <div class='filter-tag filter-personal' onclick='toggleFilter(`Personal`, this)'>Personal</div>
         </div>
         
-        <div class="main-layout">
-            <div class="calendar-container">
-                <div class="month-nav">
-                    <button class="nav-btn" onclick="previousMonth()">‹</button>
-                    <div class="month-year" id="monthYear"></div>
-                    <button class="nav-btn" onclick="nextMonth()">›</button>
+        <div class='main-layout'>
+            <div class='calendar-container'>
+                <div class='month-nav'>
+                    <button onclick='previousMonth()'>‹</button>
+                    <div id='monthYear'></div>
+                    <button onclick='nextMonth()'>›</button>
                 </div>
-                <div class="weekdays">
+                <div class='weekdays'>
                     <div>Sun</div><div>Mon</div><div>Tue</div><div>Wed</div><div>Thu</div><div>Fri</div><div>Sat</div>
                 </div>
-                <div class="calendar-grid" id="calendarGrid"></div>
+                <div class='calendar-grid' id='calendarGrid'></div>
             </div>
             
-            <div class="sidebar">
-                 <div class="quick-add">
+            <div class='sidebar'>
+                 <div class='quick-add'>
                     <h3>Quick Actions</h3>
-                    <button class="add-btn" onclick="openContentModal()">+ Add New Content</button>
-                    <button class="add-btn" onclick="importFromIdeation()">Import from Ideation</button>
+                    <button class='add-btn' onclick='openContentModal()'>+ Add New Content</button>
+                    <button class='add-btn' onclick='importFromIdeation()'>Import from Ideation</button>
                 </div>
-                <div class="export-controls">
+                <div class='export-controls'>
                     <h3>Export & Print</h3>
-                    <button class="add-btn" onclick="window.print()">Print Calendar</button>
+                    <button class='add-btn' onclick='window.print()'>Print Calendar</button>
                 </div>
             </div>
         </div>
     </div>
     
-    <div class="modal" id="contentModal">
-        <div class="modal-content">
-            <h3 id="modalTitle">Add New Content</h3>
-            <form id="contentForm" onsubmit="saveContent(event)">
-                <input type="hidden" id="contentId">
-                <div class="form-group">
+    <div class='modal' id='contentModal'>
+        <div class='modal-content'>
+            <h3 id='modalTitle'>Add New Content</h3>
+            <form id='contentForm' onsubmit='saveContent(event)'>
+                <input type='hidden' id='contentId'>
+                <input type='hidden' id='contentThumbnailData'>
+                <div class='form-group'>
                     <label>Title</label>
-                    <input type="text" id="contentTitle" required>
+                    <input type='text' id='contentTitle' required>
                 </div>
-                <div class="form-row">
-                    <div class="form-group">
+                <div class='form-row'>
+                    <div class='form-group'>
                         <label>Publish Date</label>
-                        <input type="date" id="contentDate" required>
+                        <input type='date' id='contentDate' required>
                     </div>
-                    <div class="form-group">
+                    <div class='form-group'>
                         <label>Brand/Pillar</label>
-                        <select id="contentPillar" required>
+                        <select id='contentPillar' required>
                             <option>For Harriet</option><option>KNF</option><option>The Shallow Side</option>
                             <option>Taste of Kimberly</option><option>Making Things Is Hard</option>
                             <option>Black Women in the Wild</option><option>Personal</option>
                         </select>
                     </div>
                 </div>
-                <div class="form-row">
-                     <div class="form-group">
+                <div class='form-row'>
+                     <div class='form-group'>
                         <label>Content Type</label>
-                        <select id="contentType">
+                        <select id='contentType'>
                             <option>Video</option><option>Podcast</option><option>Essay</option>
                             <option>Social Post</option><option>Newsletter</option><option>Event</option>
                         </select>
                     </div>
-                    <div class="form-group">
+                    <div class='form-group'>
                         <label>Status</label>
-                        <select id="contentStatus">
+                        <select id='contentStatus'>
                             <option>Idea</option><option>Outlined/Scripted</option>
                             <option>To Be Filmed/Recorded</option><option>In Post-Production</option>
                             <option>Ready to Publish</option><option>Published</option>
                         </select>
                     </div>
                 </div>
-                 <div class="form-group">
-                    <label>Thumbnail URL (Optional)</label>
-                    <input type="url" id="contentThumbnail" placeholder="https://...">
+                 <div class='form-group'>
+                    <label>Thumbnail</label>
+                    <input type='file' id='contentThumbnailFile' accept='image/*' onchange='handleFileSelect(event)'>
+                    <img id='thumbnailPreview' src='' alt='Thumbnail Preview'>
                 </div>
-                <div class="form-group">
+                <div class='form-group'>
                     <label>Notes / Link</label>
-                    <textarea id="contentNotes" rows="3"></textarea>
+                    <textarea id='contentNotes' rows='3'></textarea>
                 </div>
-                <button type="submit" class="save-btn">Save Content</button>
+                <button type='submit' class='save-btn'>Save Content</button>
             </form>
         </div>
     </div>
@@ -346,7 +412,6 @@
             }
 
             for (let day = 1; day <= daysInMonth; day++) {
-                // Add weekly theme bar at the start of each week (Sunday)
                 if (currentDayOfWeek === 0) {
                     const weekStartDate = new Date(year, month, day);
                     const weekKey = `${weekStartDate.getFullYear()}-${getWeekNumber(weekStartDate)}`;
@@ -367,7 +432,7 @@
                 
                 const dayContent = contentItems.filter(item => item.date === dateStr && (activeFilters.has('all') || activeFilters.has(item.pillar)));
                 dayContent.forEach(item => {
-                    const pillarClass = item.pillar.toLowerCase().replace(/\s+/g, '-');
+                    const pillarClass = item.pillar.toLowerCase().replace(/\\s+/g, '-');
                     const eventEl = document.createElement('div');
                     eventEl.className = `event-item ${pillarClass}`;
                     
@@ -389,10 +454,24 @@
             }
         }
 
+        function handleFileSelect(event) {
+            const file = event.target.files[0];
+            if (!file) return;
+
+            const reader = new FileReader();
+            reader.onload = function(e) {
+                document.getElementById('thumbnailPreview').src = e.target.result;
+                document.getElementById('thumbnailPreview').style.display = 'block';
+                document.getElementById('contentThumbnailData').value = e.target.result;
+            };
+            reader.readAsDataURL(file);
+        }
+
         function openContentModal(id = null, date = null) {
             const modal = document.getElementById('contentModal');
             const form = document.getElementById('contentForm');
             form.reset();
+            document.getElementById('thumbnailPreview').style.display = 'none';
             
             if (id) {
                 const item = contentItems.find(i => i.id === id);
@@ -403,8 +482,12 @@
                 document.getElementById('contentPillar').value = item.pillar;
                 document.getElementById('contentType').value = item.type;
                 document.getElementById('contentStatus').value = item.status;
-                document.getElementById('contentThumbnail').value = item.thumbnail || '';
                 document.getElementById('contentNotes').value = item.notes;
+                if (item.thumbnail) {
+                    document.getElementById('thumbnailPreview').src = item.thumbnail;
+                    document.getElementById('thumbnailPreview').style.display = 'block';
+                    document.getElementById('contentThumbnailData').value = item.thumbnail;
+                }
             } else {
                 document.getElementById('modalTitle').textContent = 'Add New Content';
                 document.getElementById('contentId').value = '';
@@ -422,7 +505,7 @@
                 pillar: document.getElementById('contentPillar').value,
                 type: document.getElementById('contentType').value,
                 status: document.getElementById('contentStatus').value,
-                thumbnail: document.getElementById('contentThumbnail').value,
+                thumbnail: document.getElementById('contentThumbnailData').value,
                 notes: document.getElementById('contentNotes').value,
             };
 
@@ -453,11 +536,10 @@
             d = new Date(Date.UTC(d.getFullYear(), d.getMonth(), d.getDate()));
             d.setUTCDate(d.getUTCDate() + 4 - (d.getUTCDay()||7));
             var yearStart = new Date(Date.UTC(d.getUTCFullYear(),0,1));
-            var weekNo = Math.ceil((((d - yearStart) / 86400000) + 1)/7);
-            return weekNo;
+            return Math.ceil((((d - yearStart) / 86400000) + 1)/7);
         }
 
-        function importFromIdeation() { /* ... implementation ... */ }
+        function importFromIdeation() { /* ... */ }
         function toggleFilter(filter, el) {
             document.querySelectorAll('.filter-tag').forEach(t => t.classList.remove('active'));
             el.classList.add('active');
@@ -476,5 +558,11 @@
             renderMonthView();
         });
     </script>
+</body>
+</html>
+" title="Calendar Preview"></iframe>
+        </div>
+    </div>
+
 </body>
 </html>
