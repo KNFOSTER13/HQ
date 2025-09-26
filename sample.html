@@ -1,0 +1,656 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calendar Preview</title>
+    <style>
+        body {
+            background-color: #1a0f26; /* Background color from your site */
+            font-family: 'Inter', sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding: 2rem;
+            margin: 0;
+        }
+        .canvas-container {
+            width: 100%;
+            max-width: 1800px;
+            height: 90vh;
+            background-color: #2d1b42; /* Center color from your site */
+            border-radius: 12px;
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
+            border: 1px solid rgba(167, 139, 250, 0.2);
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+        }
+        .canvas-header {
+            background-color: #141414;
+            padding: 0.75rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            border-bottom: 1px solid rgba(167, 139, 250, 0.2);
+        }
+        .canvas-dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+        }
+        .canvas-content {
+            flex-grow: 1;
+            background-color: #1E1E1E; /* Match the calendar's dark background */
+        }
+        .canvas-content iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="canvas-container">
+        <div class="canvas-header">
+            <div class="canvas-dot" style="background-color: #ff5f56;"></div>
+            <div class="canvas-dot" style="background-color: #ffbd2e;"></div>
+            <div class="canvas-dot" style="background-color: #27c93f;"></div>
+        </div>
+        <div class="canvas-content">
+            <iframe srcdoc="
+<!DOCTYPE html>
+<html lang='en'>
+<head>
+    <meta charset='UTF-8'>
+    <meta name='viewport' content='width=device-width, initial-scale=1.0'>
+    <title>✨ Dropathon Content Calendar</title>
+    <link href='https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Poppins:wght@300;400;500;600;700&display=swap' rel='stylesheet'>
+    <style>
+        :root {
+            --bg-dark: #1E1E1E;
+            --bg-darker: #141414;
+            --text: #ffffff;
+            --text-muted: rgba(255, 255, 255, 0.5);
+            --border: rgba(255, 255, 255, 0.08);
+            --purple-primary: #9681ED;
+            --purple-glow: rgba(150, 129, 237, 0.4);
+            
+            /* Pillar colors based on your brands */
+            --for-harriet-color: #E91E63;
+            --knf-color: #00BCD4;
+            --the-shallow-side-color: #FFC107;
+            --taste-of-kimberly-color: #673AB7;
+            --making-things-is-hard-color: #FF6F00;
+            --black-women-in-the-wild-color: #4CAF50;
+            --personal-color: #2196F3;
+        }
+        
+        body {
+            font-family: 'Inter', sans-serif;
+            background: var(--bg-dark);
+            color: var(--text);
+            font-size: 16px;
+            margin: 0;
+            padding: 0;
+        }
+        
+        .container {
+            max-width: 1600px;
+            margin: 0 auto;
+            padding: 1.5rem;
+        }
+
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 2rem;
+            flex-wrap: wrap;
+            gap: 1.5rem;
+            padding-bottom: 1.5rem;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .header h1 {
+            font-family: 'Poppins', sans-serif;
+            font-size: 2.5em;
+            font-weight: 300;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .header img {
+            height: 40px;
+            filter: drop-shadow(0 0 8px #FCE9EB);
+        }
+
+        .header-controls {
+            display: flex;
+            gap: 1rem;
+            align-items: center;
+        }
+        
+        .view-switcher {
+            display: flex;
+            background: var(--bg-darker);
+            border-radius: 12px;
+            padding: 4px;
+        }
+        
+        .view-btn {
+            padding: 0.5rem 1.5rem;
+            background: transparent;
+            border: none;
+            color: var(--text-muted);
+            cursor: pointer;
+            border-radius: 8px;
+            font-size: 0.95em;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+        
+        .view-btn.active {
+            background: rgba(255, 255, 255, 0.1);
+            color: white;
+        }
+
+        .filter-tags {
+            display: flex;
+            gap: 0.5rem;
+            flex-wrap: wrap;
+            margin-bottom: 2rem;
+        }
+        
+        .filter-tag {
+            padding: 0.5rem 1rem;
+            background: var(--bg-darker);
+            border: 2px solid transparent;
+            border-radius: 50px;
+            font-size: 0.9em;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-family: 'Poppins', sans-serif;
+            font-weight: 500;
+            color: var(--text-muted);
+            text-transform: capitalize;
+        }
+
+        .filter-tag.active { color: white; }
+        .filter-tag.filter-all.active { border-color: var(--purple-primary); }
+        .filter-tag.filter-for-harriet.active { border-color: var(--for-harriet-color); }
+        .filter-tag.filter-knf.active { border-color: var(--knf-color); }
+        .filter-tag.filter-the-shallow-side.active { border-color: var(--the-shallow-side-color); }
+        .filter-tag.filter-taste-of-kimberly.active { border-color: var(--taste-of-kimberly-color); }
+        .filter-tag.filter-making-things-is-hard.active { border-color: var(--making-things-is-hard-color); }
+        .filter-tag.filter-black-women-in-the-wild.active { border-color: var(--black-women-in-the-wild-color); }
+        .filter-tag.filter-personal.active { border-color: var(--personal-color); }
+        
+        .main-layout {
+            display: grid;
+            grid-template-columns: 1fr 320px;
+            gap: 1.5rem;
+            align-items: start;
+        }
+        
+        .calendar-container {
+            background: var(--bg-darker);
+            border-radius: 20px;
+            padding: 2rem;
+            border: 1px solid var(--border);
+        }
+        
+        .month-nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 2rem;
+        }
+        
+        .month-year {
+            font-family: 'Poppins', sans-serif;
+            font-size: 1.8em;
+            font-weight: 300;
+        }
+        
+        .weekdays {
+            display: grid;
+            grid-template-columns: repeat(7, 1fr);
+            gap: 0.5rem;
+            margin-bottom: 1rem;
+        }
+        
+        .weekday {
+            text-align: center;
+            font-weight: 500;
+            color: var(--text-muted);
+            font-size: 0.9em;
+        }
+        
+        .calendar-grid {
+            display: grid;
+            grid-template-columns: repeat(7, 1fr);
+            gap: 0.5rem;
+        }
+        
+        .calendar-day {
+            background: var(--bg-dark);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 0.5rem;
+            aspect-ratio: 1 / 1;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow-y: auto;
+        }
+
+        .calendar-day.today {
+            border-color: var(--purple-primary);
+        }
+        
+        .day-number {
+            font-weight: 500;
+            font-size: 1em;
+            margin-bottom: 0.25rem;
+        }
+
+        .day-events {
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+        }
+        
+        .event {
+            padding: 4px 8px;
+            border-radius: 6px;
+            font-size: 0.8em;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            border-left: 3px solid;
+        }
+
+        .event[data-status='Idea'] { opacity: 0.6; }
+        .event[data-status='Outlined/Scripted'] { opacity: 0.8; }
+        .event[data-status='Published'] { text-decoration: line-through; opacity: 0.5; }
+
+        .event.for-harriet { border-color: var(--for-harriet-color); }
+        .event.knf { border-color: var(--knf-color); }
+        .event.the-shallow-side { border-color: var(--the-shallow-side-color); }
+        .event.taste-of-kimberly { border-color: var(--taste-of-kimberly-color); }
+        .event.making-things-is-hard { border-color: var(--making-things-is-hard-color); }
+        .event.black-women-in-the-wild { border-color: var(--black-women-in-the-wild-color); }
+        .event.personal { border-color: var(--personal-color); }
+        
+        .sidebar {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+        
+        .quick-add, .export-controls {
+            background: var(--bg-darker);
+            border-radius: 20px;
+            padding: 2rem;
+            border: 1px solid var(--border);
+        }
+
+        h3 {
+            font-family: 'Poppins', sans-serif;
+            font-size: 1.1em;
+            margin-bottom: 1rem;
+            font-weight: 500;
+        }
+        
+        .add-btn {
+            width: 100%;
+            padding: 1rem;
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.05));
+            color: white;
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin-top: 0.5rem;
+        }
+        
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.85);
+            backdrop-filter: blur(20px);
+            z-index: 1000;
+            padding: 1.5rem;
+            overflow-y: auto;
+        }
+        
+        .modal-content {
+            background: var(--bg-darker);
+            max-width: 600px;
+            margin: 40px auto;
+            border-radius: 20px;
+            padding: 3rem;
+            position: relative;
+            border: 1px solid var(--purple-primary);
+            box-shadow: 0 0 30px var(--purple-glow);
+        }
+        
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+        
+        .form-group label {
+            display: block;
+            font-size: 0.85em;
+            color: var(--purple-primary);
+            margin-bottom: 0.5rem;
+            font-weight: 500;
+        }
+        
+        input, select, textarea {
+            width: 100%;
+            padding: 1rem;
+            background: rgba(20, 20, 35, 0.8);
+            border: 1px solid rgba(155, 126, 237, 0.3);
+            border-radius: 10px;
+            color: var(--text);
+            font-size: 0.95em;
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+        }
+        
+        .save-btn {
+            width: 100%;
+            padding: 1rem;
+            background: linear-gradient(135deg, var(--purple-primary), #7759CA);
+            color: white;
+            border: none;
+            border-radius: 12px;
+            font-weight: 600;
+            font-size: 1em;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin-top: 1rem;
+        }
+        
+        @media (max-width: 1200px) {
+            .main-layout { grid-template-columns: 1fr; }
+            .sidebar { grid-template-columns: 1fr 1fr; }
+        }
+        @media (max-width: 768px) {
+            .header h1 { font-size: 2em; }
+            .sidebar { grid-template-columns: 1fr; }
+            .form-row { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+    <div class='container'>
+        <div class='header'>
+            <h1><img src='https://knfoster13.github.io/HQ/kdrop4.png' alt='Dropathon Logo'> Content Calendar</h1>
+            <div class='header-controls'>
+                <div class='view-switcher'>
+                    <button class='view-btn active' onclick='switchView(`month`)'>Month</button>
+                    <button class='view-btn' onclick='switchView(`week`)'>Week</button>
+                    <button class='view-btn' onclick='switchView(`agenda`)'>Agenda</button>
+                </div>
+            </div>
+        </div>
+        
+        <div class='filter-tags' id='filterTags'>
+            <div class='filter-tag filter-all active' onclick='toggleFilter(`all`, this)'>All Brands</div>
+            <div class='filter-tag filter-for-harriet' onclick='toggleFilter(`For Harriet`, this)'>For Harriet</div>
+            <div class='filter-tag filter-knf' onclick='toggleFilter(`KNF`, this)'>KNF</div>
+            <div class='filter-tag filter-the-shallow-side' onclick='toggleFilter(`The Shallow Side`, this)'>The Shallow Side</div>
+            <div class='filter-tag filter-taste-of-kimberly' onclick='toggleFilter(`Taste of Kimberly`, this)'>Taste of Kimberly</div>
+            <div class='filter-tag filter-making-things-is-hard' onclick='toggleFilter(`Making Things Is Hard`, this)'>Making Things Is Hard</div>
+            <div class='filter-tag filter-black-women-in-the-wild' onclick='toggleFilter(`Black Women in the Wild`, this)'>BWW</div>
+            <div class='filter-tag filter-personal' onclick='toggleFilter(`Personal`, this)'>Personal</div>
+        </div>
+        
+        <div class='main-layout'>
+            <div class='calendar-container'>
+                <div id='monthView' class='month-view active'>
+                    <div class='month-nav'>
+                        <button class='nav-btn' onclick='previousMonth()'>‹</button>
+                        <div class='month-year' id='monthYear'></div>
+                        <button class='nav-btn' onclick='nextMonth()'>›</button>
+                    </div>
+                    <div class='weekdays'>
+                        <div>Sun</div><div>Mon</div><div>Tue</div><div>Wed</div><div>Thu</div><div>Fri</div><div>Sat</div>
+                    </div>
+                    <div class='calendar-grid' id='calendarGrid'></div>
+                </div>
+            </div>
+            
+            <div class='sidebar'>
+                <div class='quick-add'>
+                    <h3>Quick Actions</h3>
+                    <button class='add-btn' onclick='openContentModal()'>+ Add New Content</button>
+                    <button class='add-btn' onclick='importFromIdeation()'>Import from Ideation</button>
+                </div>
+                <div class='export-controls'>
+                    <h3>Export & Print</h3>
+                    <button class='add-btn' onclick='window.print()'>Print Calendar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div class='modal' id='contentModal'>
+        <div class='modal-content'>
+            <h3 id='modalTitle'>Add New Content</h3>
+            <form id='contentForm' onsubmit='saveContent(event)'>
+                <input type='hidden' id='contentId'>
+                <div class='form-group'>
+                    <label>Title</label>
+                    <input type='text' id='contentTitle' required>
+                </div>
+                <div class='form-row'>
+                    <div class='form-group'>
+                        <label>Publish Date</label>
+                        <input type='date' id='contentDate' required>
+                    </div>
+                    <div class='form-group'>
+                        <label>Brand/Pillar</label>
+                        <select id='contentPillar' required>
+                            <option>For Harriet</option>
+                            <option>KNF</option>
+                            <option>The Shallow Side</option>
+                            <option>Taste of Kimberly</option>
+                            <option>Making Things Is Hard</option>
+                            <option>Black Women in the Wild</option>
+                            <option>Personal</option>
+                        </select>
+                    </div>
+                </div>
+                <div class='form-row'>
+                    <div class='form-group'>
+                        <label>Content Type</label>
+                        <select id='contentType'>
+                            <option>Video</option><option>Podcast</option><option>Essay</option>
+                            <option>Social Post</option><option>Newsletter</option><option>Event</option>
+                        </select>
+                    </div>
+                    <div class='form-group'>
+                        <label>Status</label>
+                        <select id='contentStatus'>
+                            <option>Idea</option><option>Outlined/Scripted</option>
+                            <option>To Be Filmed/Recorded</option><option>In Post-Production</option>
+                            <option>Ready to Publish</option><option>Published</option>
+                        </select>
+                    </div>
+                </div>
+                <div class='form-group'>
+                    <label>Notes / Link</label>
+                    <textarea id='contentNotes' rows='4'></textarea>
+                </div>
+                <button type='submit' class='save-btn'>Save Content</button>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        let currentDate = new Date();
+        let contentItems = [];
+        let activeFilters = new Set(['all']);
+
+        function loadContent() {
+            const localData = localStorage.getItem('dropathonCalendar');
+            if (localData) contentItems = JSON.parse(localData);
+        }
+
+        function saveToStorage() {
+            localStorage.setItem('dropathonCalendar', JSON.stringify(contentItems));
+        }
+
+        function renderMonthView() {
+            const year = currentDate.getFullYear();
+            const month = currentDate.getMonth();
+            
+            document.getElementById('monthYear').textContent = new Date(year, month).toLocaleDateString('en-US', { month: 'long', year: 'numeric' });
+            
+            const firstDay = new Date(year, month, 1).getDay();
+            const daysInMonth = new Date(year, month + 1, 0).getDate();
+            
+            const grid = document.getElementById('calendarGrid');
+            grid.innerHTML = '';
+            
+            for (let i = 0; i < firstDay; i++) {
+                grid.appendChild(document.createElement('div'));
+            }
+            
+            for (let day = 1; day <= daysInMonth; day++) {
+                const dayEl = document.createElement('div');
+                dayEl.className = 'calendar-day';
+                const dateStr = `${year}-${String(month + 1).padStart(2, '0')}-${String(day).padStart(2, '0')}`;
+                
+                if (dateStr === new Date().toISOString().split('T')[0]) {
+                    dayEl.classList.add('today');
+                }
+                
+                dayEl.innerHTML = `<div class='day-number'>${day}</div><div class='day-events'></div>`;
+                const eventsEl = dayEl.querySelector('.day-events');
+
+                const dayContent = contentItems.filter(item => item.date === dateStr && (activeFilters.has('all') || activeFilters.has(item.pillar)));
+                dayContent.forEach(item => {
+                    const eventEl = document.createElement('div');
+                    const pillarClass = item.pillar.toLowerCase().replace(/\\s+/g, '-');
+                    eventEl.className = `event ${pillarClass}`;
+                    eventEl.dataset.status = item.status;
+                    eventEl.innerHTML = item.title;
+                    eventEl.style.borderColor = `var(--${pillarClass}-color)`;
+                    eventEl.onclick = (e) => { e.stopPropagation(); openContentModal(item.id); };
+                    eventsEl.appendChild(eventEl);
+                });
+
+                dayEl.onclick = () => openContentModal(null, dateStr);
+                grid.appendChild(dayEl);
+            }
+        }
+        
+        function openContentModal(id = null, date = null) {
+            const modal = document.getElementById('contentModal');
+            const form = document.getElementById('contentForm');
+            form.reset();
+            
+            if (id) {
+                const item = contentItems.find(i => i.id === id);
+                document.getElementById('modalTitle').textContent = 'Edit Content';
+                document.getElementById('contentId').value = item.id;
+                document.getElementById('contentTitle').value = item.title;
+                document.getElementById('contentDate').value = item.date;
+                document.getElementById('contentPillar').value = item.pillar;
+                document.getElementById('contentType').value = item.type;
+                document.getElementById('contentStatus').value = item.status;
+                document.getElementById('contentNotes').value = item.notes;
+            } else {
+                document.getElementById('modalTitle').textContent = 'Add New Content';
+                document.getElementById('contentId').value = '';
+                document.getElementById('contentDate').value = date || new Date().toISOString().split('T')[0];
+            }
+            modal.style.display = 'block';
+        }
+
+        function saveContent(e) {
+            e.preventDefault();
+            const id = document.getElementById('contentId').value;
+            const contentData = {
+                title: document.getElementById('contentTitle').value,
+                date: document.getElementById('contentDate').value,
+                pillar: document.getElementById('contentPillar').value,
+                type: document.getElementById('contentType').value,
+                status: document.getElementById('contentStatus').value,
+                notes: document.getElementById('contentNotes').value,
+            };
+
+            if (id) {
+                const index = contentItems.findIndex(i => i.id == id);
+                contentItems[index] = { ...contentItems[index], ...contentData };
+            } else {
+                contentData.id = Date.now();
+                contentItems.push(contentData);
+            }
+            
+            saveToStorage();
+            renderMonthView();
+            document.getElementById('contentModal').style.display = 'none';
+        }
+
+        function importFromIdeation() {
+            const data = prompt('Paste the JSON data from your Ideation session:');
+            if (data) {
+                try {
+                    const parsed = JSON.parse(data);
+                    openContentModal();
+                    document.getElementById('contentTitle').value = parsed.title || '';
+                    document.getElementById('contentPillar').value = parsed.brand || 'KNF';
+                    document.getElementById('contentNotes').value = 'Imported from Ideation session.\\n\\n' + (parsed.notes || '');
+                } catch (e) {
+                    alert('Invalid data format.');
+                }
+            }
+        }
+
+        function toggleFilter(filter, el) {
+            document.querySelectorAll('.filter-tag').forEach(t => t.classList.remove('active'));
+            el.classList.add('active');
+            activeFilters.clear();
+            activeFilters.add(filter);
+            renderMonthView();
+        }
+
+        function previousMonth() { currentDate.setMonth(currentDate.getMonth() - 1); renderMonthView(); }
+        function nextMonth() { currentDate.setMonth(currentDate.getMonth() + 1); renderMonthView(); }
+        
+        window.onclick = (e) => { if (e.target.classList.contains('modal')) e.target.style.display = 'none'; };
+
+        document.addEventListener('DOMContentLoaded', () => {
+            loadContent();
+            renderMonthView();
+        });
+    </script>
+</body>
+</html>
+" title="Calendar Preview"></iframe>
+        </div>
+    </div>
+
+</body>
+</html>
