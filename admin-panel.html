@@ -1,0 +1,33 @@
+<section id="admin-panel" class="transition-all duration-500 card" aria-label="Admin panel">
+    <div class="p-6">
+        <h2 class="text-2xl font-bold mb-4 flex items-center gap-2"><svg class="w-6 h-6 text-accent" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6"></path></svg>Add or Edit Spark</h2>
+        <form id="spark-form" class="space-y-4" novalidate>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <div><label for="spark-title" class="block text-sm font-medium mb-1">Title *</label><input type="text" id="spark-title" class="form-input" required maxlength="200" aria-required="true"><span class="text-xs text-red-400 hidden mt-1" id="title-error"></span></div>
+                <div><label for="spark-type" class="block text-sm font-medium mb-1">Content Type *</label><select id="spark-type" class="form-input" aria-required="true"><option>Video</option><option>Podcast</option><option>Essay</option><option>Social Post</option><option>Newsletter</option><option>Tutorial</option><option>Other</option></select></div>
+            </div>
+            <div><label for="spark-description" class="block text-sm font-medium mb-1">Description *</label><textarea id="spark-description" class="form-input" rows="2" required maxlength="500" aria-required="true"></textarea><span class="text-xs text-red-400 hidden mt-1" id="description-error"></span></div>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                <div><label for="spark-link" class="block text-sm font-medium mb-1">Link *</label><input type="url" id="spark-link" class="form-input" required aria-required="true"><span class="text-xs text-red-400 hidden mt-1" id="link-error"></span></div>
+                <div><label for="spark-image" class="block text-sm font-medium mb-1">Image URL</label><input type="url" id="spark-image" class="form-input"><span class="text-xs text-red-400 hidden mt-1" id="image-error"></span></div>
+                <div><label for="spark-access" class="block text-sm font-medium mb-1">Access Level</label><select id="spark-access" class="form-input"><option>Free</option><option>Paid</option></select></div>
+            </div>
+            
+            <div class="pt-4 border-t border-white/10"><label class="flex items-center gap-2 cursor-pointer"><input type="checkbox" id="schedule-toggle" class="form-checkbox h-4 w-4 rounded bg-white/10 border-white/20 text-accent focus:ring-accent"><span class="text-sm font-medium">Schedule for later</span></label></div>
+            <div id="schedule-options" class="hidden grid grid-cols-2 gap-4">
+                <div><label for="schedule-date" class="block text-sm font-medium mb-1">Date</label><input type="date" id="schedule-date" class="form-input"></div>
+                <div><label for="schedule-time" class="block text-sm font-medium mb-1">Time (Local)</label><input type="time" id="schedule-time" class="form-input"></div>
+            </div>
+            
+            <div class="flex items-center gap-4 pt-2">
+                <button type="submit" id="publish-btn" class="btn btn-primary" disabled><span class="loading-spinner hidden"></span><svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8"></path></svg><span id="publish-btn-text">Spark It!</span></button>
+                <button type="button" id="cancel-edit-btn" class="btn btn-secondary hidden">Cancel Edit</button>
+                <button type="button" id="clear-data-btn" class="btn btn-secondary !bg-red-500/10 !text-red-400 !border-red-500/20 ml-auto">Clear All Data</button>
+            </div>
+        </form>
+    </div>
+    <div id="scheduled-section" class="hidden mt-8 p-6 pt-0">
+        <h3 class="text-xl font-bold mb-4 brand-font text-gradient">Scheduled Sparks</h3>
+        <div id="scheduled-sparks" class="space-y-4"></div>
+    </div>
+</section>
