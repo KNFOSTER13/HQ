@@ -204,8 +204,8 @@
       }
       
       .btn-subscribe {
-        background: linear-gradient(to right, #684077, var(--accent-end));
-        color: white;
+        background: linear-gradient(to right, var(--accent-start), var(--accent-end));
+        color: #3d3128;
         font-weight: 500;
         box-shadow: 0 0 20px var(--purple-glow);
       }
@@ -617,7 +617,8 @@
             messagingSenderId: "762035393571",
             appId: "1:762035393571:web:7d474a6a57cc031b860d96"
         };
-        const ADMIN_EMAIL = "kimberly.foster@example.com";
+        // FIXED: Updated admin email
+        const ADMIN_EMAIL = "submissions@forharriet.com";
         const START_DATE = new Date('2025-10-02T00:00:00');
         const END_DATE = new Date('2025-12-31T23:59:59');
         const MS_PER_DAY = 1000 * 60 * 60 * 24;
@@ -1021,7 +1022,8 @@
                 
                 document.body.classList.toggle('is-admin', isAdmin);
                 DOMElements.adminPanel.classList.toggle('hidden', !isAdmin);
-                DOMElements.adminSigninBtn.classList.toggle('hidden', !!user);
+                // FIXED: Changed button visibility logic
+                DOMElements.adminSigninBtn.classList.toggle('hidden', isAdmin);
                 DOMElements.adminSignoutBtn.classList.toggle('hidden', !isAdmin);
                 
                 if (!user) await signInAnonymously(auth);
@@ -1072,4 +1074,3 @@
     </script>
 </body>
 </html>
-
