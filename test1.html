@@ -4,21 +4,22 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Kimberly's Creative Sprint - A 90 Day Project</title>
-    <meta name="description" content="Join Kimberly's 90-day creative challenge. Beating back perfectionism one drop at a time.">
-    <meta name="theme-color" content="#1a0f26">
+    <!-- CHANGE: Updated meta description -->
+    <meta name="description" content="Join Kimberly's 90-day creative challenge. Outrunning perfectionism one creative spark at a time.">
+    <meta name="theme-color" content="#12072B">
     <meta name="robots" content="index, follow">
 
-    <link rel="canonical" href="https://knf.kim/drops">
+    <link rel="canonical" href="https://knf.kim/sparks">
     <meta property="og:title" content="Kimberly's Creative Sprint - 90 Days of Creative Output">
-    <meta property="og:description" content="Join Kimberly's 90-day creative challenge. Beating back perfectionism one drop at a time.">
+    <meta property="og:description" content="Join Kimberly's 90-day creative challenge. Outrunning perfectionism one creative spark at a time.">
     <meta property="og:image" content="https://knfoster13.github.io/HQ/kdrop6.png">
     <meta property="og:image:alt" content="Kimberly's 90-day Creative Sprint">
-    <meta property="og:url" content="https://knf.kim/drops">
+    <meta property="og:url" content="https://knf.kim/sparks">
     <meta property="og:type" content="website">
     <meta property="og:site_name" content="Kimberly's Creative Sprint">
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="Kimberly's Creative Sprint - 90 Days of Creative Output">
-    <meta name="twitter:description" content="Join Kimberly's 90-day creative challenge. Beating back perfectionism one drop at a time.">
+    <meta name="twitter:description" content="Join Kimberly's 90-day creative challenge. Outrunning perfectionism one creative spark at a time.">
     <meta name="twitter:image" content="https://knfoster13.github.io/HQ/kdrop6.png">
     <meta name="twitter:creator" content="@kimberlynfoster">
 
@@ -28,7 +29,7 @@
       "@type": "WebSite",
       "name": "Kimberly's Creative Sprint",
       "description": "90 Days of Creative Output",
-      "url": "https://knf.kim/drops",
+      "url": "https://knf.kim/sparks",
       "publisher": {
         "@type": "Person",
         "name": "Kimberly Nicole Foster"
@@ -46,20 +47,20 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
       :root {
-        --bg-dark: #1a0f26;
-        --bg-center: #2d1b42;
-        --bg-edge: #241538;
+        --bg-dark: #12072B;
+        --bg-center: #2E144F;
+        --bg-edge: #1D0D37;
         --surface: rgba(42, 26, 61, 0.85);
         --surface-hover: rgba(52, 36, 71, 0.95);
         --accent: #a78bfa;
         --accent-bright: #c4b5fd;
-        --accent-start: #C6B6F7;   /* a soft lavender */
-        --accent-end:   #ffe3dc;     /* a lighter peach */
+        --accent-start: #C6B6F7;
+        --accent-end:   #ffe3dc;
         --cta: #f472b6;
         --cta-hover: #ec4899;
-        --text-primary: #FCFBF7;   /* Brighter Ivory */
-        --text-secondary: #E5E1DA; /* Lighter warm gray */
-        --text-muted: #BDB6AE;   /* Softer muted tone */
+        --text-primary: #FCFBF7;
+        --text-secondary: #E5E1DA;
+        --text-muted: #BDB6AE;
         --tag-free: #86efac;
         --tag-paid: #fde047;
         --heart: #f472b6;
@@ -69,19 +70,38 @@
         --border-color: rgba(167, 139, 250, 0.15);
         --border-color-hover: rgba(167, 139, 250, 0.3);
         --purple-glow: rgba(150, 129, 237, 0.4);
+        --cursor-x: 50vw;
+        --cursor-y: 50vh;
       }
 
       /* Base & Typography */
       html { scroll-behavior: smooth; }
       body {
         font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
-        background: radial-gradient(ellipse at top center, var(--bg-center), var(--bg-edge));
+        /* CHANGE: Reverted to a more dramatic purple gradient */
+        background: radial-gradient(ellipse at top center, #4c2d6f 0%, #1a0f26 70%);
         min-height: 100vh;
         color: var(--text-primary);
         line-height: 1.75;
         transition: all 0.3s ease;
       }
+      body::before {
+          content: '';
+          position: fixed;
+          top: 0; left: 0;
+          width: 100%; height: 100%;
+          background: radial-gradient(
+            circle 500px at var(--cursor-x) var(--cursor-y),
+            rgba(167, 139, 250, 0.08),
+            transparent 80%
+          );
+          pointer-events: none;
+          z-index: -1;
+      }
+
       .brand-font { font-family: 'DM Serif Display', serif; }
+      h1, h2, h3 { text-wrap: balance; }
+      
       .line-clamp-3 {
         display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden;
       }
@@ -91,15 +111,23 @@
         background-clip: text;
         color: transparent;
       }
+      /* CHANGE: New subtitle gradient class */
+      .subtitle-gradient {
+        background: linear-gradient(to right, #FFF6E9, #FFD6C2);
+        -webkit-background-clip: text;
+        background-clip: text;
+        color: transparent;
+      }
 
       /* Accessibility */
       *:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; border-radius: 0.25rem; }
       .skip-to-content { position: absolute; top: -40px; left: 0; background: var(--accent); color: white; padding: 8px; text-decoration: none; z-index: 1000; border-radius: 0 0 0.5rem 0; }
       .skip-to-content:focus { top: 0; }
+      .sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0, 0, 0, 0); white-space: nowrap; border-width: 0; }
 
       /* Components */
        .frosted-header {
-        background-color: rgba(26, 15, 38, 0.8);
+        background-color: rgba(29, 13, 55, 0.8); /* Darker plum shade */
         backdrop-filter: blur(12px);
         -webkit-backdrop-filter: blur(12px);
         border-bottom: 1px solid rgba(255, 255, 255, 0.1);
@@ -108,15 +136,23 @@
         background: var(--surface);
         border: 1px solid var(--border-color);
         backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
-        transition: transform 0.2s ease, box-shadow 0.2s ease;
-        border-radius: 0.75rem; /* rounded-xl */
+        transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease, opacity 0.5s ease;
+        border-radius: 0.75rem;
         overflow: hidden;
         box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.1);
         border-left-width: 4px;
         border-left-color: transparent;
       }
+      main .card {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+      main .card.is-visible {
+        opacity: 1;
+        transform: translateY(0);
+      }
       .card:hover {
-        transform: translateY(-5px);
+        transform: translateY(-5px) !important;
         background: var(--surface-hover);
         border-color: var(--border-color-hover);
         box-shadow: 0 10px 20px rgba(0,0,0,0.15), inset 0 0 0 1px rgba(255, 255, 255, 0.1);
@@ -144,12 +180,29 @@
       .btn-primary { background: linear-gradient(135deg, var(--cta) 0%, var(--cta-hover) 100%); color: white; }
       .btn-primary:hover:not(:disabled) { transform: scale(1.05); box-shadow: 0 10px 25px rgba(244, 114, 182, 0.3); }
       .btn-primary:disabled { opacity: 0.5; cursor: not-allowed; transform: scale(1); }
-      .btn-secondary { background: rgba(167, 139, 250, 0.1); color: var(--accent-bright); border: 1px solid rgba(167, 139, 250, 0.3); }
-      .btn-secondary:hover:not(:disabled) { background: rgba(167, 139, 250, 0.2); border-color: rgba(167, 139, 250, 0.5); }
+      
+      /* CHANGE: New Secondary Button Style (SMS) */
+      .btn-secondary { 
+        background: #2E144F; 
+        color: var(--accent-bright); 
+        border: 1px solid var(--accent);
+      }
+      .btn-secondary:hover:not(:disabled) { 
+        background: #3a1c63; 
+        border-color: var(--accent-bright);
+        box-shadow: 0 0 15px var(--accent-bright);
+      }
+
+      /* CHANGE: New Primary CTA Button Style (Newsletter) */
        .btn-gradient {
-        background: linear-gradient(to right, var(--accent-start), var(--accent-end));
+        background: linear-gradient(90deg, #C6B6F7 0%, #FFD6C2 100%);
         color: #3d3128;
       }
+      .btn-gradient:hover:not(:disabled) {
+          box-shadow: 0 0 20px #c6b6f7;
+          transform: scale(1.05);
+      }
+      
       .btn-subscribe {
         background: linear-gradient(to right, var(--accent-start), var(--accent-end));
         color: #3d3128;
@@ -160,6 +213,10 @@
         transform: scale(1.05);
         box-shadow: 0 8px 30px var(--purple-glow);
       }
+      .btn:hover svg {
+          transform: scale(1.1) rotate(3deg);
+      }
+      
       .form-input {
         background: rgba(0, 0, 0, 0.2); border: 1px solid rgba(167, 139, 250, 0.2);
         color: var(--text-primary); padding: 0.75rem 1rem; border-radius: 0.5rem;
@@ -190,15 +247,13 @@
         text-shadow: 0 0 8px rgba(255, 255, 255, 0.1);
       }
       
-      /* Heart Animation */
       .heart-btn { transition: all 0.2s ease; cursor: pointer; user-select: none; }
       .heart-btn:hover svg { transform: scale(1.1); }
       .heart-btn.hearted svg { fill: var(--heart); stroke: var(--heart); animation: heartPulse 0.3s ease; }
       @keyframes heartPulse { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.2); } }
       
-      /* Progress Bar */
       .header-progress-bar { 
-        height: 0.75rem; /* h-3 */
+        height: 0.75rem;
         background-color: rgba(255,255,255,0.1);
         border: 1px solid rgba(255,255,255,0.1);
         border-radius: 9999px;
@@ -211,14 +266,12 @@
         animation: progressShimmer 2s ease-in-out infinite;
         box-shadow: 0 0 8px var(--accent-start);
       }
-
       @keyframes progressShimmer {
           0% { opacity: 0.7; }
           50% { opacity: 1; }
           100% { opacity: 0.7; }
       }
       
-      /* Today's Drops Section */
       #today-section {
         background: linear-gradient(rgba(45, 27, 66, 0.1), rgba(45, 27, 66, 0.5));
         border: 1px solid rgba(167, 139, 250, 0.1);
@@ -236,8 +289,19 @@
         100% { background-position: 200% 0; }
       }
 
+      .day-dot {
+          transition: transform 0.2s ease, background-color 0.2s ease;
+      }
+      .day-dot:hover {
+          transform: scale(1.5);
+          background-color: var(--accent-bright);
+      }
+      .day-dot.current {
+          background-color: var(--cta);
+          transform: scale(1.75);
+          box-shadow: 0 0 8px var(--cta);
+      }
 
-      /* Toast Notifications */
       .toast {
         position: fixed; bottom: 2rem; left: 50%;
         transform: translateX(-50%) translateY(100px);
@@ -251,7 +315,6 @@
       .toast.error { border-color: var(--error); }
       .toast.warning { border-color: var(--warning); }
 
-      /* Spinners & Skeletons */
       .loading-spinner { border: 2px solid rgba(167, 139, 250, 0.2); border-radius: 50%; border-top: 2px solid var(--accent); width: 20px; height: 20px; animation: spin 1s linear infinite; }
       @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
       .skeleton-card { background: var(--surface); border: 1px solid var(--border-color); border-radius: 1rem; padding: 1rem; }
@@ -279,97 +342,25 @@
             border-color: var(--accent);
         }
 
-      /* Custom Scrollbar */
       ::-webkit-scrollbar { width: 8px; }
       ::-webkit-scrollbar-track { background: rgba(0, 0, 0, 0.1); }
       ::-webkit-scrollbar-thumb { background: var(--accent); border-radius: 4px; }
       ::-webkit-scrollbar-thumb:hover { background: var(--accent-bright); }
+
+      .hero-image {
+          animation: subtleGlow 4s ease-in-out infinite alternate;
+      }
+      @keyframes subtleGlow {
+          from { filter: drop-shadow(0 0 15px var(--purple-glow)); }
+          to { filter: drop-shadow(0 0 25px var(--purple-glow)); }
+      }
         
-      /* --- TextMagic Widget Overrides --- */
-      #sms-modal .tm-widget-form {
-        display: flex;
-        flex-direction: column;
-        gap: 1rem;
-        text-align: left;
-      }
-      #sms-modal .tm-widget-form label {
-        color: var(--text-secondary) !important;
-        font-weight: 600;
-        font-size: 0.9rem;
-      }
-      #sms-modal .tm-widget-form input {
-        background: rgba(0, 0, 0, 0.2) !important;
-        border: 1px solid var(--border-color) !important;
-        color: var(--text-primary) !important;
-        padding: 0.85rem 1rem !important;
-        border-radius: 0.5rem !important;
-        font-size: 1rem !important;
-        width: 100% !important;
-        transition: all 0.2s ease;
-      }
-      #sms-modal .tm-widget-form input::placeholder { color: var(--text-muted) !important; }
-      #sms-modal .tm-widget-form input:focus {
-        outline: none !important;
-        border-color: var(--accent) !important;
-        box-shadow: 0 0 0 3px rgba(167, 139, 250, 0.2) !important;
-      }
-      #sms-modal .tm-widget-form button,
-      #sms-modal .tm-widget-form input[type="submit"] {
-        background: var(--accent) !important;
-        color: var(--text-primary) !important;
-        font-weight: 600 !important;
-        border-radius: 9999px !important;
-        padding: 0.9rem 1.5rem !important;
-        font-size: 1rem !important;
-        border: none !important;
-        cursor: pointer;
-        width: 100% !important;
-        margin-top: 0.75rem;
-        transition: all 0.2s ease;
-      }
-      #sms-modal .tm-widget-form button:hover {
-        background: var(--accent-bright) !important;
-        color: var(--bg-dark) !important;
-        transform: translateY(-2px);
-      }
-      #sms-modal .tm-widget-form .tm-widget-success {
-        color: #34d399 !important;
-        background: rgba(52, 211, 153, 0.1) !important;
-        border: 1px solid rgba(52, 211, 153, 0.3) !important;
-        padding: 1rem;
-        border-radius: 0.75rem;
-        text-align: center;
-        font-weight: 600;
-      }
-      #sms-modal .tm-widget-form .tm-widget-disclaimer {
-        color: var(--text-muted) !important;
-        font-size: 0.8rem !important;
-        line-height: 1.5;
-        margin-top: 0.5rem;
-        text-align: center;
-      }
-
-
-      /* Media Queries for header */
       @media (max-width: 768px) {
-        .header-nav {
-            flex-direction: column;
-            gap: 0.5rem;
-        }
-        .header-counters {
-            order: 3;
-            width: 100%;
-            justify-content: center;
-        }
-        .header-progress-bar {
-             order: 4;
-        }
-        .header-buttons {
-            order: 2;
-        }
-        .header-logo {
-            order: 1;
-        }
+        .header-nav { flex-direction: column; gap: 0.5rem; }
+        .header-counters { order: 3; width: 100%; justify-content: center; }
+        .header-progress-bar { order: 4; }
+        .header-buttons { order: 2; }
+        .header-logo { order: 1; }
       }
     </style>
 </head>
@@ -379,25 +370,24 @@
     <header class="sticky top-0 z-50 frosted-header" role="banner">
         <nav class="max-w-6xl mx-auto px-4 py-4" aria-label="Primary">
             <div class="header-nav flex items-center justify-between">
-                <!-- Left Zone: Logo & Title -->
                 <a href="#" class="header-logo flex items-center gap-2" aria-label="Creative Sprint Home">
                     <img src="KMONOGRAM-WARM.png" alt="Logo" class="h-10 w-auto" style="filter: drop-shadow(0 0 8px #FCE9EB);">
                     <span class="hidden sm:inline font-bold text-xl brand-font text-gradient" style="text-shadow: 0 1px 2px rgba(0,0,0,0.1);">Kimberly's Creative Sprint</span>
                 </a>
     
-                <!-- Center Zone: Counters & Progress -->
                 <div class="header-counters hidden md:flex flex-col items-center">
                     <div class="flex items-center gap-6 text-center">
                         <div class="flex flex-col">
                             <span id="header-day" class="text-base font-bold">1</span>
                             <span class="text-xs uppercase tracking-wider text-muted">Day</span>
                         </div>
-                        <div class="h-6 w-px bg-white/10"></div> <!-- Divider -->
+                        <div class="h-6 w-px bg-white/10"></div>
                         <div class="flex flex-col">
-                             <span id="header-drops" class="text-base font-bold">0</span>
-                             <span class="text-xs uppercase tracking-wider text-muted">Drops</span>
+                             <!-- CHANGE: "Drops" to "Sparks" -->
+                             <span id="header-sparks" class="text-base font-bold">0</span>
+                             <span class="text-xs uppercase tracking-wider text-muted">Sparks</span>
                         </div>
-                        <div class="h-6 w-px bg-white/10"></div> <!-- Divider -->
+                        <div class="h-6 w-px bg-white/10"></div>
                         <div class="flex flex-col">
                              <span id="header-streak" class="text-base font-bold">0</span>
                              <span class="text-xs uppercase tracking-wider text-muted">Streak</span>
@@ -405,18 +395,13 @@
                     </div>
                 </div>
     
-                <!-- Right Zone: Buttons -->
                 <div class="header-buttons flex items-center gap-2">
                     <button id="admin-signin-btn" class="btn btn-secondary !bg-transparent !text-sm !p-2" title="Admin sign in" aria-label="Admin sign in">
-                        <svg class="w-4 h-4" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 16 16" aria-hidden="true">
-                            <path d="M3.5 11.5a3.5 3.5 0 1 1 3.163-5H14l1.5 1.5L14 9.5l-1-1-1 1-1-1-1 1-1-1-1 1H6.663a3.5 3.5 0 0 1-3.163 2zM2.5 9a1 1 0 1 0 0-2 1 1 0 0 0 0 2z"/>
-                        </svg>
+                        <svg class="w-4 h-4" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 16 16" aria-hidden="true"><path d="M3.5 11.5a3.5 3.5 0 1 1 3.163-5H14l1.5 1.5L14 9.5l-1-1-1 1-1-1-1 1-1-1-1 1H6.663a3.5 3.5 0 0 1-3.163 2zM2.5 9a1 1 0 1 0 0-2 1 1 0 0 0 0 2z"/></svg>
                     </button>
                     
                     <button id="admin-signout-btn" class="btn btn-secondary !bg-transparent !text-sm !p-2 hidden" title="Admin sign out" aria-label="Admin sign out">
-                         <svg class="w-4 h-4" xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1"></path>
-                         </svg>
+                         <svg class="w-4 h-4" xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1"></path></svg>
                     </button>
                     
                     <button id="subscribe-btn" class="btn btn-subscribe" aria-label="Subscribe to SMS updates">
@@ -424,7 +409,6 @@
                     </button>
                 </div>
             </div>
-             <!-- Progress Bar -->
             <div id="header-progress-bar" role="progressbar" aria-valuemin="0" aria-valuemax="90" aria-valuenow="1" class="w-full mt-3 header-progress-bar !h-2">
                 <div class="header-progress-fill" style="width: 1%;"></div>
             </div>
@@ -433,39 +417,43 @@
 
     <main class="max-w-6xl mx-auto px-4 py-8" role="main" id="main-content">
         <section class="text-center pt-0 pb-12" aria-labelledby="hero-title">
-            <img src="KCS-WARM.png" alt="Kimberly's Creative Sprint" class="mx-auto w-full max-w-md mb-6" width="1024" height="768" fetchpriority="high" decoding="async" loading="eager">
-            <h1 id="hero-title" class="text-3xl md:text-4xl font-bold mb-4 brand-font text-gradient">Beating back perfectionism one drop at a time.</h1>
+            <img src="KCS-WARM.png" alt="Kimberly's Creative Sprint" class="hero-image mx-auto w-full max-w-md mb-6" width="1024" height="768" fetchpriority="high" decoding="async" loading="eager">
+            <!-- CHANGE: New subtitle text and color class -->
+            <h1 id="hero-title" class="text-3xl md:text-4xl font-bold mb-4 brand-font subtitle-gradient">Outrunning perfectionism one creative spark at a time.</h1>
             <p class="text-lg text-muted mb-4">
                 <strong id="challenge-dates" class="font-bold" style="color: #ffe3dc;">October 2 &mdash; December 31, 2025</strong>
             </p>
             <div class="mt-6 flex flex-wrap gap-3 justify-center">
+                <!-- CHANGE: New button styles applied via class -->
                 <button id="hero-subscribe-btn" class="btn btn-gradient">Newsletter</button>
                 <a href="sms-optin.html" class="btn btn-secondary">SMS Alerts 📱</a>
             </div>
 
-            <div id="day-dots-container" class="flex gap-0.5 overflow-x-auto max-w-full py-2 px-4 mt-8"></div>
+            <div id="day-dots-container" class="flex gap-1.5 justify-center flex-wrap max-w-full py-2 px-4 mt-8"></div>
 
             <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mt-8 max-w-2xl mx-auto" role="region" aria-label="Challenge statistics">
-                <div class="card p-4 text-center"><div class="text-2xl font-bold text-accent" id="today-count" aria-live="polite">0</div><div class="text-sm text-muted">Today's Drops</div></div>
+                <!-- CHANGE: "Drops" to "Sparks" -->
+                <div class="card p-4 text-center"><div class="text-2xl font-bold text-accent" id="today-count" aria-live="polite">0</div><div class="text-sm text-muted">Today's Sparks</div></div>
                 <div class="card p-4 text-center"><div class="text-2xl font-bold text-cta" id="streak-count" aria-live="polite">0</div><div class="text-sm text-muted">Day Streak</div></div>
                 <div class="card p-4 text-center"><div class="text-2xl font-bold text-success" id="free-count" aria-live="polite">0</div><div class="text-sm text-muted">Free Content</div></div>
                 <div class="card p-4 text-center"><div class="text-2xl font-bold text-warning" id="paid-count" aria-live="polite">0</div><div class="text-sm text-muted">Premium</div></div>
             </div>
         </section>
 
-        <section id="admin-panel" class="hidden mb-8 transition-all duration-500" aria-label="Admin panel">
-            <div class="card p-6">
-                <h2 class="text-2xl font-bold mb-4 flex items-center gap-2"><svg class="w-6 h-6 text-accent" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6"></path></svg>Add or Edit Drop</h2>
-                <form id="drop-form" class="space-y-4" novalidate>
+        <section id="admin-panel" class="hidden mb-8 transition-all duration-500 card" aria-label="Admin panel">
+            <div class="p-6">
+                <!-- CHANGE: "Drop" to "Spark" -->
+                <h2 class="text-2xl font-bold mb-4 flex items-center gap-2"><svg class="w-6 h-6 text-accent" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6"></path></svg>Add or Edit Spark</h2>
+                <form id="spark-form" class="space-y-4" novalidate>
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-                        <div><label for="drop-title" class="block text-sm font-medium mb-1">Title *</label><input type="text" id="drop-title" class="form-input" required maxlength="200" aria-required="true"><span class="text-xs text-red-400 hidden mt-1" id="title-error"></span></div>
-                        <div><label for="drop-type" class="block text-sm font-medium mb-1">Content Type *</label><select id="drop-type" class="form-input" aria-required="true"><option>Video</option><option>Podcast</option><option>Essay</option><option>Social Post</option><option>Newsletter</option><option>Tutorial</option><option>Other</option></select></div>
+                        <div><label for="spark-title" class="block text-sm font-medium mb-1">Title *</label><input type="text" id="spark-title" class="form-input" required maxlength="200" aria-required="true"><span class="text-xs text-red-400 hidden mt-1" id="title-error"></span></div>
+                        <div><label for="spark-type" class="block text-sm font-medium mb-1">Content Type *</label><select id="spark-type" class="form-input" aria-required="true"><option>Video</option><option>Podcast</option><option>Essay</option><option>Social Post</option><option>Newsletter</option><option>Tutorial</option><option>Other</option></select></div>
                     </div>
-                    <div><label for="drop-description" class="block text-sm font-medium mb-1">Description *</label><textarea id="drop-description" class="form-input" rows="2" required maxlength="500" aria-required="true"></textarea><span class="text-xs text-red-400 hidden mt-1" id="description-error"></span></div>
+                    <div><label for="spark-description" class="block text-sm font-medium mb-1">Description *</label><textarea id="spark-description" class="form-input" rows="2" required maxlength="500" aria-required="true"></textarea><span class="text-xs text-red-400 hidden mt-1" id="description-error"></span></div>
                     <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
-                        <div><label for="drop-link" class="block text-sm font-medium mb-1">Link *</label><input type="url" id="drop-link" class="form-input" required aria-required="true"><span class="text-xs text-red-400 hidden mt-1" id="link-error"></span></div>
-                        <div><label for="drop-image" class="block text-sm font-medium mb-1">Image URL</label><input type="url" id="drop-image" class="form-input"><span class="text-xs text-red-400 hidden mt-1" id="image-error"></span></div>
-                        <div><label for="drop-access" class="block text-sm font-medium mb-1">Access Level</label><select id="drop-access" class="form-input"><option>Free</option><option>Paid</option></select></div>
+                        <div><label for="spark-link" class="block text-sm font-medium mb-1">Link *</label><input type="url" id="spark-link" class="form-input" required aria-required="true"><span class="text-xs text-red-400 hidden mt-1" id="link-error"></span></div>
+                        <div><label for="spark-image" class="block text-sm font-medium mb-1">Image URL</label><input type="url" id="spark-image" class="form-input"><span class="text-xs text-red-400 hidden mt-1" id="image-error"></span></div>
+                        <div><label for="spark-access" class="block text-sm font-medium mb-1">Access Level</label><select id="spark-access" class="form-input"><option>Free</option><option>Paid</option></select></div>
                     </div>
                     
                     <div class="pt-4 border-t border-white/10"><label class="flex items-center gap-2 cursor-pointer"><input type="checkbox" id="schedule-toggle" class="form-checkbox h-4 w-4 rounded bg-white/10 border-white/20 text-accent focus:ring-accent"><span class="text-sm font-medium">Schedule for later</span></label></div>
@@ -475,23 +463,26 @@
                     </div>
                     
                     <div class="flex items-center gap-4 pt-2">
-                        <button type="submit" id="publish-btn" class="btn btn-primary" disabled><span class="loading-spinner hidden"></span><svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8"></path></svg><span id="publish-btn-text">Drop It!</span></button>
+                        <!-- CHANGE: "Drop It!" to "Spark It!" -->
+                        <button type="submit" id="publish-btn" class="btn btn-primary" disabled><span class="loading-spinner hidden"></span><svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8"></path></svg><span id="publish-btn-text">Spark It!</span></button>
                         <button type="button" id="cancel-edit-btn" class="btn btn-secondary hidden">Cancel Edit</button>
                         <button type="button" id="clear-data-btn" class="btn btn-secondary !bg-red-500/10 !text-red-400 !border-red-500/20 ml-auto">Clear All Data</button>
                     </div>
                 </form>
             </div>
-            <div id="scheduled-section" class="hidden mt-8">
-                <h3 class="text-xl font-bold mb-4 brand-font text-gradient">Scheduled Drops</h3>
-                <div id="scheduled-drops" class="space-y-4"></div>
+            <div id="scheduled-section" class="hidden mt-8 p-6 pt-0">
+                <!-- CHANGE: "Drops" to "Sparks" -->
+                <h3 class="text-xl font-bold mb-4 brand-font text-gradient">Scheduled Sparks</h3>
+                <div id="scheduled-sparks" class="space-y-4"></div>
             </div>
         </section>
 
-        <section class="mb-6" aria-label="Search, filter and sort drops">
+        <section class="mb-6" aria-label="Search, filter and sort sparks">
             <div class="card p-4">
                 <div class="grid md:grid-cols-3 gap-4">
                     <div class="relative md:col-span-1">
-                        <input type="text" id="search-input" class="form-input pl-10" placeholder="Search drops..." aria-label="Search drops">
+                        <!-- CHANGE: "drops" to "sparks" -->
+                        <input type="text" id="search-input" class="form-input pl-10" placeholder="Search sparks..." aria-label="Search sparks">
                         <svg class="w-5 h-5 absolute left-3 top-1/2 -translate-y-1/2 text-muted" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path></svg>
                     </div>
                     <div class="flex items-center gap-2 justify-between md:col-span-2">
@@ -503,7 +494,8 @@
                              <button class="filter-btn" data-filter="Free" aria-pressed="false">Free</button>
                             <button class="filter-btn" data-filter="Paid" aria-pressed="false">Premium</button>
                         </div>
-                        <select id="sort-select" class="form-input w-40" aria-label="Sort drops">
+                        <!-- CHANGE: "drops" to "sparks" -->
+                        <select id="sort-select" class="form-input w-40" aria-label="Sort sparks">
                             <option value="newest">Newest</option>
                             <option value="oldest">Oldest</option>
                             <option value="most-loved">❤️ Most Loved</option>
@@ -514,54 +506,47 @@
             </div>
         </section>
 
-        <section id="content-feed" class="space-y-8" aria-label="Content feed" aria-busy="true">
+        <section id="content-feed" class="space-y-8" aria-label="Content feed" aria-busy="true" aria-live="polite">
+            <span id="feed-announcer" class="sr-only" aria-live="assertive"></span>
+            
             <div id="skeleton-loaders">
-                <h2 class="text-2xl md:text-3xl font-bold mb-4 brand-font animate-pulse">Loading drops...</h2>
+                <!-- CHANGE: "drops" to "sparks" -->
+                <h2 class="text-2xl md:text-3xl font-bold mb-4 brand-font animate-pulse">Loading sparks...</h2>
                 <div class="space-y-6">
                     <div class="skeleton-card"><div class="flex flex-col md:flex-row gap-4"><div class="md:w-48 h-32 skeleton-line rounded-lg"></div><div class="flex-1 space-y-2"><div class="skeleton-line w-3/4"></div><div class="skeleton-line w-1/2"></div><div class="skeleton-line w-full"></div></div></div></div>
                     <div class="skeleton-card"><div class="flex flex-col md:flex-row gap-4"><div class="md:w-48 h-32 skeleton-line rounded-lg"></div><div class="flex-1 space-y-2"><div class="skeleton-line w-3/4"></div><div class="skeleton-line w-1/2"></div><div class="skeleton-line w-full"></div></div></div></div>
                 </div>
             </div>
             
-            <div id="today-section" class="hidden"><h2 class="text-2xl md:text-3xl font-bold mb-4 flex items-center gap-3"><span class="tag !bg-green-500/20 !text-green-400">🟢 Live Today!</span><span class="text-white brand-font text-gradient">Today's Drops</span></h2><div id="today-drops" class="grid gap-6"></div></div>
+            <div id="today-section" class="hidden"><h2 class="text-2xl md:text-3xl font-bold mb-4 flex items-center gap-3">
+                <span class="relative flex h-3 w-3"><span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75"></span><span class="relative inline-flex rounded-full h-3 w-3 bg-green-500"></span></span>
+                <!-- CHANGE: "Drops" to "Sparks" -->
+                <span class="text-white brand-font text-gradient">Today's Sparks</span>
+            </h2><div id="today-sparks" class="grid gap-6"></div></div>
             <div id="previous-section" class="hidden">
-                <h2 class="text-2xl font-bold mb-4 brand-font text-gradient">Previous Drops</h2>
-                <div id="previous-drops" class="grid gap-6"></div>
+                <!-- CHANGE: "Drops" to "Sparks" -->
+                <h2 class="text-2xl font-bold mb-4 brand-font text-gradient">Previous Sparks</h2>
+                <div id="previous-sparks" class="grid gap-6"></div>
                 <div id="load-more-container" class="text-center mt-8"></div>
             </div>
             
-            <div id="empty-state" class="text-center py-12 hidden"><svg class="w-24 h-24 mx-auto mb-4 text-muted opacity-50" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20 13V6a2 2 0 00-2-2H6a2 2 0 00-2 2v7m16 0v5a2 2 0 01-2 2H6a2 2 0 01-2-2v-5m16 0h-2.586a1 1 0 00-.707.293l-2.414 2.414a1 1 0 01-.707.293h-3.172a1 1 0 01-.707-.293l-2.414-2.414A1 1 0 006.586 13H4"></path></svg><p class="text-lg text-muted" id="empty-state-message">No drops yet. Check back soon!</p></div>
+            <!-- CHANGE: "drops" to "sparks" -->
+            <div id="empty-state" class="text-center py-12 hidden"><svg class="w-24 h-24 mx-auto mb-4 text-muted opacity-50" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20 13V6a2 2 0 00-2-2H6a2 2 0 00-2 2v7m16 0v5a2 2 0 01-2 2H6a2 2 0 01-2-2v-5m16 0h-2.586a1 1 0 00-.707.293l-2.414 2.414a1 1 0 01-.707.293h-3.172a1 1 0 01-.707-.293l-2.414-2.414A1 1 0 006.586 13H4"></path></svg><p class="text-lg text-muted" id="empty-state-message">No sparks yet. Check back soon!</p></div>
         </section>
         
         <nav class="mt-12" aria-label="Quick links">
             <h2 class="text-2xl font-bold mb-6 text-center brand-font text-gradient">Quick Links</h2>
             <div class="grid grid-cols-1 md:grid-cols-3 gap-4 max-w-3xl mx-auto">
-                <a href="https://www.patreon.com/kimberlynfoster" class="card p-6 flex items-center gap-4 hover:scale-105" rel="noopener noreferrer" target="_blank">
-                    <div class="p-3 rounded-full bg-pink-500/20">
-                        <svg class="w-6 h-6 text-pink-400" fill="currentColor" viewBox="0 0 20 20" aria-hidden="true">
-                            <path fill-rule="evenodd" d="M3.172 5.172a4 4 0 015.656 0L10 6.343l1.172-1.171a4 4 0 115.656 5.656L10 17.657l-6.828-6.829a4 4 0 010-5.656z" clip-rule="evenodd"/>
-                        </svg>
-                    </div>
+                <a href="https://www.patreon.com/kimberlynfoster" class="card p-6 flex items-center gap-4 hover:!scale-105" rel="noopener noreferrer" target="_blank">
+                    <div class="p-3 rounded-full bg-pink-500/20"><svg class="w-6 h-6 text-pink-400" fill="currentColor" viewBox="0 0 20 20" aria-hidden="true"><path fill-rule="evenodd" d="M3.172 5.172a4 4 0 015.656 0L10 6.343l1.172-1.171a4 4 0 115.656 5.656L10 17.657l-6.828-6.829a4 4 0 010-5.656z" clip-rule="evenodd"/></svg></div>
                     <span class="font-semibold">Support on Patreon</span>
                 </a>
-                
-                <a href="sms-optin.html" class="card p-6 flex items-center gap-4 hover:scale-105">
-                    <div class="p-3 rounded-full bg-blue-500/20">
-                        <svg class="w-6 h-6 text-blue-400" fill="currentColor" viewBox="0 0 20 20" aria-hidden="true">
-                           <path d="M3.5 2A1.5 1.5 0 0 0 2 3.5v9A1.5 1.5 0 0 0 3.5 14h9a1.5 1.5 0 0 0 1.5-1.5v-9A1.5 1.5 0 0 0 12.5 2h-9zM3 3.5a.5.5 0 0 1 .5-.5h9a.5.5 0 0 1 .5.5v9a.5.5 0 0 1-.5.5h-9a.5.5 0 0 1-.5-.5v-9z"/>
-                           <path d="M5.5 7a.5.5 0 0 1 .5-.5h2a.5.5 0 0 1 0 1h-2a.5.5 0 0 1-.5-.5zm0 2a.5.5 0 0 1 .5-.5h5a.5.5 0 0 1 0 1h-5a.5.5 0 0 1-.5-.5z"/>
-                        </svg>
-                    </div>
+                <a href="sms-optin.html" class="card p-6 flex items-center gap-4 hover:!scale-105">
+                    <div class="p-3 rounded-full bg-blue-500/20"><svg class="w-6 h-6 text-blue-400" fill="currentColor" viewBox="0 0 20 20" aria-hidden="true"><path d="M3.5 2A1.5 1.5 0 0 0 2 3.5v9A1.5 1.5 0 0 0 3.5 14h9a1.5 1.5 0 0 0 1.5-1.5v-9A1.5 1.5 0 0 0 12.5 2h-9zM3 3.5a.5.5 0 0 1 .5-.5h9a.5.5 0 0 1 .5.5v9a.5.5 0 0 1-.5.5h-9a.5.5 0 0 1-.5-.5v-9z"/><path d="M5.5 7a.5.5 0 0 1 .5-.5h2a.5.5 0 0 1 0 1h-2a.5.5 0 0 1-.5-.5zm0 2a.5.5 0 0 1 .5-.5h5a.5.5 0 0 1 0 1h-5a.5.5 0 0 1-.5-.5z"/></svg></div>
                     <span class="font-semibold">Get Text Alerts</span>
                 </a>
-                
-                <a href="https://kimberlynfoster.substack.com" class="card p-6 flex items-center gap-4 hover:scale-105" rel="noopener noreferrer" target="_blank">
-                    <div class="p-3 rounded-full bg-green-500/20">
-                        <svg class="w-6 h-6 text-green-400" fill="currentColor" viewBox="0 0 20 20" aria-hidden="true">
-                            <path d="M2.003 5.884L10 9.882l7.997-3.998A2 2 0 0016 4H4a2 2 0 00-1.997 1.884z"/>
-                            <path d="M18 8.118l-8 4-8-4V14a2 2 0 002 2h12a2 2 0 002-2V8.118z"/>
-                        </svg>
-                    </div>
+                <a href="https://kimberlynfoster.substack.com" class="card p-6 flex items-center gap-4 hover:!scale-105" rel="noopener noreferrer" target="_blank">
+                    <div class="p-3 rounded-full bg-green-500/20"><svg class="w-6 h-6 text-green-400" fill="currentColor" viewBox="0 0 20 20" aria-hidden="true"><path d="M2.003 5.884L10 9.882l7.997-3.998A2 2 0 0016 4H4a2 2 0 00-1.997 1.884z"/><path d="M18 8.118l-8 4-8-4V14a2 2 0 002 2h12a2 2 0 002-2V8.118z"/></svg></div>
                     <span class="font-semibold">Newsletter</span>
                 </a>
             </div>
@@ -572,22 +557,22 @@
         <p>&copy; 2025 Kimberly's Creative Sprint. All rights reserved.</p>
     </footer>
 
-    <!-- Newsletter Modal -->
     <div id="subscribe-modal" class="fixed inset-0 bg-black/50 backdrop-blur-sm hidden items-center justify-center p-4 z-50" role="dialog" aria-labelledby="subscribe-modal-title" aria-modal="true">
         <div class="card p-6 relative max-w-lg w-full">
             <button id="close-subscribe" class="absolute top-4 right-4 text-muted hover:text-primary transition-colors" aria-label="Close modal"><svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg></button>
             <h2 id="subscribe-modal-title" class="text-2xl font-bold mb-4 text-center brand-font text-gradient">Join the Newsletter!</h2>
-            <p class="text-muted mb-6 text-center">Get exclusive updates, behind-the-scenes content, and early access to drops straight to your inbox!</p>
+            <!-- CHANGE: "drops" to "sparks" -->
+            <p class="text-muted mb-6 text-center">Get exclusive updates, behind-the-scenes content, and early access to sparks straight to your inbox!</p>
             <div class="bg-white rounded-xl p-1"><iframe src="https://kimberlynfoster.substack.com/embed" width="100%" height="320" style="border:1px solid #EEE; background:white;" frameborder="0" scrolling="no" title="Subscribe to newsletter"></iframe></div>
         </div>
     </div>
 
-    <!-- SMS Modal -->
     <div id="sms-modal" class="fixed inset-0 bg-black/50 backdrop-blur-sm hidden items-center justify-center p-4 z-50" role="dialog" aria-labelledby="sms-modal-title" aria-modal="true">
         <div class="card p-8 relative max-w-lg w-full">
             <button id="close-sms-modal" class="absolute top-4 right-4 text-muted hover:text-primary transition-colors" aria-label="Close SMS modal"><svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg></button>
             <h2 id="sms-modal-title" class="text-2xl font-bold mb-2 text-center brand-font text-gradient">Get SMS Alerts</h2>
-            <p class="text-muted mb-6 text-center">Be the first to know when new drops go live, get reminders, and receive exclusive tips.</p>
+            <!-- CHANGE: "drops" to "sparks" -->
+            <p class="text-muted mb-6 text-center">Be the first to know when new sparks go live, get reminders, and receive exclusive tips.</p>
             <div class="tm-widget-container">
                 <script src="https://widgets.textmagic.com/widget-script.js" data-code="ca975eb0fab8d2e" data-type="subscribe" defer></script>
             </div>
@@ -609,62 +594,19 @@
 
         // --- TYPE DEFINITIONS (JSDoc) ---
         /**
-         * @typedef {object} Drop
+         * @typedef {object} Spark
          * @property {string} id - The document ID.
-         * @property {string} title - The title of the drop.
+         * @property {string} title - The title of the spark.
          * @property {string} description - A short description.
          * @property {string} link - URL to the content.
          * @property {string} contentType - The type of content (e.g., Video, Essay).
          * @property {string} access - Access level ('Free' or 'Paid').
          * @property {string} [imageUrl] - Optional URL for a thumbnail image.
-         * @property {number} day - The day of the challenge this was dropped on.
+         * @property {number} day - The day of the challenge this was sparked on.
          * @property {number} hearts - The number of hearts.
          * @property {'published' | 'scheduled'} status - The publication status.
          * @property {import("firebase/firestore").Timestamp} timestamp - Firestore server timestamp.
          */
-
-        /**
-         * @typedef {object} UIElements
-         * @property {HTMLElement} headerDay
-         * @property {HTMLElement} headerProgressBar
-         * @property {HTMLElement} headerDrops
-         * @property {HTMLElement} todayCount
-         * @property {HTMLElement} streakCount
-         * @property {HTMLElement} headerStreak
-         * @property {HTMLElement} freeCount
-         * @property {HTMLElement} paidCount
-         * @property {HTMLElement} challengeDates
-         * @property {HTMLElement} adminPanel
-         * @property {HTMLElement} adminSigninBtn
-         * @property {HTMLElement} adminSignoutBtn
-         * @property {HTMLFormElement} dropForm
-         * @property {HTMLElement} publishBtn
-         * @property {HTMLElement} publishBtnText
-         * @property {HTMLElement} cancelEditBtn
-         * @property {HTMLInputElement} searchInput
-         * @property {HTMLSelectElement} sortSelect
-         * @property {HTMLElement} skeletonLoaders
-         * @property {HTMLElement} todaySection
-         * @property {HTMLElement} todayDrops
-         * @property {HTMLElement} previousSection
-         * @property {HTMLElement} previousDrops
-         * @property {HTMLElement} loadMoreContainer
-         * @property {HTMLElement} emptyState
-         * @property {HTMLElement} emptyStateMessage
-         * @property {HTMLElement} subscribeBtn
-         * @property {HTMLElement} heroSubscribeBtn
-         * @property {HTMLElement} subscribeModal
-         * @property {HTMLElement} closeSubscribe
-         * @property {HTMLElement} smsModal
-         * @property {HTMLElement} closeSmsModal
-         * @property {HTMLElement} toast
-         * @property {HTMLElement} toastMessage
-         * @property {HTMLElement} toastIcon
-         * @property {HTMLElement} contentFeed
-         * @property {HTMLElement} clearDataBtn
-         * @property {HTMLElement} dayDotsContainer
-         */
-
 
         // --- CONFIGURATION ---
         const firebaseConfig = {
@@ -675,19 +617,13 @@
             messagingSenderId: "762035393571",
             appId: "1:762035393571:web:7d474a6a57cc031b860d96"
         };
-        const ADMIN_EMAIL = "kimberly.foster@example.com"; // Replace with your admin email
+        const ADMIN_EMAIL = "kimberly.foster@example.com";
         const START_DATE = new Date('2025-10-02T00:00:00');
         const END_DATE = new Date('2025-12-31T23:59:59');
         const MS_PER_DAY = 1000 * 60 * 60 * 24;
-        
-        function startOfDay(d) {
-            const date = new Date(d);
-            date.setHours(0,0,0,0);
-            return date;
-        }
-        
         const TOTAL_DAYS = 90;
-
+        const SPARKS_PER_PAGE = 5;
+        // CHANGE: Point back to the original 'drops' collection name
         const dropsCollectionPath = `artifacts/${firebaseConfig.projectId}/public/data/drops`;
         
         // --- UTILITY FUNCTIONS ---
@@ -695,97 +631,54 @@
             const now = new Date();
             if (now < START_DATE) return 0;
             if (now > END_DATE) return TOTAL_DAYS;
+            const startOfDay = d => { const date = new Date(d); date.setHours(0,0,0,0); return date; };
             return Math.floor((startOfDay(now) - startOfDay(START_DATE)) / MS_PER_DAY) + 1;
         };
-        const escapeHtml = (str) => {
-            if (!str) return '';
-            const div = document.createElement('div');
-            div.textContent = str;
-            return div.innerHTML;
-        };
+        const escapeHtml = str => str ? new DOMParser().parseFromString(str, 'text/html').body.textContent : '';
         const debounce = (func, wait) => {
             let timeout;
-            return (...args) => {
-                clearTimeout(timeout);
-                timeout = setTimeout(() => func.apply(this, args), wait);
-            };
+            return (...args) => { clearTimeout(timeout); timeout = setTimeout(() => func.apply(this, args), wait); };
         };
-        const toJsDate = (v) => {
-            if (!v) return new Date();
-            if (v.toDate) return v.toDate();
-            return new Date(v);
-        };
+        const toJsDate = v => v?.toDate ? v.toDate() : new Date(v);
 
         // --- INITIALIZATION ---
-        let db, auth, storage, analytics, currentUser = null, isAdmin = false;
+        let db, auth, analytics, currentUser = null, isAdmin = false;
         
         // --- GLOBAL STATE ---
-        let allDrops = [], filteredDrops = [];
-        let currentFilter = 'all', currentSort = 'newest', searchQuery = '';
-        let heartedPosts = JSON.parse(localStorage.getItem('heartedPosts') || '{}');
-        let editingDropId = null;
-        let unsubscribeDrops;
-        let visiblePreviousDrops = 5;
-        const DROPS_PER_PAGE = 5;
-        let lastVisibleDrop = null;
-        let heartListeners = {};
-
-
-        // --- DOM ELEMENTS ---
-        /** @type {UIElements} */
-        const DOMElements = {
-            headerDay: document.getElementById('header-day'),
-            headerProgressBar: document.getElementById('header-progress-bar'),
-            headerDrops: document.getElementById('header-drops'),
-            todayCount: document.getElementById('today-count'),
-            streakCount: document.getElementById('streak-count'),
-            headerStreak: document.getElementById('header-streak'),
-            freeCount: document.getElementById('free-count'),
-            paidCount: document.getElementById('paid-count'),
-            challengeDates: document.getElementById('challenge-dates'),
-            adminPanel: document.getElementById('admin-panel'),
-            adminSigninBtn: document.getElementById('admin-signin-btn'),
-            adminSignoutBtn: document.getElementById('admin-signout-btn'),
-            dropForm: document.getElementById('drop-form'),
-            publishBtn: document.getElementById('publish-btn'),
-            publishBtnText: document.getElementById('publish-btn-text'),
-            cancelEditBtn: document.getElementById('cancel-edit-btn'),
-            clearDataBtn: document.getElementById('clear-data-btn'),
-            searchInput: document.getElementById('search-input'),
-            sortSelect: document.getElementById('sort-select'),
-            skeletonLoaders: document.getElementById('skeleton-loaders'),
-            todaySection: document.getElementById('today-section'),
-            todayDrops: document.getElementById('today-drops'),
-            previousSection: document.getElementById('previous-section'),
-            previousDrops: document.getElementById('previous-drops'),
-            loadMoreContainer: document.getElementById('load-more-container'),
-            emptyState: document.getElementById('empty-state'),
-            emptyStateMessage: document.getElementById('empty-state-message'),
-            subscribeBtn: document.getElementById('subscribe-btn'),
-            heroSubscribeBtn: document.getElementById('hero-subscribe-btn'),
-            subscribeModal: document.getElementById('subscribe-modal'),
-            closeSubscribe: document.getElementById('close-subscribe'),
-            smsModal: document.getElementById('sms-modal'),
-            closeSmsModal: document.getElementById('close-sms-modal'),
-            toast: document.getElementById('toast'),
-            toastMessage: document.getElementById('toast-message'),
-            toastIcon: document.getElementById('toast-icon'),
-            contentFeed: document.getElementById('content-feed'),
-            dayDotsContainer: document.getElementById('day-dots-container'),
-            scheduleToggle: document.getElementById('schedule-toggle'),
-            scheduleOptions: document.getElementById('schedule-options'),
+        const state = {
+            allSparks: [],
+            filteredSparks: [],
+            currentFilter: 'all',
+            currentSort: 'newest',
+            searchQuery: '',
+            heartedPosts: JSON.parse(localStorage.getItem('heartedPosts') || '{}'),
+            editingSparkId: null,
+            // CHANGE: Renamed for clarity
+            unsubscribeDrops: null,
+            visiblePreviousSparks: SPARKS_PER_PAGE,
+            isLoading: false
         };
+
+        // --- DOM ELEMENTS (Cached for performance) ---
+        const DOMElements = Object.fromEntries(
+            [
+                'header-day', 'header-progress-bar', 'header-sparks', 'today-count', 'streak-count', 'header-streak',
+                'free-count', 'paid-count', 'challenge-dates', 'admin-panel', 'admin-signin-btn', 'admin-signout-btn',
+                'spark-form', 'publish-btn', 'publish-btn-text', 'cancel-edit-btn', 'clear-data-btn', 'search-input',
+                'sort-select', 'skeleton-loaders', 'today-section', 'today-sparks', 'previous-section', 'previous-sparks',
+                'load-more-container', 'empty-state', 'empty-state-message', 'subscribe-btn', 'hero-subscribe-btn',
+                'subscribe-modal', 'close-subscribe', 'sms-modal', 'close-sms-modal', 'toast', 'toast-message',
+                'toast-icon', 'content-feed', 'day-dots-container', 'schedule-toggle', 'schedule-options', 'feed-announcer'
+            ].map(id => [id.replace(/-(\w)/g, (m, g) => g.toUpperCase()), document.getElementById(id)])
+        );
 
         // --- UI & FEEDBACK FUNCTIONS ---
         const updateProgress = () => {
             const day = getCurrentDay();
-            const progress = (day / TOTAL_DAYS) * 100;
+            const progress = Math.min(100, (day / TOTAL_DAYS) * 100);
             if (DOMElements.headerDay) DOMElements.headerDay.textContent = day;
             if (DOMElements.headerProgressBar) {
-                const progressBar = DOMElements.headerProgressBar.querySelector('.header-progress-fill');
-                if (progressBar) {
-                    progressBar.style.width = `${progress}%`;
-                }
+                DOMElements.headerProgressBar.querySelector('.header-progress-fill')?.style.setProperty('width', `${progress}%`);
                 DOMElements.headerProgressBar.setAttribute('aria-valuenow', day);
             }
         };
@@ -793,346 +686,260 @@
         let toastTimeout;
         const showToast = (message, type = 'success') => {
             clearTimeout(toastTimeout);
-            DOMElements.toastMessage.textContent = message;
-            DOMElements.toast.className = 'toast'; // Reset classes
-            DOMElements.toastIcon.setAttribute('class', 'w-5 h-5');
-            
             const icons = {
                 success: { path: `<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>`, color: 'text-green-500' },
                 error: { path: `<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>`, color: 'text-red-500' },
                 warning: { path: `<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"></path>`, color: 'text-yellow-500' }
             };
-
-            DOMElements.toast.classList.add(type);
+            DOMElements.toastMessage.textContent = message;
+            DOMElements.toast.className = `toast ${type}`;
             DOMElements.toastIcon.innerHTML = icons[type].path;
-            DOMElements.toastIcon.classList.add(icons[type].color);
-            
+            // FIX: Use setAttribute for SVG class compatibility
+            DOMElements.toastIcon.setAttribute('class', `w-5 h-5 ${icons[type].color}`);
             DOMElements.toast.classList.add('show');
             toastTimeout = setTimeout(() => DOMElements.toast.classList.remove('show'), 5000);
         };
         
-        let modalOpener;
-        const toggleModal = (modal, show, opener) => {
-            if (modal) {
-                if (show) {
-                    modalOpener = opener;
-                    modal.classList.remove('hidden');
-                    modal.classList.add('flex');
-                    setupFocusTrap(modal);
-                } else {
-                    modal.classList.add('hidden');
-                    modal.classList.remove('flex');
-                    removeFocusTrap();
-                }
-            }
-        };
-        
         // --- FORM HANDLING ---
         const resetForm = () => {
-            if(DOMElements.dropForm) DOMElements.dropForm.reset();
-            editingDropId = null;
-            if(DOMElements.publishBtnText) DOMElements.publishBtnText.textContent = 'Drop It!';
-            if(DOMElements.cancelEditBtn) DOMElements.cancelEditBtn.classList.add('hidden');
+            DOMElements.sparkForm?.reset();
+            state.editingSparkId = null;
+            if(DOMElements.publishBtnText) DOMElements.publishBtnText.textContent = 'Spark It!';
+            DOMElements.cancelEditBtn?.classList.add('hidden');
             checkFormValidity();
         };
 
-        const populateFormForEdit = (drop) => {
-            editingDropId = drop.id;
-            document.getElementById('drop-title').value = drop.title;
-            document.getElementById('drop-description').value = drop.description;
-            document.getElementById('drop-link').value = drop.link;
-            document.getElementById('drop-image').value = drop.imageUrl || '';
-            document.getElementById('drop-type').value = drop.contentType;
-            document.getElementById('drop-access').value = drop.access;
-
-            DOMElements.publishBtnText.textContent = 'Update Drop';
+        const populateFormForEdit = (spark) => {
+            state.editingSparkId = spark.id;
+            Object.entries({ title: spark.title, description: spark.description, link: spark.link, image: spark.imageUrl, type: spark.contentType, access: spark.access })
+                  .forEach(([key, value]) => { document.getElementById(`spark-${key}`).value = value || ''; });
+            DOMElements.publishBtnText.textContent = 'Update Spark';
             DOMElements.cancelEditBtn.classList.remove('hidden');
             window.scrollTo({ top: DOMElements.adminPanel.offsetTop - 80, behavior: 'smooth' });
             checkFormValidity();
         };
 
         const checkFormValidity = () => {
-            if (!DOMElements.dropForm) return;
-            const title = document.getElementById('drop-title').value.trim();
-            const desc = document.getElementById('drop-description').value.trim();
-            const link = document.getElementById('drop-link').value.trim();
-            try {
-                new URL(link);
-                DOMElements.publishBtn.disabled = !(title && desc && link);
-            } catch {
-                DOMElements.publishBtn.disabled = true;
-            }
+            if (!DOMElements.sparkForm) return;
+            const isValidLink = (link) => { try { new URL(link); return true; } catch { return false; }};
+            const title = document.getElementById('spark-title').value.trim();
+            const desc = document.getElementById('spark-description').value.trim();
+            const link = document.getElementById('spark-link').value.trim();
+            DOMElements.publishBtn.disabled = !(title && desc && isValidLink(link));
         };
         
         // --- RENDER FUNCTIONS ---
-        const createDropCard = (drop) => {
-            const isHearted = heartedPosts[drop.id];
-            const dropDate = toJsDate(drop.timestamp);
-            const time = dropDate.toLocaleTimeString([], { hour: 'numeric', minute: '2-digit' });
+        const createSparkCard = (spark, scrollObserver) => {
+            const isHearted = state.heartedPosts[spark.id];
+            const sparkDate = toJsDate(spark.timestamp);
+            const time = sparkDate.toLocaleTimeString([], { hour: 'numeric', minute: '2-digit' });
 
-            const fallbackImage = `https://placehold.co/400x300/7c3aed/ffffff?text=${encodeURIComponent(drop.contentType)}`;
-            const imageUrl = drop.imageUrl || fallbackImage;
+            const fallbackImage = `https://placehold.co/400x300/7c3aed/ffffff?text=${encodeURIComponent(spark.contentType)}`;
+            const imageUrl = spark.imageUrl || fallbackImage;
 
             const adminButtons = isAdmin ? `
-                <button class="edit-btn text-muted hover:text-accent" data-id="${drop.id}" aria-label="Edit drop">
+                <button class="edit-btn text-muted hover:text-accent" data-id="${spark.id}" aria-label="Edit ${escapeHtml(spark.title)}">
                     <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.5L16.732 3.732z"></path></svg>
                 </button>
-                <button class="delete-btn text-muted hover:text-error" data-id="${drop.id}" aria-label="Delete drop">
+                <button class="delete-btn text-muted hover:text-error" data-id="${spark.id}" aria-label="Delete ${escapeHtml(spark.title)}">
                     <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"></path></svg>
                 </button>
             ` : '';
             
             const card = document.createElement('div');
             card.className = 'card flex flex-col md:flex-row relative';
-            card.dataset.id = drop.id;
-            card.dataset.contentType = drop.contentType;
-
-            const titleElement = document.createElement('h3');
-            titleElement.className = 'text-2xl font-semibold leading-tight hover:text-accent transition-colors brand-font title-glow';
-            const linkElement = document.createElement('a');
-            linkElement.href = drop.link;
-            linkElement.target = '_blank';
-            linkElement.rel = 'noopener noreferrer';
-            linkElement.className = 'inline-flex items-center gap-1.5';
-            linkElement.textContent = drop.title;
-            linkElement.innerHTML += ` <svg class="w-4 h-4 opacity-50 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path></svg>`;
-            titleElement.appendChild(linkElement);
-
-            const descriptionElement = document.createElement('p');
-            descriptionElement.className = 'text-base text-muted line-clamp-3';
-            descriptionElement.style.lineHeight = '1.5';
-            descriptionElement.textContent = drop.description;
-
+            card.dataset.id = spark.id;
+            card.dataset.contentType = spark.contentType;
+            
             card.innerHTML = `
                 <div class="md:w-48 aspect-[4/3] flex-shrink-0 image-container relative">
-                    <img src="${escapeHtml(imageUrl)}" alt="${escapeHtml(drop.title)}" class="w-full h-full object-cover" loading="lazy" decoding="async" onerror="this.onerror=null;this.src='${fallbackImage}';">
+                    <img src="${escapeHtml(imageUrl)}" alt="${escapeHtml(spark.title)}" class="w-full h-full object-cover" loading="lazy" decoding="async" onerror="this.onerror=null;this.src='${fallbackImage}';">
                 </div>
                 <div class="flex-1 p-4 md:p-5 flex flex-col">
-                    <span class="tag ${drop.access === 'Paid' ? 'tag-paid' : 'tag-free'} absolute top-3 right-3">${drop.access}</span>
+                    <span class="tag ${spark.access === 'Paid' ? 'tag-paid' : 'tag-free'} absolute top-3 right-3">${spark.access}</span>
                     <div class="flex-grow space-y-2 mt-4">
-                        
+                        <h3 class="text-2xl font-semibold leading-tight hover:text-accent transition-colors brand-font title-glow">
+                          <a href="${spark.link}" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1.5">${escapeHtml(spark.title)} <svg class="w-4 h-4 opacity-50 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path></svg></a>
+                        </h3>
+                        <p class="text-base text-muted line-clamp-3" style="line-height: 1.5;">${escapeHtml(spark.description)}</p>
                     </div>
-                     <p class="text-xs text-muted mt-4">Day ${drop.day} • ${drop.contentType} • ${time}</p>
+                     <p class="text-xs text-muted mt-4">Day ${spark.day} • ${spark.contentType} • ${time}</p>
                     <div class="flex items-center gap-3 mt-4 pt-3 border-t border-white/10">
-                         <button class="heart-btn flex items-center gap-1.5 ${isHearted ? 'text-heart hearted' : 'text-muted hover:text-heart'}" data-id="${drop.id}" aria-label="${isHearted ? 'Remove heart' : 'Add heart'}">
+                         <button class="heart-btn flex items-center gap-1.5 ${isHearted ? 'text-heart hearted' : 'text-muted hover:text-heart'}" data-id="${spark.id}" aria-label="${isHearted ? 'Remove heart' : 'Add heart'} from ${escapeHtml(spark.title)}">
                             <svg class="w-5 h-5" fill="${isHearted ? 'currentColor' : 'none'}" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.25l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.5l-1.318-1.182a4.5 4.5 0 00-6.364 0z"></path></svg>
-                            <span class="font-mono text-sm">${drop.hearts || 0}</span>
+                            <span class="font-mono text-sm">${spark.hearts || 0}</span>
                         </button>
-                        <button class="share-btn text-sm text-muted hover:text-primary ml-2" data-link="${escapeHtml(drop.link)}" data-title="${escapeHtml(drop.title)}">
+                        <button class="share-btn text-sm text-muted hover:text-primary ml-2" data-link="${escapeHtml(spark.link)}" data-title="${escapeHtml(spark.title)}">
                             Share
                         </button>
-                        <div class="ml-auto flex items-center gap-3">
-                           ${adminButtons}
-                        </div>
+                        <div class="ml-auto flex items-center gap-3">${adminButtons}</div>
                     </div>
                 </div>
             `;
-            const contentContainer = card.querySelector('.flex-grow.space-y-2');
-            contentContainer.appendChild(titleElement);
-            contentContainer.appendChild(descriptionElement);
-
+            scrollObserver.observe(card);
             return card;
         };
         
-        const renderDrops = () => {
-            if (DOMElements.skeletonLoaders) {
-                DOMElements.skeletonLoaders.classList.add('hidden');
-                DOMElements.contentFeed.setAttribute('aria-busy', 'false');
-            }
+        const renderSparks = (scrollObserver) => {
+            DOMElements.skeletonLoaders.classList.add('hidden');
+            DOMElements.contentFeed.setAttribute('aria-busy', 'false');
 
             const day = getCurrentDay();
-            const todaysDrops = filteredDrops.filter(d => d.day === day);
-            const previousDrops = filteredDrops.filter(d => d.day < day);
-
-            // Update stats
-            const publishedDrops = allDrops.filter(d => d.status === 'published');
-            const publishedDropsCount = publishedDrops.length;
+            const todaySparks = state.filteredSparks.filter(d => d.day === day);
+            const previousSparks = state.filteredSparks.filter(d => d.day < day);
             
-            if (DOMElements.headerDrops) DOMElements.headerDrops.textContent = publishedDropsCount;
-            if (DOMElements.todayCount) DOMElements.todayCount.textContent = todaysDrops.length;
-            if (DOMElements.freeCount) DOMElements.freeCount.textContent = publishedDrops.filter(d => d.access === 'Free').length;
-            if (DOMElements.paidCount) DOMElements.paidCount.textContent = publishedDrops.filter(d => d.access === 'Paid').length;
-            const daysWithDrops = new Set(publishedDrops.map(d => d.day)).size;
-            if (DOMElements.streakCount) DOMElements.streakCount.textContent = daysWithDrops;
-            if (DOMElements.headerStreak) DOMElements.headerStreak.textContent = daysWithDrops;
-
-            // Render Today's drops
-            if (DOMElements.todaySection) DOMElements.todaySection.classList.toggle('hidden', todaysDrops.length === 0);
-            if (DOMElements.todayDrops) {
-                DOMElements.todayDrops.innerHTML = '';
-                todaysDrops.forEach(d => {
-                    const card = createDropCard(d);
-                    card.classList.add('shimmer-border');
-                    DOMElements.todayDrops.appendChild(card);
-                });
-            }
-
-            // Render Previous Drops with "Load More"
-            const previousToShow = previousDrops.slice(0, visiblePreviousDrops);
-            if (DOMElements.previousSection) DOMElements.previousSection.classList.toggle('hidden', previousToShow.length === 0);
-            if (DOMElements.previousDrops) {
-                DOMElements.previousDrops.innerHTML = '';
-                 previousToShow.forEach(d => DOMElements.previousDrops.appendChild(createDropCard(d)));
-            }
+            const publishedSparks = state.allSparks.filter(d => d.status === 'published');
+            const publishedSparksCount = publishedSparks.length;
             
-            if (DOMElements.loadMoreContainer) {
-                DOMElements.loadMoreContainer.innerHTML = ''; 
-                if (previousDrops.length > visiblePreviousDrops) {
-                    const loadMoreBtn = document.createElement('button');
-                    loadMoreBtn.textContent = 'Load More Drops';
-                    loadMoreBtn.className = 'btn btn-secondary';
-                    loadMoreBtn.onclick = () => {
-                        visiblePreviousDrops += DROPS_PER_PAGE;
-                        renderDrops();
-                    };
-                    DOMElements.loadMoreContainer.appendChild(loadMoreBtn);
-                }
+            DOMElements.headerSparks.textContent = publishedSparksCount;
+            DOMElements.todayCount.textContent = todaySparks.length;
+            DOMElements.freeCount.textContent = publishedSparks.filter(d => d.access === 'Free').length;
+            DOMElements.paidCount.textContent = publishedSparks.filter(d => d.access === 'Paid').length;
+            const daysWithSparks = new Set(publishedSparks.map(d => d.day)).size;
+            DOMElements.streakCount.textContent = daysWithSparks;
+            DOMElements.headerStreak.textContent = daysWithSparks;
+
+            DOMElements.todaySection.classList.toggle('hidden', todaySparks.length === 0);
+            DOMElements.todaySparks.innerHTML = '';
+            todaySparks.forEach(d => {
+                const card = createSparkCard(d, scrollObserver);
+                card.classList.add('shimmer-border');
+                DOMElements.todaySparks.appendChild(card);
+            });
+
+            const previousToShow = previousSparks.slice(0, state.visiblePreviousSparks);
+            DOMElements.previousSection.classList.toggle('hidden', previousToShow.length === 0);
+            DOMElements.previousSparks.innerHTML = '';
+            previousToShow.forEach(d => DOMElements.previousSparks.appendChild(createSparkCard(d, scrollObserver)));
+            
+            DOMElements.loadMoreContainer.innerHTML = ''; 
+            if (previousSparks.length > state.visiblePreviousSparks) {
+                const loadMoreBtn = document.createElement('button');
+                loadMoreBtn.textContent = 'Load More Sparks';
+                loadMoreBtn.className = 'btn btn-secondary';
+                loadMoreBtn.onclick = () => {
+                    state.visiblePreviousSparks += SPARKS_PER_PAGE;
+                    renderSparks(scrollObserver);
+                };
+                DOMElements.loadMoreContainer.appendChild(loadMoreBtn);
             }
 
-            if (filteredDrops.length === 0 && todaysDrops.length === 0) {
-                if (DOMElements.emptyState) DOMElements.emptyState.classList.remove('hidden');
-                if (DOMElements.emptyStateMessage) DOMElements.emptyStateMessage.textContent = (searchQuery || currentFilter !== 'all') ? 'No drops found matching your criteria.' : 'No drops yet. Check back soon!';
+            if (state.filteredSparks.length === 0 && todaySparks.length === 0) {
+                DOMElements.emptyState.classList.remove('hidden');
+                const emptyMsg = (state.searchQuery || state.currentFilter !== 'all') ? 'No sparks found matching your criteria.' : 'No sparks yet. Check back soon!';
+                DOMElements.emptyStateMessage.textContent = emptyMsg;
+                DOMElements.feedAnnouncer.textContent = emptyMsg;
             } else {
-                if (DOMElements.emptyState) DOMElements.emptyState.classList.add('hidden');
+                DOMElements.emptyState.classList.add('hidden');
+                DOMElements.feedAnnouncer.textContent = `Feed updated. Now showing ${state.filteredSparks.length} sparks.`;
             }
-            updateItemListSchema(publishedDrops.slice(0, 10)); // Update schema with top drops
+
+            updateItemListSchema(publishedSparks.slice(0, 10));
         };
         
         // --- DATA LOGIC ---
-        const applyFiltersAndSort = () => {
-            visiblePreviousDrops = DROPS_PER_PAGE; // Reset pagination on filter change
-            const publishedDrops = allDrops.filter(d => d.status === 'published');
-            filteredDrops = publishedDrops.filter(drop => {
-                const search = searchQuery.toLowerCase();
-                const matchesSearch = !search || drop.title.toLowerCase().includes(search) || drop.description.toLowerCase().includes(search);
-                
-                let matchesFilter;
-                if (currentFilter === 'all') {
-                    matchesFilter = true;
-                } else if (currentFilter === 'Free' || currentFilter === 'Paid') {
-                    matchesFilter = drop.access === currentFilter;
-                } else {
-                    matchesFilter = drop.contentType === currentFilter;
-                }
-                
+        const applyFiltersAndSort = (scrollObserver) => {
+            state.visiblePreviousSparks = SPARKS_PER_PAGE;
+            const publishedSparks = state.allSparks.filter(d => d.status === 'published');
+            state.filteredSparks = publishedSparks.filter(spark => {
+                const search = state.searchQuery.toLowerCase();
+                const matchesSearch = !search || spark.title.toLowerCase().includes(search) || spark.description.toLowerCase().includes(search);
+                const matchesFilter = state.currentFilter === 'all' || (['Free', 'Paid'].includes(state.currentFilter) ? spark.access === state.currentFilter : spark.contentType === state.currentFilter);
                 return matchesSearch && matchesFilter;
             });
 
-            filteredDrops.sort((a, b) => {
-                const timeA = a.timestamp?.toMillis ? a.timestamp.toMillis() : 0;
-                const timeB = b.timestamp?.toMillis ? b.timestamp.toMillis() : 0;
-                const heartsA = a.hearts || 0;
-                const heartsB = b.hearts || 0;
-                
-                switch (currentSort) {
+            state.filteredSparks.sort((a, b) => {
+                const timeA = a.timestamp?.toMillis() || 0;
+                const timeB = b.timestamp?.toMillis() || 0;
+                switch (state.currentSort) {
                     case 'oldest': return timeA - timeB;
-                    case 'most-loved': return heartsB - heartsA;
-                    case 'trending': {
-                        const ageA = Date.now() - timeA;
-                        const ageB = Date.now() - timeB;
-                        const scoreA = heartsA / (ageA / MS_PER_DAY + 2); //+2 to prevent division by zero and boost newer items
-                        const scoreB = heartsB / (ageB / MS_PER_DAY + 2);
-                        return scoreB - scoreA;
-                    }
+                    case 'most-loved': return (b.hearts || 0) - (a.hearts || 0);
+                    case 'trending': return ((b.hearts || 0) / (Date.now() - timeB + MS_PER_DAY)) - ((a.hearts || 0) / (Date.now() - timeA + MS_PER_DAY));
                     default: return timeB - timeA;
                 }
             });
-            renderDrops();
+            renderSparks(scrollObserver);
             renderDayDots();
         };
 
-        const setupFirestoreListener = (isAdminFlag) => {
-            if (unsubscribeDrops) unsubscribeDrops(); 
-            
-            const dropsCollectionRef = collection(db, dropsCollectionPath);
+        const setupFirestoreListener = (scrollObserver) => {
+            // CHANGE: Use renamed variable and correct collection path
+            if (state.unsubscribeDrops) state.unsubscribeDrops(); 
+            const q = isAdmin ? query(collection(db, dropsCollectionPath)) : query(collection(db, dropsCollectionPath), where('status', '==', 'published'));
 
-            const q = isAdminFlag 
-                ? query(dropsCollectionRef)
-                : query(dropsCollectionRef, where('status', '==', 'published'));
-
-            unsubscribeDrops = onSnapshot(q, (snapshot) => {
-                allDrops = snapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
-                applyFiltersAndSort();
+            state.unsubscribeDrops = onSnapshot(q, (snapshot) => {
+                state.allSparks = snapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
+                applyFiltersAndSort(scrollObserver);
             }, (error) => {
                 console.error("Firestore listener error:", error);
-                showToast("Error loading drops. Please refresh.", "error");
+                showToast("Error loading sparks. Please refresh.", "error");
             });
         };
 
-        const updateItemListSchema = (drops) => {
-            const itemListElement = {
-                "@context": "https://schema.org",
-                "@type": "ItemList",
-                "itemListElement": drops.map((drop, index) => ({
-                    "@type": "ListItem",
-                    "position": index + 1,
-                    "url": drop.link,
-                    "name": drop.title
+        const updateItemListSchema = (sparks) => {
+            document.getElementById('itemListSchema').textContent = JSON.stringify({
+                "@context": "https://schema.org", "@type": "ItemList",
+                "itemListElement": sparks.map((spark, index) => ({
+                    "@type": "ListItem", "position": index + 1, "url": spark.link, "name": spark.title
                 }))
-            };
-            document.getElementById('itemListSchema').textContent = JSON.stringify(itemListElement);
+            });
         };
 
         const renderDayDots = () => {
             const currentDay = getCurrentDay();
-            if (DOMElements.dayDotsContainer) {
-                DOMElements.dayDotsContainer.innerHTML = '';
-                for (let i = 1; i <= TOTAL_DAYS; i++) {
-                    const dot = document.createElement('div');
-                    dot.className = `w-2 h-2 rounded-full ${i < currentDay ? 'bg-accent' : 'bg-muted'}`;
-                    DOMElements.dayDotsContainer.appendChild(dot);
-                }
+            DOMElements.dayDotsContainer.innerHTML = '';
+            for (let i = 1; i <= TOTAL_DAYS; i++) {
+                const dot = document.createElement('div');
+                dot.className = `w-2 h-2 rounded-full day-dot ${i < currentDay ? 'bg-accent' : 'bg-muted'}`;
+                if (i === currentDay) dot.classList.add('current');
+                dot.title = `Day ${i}`;
+                DOMElements.dayDotsContainer.appendChild(dot);
             }
         }
         
         // --- EVENT LISTENERS & HANDLERS ---
         const handleAdminFormSubmit = async (e) => {
             e.preventDefault();
-            const dropData = {
-                title: document.getElementById('drop-title').value.trim(),
-                description: document.getElementById('drop-description').value.trim(),
-                link: document.getElementById('drop-link').value.trim(),
-                imageUrl: document.getElementById('drop-image').value.trim(),
-                contentType: document.getElementById('drop-type').value,
-                access: document.getElementById('drop-access').value,
+            const sparkData = {
+                title: document.getElementById('spark-title').value.trim(),
+                description: document.getElementById('spark-description').value.trim(),
+                link: document.getElementById('spark-link').value.trim(),
+                imageUrl: document.getElementById('spark-image').value.trim(),
+                contentType: document.getElementById('spark-type').value,
+                access: document.getElementById('spark-access').value,
             };
             
-            try { new URL(dropData.link) } catch { showToast("Please enter a valid link.", "error"); return; }
-            if (dropData.imageUrl) { try { new URL(dropData.imageUrl) } catch { showToast("Please enter a valid image URL.", "error"); return; } }
-            
-            const btnSpinner = DOMElements.publishBtn.querySelector('.loading-spinner');
-            btnSpinner.classList.remove('hidden');
+            DOMElements.publishBtn.querySelector('.loading-spinner').classList.remove('hidden');
             DOMElements.publishBtn.disabled = true;
 
             try {
-                if (DOMElements.scheduleToggle && DOMElements.scheduleToggle.checked) {
+                if (DOMElements.scheduleToggle.checked) {
                     const date = document.getElementById('schedule-date').value;
                     const time = document.getElementById('schedule-time').value;
                     if (!date || !time) throw new Error("Please select a valid schedule date and time.");
-                    
-                    dropData.status = 'scheduled';
-                    dropData.scheduledFor = new Date(`${date}T${time}`).toISOString();
-                    dropData.timestamp = null; 
+                    sparkData.status = 'scheduled';
+                    sparkData.scheduledFor = new Date(`${date}T${time}`).toISOString();
                 } else {
-                    dropData.status = 'published';
-                    dropData.day = getCurrentDay();
-                    dropData.timestamp = serverTimestamp();
+                    sparkData.status = 'published';
+                    sparkData.day = getCurrentDay();
+                    sparkData.timestamp = serverTimestamp();
                 }
                 
-                if (editingDropId) {
-                    await updateDoc(doc(db, dropsCollectionPath, editingDropId), dropData);
-                    showToast('Drop updated successfully!');
+                if (state.editingSparkId) {
+                    // CHANGE: Use correct collection path
+                    await updateDoc(doc(db, dropsCollectionPath, state.editingSparkId), sparkData);
+                    showToast('Spark updated successfully!');
                 } else {
-                    dropData.hearts = 0; 
-                    await addDoc(collection(db, dropsCollectionPath), dropData);
-                    showToast('Drop added successfully!');
+                    sparkData.hearts = 0; 
+                    // CHANGE: Use correct collection path
+                    await addDoc(collection(db, dropsCollectionPath), sparkData);
+                    showToast('Spark added successfully!');
                 }
                 resetForm();
             } catch (error) {
-                console.error("Error submitting drop:", error);
-                showToast(error.message || "Could not save drop.", "error");
+                showToast(error.message || "Could not save spark.", "error");
             } finally {
-                btnSpinner.classList.add('hidden');
+                DOMElements.publishBtn.querySelector('.loading-spinner').classList.add('hidden');
                 checkFormValidity();
             }
         };
@@ -1141,12 +948,11 @@
             const btn = e.target.closest('button');
             if (!btn) return;
             
-            const dropId = btn.dataset.id;
+            const { id, link, title } = btn.dataset;
             
             if (btn.classList.contains('share-btn')) {
-                const { link, title } = btn.dataset;
                  if (navigator.share) {
-                    try { await navigator.share({ title, url: link }); } catch (err) { console.log('Share cancelled'); }
+                    try { await navigator.share({ title, url: link }); } catch {}
                 } else {
                     navigator.clipboard.writeText(link);
                     showToast('Link copied to clipboard!');
@@ -1154,191 +960,118 @@
                 return;
             }
 
-            if (!dropId) return;
+            if (!id) return;
 
             if (btn.classList.contains('delete-btn')) {
-                if (confirm('Delete this drop? This cannot be undone.')) {
-                    await deleteDoc(doc(db, dropsCollectionPath, dropId));
-                    showToast('Drop deleted.');
+                if (window.confirm('Delete this spark? This cannot be undone.')) {
+                    // CHANGE: Use correct collection path
+                    await deleteDoc(doc(db, dropsCollectionPath, id));
+                    showToast('Spark deleted.');
                 }
             } else if (btn.classList.contains('edit-btn')) {
-                const dropToEdit = allDrops.find(d => d.id === dropId);
-                if (dropToEdit) populateFormForEdit(dropToEdit);
+                populateFormForEdit(state.allSparks.find(d => d.id === id));
             } else if (btn.classList.contains('heart-btn')) {
-                const heartRef = doc(db, dropsCollectionPath, dropId);
+                if (state.heartedPosts[id]) return;
+                
+                state.heartedPosts[id] = true;
+                localStorage.setItem('heartedPosts', JSON.stringify(state.heartedPosts));
+                
+                const heartCountSpan = btn.querySelector('span');
+                heartCountSpan.textContent = parseInt(heartCountSpan.textContent, 10) + 1;
+                btn.classList.add('text-heart', 'hearted');
+                btn.setAttribute('aria-label', `Remove heart from ${escapeHtml(title)}`);
 
-                await runTransaction(db, async (transaction) => {
-                    const heartDoc = await transaction.get(heartRef);
-                    if (!heartDoc.exists()) {
-                        throw "Document does not exist!";
-                    }
-                    const newHeartCount = (heartDoc.data().hearts || 0) + 1;
-                    transaction.update(heartRef, { hearts: newHeartCount });
-                });
-
-                heartedPosts[dropId] = true;
-                localStorage.setItem('heartedPosts', JSON.stringify(heartedPosts));
-                applyFiltersAndSort();
+                try {
+                    // CHANGE: Use correct collection path
+                    await updateDoc(doc(db, dropsCollectionPath, id), { hearts: increment(1) });
+                } catch (error) {
+                    state.heartedPosts[id] = false;
+                    localStorage.setItem('heartedPosts', JSON.stringify(state.heartedPosts));
+                    heartCountSpan.textContent = parseInt(heartCountSpan.textContent, 10) - 1;
+                    btn.classList.remove('text-heart', 'hearted');
+                    btn.setAttribute('aria-label', `Add heart to ${escapeHtml(title)}`);
+                    showToast('Could not save heart.', 'error');
+                }
             }
         };
         
-        // --- AUTH LOGIC (NEW) ---
+        // --- AUTH LOGIC ---
         const provider = new GoogleAuthProvider();
-
         async function signInWithGoogle() {
-            try {
-                await signInWithPopup(auth, provider);
-                showToast("Sign-in successful!", "success");
-            } catch (error) {
-                console.error("Authentication error:", error);
-                showToast(`Sign-in failed: ${error.message}`, "error");
-            }
-        }
-
-        // --- AUTH STATE CHANGE ---
-        
-        async function initializeAppAndAuth() {
-            try {
-                const app = initializeApp(firebaseConfig);
-                auth = getAuth(app);
-                db = getFirestore(app);
-                analytics = getAnalytics(app);
-
-                onAuthStateChanged(auth, async (user) => {
-                    if (user) {
-                        currentUser = user;
-                        isAdmin = user.email === ADMIN_EMAIL;
-                    } else {
-                        // If not logged in, sign in anonymously
-                        await signInAnonymously(auth);
-                        currentUser = auth.currentUser;
-                        isAdmin = false;
-                    }
-                    
-                    document.body.classList.toggle('is-admin', isAdmin);
-                    DOMElements.adminPanel.classList.toggle('hidden', !isAdmin);
-                    DOMElements.adminSigninBtn.classList.toggle('hidden', isAdmin);
-                    DOMElements.adminSignoutBtn.classList.toggle('hidden', !isAdmin);
-                    
-                    setupFirestoreListener(isAdmin);
-                    applyFiltersAndSort();
-                });
-            } catch (error) {
-                console.error("Firebase initialization failed:", error);
-                showToast("Error connecting to database", "error");
-            }
+            try { await signInWithPopup(auth, provider); showToast("Sign-in successful!", "success"); } 
+            catch (error) { showToast(`Sign-in failed: ${error.message}`, "error"); }
         }
         
-        function setupFocusTrap(modal) {
-            const focusableElements = modal.querySelectorAll(
-                'button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])'
-            );
-            const firstFocusableElement = focusableElements[0];
-            const lastFocusableElement = focusableElements[focusableElements.length - 1];
-
-            modal.addEventListener('keydown', (e) => {
-                if (e.key !== 'Tab') return;
-                if (e.shiftKey) { // shift + tab
-                    if (document.activeElement === firstFocusableElement) {
-                        lastFocusableElement.focus();
-                        e.preventDefault();
-                    }
-                } else { // tab
-                    if (document.activeElement === lastFocusableElement) {
-                        firstFocusableElement.focus();
-                        e.preventDefault();
-                    }
-                }
-            });
-            if(firstFocusableElement) {
-               firstFocusableElement.focus();
-            }
-        }
-
-        function removeFocusTrap() {
-            if(modalOpener) {
-                modalOpener.focus();
-                modalOpener = null;
-            }
-        }
-
-
         // --- INITIAL SETUP ---
         document.addEventListener('DOMContentLoaded', () => {
-            initializeAppAndAuth();
+            const app = initializeApp(firebaseConfig);
+            auth = getAuth(app);
+            db = getFirestore(app);
+            analytics = getAnalytics(app);
+
+            const scrollObserver = new IntersectionObserver((entries) => {
+                entries.forEach(entry => { if (entry.isIntersecting) entry.target.classList.add('is-visible'); });
+            }, { threshold: 0.1 });
+
+            document.querySelectorAll('main .card').forEach(card => scrollObserver.observe(card));
+
+            onAuthStateChanged(auth, async (user) => {
+                currentUser = user;
+                isAdmin = user?.email === ADMIN_EMAIL;
+                
+                document.body.classList.toggle('is-admin', isAdmin);
+                DOMElements.adminPanel.classList.toggle('hidden', !isAdmin);
+                DOMElements.adminSigninBtn.classList.toggle('hidden', !!user);
+                DOMElements.adminSignoutBtn.classList.toggle('hidden', !isAdmin);
+                
+                if (!user) await signInAnonymously(auth);
+                
+                setupFirestoreListener(scrollObserver);
+            });
 
             DOMElements.challengeDates.innerHTML = `${START_DATE.toLocaleDateString('en-US', { month: 'long', day: 'numeric' })} &mdash; ${END_DATE.toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' })}`;
-            
             updateProgress();
             setInterval(updateProgress, 60000);
 
-            if(DOMElements.dropForm) {
-                DOMElements.dropForm.addEventListener('submit', handleAdminFormSubmit);
-                DOMElements.dropForm.addEventListener('input', checkFormValidity);
-            }
+            DOMElements.sparkForm?.addEventListener('submit', handleAdminFormSubmit);
+            DOMElements.sparkForm?.addEventListener('input', checkFormValidity);
+            DOMElements.contentFeed.addEventListener('click', handleContentClick);
+            DOMElements.searchInput?.addEventListener('input', debounce(() => { state.searchQuery = DOMElements.searchInput.value; applyFiltersAndSort(scrollObserver); }, 300));
+            DOMElements.sortSelect?.addEventListener('change', (e) => { state.currentSort = e.target.value; applyFiltersAndSort(scrollObserver); });
             
-            document.getElementById('content-feed').addEventListener('click', handleContentClick);
-            
-            if(DOMElements.searchInput) {
-                 DOMElements.searchInput.addEventListener('input', debounce(() => {
-                    searchQuery = DOMElements.searchInput.value;
-                    applyFiltersAndSort();
-                }, 300));
-            }
-           
-            if(DOMElements.sortSelect) {
-                 DOMElements.sortSelect.addEventListener('change', (e) => {
-                    currentSort = e.target.value;
-                    applyFiltersAndSort();
-                });
-            }
-           
             document.querySelectorAll('.filter-btn').forEach(btn => btn.addEventListener('click', (e) => {
                 document.querySelector('.filter-btn.active').classList.remove('active');
                 e.currentTarget.classList.add('active');
-                currentFilter = e.currentTarget.dataset.filter;
-                applyFiltersAndSort();
+                state.currentFilter = e.currentTarget.dataset.filter;
+                applyFiltersAndSort(scrollObserver);
             }));
 
-            if(DOMElements.subscribeBtn) DOMElements.subscribeBtn.addEventListener('click', (e) => toggleModal(DOMElements.smsModal, true, e.currentTarget));
-            if(DOMElements.heroSubscribeBtn) DOMElements.heroSubscribeBtn.addEventListener('click', (e) => toggleModal(DOMElements.subscribeModal, true, e.currentTarget));
-            
-            if(DOMElements.closeSubscribe) DOMElements.closeSubscribe.addEventListener('click', () => toggleModal(DOMElements.subscribeModal, false));
-            if(DOMElements.closeSmsModal) DOMElements.closeSmsModal.addEventListener('click', () => toggleModal(DOMElements.smsModal, false));
-            
-            if(DOMElements.adminSigninBtn) DOMElements.adminSigninBtn.addEventListener('click', signInWithGoogle);
-            if(DOMElements.adminSignoutBtn) DOMElements.adminSignoutBtn.addEventListener('click', () => signOut(auth));
-            
-            if(DOMElements.cancelEditBtn) DOMElements.cancelEditBtn.addEventListener('click', resetForm);
-            if(DOMElements.clearDataBtn) {
-                 DOMElements.clearDataBtn.addEventListener('click', async () => {
-                    if (confirm('Are you sure you want to delete ALL drops? This cannot be undone.')) {
-                        const dropsCollectionRef = collection(db, dropsCollectionPath);
-                        const snapshot = await getDocs(query(dropsCollectionRef));
-                        const batch = writeBatch(db);
-                        snapshot.docs.forEach(doc => {
-                            batch.delete(doc.ref);
-                        });
-                        await batch.commit();
-                        showToast('All data cleared.');
-                    }
+            document.body.addEventListener('mousemove', e => {
+                requestAnimationFrame(() => {
+                    document.body.style.setProperty('--cursor-x', `${e.clientX}px`);
+                    document.body.style.setProperty('--cursor-y', `${e.clientY}px`);
                 });
-            }
-            if(DOMElements.scheduleToggle) {
-                 DOMElements.scheduleToggle.addEventListener('change', (e) => {
-                    if (DOMElements.scheduleOptions) {
-                        DOMElements.scheduleOptions.classList.toggle('hidden', !e.target.checked);
-                    }
-                });
-            }
-            DOMElements.toast.addEventListener('click', (e) => {
-                if (e.target.classList.contains('dismiss-toast')) {
-                    DOMElements.toast.classList.remove('show');
+            });
+
+            DOMElements.adminSigninBtn?.addEventListener('click', signInWithGoogle);
+            DOMElements.adminSignoutBtn?.addEventListener('click', () => signOut(auth));
+            DOMElements.cancelEditBtn?.addEventListener('click', resetForm);
+            DOMElements.clearDataBtn?.addEventListener('click', async () => {
+                if (window.confirm('Are you sure you want to delete ALL sparks? This is irreversible.')) {
+                    // CHANGE: Use correct collection path
+                    const snapshot = await getDocs(query(collection(db, dropsCollectionPath)));
+                    const batch = writeBatch(db);
+                    snapshot.docs.forEach(doc => batch.delete(doc.ref));
+                    await batch.commit();
+                    showToast('All data cleared.');
                 }
             });
+            DOMElements.scheduleToggle?.addEventListener('change', e => DOMElements.scheduleOptions.classList.toggle('hidden', !e.target.checked));
+            DOMElements.toast.addEventListener('click', e => { if (e.target.classList.contains('dismiss-toast')) DOMElements.toast.classList.remove('show'); });
         });
-
     </script>
 </body>
 </html>
+
+
 
