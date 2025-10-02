@@ -1,0 +1,1074 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kimberly's Creative Sprint - A 90 Day Project</title>
+    <!-- CHANGE: Updated meta description -->
+    <meta name="description" content="Join Kimberly's 90-day creative challenge. Outrunning perfectionism one creative spark at a time.">
+    <meta name="theme-color" content="#271A3A">
+    <meta name="robots" content="index, follow">
+
+    <link rel="canonical" href="https://knf.kim/sparks">
+    <meta property="og:title" content="Kimberly's Creative Sprint - 90 Days of Creative Output">
+    <meta property="og:description" content="Join Kimberly's 90-day creative challenge. Outrunning perfectionism one creative spark at a time.">
+    <meta property="og:image" content="https://knfoster13.github.io/HQ/WARMKDROP6.png">
+    <meta property="og:image:alt" content="Kimberly's 90-day Creative Sprint">
+    <meta property="og:url" content="https://knf.kim/sparks">
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="Kimberly's Creative Sprint">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Kimberly's Creative Sprint - 90 Days of Creative Output">
+    <meta name="twitter:description" content="Join Kimberly's 90-day creative challenge. Outrunning perfectionism one creative spark at a time.">
+    <meta name="twitter:image" content="https://knfoster13.github.io/HQ/KCS-WARM.png">
+    <meta name="twitter:creator" content="@kimberlynfoster">
+
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebSite",
+      "name": "Kimberly's Creative Sprint",
+      "description": "90 Days of Creative Output",
+      "url": "https://knf.kim/sparks",
+      "publisher": {
+        "@type": "Person",
+        "name": "Kimberly Nicole Foster"
+      }
+    }
+    </script>
+    <script type="application/ld+json" id="itemListSchema"></script>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preconnect" href="https://www.gstatic.com">
+    <link rel="preload" href="https://knfoster13.github.io/HQ/kdrop4.png" as="image" fetchpriority="high">
+    <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+      :root {
+        --bg-dark: #12072B;
+        --bg-center: #2E144F;
+        --bg-edge: #1D0D37;
+        --surface: rgba(42, 26, 61, 0.85);
+        --surface-hover: rgba(52, 36, 71, 0.95);
+        --accent: #a78bfa;
+        --accent-bright: #c4b5fd;
+        --accent-start: #C6B6F7;
+        --accent-end:   #ffe3dc;
+        --cta: #f472b6;
+        --cta-hover: #ec4899;
+        --text-primary: #FCFBF7;
+        --text-secondary: #E5E1DA;
+        --text-muted: #BDB6AE;
+        --tag-free: #86efac;
+        --tag-paid: #fde047;
+        --heart: #f472b6;
+        --success: #34d399;
+        --warning: #fbbf24;
+        --error: #f87171;
+        --border-color: rgba(167, 139, 250, 0.15);
+        --border-color-hover: rgba(167, 139, 250, 0.3);
+        --purple-glow: rgba(150, 129, 237, 0.4);
+        --cursor-x: 50vw;
+        --cursor-y: 50vh;
+      }
+
+      /* Base & Typography */
+      html { scroll-behavior: smooth; }
+      body {
+        font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+        background: radial-gradient(ellipse at top center, #4c2d6f 0%, #1a0f26 70%);
+        min-height: 100vh;
+        color: var(--text-primary);
+        line-height: 1.75;
+        transition: all 0.3s ease;
+      }
+      body::before {
+          content: '';
+          position: fixed;
+          top: 0; left: 0;
+          width: 100%; height: 100%;
+          background: radial-gradient(
+            circle 500px at var(--cursor-x) var(--cursor-y),
+            rgba(167, 139, 250, 0.08),
+            transparent 80%
+          );
+          pointer-events: none;
+          z-index: -1;
+      }
+
+      .brand-font { font-family: 'DM Serif Display', serif; }
+      h1, h2, h3 { text-wrap: balance; }
+      
+      .line-clamp-3 {
+        display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden;
+      }
+      .text-gradient {
+        background: linear-gradient(to right, var(--accent-start), var(--accent-end));
+        -webkit-background-clip: text;
+        background-clip: text;
+        color: transparent;
+      }
+      .subtitle-gradient {
+        background: linear-gradient(to right, #FFF6E9, #FFD6C2);
+        -webkit-background-clip: text;
+        background-clip: text;
+        color: transparent;
+      }
+
+      /* Accessibility */
+      *:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; border-radius: 0.25rem; }
+      .skip-to-content { position: absolute; top: -40px; left: 0; background: var(--accent); color: white; padding: 8px; text-decoration: none; z-index: 1000; border-radius: 0 0 0.5rem 0; }
+      .skip-to-content:focus { top: 0; }
+      .sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0, 0, 0, 0); white-space: nowrap; border-width: 0; }
+
+      /* Components */
+       .frosted-header {
+        background-color: rgba(29, 13, 55, 0.8);
+        backdrop-filter: blur(12px);
+        -webkit-backdrop-filter: blur(12px);
+        border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+      }
+      .card {
+        background: var(--surface);
+        border: 1px solid var(--border-color);
+        backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
+        transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease, opacity 0.5s ease;
+        border-radius: 0.75rem;
+        overflow: hidden;
+        box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.1);
+        border-left-width: 4px;
+        border-left-color: transparent;
+      }
+      main .card {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+      main .card.is-visible {
+        opacity: 1;
+        transform: translateY(0);
+      }
+      .card:hover {
+        transform: translateY(-5px) !important;
+        background: var(--surface-hover);
+        border-color: var(--border-color-hover);
+        box-shadow: 0 10px 20px rgba(0,0,0,0.15), inset 0 0 0 1px rgba(255, 255, 255, 0.1);
+      }
+      .card .image-container::after {
+        content: '';
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        height: 50%;
+        background: linear-gradient(to top, rgba(0,0,0,0.4), transparent);
+        pointer-events: none;
+      }
+      .card[data-content-type="Video"] { border-left-color: var(--cta); }
+      .card[data-content-type="Podcast"] { border-left-color: var(--accent); }
+      .card[data-content-type="Essay"] { border-left-color: var(--success); }
+      .card[data-content-type="Social Post"] { border-left-color: var(--warning); }
+      
+      .btn {
+        font-weight: 600; padding: 0.625rem 1.5rem; border-radius: 9999px;
+        transition: all 0.3s ease; border: none; cursor: pointer;
+        display: inline-flex; align-items: center; justify-content: center; gap: 0.5rem;
+      }
+      .btn-primary { background: linear-gradient(135deg, var(--cta) 0%, var(--cta-hover) 100%); color: white; }
+      .btn-primary:hover:not(:disabled) { transform: scale(1.05); box-shadow: 0 10px 25px rgba(244, 114, 182, 0.3); }
+      .btn-primary:disabled { opacity: 0.5; cursor: not-allowed; transform: scale(1); }
+      
+      .btn-secondary { 
+        background: #2E144F; 
+        color: var(--accent-bright); 
+        border: 1px solid var(--accent);
+      }
+      .btn-secondary:hover:not(:disabled) { 
+        background: #3a1c63; 
+        border-color: var(--accent-bright);
+        box-shadow: 0 0 15px var(--accent-bright);
+      }
+
+       .btn-gradient {
+        background: linear-gradient(90deg, #C6B6F7 0%, #FFD6C2 100%);
+        color: #3d3128;
+      }
+      .btn-gradient:hover:not(:disabled) {
+          box-shadow: 0 0 20px #c6b6f7;
+          transform: scale(1.05);
+      }
+      
+      .btn-subscribe {
+        background: linear-gradient(to right, #684077, var(--accent-end));
+        color: white;
+        font-weight: 500;
+        box-shadow: 0 0 20px var(--purple-glow);
+      }
+      .btn-subscribe:hover:not(:disabled) {
+        transform: scale(1.05);
+        box-shadow: 0 8px 30px var(--purple-glow);
+      }
+      .btn:hover svg {
+          transform: scale(1.1) rotate(3deg);
+      }
+      
+      .form-input {
+        background: rgba(0, 0, 0, 0.2); border: 1px solid rgba(167, 139, 250, 0.2);
+        color: var(--text-primary); padding: 0.75rem 1rem; border-radius: 0.5rem;
+        width: 100%; transition: all 0.2s ease;
+      }
+      .form-input:focus { outline: none; border-color: var(--accent); box-shadow: 0 0 0 3px rgba(167, 139, 250, 0.1); }
+      .form-input.error { border-color: var(--error); }
+      .tag { 
+        font-size: 0.875rem; 
+        font-weight: 600; 
+        padding: 0.375rem 1rem; 
+        border-radius: 9999px;
+        line-height: 1.2;
+      }
+      .tag-free { 
+        background: rgba(134, 239, 172, 0.15); 
+        color: var(--tag-free); 
+        border: 1px solid rgba(134, 239, 172, 0.3);
+        box-shadow: 0 0 10px rgba(134, 239, 172, 0.2);
+      }
+      .tag-paid { 
+        background: rgba(253, 224, 71, 0.15); 
+        color: var(--tag-paid); 
+        border: 1px solid rgba(253, 224, 71, 0.3);
+        box-shadow: 0 0 10px rgba(253, 224, 71, 0.2);
+      }
+      .title-glow {
+        text-shadow: 0 0 8px rgba(255, 255, 255, 0.1);
+      }
+      
+      .heart-btn { transition: all 0.2s ease; cursor: pointer; user-select: none; }
+      .heart-btn:hover svg { transform: scale(1.1); }
+      .heart-btn.hearted svg { fill: var(--heart); stroke: var(--heart); animation: heartPulse 0.3s ease; }
+      @keyframes heartPulse { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.2); } }
+      
+      .header-progress-bar { 
+        height: 0.75rem;
+        background-color: rgba(255,255,255,0.1);
+        border: 1px solid rgba(255,255,255,0.1);
+        border-radius: 9999px;
+        overflow: hidden;
+      }
+      .header-progress-fill {
+        height: 100%;
+        background: linear-gradient(90deg, var(--accent-start) 0%, var(--accent-end) 100%);
+        transition: width 1.5s cubic-bezier(0.4, 0, 0.2, 1);
+        animation: progressShimmer 2s ease-in-out infinite;
+        box-shadow: 0 0 8px var(--accent-start);
+      }
+      @keyframes progressShimmer {
+          0% { opacity: 0.7; }
+          50% { opacity: 1; }
+          100% { opacity: 0.7; }
+      }
+      
+      #today-section {
+        background: linear-gradient(rgba(45, 27, 66, 0.1), rgba(45, 27, 66, 0.5));
+        border: 1px solid rgba(167, 139, 250, 0.1);
+        padding: 1.5rem;
+        border-radius: 1rem;
+      }
+      .shimmer-border {
+        animation: shimmer-animation 3s infinite;
+        border: 1px solid transparent;
+        background: linear-gradient(var(--surface), var(--surface)) padding-box,
+                    linear-gradient(90deg, transparent, var(--accent), transparent) border-box;
+      }
+      @keyframes shimmer-animation {
+        0% { background-position: -200% 0; }
+        100% { background-position: 200% 0; }
+      }
+
+      .day-dot {
+          transition: transform 0.2s ease, background-color 0.2s ease;
+          background: none; border: none; padding: 0; cursor: pointer;
+      }
+      .day-dot:hover {
+          transform: scale(1.5);
+      }
+      .day-dot:hover .dot-inner {
+          background-color: var(--accent-bright);
+      }
+      .day-dot.current .dot-inner {
+          background-color: var(--cta);
+          transform: scale(1.75);
+          box-shadow: 0 0 8px var(--cta);
+      }
+
+      .toast {
+        position: fixed; bottom: 2rem; left: 50%;
+        transform: translateX(-50%) translateY(100px);
+        background: var(--surface); color: var(--text-primary); padding: 1rem 1.5rem;
+        border-radius: 0.75rem; box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+        opacity: 0; transition: transform 0.3s, opacity 0.3s; z-index: 1000;
+        display: flex; align-items: center; gap: 0.75rem;
+        border: 1px solid var(--border-color);
+      }
+      .toast.show { transform: translateY(0); opacity: 1; }
+      .toast.error { border-color: var(--error); }
+      .toast.warning { border-color: var(--warning); }
+
+      .loading-spinner { border: 2px solid rgba(167, 139, 250, 0.2); border-radius: 50%; border-top: 2px solid var(--accent); width: 20px; height: 20px; animation: spin 1s linear infinite; }
+      @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
+      .skeleton-card { background: var(--surface); border: 1px solid var(--border-color); border-radius: 1rem; padding: 1rem; }
+      .skeleton-line { height: 1rem; margin-bottom: 0.5rem; background: linear-gradient(90deg, rgba(167, 139, 250, 0.1) 0%, rgba(167, 139, 250, 0.2) 50%, rgba(167, 139, 250, 0.1) 100%); background-size: 200% 100%; animation: shimmer 1.5s ease-in-out infinite; border-radius: 0.25rem; }
+      @keyframes shimmer { 0% { background-position: 200% 0; } 100% { background-position: -200% 0; } }
+       .filter-btn {
+            padding: 0.5rem 1rem;
+            background: transparent;
+            border: 1px solid rgba(167, 139, 250, 0.2);
+            color: var(--text-secondary);
+            border-radius: 0.5rem;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            font-size: 0.875rem;
+        }
+
+        .filter-btn:hover {
+            background: rgba(167, 139, 250, 0.1);
+            border-color: rgba(167, 139, 250, 0.3);
+        }
+
+        .filter-btn.active {
+            background: rgba(167, 139, 250, 0.2);
+            color: var(--accent-bright);
+            border-color: var(--accent);
+        }
+
+      ::-webkit-scrollbar { width: 8px; }
+      ::-webkit-scrollbar-track { background: rgba(0, 0, 0, 0.1); }
+      ::-webkit-scrollbar-thumb { background: var(--accent); border-radius: 4px; }
+      ::-webkit-scrollbar-thumb:hover { background: var(--accent-bright); }
+
+      .hero-image {
+          animation: subtleGlow 4s ease-in-out infinite alternate;
+      }
+      @keyframes subtleGlow {
+          from { filter: drop-shadow(0 0 15px var(--purple-glow)); }
+          to { filter: drop-shadow(0 0 25px var(--purple-glow)); }
+      }
+        
+      @media (max-width: 768px) {
+        .header-nav { flex-direction: column; gap: 0.5rem; }
+        .header-counters { order: 3; width: 100%; justify-content: center; }
+        .header-progress-bar { order: 4; }
+        .header-buttons { order: 2; }
+        .header-logo { order: 1; }
+      }
+    </style>
+</head>
+<body class="bg-bg-dark">
+    <a href="#content-feed" class="skip-to-content">Skip to content</a>
+
+    <header class="sticky top-0 z-50 frosted-header" role="banner">
+        <nav class="max-w-6xl mx-auto px-4 py-4" aria-label="Primary">
+            <div class="header-nav flex items-center justify-between">
+                <a href="#" class="header-logo flex items-center gap-2" aria-label="Creative Sprint Home">
+                    <img src="https://knfoster13.github.io/HQ/KMonogram-GLOW.png" alt="Logo" class="h-10 w-auto" style="filter: drop-shadow(0 0 8px #FCE9EB);">
+                    <span class="hidden sm:inline font-bold text-xl brand-font" style="color: #F9E7E9; text-shadow: 0 1px 2px rgba(0,0,0,0.1), 0 0 10px #684077;">Kimberly's Creative Sprint</span>
+                </a>
+    
+                <div class="header-counters hidden md:flex flex-col items-center">
+                    <div class="flex items-center gap-6 text-center">
+                        <div class="flex flex-col">
+                            <span id="header-day" class="text-base font-bold">1</span>
+                            <span class="text-xs uppercase tracking-wider text-muted">Day</span>
+                        </div>
+                        <div class="h-6 w-px bg-white/10"></div>
+                        <div class="flex flex-col">
+                             <span id="header-sparks" class="text-base font-bold">0</span>
+                             <span class="text-xs uppercase tracking-wider text-muted">Sparks</span>
+                        </div>
+                        <div class="h-6 w-px bg-white/10"></div>
+                        <div class="flex flex-col">
+                             <span id="header-streak" class="text-base font-bold">0</span>
+                             <span class="text-xs uppercase tracking-wider text-muted">Streak</span>
+                        </div>
+                    </div>
+                </div>
+    
+                <div class="header-buttons flex items-center gap-2">
+                    <button id="admin-signin-btn" class="btn btn-secondary !bg-transparent !text-sm !p-2" title="Admin sign in" aria-label="Admin sign in">
+                        <svg class="w-4 h-4" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 16 16" aria-hidden="true"><path d="M3.5 11.5a3.5 3.5 0 1 1 3.163-5H14l1.5 1.5L14 9.5l-1-1-1 1-1-1-1 1-1-1-1 1H6.663a3.5 3.5 0 0 1-3.163 2zM2.5 9a1 1 0 1 0 0-2 1 1 0 0 0 0 2z"/></svg>
+                    </button>
+                    
+                    <button id="admin-signout-btn" class="btn btn-secondary !bg-transparent !text-sm !p-2 hidden" title="Admin sign out" aria-label="Admin sign out">
+                         <svg class="w-4 h-4" xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1"></path></svg>
+                    </button>
+                    
+                    <button id="subscribe-btn" class="btn btn-subscribe" aria-label="Join the sprint">
+                        <span class="hidden sm:inline">Join the 🏃🏾‍♀️✨</span>
+                    </button>
+                </div>
+            </div>
+            <div id="header-progress-bar" role="progressbar" aria-valuemin="0" aria-valuemax="90" aria-valuenow="1" class="w-full mt-3 header-progress-bar !h-2">
+                <div class="header-progress-fill" style="width: 1%;"></div>
+            </div>
+        </nav>
+    </header>
+
+    <main class="max-w-6xl mx-auto px-4 py-8" role="main" id="main-content">
+        <section class="text-center pt-0 pb-12" aria-labelledby="hero-title">
+            <picture>
+              <source srcset="https://knfoster13.github.io/HQ/KCS-WARM-large.webp" media="(min-width: 1024px)" type="image/webp">
+              <source srcset="https://knfoster13.github.io/HQ/KCS-WARM-medium.webp" media="(min-width: 768px)" type="image/webp">
+              <source srcset="https://knfoster13.github.io/HQ/KCS-WARM-small.webp" type="image/webp">
+              <img src="https://knfoster13.github.io/HQ/KCS-WARM.png" alt="Kimberly's Creative Sprint" class="hero-image mx-auto w-full max-w-md mb-6" width="1024" height="768" fetchpriority="high" decoding="async" loading="eager">
+            </picture>
+            <h1 id="hero-title" class="text-3xl md:text-4xl font-bold mb-4 brand-font subtitle-gradient">Outrunning perfectionism one creative spark at a time.</h1>
+            <p class="text-lg text-muted mb-4">
+                <strong id="challenge-dates" class="font-bold" style="color: #ffe3dc;">October 2 &mdash; December 31, 2025</strong>
+            </p>
+            <div class="mt-6 flex flex-wrap gap-3 justify-center">
+                <button id="hero-subscribe-btn" class="btn btn-gradient">Newsletter</button>
+                <a href="sms-optin.html" class="btn btn-secondary">SMS Alerts 📱</a>
+            </div>
+
+            <div id="day-dots-container" class="flex gap-1.5 justify-center flex-wrap max-w-full py-2 px-4 mt-8"></div>
+
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mt-8 max-w-2xl mx-auto" role="region" aria-label="Challenge statistics">
+                <div class="card p-4 text-center"><div class="text-2xl font-bold text-accent" id="today-count" aria-live="polite">0</div><div class="text-sm text-muted">Today's Sparks</div></div>
+                <div class="card p-4 text-center"><div class="text-2xl font-bold text-cta" id="streak-count" aria-live="polite">0</div><div class="text-sm text-muted">Day Streak</div></div>
+                <div class="card p-4 text-center"><div class="text-2xl font-bold text-success" id="free-count" aria-live="polite">0</div><div class="text-sm text-muted">Free Content</div></div>
+                <div class="card p-4 text-center"><div class="text-2xl font-bold text-warning" id="paid-count" aria-live="polite">0</div><div class="text-sm text-muted">Premium</div></div>
+            </div>
+        </section>
+
+        <div id="admin-panel-container" class="mb-8"></div>
+
+        <section class="mb-6" aria-label="Search, filter and sort sparks">
+            <div class="card p-4">
+                <div class="grid md:grid-cols-3 gap-4">
+                    <div class="relative md:col-span-1">
+                        <input type="text" id="search-input" class="form-input pl-10" placeholder="Search sparks..." aria-label="Search sparks">
+                        <svg class="w-5 h-5 absolute left-3 top-1/2 -translate-y-1/2 text-muted" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path></svg>
+                    </div>
+                    <div class="flex items-center gap-2 justify-between md:col-span-2">
+                        <div class="flex gap-2 flex-wrap" role="group" aria-label="Filter options">
+                            <button class="filter-btn active" data-filter="all" aria-pressed="true">All</button>
+                            <button class="filter-btn" data-filter="Video" aria-pressed="false">Videos</button>
+                            <button class="filter-btn" data-filter="Podcast" aria-pressed="false">Podcasts</button>
+                            <button class="filter-btn" data-filter="Essay" aria-pressed="false">Essays</button>
+                             <button class="filter-btn" data-filter="Free" aria-pressed="false">Free</button>
+                            <button class="filter-btn" data-filter="Paid" aria-pressed="false">Premium</button>
+                        </div>
+                        <select id="sort-select" class="form-input w-40" aria-label="Sort sparks">
+                            <option value="newest">Newest</option>
+                            <option value="oldest">Oldest</option>
+                            <option value="most-loved">❤️ Most Loved</option>
+                             <option value="trending">🔥 Trending</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="content-feed" class="space-y-8" aria-label="Content feed" aria-busy="true" aria-live="polite">
+            <span id="feed-announcer" class="sr-only" aria-live="assertive"></span>
+            
+            <div id="skeleton-loaders">
+                <h2 class="text-2xl md:text-3xl font-bold mb-4 brand-font animate-pulse">Loading sparks...</h2>
+                <div class="space-y-6">
+                    <div class="skeleton-card"><div class="flex flex-col md:flex-row gap-4"><div class="md:w-48 h-32 skeleton-line rounded-lg"></div><div class="flex-1 space-y-2"><div class="skeleton-line w-3/4"></div><div class="skeleton-line w-1/2"></div><div class="skeleton-line w-full"></div></div></div></div>
+                    <div class="skeleton-card"><div class="flex flex-col md:flex-row gap-4"><div class="md:w-48 h-32 skeleton-line rounded-lg"></div><div class="flex-1 space-y-2"><div class="skeleton-line w-3/4"></div><div class="skeleton-line w-1/2"></div><div class="skeleton-line w-full"></div></div></div></div>
+                </div>
+            </div>
+            
+            <div id="today-section" class="hidden"><h2 class="text-2xl md:text-3xl font-bold mb-4 flex items-center gap-3">
+                <span class="relative flex h-3 w-3"><span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75"></span><span class="relative inline-flex rounded-full h-3 w-3 bg-green-500"></span></span>
+                <span class="text-white brand-font text-gradient">Today's Sparks</span>
+            </h2><div id="today-sparks" class="grid gap-6"></div></div>
+            <div id="previous-section" class="hidden">
+                <h2 class="text-2xl font-bold mb-4 brand-font text-gradient">Previous Sparks</h2>
+                <div id="previous-sparks" class="grid gap-6"></div>
+                <div id="load-more-container" class="text-center mt-8"></div>
+            </div>
+            
+            <div id="empty-state" class="text-center py-12 hidden"><svg class="w-24 h-24 mx-auto mb-4 text-muted opacity-50" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20 13V6a2 2 0 00-2-2H6a2 2 0 00-2 2v7m16 0v5a2 2 0 01-2 2H6a2 2 0 01-2-2v-5m16 0h-2.586a1 1 0 00-.707.293l-2.414 2.414a1 1 0 01-.707.293h-3.172a1 1 0 01-.707-.293l-2.414-2.414A1 1 0 006.586 13H4"></path></svg><p class="text-lg text-muted" id="empty-state-message">No sparks yet. Check back soon!</p></div>
+        </section>
+        
+        <nav class="mt-12" aria-label="Quick links">
+            <h2 class="text-2xl font-bold mb-6 text-center brand-font text-gradient">Quick Links</h2>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-4 max-w-3xl mx-auto">
+                <a href="https://www.patreon.com/kimberlynfoster" class="card p-6 flex items-center gap-4 hover:!scale-105" rel="noopener noreferrer" target="_blank">
+                    <div class="p-3 rounded-full bg-pink-500/20"><svg class="w-6 h-6 text-pink-400" fill="currentColor" viewBox="0 0 20 20" aria-hidden="true"><path fill-rule="evenodd" d="M3.172 5.172a4 4 0 015.656 0L10 6.343l1.172-1.171a4 4 0 115.656 5.656L10 17.657l-6.828-6.829a4 4 0 010-5.656z" clip-rule="evenodd"/></svg></div>
+                    <span class="font-semibold">Support on Patreon</span>
+                </a>
+                <a href="sms-optin.html" class="card p-6 flex items-center gap-4 hover:!scale-105">
+                    <div class="p-3 rounded-full bg-blue-500/20"><svg class="w-6 h-6 text-blue-400" fill="currentColor" viewBox="0 0 20 20" aria-hidden="true"><path d="M3.5 2A1.5 1.5 0 0 0 2 3.5v9A1.5 1.5 0 0 0 3.5 14h9a1.5 1.5 0 0 0 1.5-1.5v-9A1.5 1.5 0 0 0 12.5 2h-9zM3 3.5a.5.5 0 0 1 .5-.5h9a.5.5 0 0 1 .5.5v9a.5.5 0 0 1-.5.5h-9a.5.5 0 0 1-.5-.5v-9z"/><path d="M5.5 7a.5.5 0 0 1 .5-.5h2a.5.5 0 0 1 0 1h-2a.5.5 0 0 1-.5-.5zm0 2a.5.5 0 0 1 .5-.5h5a.5.5 0 0 1 0 1h-5a.5.5 0 0 1-.5-.5z"/></svg></div>
+                    <span class="font-semibold">Get Text Alerts</span>
+                </a>
+                <a href="https://kimberlynfoster.substack.com" class="card p-6 flex items-center gap-4 hover:!scale-105" rel="noopener noreferrer" target="_blank">
+                    <div class="p-3 rounded-full bg-green-500/20"><svg class="w-6 h-6 text-green-400" fill="currentColor" viewBox="0 0 20 20" aria-hidden="true"><path d="M2.003 5.884L10 9.882l7.997-3.998A2 2 0 0016 4H4a2 2 0 00-1.997 1.884z"/><path d="M18 8.118l-8 4-8-4V14a2 2 0 002 2h12a2 2 0 002-2V8.118z"/></svg></div>
+                    <span class="font-semibold">Newsletter</span>
+                </a>
+            </div>
+        </nav>
+    </main>
+
+    <footer class="text-center py-8 mt-12 text-sm text-muted" role="contentinfo">
+        <p>&copy; 2025 Kimberly's Creative Sprint. All rights reserved.</p>
+    </footer>
+
+    <div id="subscribe-modal" class="fixed inset-0 bg-black/50 backdrop-blur-sm hidden items-center justify-center p-4 z-50" role="dialog" aria-labelledby="subscribe-modal-title" aria-modal="true">
+        <div class="card p-6 relative max-w-lg w-full">
+            <button id="close-subscribe" class="absolute top-4 right-4 text-muted hover:text-primary transition-colors" aria-label="Close modal"><svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg></button>
+            <h2 id="subscribe-modal-title" class="text-2xl font-bold mb-4 text-center brand-font text-gradient">Join the Newsletter!</h2>
+            <p class="text-muted mb-6 text-center">Get exclusive updates, behind-the-scenes content, and early access to sparks straight to your inbox!</p>
+            <div class="bg-white rounded-xl p-1"><iframe src="https://kimberlynfoster.substack.com/embed" width="100%" height="320" style="border:1px solid #EEE; background:white;" frameborder="0" scrolling="no" title="Subscribe to newsletter"></iframe></div>
+        </div>
+    </div>
+
+    <div id="sms-modal" class="fixed inset-0 bg-black/50 backdrop-blur-sm hidden items-center justify-center p-4 z-50" role="dialog" aria-labelledby="sms-modal-title" aria-modal="true">
+        <div class="card p-8 relative max-w-lg w-full">
+            <button id="close-sms-modal" class="absolute top-4 right-4 text-muted hover:text-primary transition-colors" aria-label="Close SMS modal"><svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg></button>
+            <h2 id="sms-modal-title" class="text-2xl font-bold mb-2 text-center brand-font text-gradient">Get SMS Alerts</h2>
+            <p class="text-muted mb-6 text-center">Be the first to know when new sparks go live, get reminders, and receive exclusive tips.</p>
+            <div class="tm-widget-container">
+                <script src="https://widgets.textmagic.com/widget-script.js" data-code="ca975eb0fab8d2e" data-type="subscribe" defer></script>
+            </div>
+        </div>
+    </div>
+
+    <div id="confirm-modal" class="fixed inset-0 bg-black/50 backdrop-blur-sm hidden items-center justify-center p-4 z-50" role="alertdialog" aria-modal="true" aria-labelledby="confirm-modal-title">
+        <div class="card p-6 relative max-w-sm w-full">
+            <h2 id="confirm-modal-title" class="text-xl font-bold mb-4 text-center brand-font text-gradient">Are you sure?</h2>
+            <p id="confirm-message" class="text-muted mb-6 text-center">This action cannot be undone.</p>
+            <div class="flex justify-center gap-4">
+                <button id="confirm-no-btn" class="btn btn-secondary">Cancel</button>
+                <button id="confirm-yes-btn" class="btn btn-primary !bg-red-500">Confirm</button>
+            </div>
+        </div>
+    </div>
+
+    <div id="toast" class="toast" role="alert" aria-live="polite">
+        <svg id="toast-icon" class="w-5 h-5 text-success" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+        <span id="toast-message">Action completed successfully!</span>
+        <button class="dismiss-toast ml-auto text-muted hover:text-primary">&times;</button>
+    </div>
+
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-app.js";
+        import { getAuth, signInAnonymously, onAuthStateChanged, signOut, signInWithPopup, GoogleAuthProvider } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-auth.js";
+        import { getFirestore, collection, addDoc, onSnapshot, query, where, orderBy, doc, deleteDoc, updateDoc, increment, serverTimestamp, runTransaction, getDoc, getDocs, writeBatch, limit, startAfter } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-firestore.js";
+        import { getAnalytics, logEvent } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-analytics.js";
+
+        /** @typedef {import("firebase/firestore").Timestamp} Timestamp */
+        /**
+         * @typedef {object} Spark
+         * @property {string} id - The document ID.
+         * @property {string} title - The title of the spark.
+         * @property {string} description - A short description.
+         * @property {string} link - URL to the content.
+         * @property {string} contentType - The type of content (e.g., Video, Essay).
+         * @property {string} access - Access level ('Free' or 'Paid').
+         * @property {string} [imageUrl] - Optional URL for a thumbnail image.
+         * @property {number} day - The day of the challenge this was sparked on.
+         * @property {number} hearts - The number of hearts.
+         * @property {'published' | 'scheduled'} status - The publication status.
+         * @property {Timestamp} timestamp - Firestore server timestamp.
+         */
+
+        const firebaseConfig = {
+            apiKey: "AIzaSyDTd4lvs1lzjKeGu7Ee91lM30-8v88h-ng",
+            authDomain: "productivity-tracker-knf13.firebaseapp.com",
+            projectId: "productivity-tracker-knf13",
+            storageBucket: "productivity-tracker-knf13.appspot.com",
+            messagingSenderId: "762035393571",
+            appId: "1:762035393571:web:7d474a6a57cc031b860d96"
+        };
+        const ADMIN_EMAIL = "kimberly.foster@example.com";
+        const START_DATE = new Date('2025-10-02T00:00:00');
+        const END_DATE = new Date('2025-12-31T23:59:59');
+        const MS_PER_DAY = 1000 * 60 * 60 * 24;
+        const TOTAL_DAYS = 90;
+        const SPARKS_PER_PAGE = 5;
+        const dropsCollectionPath = `artifacts/${firebaseConfig.projectId}/public/data/drops`;
+        
+        let db, auth, analytics, currentUser = null, isAdmin = false;
+        let DOMElements;
+
+        const state = {
+            allSparks: [],
+            filteredSparks: [],
+            currentFilter: 'all',
+            currentSort: 'newest',
+            searchQuery: '',
+            heartedPosts: JSON.parse(localStorage.getItem('heartedPosts') || '{}'),
+            editingSparkId: null,
+            unsubscribeDrops: null,
+            visiblePreviousSparks: SPARKS_PER_PAGE,
+            isLoading: false
+        };
+
+        const getCurrentDay = () => {
+            const now = new Date();
+            if (now < START_DATE) return 0;
+            if (now > END_DATE) return TOTAL_DAYS;
+            const startOfDay = d => { const date = new Date(d); date.setHours(0,0,0,0); return date; };
+            return Math.floor((startOfDay(now) - startOfDay(START_DATE)) / MS_PER_DAY) + 1;
+        };
+        const escapeHtml = str => str ? new DOMParser().parseFromString(str, 'text/html').body.textContent : '';
+        const debounce = (func, wait) => {
+            let timeout;
+            return (...args) => { clearTimeout(timeout); timeout = setTimeout(() => func.apply(this, args), wait); };
+        };
+        const toJsDate = v => v?.toDate ? v.toDate() : new Date(v);
+
+        const updateProgress = () => {
+            const day = getCurrentDay();
+            const progress = Math.min(100, (day / TOTAL_DAYS) * 100);
+            if (DOMElements.headerDay) DOMElements.headerDay.textContent = day;
+            if (DOMElements.headerProgressBar) {
+                DOMElements.headerProgressBar.querySelector('.header-progress-fill')?.style.setProperty('width', `${progress}%`);
+                DOMElements.headerProgressBar.setAttribute('aria-valuenow', day);
+            }
+        };
+        
+        let toastTimeout;
+        const showToast = (message, type = 'success') => {
+            clearTimeout(toastTimeout);
+            const icons = {
+                success: { path: `<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>`, color: 'text-green-500' },
+                error: { path: `<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>`, color: 'text-red-500' },
+                warning: { path: `<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"></path>`, color: 'text-yellow-500' }
+            };
+            DOMElements.toastMessage.textContent = message;
+            DOMElements.toast.className = `toast ${type}`;
+            DOMElements.toastIcon.innerHTML = icons[type].path;
+            DOMElements.toastIcon.setAttribute('class', `w-5 h-5 ${icons[type].color}`);
+            DOMElements.toast.classList.add('show');
+            toastTimeout = setTimeout(() => DOMElements.toast.classList.remove('show'), 5000);
+        };
+
+        const showConfirmationModal = (message, onConfirm) => {
+            DOMElements.confirmMessage.textContent = message;
+            DOMElements.confirmModal.classList.remove('hidden');
+            
+            const handleConfirm = () => {
+                onConfirm();
+                closeModal();
+            };
+
+            const closeModal = () => {
+                DOMElements.confirmModal.classList.add('hidden');
+                DOMElements.confirmYesBtn.removeEventListener('click', handleConfirm);
+                DOMElements.confirmNoBtn.removeEventListener('click', closeModal);
+            };
+
+            DOMElements.confirmYesBtn.addEventListener('click', handleConfirm);
+            DOMElements.confirmNoBtn.addEventListener('click', closeModal);
+        };
+
+        const createSparkCard = (spark, scrollObserver) => {
+            const isHearted = state.heartedPosts[spark.id];
+            const sparkDate = toJsDate(spark.timestamp);
+            const time = sparkDate.toLocaleTimeString([], { hour: 'numeric', minute: '2-digit' });
+
+            const fallbackImage = `https://placehold.co/400x300/7c3aed/ffffff?text=${encodeURIComponent(spark.contentType)}`;
+            const imageUrl = spark.imageUrl || fallbackImage;
+
+            const adminButtons = isAdmin ? `
+                <button class="edit-btn text-muted hover:text-accent" data-id="${spark.id}" aria-label="Edit ${escapeHtml(spark.title)}">
+                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.5L16.732 3.732z"></path></svg>
+                </button>
+                <button class="delete-btn text-muted hover:text-error" data-id="${spark.id}" aria-label="Delete ${escapeHtml(spark.title)}">
+                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"></path></svg>
+                </button>
+            ` : '';
+            
+            const card = document.createElement('div');
+            card.className = 'card flex flex-col md:flex-row relative';
+            card.dataset.id = spark.id;
+            card.dataset.contentType = spark.contentType;
+            
+            card.innerHTML = `
+                <div class="md:w-48 aspect-[4/3] flex-shrink-0 image-container relative">
+                    <img src="${escapeHtml(imageUrl)}" alt="${escapeHtml(spark.title)}" class="w-full h-full object-cover" loading="lazy" decoding="async" onerror="this.onerror=null;this.src='${fallbackImage}';">
+                </div>
+                <div class="flex-1 p-4 md:p-5 flex flex-col">
+                    <span class="tag ${spark.access === 'Paid' ? 'tag-paid' : 'tag-free'} absolute top-3 right-3">${spark.access}</span>
+                    <div class="flex-grow space-y-2 mt-4">
+                        <h3 class="text-2xl font-semibold leading-tight hover:text-accent transition-colors brand-font title-glow">
+                          <a href="${spark.link}" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1.5">${escapeHtml(spark.title)} <svg class="w-4 h-4 opacity-50 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path></svg></a>
+                        </h3>
+                        <p class="text-base text-muted line-clamp-3" style="line-height: 1.5;">${escapeHtml(spark.description)}</p>
+                    </div>
+                     <p class="text-xs text-muted mt-4">Day ${spark.day} • ${spark.contentType} • ${time}</p>
+                    <div class="flex items-center gap-3 mt-4 pt-3 border-t border-white/10">
+                         <button class="heart-btn flex items-center gap-1.5 ${isHearted ? 'text-heart hearted' : 'text-muted hover:text-heart'}" data-id="${spark.id}" aria-label="${isHearted ? 'Remove heart' : 'Add heart'} from ${escapeHtml(spark.title)}">
+                            <svg class="w-5 h-5" fill="${isHearted ? 'currentColor' : 'none'}" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.25l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.5l-1.318-1.182a4.5 4.5 0 00-6.364 0z"></path></svg>
+                            <span class="font-mono text-sm">${spark.hearts || 0}</span>
+                        </button>
+                        <button class="share-btn text-sm text-muted hover:text-primary ml-2" data-link="${escapeHtml(spark.link)}" data-title="${escapeHtml(spark.title)}">
+                            Share
+                        </button>
+                        <div class="ml-auto flex items-center gap-3">${adminButtons}</div>
+                    </div>
+                </div>
+            `;
+            scrollObserver.observe(card);
+            return card;
+        };
+        
+        const renderSparks = (scrollObserver) => {
+            DOMElements.skeletonLoaders.classList.add('hidden');
+            DOMElements.contentFeed.setAttribute('aria-busy', 'false');
+
+            const day = getCurrentDay();
+            const todaySparks = state.filteredSparks.filter(d => d.day === day);
+            const previousSparks = state.filteredSparks.filter(d => d.day < day);
+            
+            const publishedSparks = state.allSparks.filter(d => d.status === 'published');
+            const publishedSparksCount = publishedSparks.length;
+            
+            DOMElements.headerSparks.textContent = publishedSparksCount;
+            DOMElements.todayCount.textContent = todaySparks.length;
+            DOMElements.freeCount.textContent = publishedSparks.filter(d => d.access === 'Free').length;
+            DOMElements.paidCount.textContent = publishedSparks.filter(d => d.access === 'Paid').length;
+            const daysWithSparks = new Set(publishedSparks.map(d => d.day)).size;
+            DOMElements.streakCount.textContent = daysWithSparks;
+            DOMElements.headerStreak.textContent = daysWithSparks;
+
+            DOMElements.todaySection.classList.toggle('hidden', todaySparks.length === 0);
+            DOMElements.todaySparks.innerHTML = '';
+            todaySparks.forEach(d => {
+                const card = createSparkCard(d, scrollObserver);
+                card.classList.add('shimmer-border');
+                DOMElements.todaySparks.appendChild(card);
+            });
+
+            const previousToShow = previousSparks.slice(0, state.visiblePreviousSparks);
+            DOMElements.previousSection.classList.toggle('hidden', previousToShow.length === 0);
+            DOMElements.previousSparks.innerHTML = '';
+            previousToShow.forEach(d => DOMElements.previousSparks.appendChild(createSparkCard(d, scrollObserver)));
+            
+            DOMElements.loadMoreContainer.innerHTML = ''; 
+            if (previousSparks.length > state.visiblePreviousSparks) {
+                const loadMoreBtn = document.createElement('button');
+                loadMoreBtn.textContent = 'Load More Sparks';
+                loadMoreBtn.className = 'btn btn-secondary';
+                loadMoreBtn.onclick = () => {
+                    state.visiblePreviousSparks += SPARKS_PER_PAGE;
+                    renderSparks(scrollObserver);
+                };
+                DOMElements.loadMoreContainer.appendChild(loadMoreBtn);
+            }
+
+            if (state.filteredSparks.length === 0 && todaySparks.length === 0) {
+                DOMElements.emptyState.classList.remove('hidden');
+                const emptyMsg = (state.searchQuery || state.currentFilter !== 'all') ? 'No sparks found matching your criteria.' : 'No sparks yet. Check back soon!';
+                DOMElements.emptyStateMessage.textContent = emptyMsg;
+                DOMElements.feedAnnouncer.textContent = emptyMsg;
+            } else {
+                DOMElements.emptyState.classList.add('hidden');
+                DOMElements.feedAnnouncer.textContent = `Feed updated. Now showing ${state.filteredSparks.length} sparks.`;
+            }
+
+            updateItemListSchema(publishedSparks.slice(0, 10));
+        };
+        
+        const applyFiltersAndSort = (scrollObserver) => {
+            state.visiblePreviousSparks = SPARKS_PER_PAGE;
+            const publishedSparks = state.allSparks.filter(d => d.status === 'published');
+            state.filteredSparks = publishedSparks.filter(spark => {
+                const search = state.searchQuery.toLowerCase();
+                const matchesSearch = !search || spark.title.toLowerCase().includes(search) || spark.description.toLowerCase().includes(search);
+                const matchesFilter = state.currentFilter === 'all' || (['Free', 'Paid'].includes(state.currentFilter) ? spark.access === state.currentFilter : spark.contentType === state.currentFilter);
+                return matchesSearch && matchesFilter;
+            });
+
+            state.filteredSparks.sort((a, b) => {
+                const timeA = a.timestamp?.toMillis() || 0;
+                const timeB = b.timestamp?.toMillis() || 0;
+                switch (state.currentSort) {
+                    case 'oldest': return timeA - timeB;
+                    case 'most-loved': return (b.hearts || 0) - (a.hearts || 0);
+                    case 'trending': return ((b.hearts || 0) / (Date.now() - timeB + MS_PER_DAY)) - ((a.hearts || 0) / (Date.now() - timeA + MS_PER_DAY));
+                    default: return timeB - timeA;
+                }
+            });
+            renderSparks(scrollObserver);
+            renderDayDots();
+        };
+
+        const processSnapshot = (snapshot, scrollObserver) => {
+            if (!DOMElements) return;
+            state.allSparks = snapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
+            applyFiltersAndSort(scrollObserver);
+        };
+
+        const setupFirestoreListener = (scrollObserver) => {
+            if (state.unsubscribeDrops) state.unsubscribeDrops(); 
+            const q = isAdmin ? query(collection(db, dropsCollectionPath)) : query(collection(db, dropsCollectionPath), where('status', '==', 'published'));
+
+            state.unsubscribeDrops = onSnapshot(q, (snapshot) => {
+                processSnapshot(snapshot, scrollObserver);
+            }, (error) => {
+                console.error("Firestore listener error:", error);
+                showToast("Error loading sparks. Please refresh.", "error");
+            });
+        };
+
+        const updateItemListSchema = (sparks) => {
+            document.getElementById('itemListSchema').textContent = JSON.stringify({
+                "@context": "https://schema.org", "@type": "ItemList",
+                "itemListElement": sparks.map((spark, index) => ({
+                    "@type": "ListItem", "position": index + 1, "url": spark.link, "name": spark.title
+                }))
+            });
+        };
+
+        const renderDayDots = () => {
+            const currentDay = getCurrentDay();
+            const daysWithContent = new Set(state.allSparks.filter(s => s.status === 'published').map(s => s.day));
+            DOMElements.dayDotsContainer.innerHTML = '';
+            for (let i = 1; i <= TOTAL_DAYS; i++) {
+                const dotBtn = document.createElement('button');
+                dotBtn.className = `day-dot`;
+                if (i === currentDay) dotBtn.classList.add('current');
+                
+                const hasContent = daysWithContent.has(i);
+                dotBtn.setAttribute('aria-label', `Day ${i}${hasContent ? ', content available' : ''}`);
+
+                const dotInner = document.createElement('div');
+                dotInner.className = `w-2 h-2 rounded-full dot-inner ${i < currentDay || hasContent ? 'bg-accent' : 'bg-muted'}`;
+                dotBtn.appendChild(dotInner);
+                DOMElements.dayDotsContainer.appendChild(dotBtn);
+            }
+        }
+        
+        async function initializeAdminPanel() {
+            try {
+                const response = await fetch('admin-panel.html');
+                if (!response.ok) throw new Error('Could not load admin panel.');
+                const adminHtml = await response.text();
+                DOMElements.adminPanelContainer.innerHTML = adminHtml;
+
+                const sparkForm = document.getElementById('spark-form');
+                const publishBtn = document.getElementById('publish-btn');
+                const publishBtnText = document.getElementById('publish-btn-text');
+                const cancelEditBtn = document.getElementById('cancel-edit-btn');
+                const clearDataBtn = document.getElementById('clear-data-btn');
+                const scheduleToggle = document.getElementById('schedule-toggle');
+                const scheduleOptions = document.getElementById('schedule-options');
+
+                const checkFormValidity = () => {
+                    if (!sparkForm) return;
+                    const isValidLink = (link) => { try { new URL(link); return true; } catch { return false; }};
+                    const title = document.getElementById('spark-title').value.trim();
+                    const desc = document.getElementById('spark-description').value.trim();
+                    const link = document.getElementById('spark-link').value.trim();
+                    publishBtn.disabled = !(title && desc && isValidLink(link));
+                };
+
+                const resetForm = () => {
+                    sparkForm?.reset();
+                    state.editingSparkId = null;
+                    if(publishBtnText) publishBtnText.textContent = 'Spark It!';
+                    cancelEditBtn?.classList.add('hidden');
+                    checkFormValidity();
+                };
+
+                const handleAdminFormSubmit = async (e) => {
+                    e.preventDefault();
+                    const sparkData = {
+                        title: document.getElementById('spark-title').value.trim(),
+                        description: document.getElementById('spark-description').value.trim(),
+                        link: document.getElementById('spark-link').value.trim(),
+                        imageUrl: document.getElementById('spark-image').value.trim(),
+                        contentType: document.getElementById('spark-type').value,
+                        access: document.getElementById('spark-access').value,
+                    };
+                    
+                    publishBtn.querySelector('.loading-spinner').classList.remove('hidden');
+                    publishBtn.disabled = true;
+
+                    try {
+                        if (scheduleToggle.checked) {
+                            const date = document.getElementById('schedule-date').value;
+                            const time = document.getElementById('schedule-time').value;
+                            if (!date || !time) throw new Error("Please select a valid schedule date and time.");
+                            sparkData.status = 'scheduled';
+                            sparkData.scheduledFor = new Date(`${date}T${time}`).toISOString();
+                        } else {
+                            sparkData.status = 'published';
+                            sparkData.day = getCurrentDay();
+                            sparkData.timestamp = serverTimestamp();
+                        }
+                        
+                        if (state.editingSparkId) {
+                            await updateDoc(doc(db, dropsCollectionPath, state.editingSparkId), sparkData);
+                            showToast('Spark updated successfully!');
+                        } else {
+                            sparkData.hearts = 0; 
+                            await addDoc(collection(db, dropsCollectionPath), sparkData);
+                            showToast('Spark added successfully!');
+                        }
+                        resetForm();
+                    } catch (error) {
+                        showToast(error.message || "Could not save spark.", "error");
+                    } finally {
+                        publishBtn.querySelector('.loading-spinner').classList.add('hidden');
+                        checkFormValidity();
+                    }
+                };
+                
+                sparkForm?.addEventListener('submit', handleAdminFormSubmit);
+                sparkForm?.addEventListener('input', checkFormValidity);
+                cancelEditBtn?.addEventListener('click', resetForm);
+                clearDataBtn?.addEventListener('click', () => {
+                    showConfirmationModal('Are you sure you want to delete ALL sparks? This is irreversible.', async () => {
+                        const snapshot = await getDocs(query(collection(db, dropsCollectionPath)));
+                        const batch = writeBatch(db);
+                        snapshot.docs.forEach(doc => batch.delete(doc.ref));
+                        await batch.commit();
+                        showToast('All data cleared.');
+                    });
+                });
+                scheduleToggle?.addEventListener('change', e => scheduleOptions.classList.toggle('hidden', !e.target.checked));
+
+            } catch (error) {
+                console.error("Admin Panel Error:", error);
+                DOMElements.adminPanelContainer.innerHTML = `<p class="text-error text-center">${error.message}</p>`;
+            }
+        }
+
+        const handleContentClick = async (e) => {
+            const btn = e.target.closest('button');
+            if (!btn) return;
+            
+            const { id, link, title } = btn.dataset;
+            
+            if (btn.classList.contains('share-btn')) {
+                 if (navigator.share) {
+                    try { await navigator.share({ title, url: link }); } catch {}
+                } else {
+                    navigator.clipboard.writeText(link);
+                    showToast('Link copied to clipboard!');
+                }
+                return;
+            }
+
+            if (!id) return;
+
+            if (btn.classList.contains('delete-btn')) {
+                 showConfirmationModal('Delete this spark? This cannot be undone.', async () => {
+                    await deleteDoc(doc(db, dropsCollectionPath, id));
+                    showToast('Spark deleted.');
+                });
+            } else if (btn.classList.contains('edit-btn')) {
+                const spark = state.allSparks.find(d => d.id === id)
+                state.editingSparkId = spark.id;
+                Object.entries({ title: spark.title, description: spark.description, link: spark.link, image: spark.imageUrl, type: spark.contentType, access: spark.access })
+                    .forEach(([key, value]) => { document.getElementById(`spark-${key}`).value = value || ''; });
+                document.getElementById('publish-btn-text').textContent = 'Update Spark';
+                document.getElementById('cancel-edit-btn').classList.remove('hidden');
+                document.getElementById('admin-panel').scrollIntoView({ behavior: 'smooth' });
+            } else if (btn.classList.contains('heart-btn')) {
+                if (state.heartedPosts[id]) return;
+                
+                state.heartedPosts[id] = true;
+                localStorage.setItem('heartedPosts', JSON.stringify(state.heartedPosts));
+                
+                const heartCountSpan = btn.querySelector('span');
+                heartCountSpan.textContent = parseInt(heartCountSpan.textContent, 10) + 1;
+                btn.classList.add('text-heart', 'hearted');
+                btn.setAttribute('aria-label', `Remove heart from ${escapeHtml(title)}`);
+
+                try {
+                    await updateDoc(doc(db, dropsCollectionPath, id), { hearts: increment(1) });
+                } catch (error) {
+                    state.heartedPosts[id] = false;
+                    localStorage.setItem('heartedPosts', JSON.stringify(state.heartedPosts));
+                    heartCountSpan.textContent = parseInt(heartCountSpan.textContent, 10) - 1;
+                    btn.classList.remove('text-heart', 'hearted');
+                    btn.setAttribute('aria-label', `Add heart to ${escapeHtml(title)}`);
+                    showToast('Could not save heart.', 'error');
+                }
+            }
+        };
+        
+        const provider = new GoogleAuthProvider();
+        async function signInWithGoogle() {
+            try { await signInWithPopup(auth, provider); showToast("Sign-in successful!", "success"); } 
+            catch (error) { showToast(`Sign-in failed: ${error.message}`, "error"); }
+        }
+        
+        document.addEventListener('DOMContentLoaded', () => {
+            DOMElements = Object.fromEntries(
+                [
+                    'header-day', 'header-progress-bar', 'header-sparks', 'today-count', 'streak-count', 'header-streak',
+                    'free-count', 'paid-count', 'challenge-dates', 'admin-panel-container', 'admin-signin-btn', 'admin-signout-btn',
+                    'search-input', 'sort-select', 'skeleton-loaders', 'today-section', 'today-sparks', 'previous-section', 
+                    'previous-sparks', 'load-more-container', 'empty-state', 'empty-state-message', 'subscribe-btn', 
+                    'hero-subscribe-btn', 'subscribe-modal', 'close-subscribe', 'sms-modal', 'close-sms-modal', 'toast', 
+                    'toast-message', 'toast-icon', 'content-feed', 'day-dots-container', 'confirm-modal', 'confirm-message',
+                    'confirm-yes-btn', 'confirm-no-btn'
+                ].map(id => [id.replace(/-(\w)/g, (m, g) => g.toUpperCase()), document.getElementById(id)])
+            );
+            
+            const app = initializeApp(firebaseConfig);
+            auth = getAuth(app);
+            db = getFirestore(app);
+            analytics = getAnalytics(app);
+
+            const scrollObserver = new IntersectionObserver((entries) => {
+                entries.forEach(entry => { if (entry.isIntersecting) entry.target.classList.add('is-visible'); });
+            }, { threshold: 0.1 });
+
+            onAuthStateChanged(auth, async (user) => {
+                currentUser = user;
+                isAdmin = user?.email === ADMIN_EMAIL;
+                
+                document.body.classList.toggle('is-admin', isAdmin);
+                DOMElements.adminSigninBtn.classList.toggle('hidden', !!user);
+                DOMElements.adminSignoutBtn.classList.toggle('hidden', !isAdmin);
+                
+                if (isAdmin) {
+                    initializeAdminPanel();
+                } else {
+                    DOMElements.adminPanelContainer.innerHTML = '';
+                }
+
+                if (!user) await signInAnonymously(auth);
+                
+                setupFirestoreListener(scrollObserver);
+            });
+
+            DOMElements.challengeDates.innerHTML = `${START_DATE.toLocaleDateString('en-US', { month: 'long', day: 'numeric' })} &mdash; ${END_DATE.toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' })}`;
+            updateProgress();
+            setInterval(updateProgress, 60000);
+
+            DOMElements.contentFeed.addEventListener('click', handleContentClick);
+            DOMElements.searchInput?.addEventListener('input', debounce(() => { state.searchQuery = DOMElements.searchInput.value; applyFiltersAndSort(scrollObserver); }, 300));
+            DOMElements.sortSelect?.addEventListener('change', (e) => { state.currentSort = e.target.value; applyFiltersAndSort(scrollObserver); });
+            
+            document.querySelectorAll('.filter-btn').forEach(btn => btn.addEventListener('click', (e) => {
+                document.querySelector('.filter-btn.active').classList.remove('active');
+                e.currentTarget.classList.add('active');
+                state.currentFilter = e.currentTarget.dataset.filter;
+                applyFiltersAndSort(scrollObserver);
+            }));
+
+            document.body.addEventListener('mousemove', e => {
+                requestAnimationFrame(() => {
+                    document.body.style.setProperty('--cursor-x', `${e.clientX}px`);
+                    document.body.style.setProperty('--cursor-y', `${e.clientY}px`);
+                });
+            });
+
+            DOMElements.adminSigninBtn?.addEventListener('click', signInWithGoogle);
+            DOMElements.adminSignoutBtn?.addEventListener('click', () => signOut(auth));
+            DOMElements.toast.addEventListener('click', e => { if (e.target.classList.contains('dismiss-toast')) DOMElements.toast.classList.remove('show'); });
+        });
+    </script>
+</body>
+</html>
+
