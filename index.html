@@ -5,22 +5,22 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Kimberly's Creative Sprint: A 90-day practice: daily videos, essays, livestreams, and experiments.</title>
     <!-- CHANGE: Updated meta description -->
-    <meta name="description" id="meta-description" content="Join Kimberly's 90-day creative challenge. Outrunning perfectionism one creative spark at a time.">
+    <meta name="description" content="Join Kimberly's 90-day creative challenge. Outrunning perfectionism one creative spark at a time.">
     <meta name="theme-color" content="#271A3A">
     <meta name="robots" content="index, follow">
 
-    <link rel="canonical" id="canonical-link" href="https://knf.kim/sparks">
-    <meta property="og:title" id="og-title" content="Kimberly's Creative Sprint - 90 Days of Creative Output">
-    <meta property="og:description" id="og-description" content="Join Kimberly's 90-day creative challenge. Outrunning perfectionism one creative spark at a time.">
-    <meta property="og:image" id="og-image" content="https://knfoster13.github.io/HQ/WARMKDROP6.png">
+    <link rel="canonical" href="https://knf.kim/sparks">
+    <meta property="og:title" content="Kimberly's Creative Sprint - 90 Days of Creative Output">
+    <meta property="og:description" content="Join Kimberly's 90-day creative challenge. Outrunning perfectionism one creative spark at a time.">
+    <meta property="og:image" content="https://knfoster13.github.io/HQ/WARMKDROP6.png">
     <meta property="og:image:alt" content="Kimberly's 90-day Creative Sprint">
     <meta property="og:url" content="https://knf.kim/sparks">
     <meta property="og:type" content="website">
     <meta property="og:site_name" content="Kimberly's Creative Sprint">
     <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" id="twitter-title" content="Kimberly's Creative Sprint - 90 Days of Creative Output">
-    <meta name="twitter:description" id="twitter-description" content="Join Kimberly's 90-day creative challenge. Outrunning perfectionism one creative spark at a time.">
-    <meta name="twitter:image" id="twitter-image" content="https://knfoster13.github.io/HQ/KCS-WARM.png">
+    <meta name="twitter:title" content="Kimberly's Creative Sprint - 90 Days of Creative Output">
+    <meta name="twitter:description" content="Join Kimberly's 90-day creative challenge. Outrunning perfectionism one creative spark at a time.">
+    <meta name="twitter:image" content="https://knfoster13.github.io/HQ/KCS-WARM.png">
     <meta name="twitter:creator" content="@kimberlynfoster">
 
     <script type="application/ld+json">
@@ -690,56 +690,6 @@
             ].map(id => [id.replace(/-(\w)/g, (m, g) => g.toUpperCase()), document.getElementById(id)])
         );
 
-        // --- META TAG / DEEP LINK FUNCTIONS ---
-        const updateMetaTags = (spark) => {
-            const title = `${spark.title} | Kimberly's Creative Sprint`;
-            const description = spark.description;
-            const imageUrl = spark.imageUrl || 'https://knfoster13.github.io/HQ/KCS-WARM.png'; // Fallback
-            const url = `${window.location.origin}${window.location.pathname}?spark=${spark.id}`;
-
-            document.title = title;
-
-            // Helper to set attribute
-            const setAttr = (id, attr, value) => {
-                const el = document.getElementById(id);
-                if (el) el.setAttribute(attr, value);
-            };
-
-            setAttr('meta-description', 'content', description);
-            setAttr('canonical-link', 'href', url);
-
-            // Open Graph
-            setAttr('og-title', 'content', title);
-            setAttr('og-description', 'content', description);
-            setAttr('og-image', 'content', imageUrl);
-            document.querySelector('meta[property="og:url"]')?.setAttribute('content', url);
-
-            // Twitter
-            setAttr('twitter-title', 'content', title);
-            setAttr('twitter-description', 'content', description);
-            setAttr('twitter-image', 'content', imageUrl);
-        };
-
-        const handleDeepLink = async () => {
-            const urlParams = new URLSearchParams(window.location.search);
-            const sparkId = urlParams.get('spark');
-
-            if (sparkId && db) { // Ensure db is initialized
-                try {
-                    const sparkRef = doc(db, dropsCollectionPath, sparkId);
-                    const sparkDoc = await getDoc(sparkRef);
-                    if (sparkDoc.exists()) {
-                        const sparkData = { id: sparkDoc.id, ...sparkDoc.data() };
-                        updateMetaTags(sparkData);
-                    } else {
-                        console.warn(`Spark with ID ${sparkId} not found.`);
-                    }
-                } catch (error) {
-                    console.error('Error fetching deep-linked spark:', error);
-                }
-            }
-        };
-
         // --- UI & FEEDBACK FUNCTIONS ---
         const updateProgress = () => {
             const day = getCurrentDay();
@@ -1101,13 +1051,11 @@
             const { id, link, title } = btn.dataset;
             
             if (btn.classList.contains('share-btn')) {
-                const sparkId = btn.dataset.id;
-                const shareUrl = `${window.location.origin}${window.location.pathname}?spark=${sparkId}`;
                  if (navigator.share) {
-                    try { await navigator.share({ title, url: shareUrl }); } catch {}
+                    try { await navigator.share({ title, url: link }); } catch {}
                 } else {
-                    navigator.clipboard.writeText(shareUrl);
-                    showToast('Sharable link copied to clipboard!');
+                    navigator.clipboard.writeText(link);
+                    showToast('Link copied to clipboard!');
                 }
                 return;
             }
@@ -1158,9 +1106,6 @@
             auth = getAuth(app);
             db = getFirestore(app);
             analytics = getAnalytics(app);
-
-            // Handle deep linking for social sharing cards as soon as db is ready
-            handleDeepLink();
 
             const scrollObserver = new IntersectionObserver((entries) => {
                 entries.forEach(entry => { if (entry.isIntersecting) entry.target.classList.add('is-visible'); });
@@ -1242,7 +1187,6 @@
     </script>
 </body>
 </html>
-
 
 
 
