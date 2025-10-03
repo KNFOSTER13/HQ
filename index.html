@@ -417,6 +417,7 @@
                 <strong id="challenge-dates" class="font-bold" style="color: #ffe3dc;">October 3 &mdash; December 31, 2025</strong>
             </p>
             <div class="mt-6 flex flex-wrap gap-3 justify-center">
+                <button id="show-welcome-btn" class="btn btn-secondary">What is this Sprint?</button>
                 <button id="hero-subscribe-btn" class="btn btn-gradient">Newsletter</button>
                 <a href="sms-optin.html" class="btn btn-secondary">SMS Alerts 📱</a>
             </div>
@@ -431,10 +432,13 @@
             </div>
         </section>
 
+        <!-- REMOVED THE PREVIOUS WELCOME SECTION FROM HERE -->
+
         <section id="admin-panel" class="hidden mb-8 transition-all duration-500 card" aria-label="Admin panel">
             <div class="p-6">
                 <h2 class="text-2xl font-bold mb-4 flex items-center gap-2"><svg class="w-6 h-6 text-accent" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6"></path></svg>Add or Edit Spark</h2>
                 <form id="spark-form" class="space-y-4" novalidate>
+                    <!-- ... form inputs ... -->
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
                         <div><label for="spark-title" class="block text-sm font-medium mb-1">Title *</label><input type="text" id="spark-title" class="form-input" required maxlength="200" aria-required="true"><span class="text-xs text-red-400 hidden mt-1" id="title-error"></span></div>
                         <div><label for="spark-type" class="block text-sm font-medium mb-1">Content Type *</label><select id="spark-type" class="form-input" aria-required="true"><option>Video</option><option>Podcast</option><option>Essay</option><option>Social Post</option><option>Newsletter</option><option>Tutorial</option><option>Other</option></select></div>
@@ -454,12 +458,18 @@
                     
                     <div class="flex items-center gap-4 pt-2">
                         <button type="submit" id="publish-btn" class="btn btn-primary" disabled><span class="loading-spinner hidden"></span><svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8"></path></svg><span id="publish-btn-text">Spark It!</span></button>
+                        <button type="button" id="save-draft-btn" class="btn btn-secondary">Save as Draft</button>
                         <button type="button" id="cancel-edit-btn" class="btn btn-secondary hidden">Cancel Edit</button>
                         <button type="button" id="clear-data-btn" class="btn btn-secondary !bg-red-500/10 !text-red-400 !border-red-500/20 ml-auto">Clear All Data</button>
                     </div>
+                    <div id="auto-save-status" class="text-xs text-muted h-4 mt-1 text-right"></div>
                 </form>
             </div>
-            <div id="scheduled-section" class="hidden mt-8 p-6 pt-0">
+            <div id="drafts-section" class="hidden p-6 pt-0">
+                <h3 class="text-xl font-bold mb-4 brand-font text-gradient">Drafts</h3>
+                <div id="draft-sparks" class="space-y-2"></div>
+            </div>
+            <div id="scheduled-section" class="hidden p-6 pt-0">
                 <h3 class="text-xl font-bold mb-4 brand-font text-gradient">Scheduled Sparks</h3>
                 <div id="scheduled-sparks" class="space-y-4"></div>
             </div>
@@ -539,7 +549,33 @@
         <p>&copy; 2025 Kimberly's Creative Sprint. All rights reserved.</p>
     </footer>
 
-    <div id="subscribe-modal" class="fixed inset-0 bg-black/50 backdrop-blur-sm hidden items-center justify-center p-4 z-50" role="dialog" aria-labelledby="subscribe-modal-title" aria-modal="true">
+    <div id="welcome-modal" class="fixed inset-0 bg-black/50 backdrop-blur-sm hidden flex items-center justify-center p-4 z-50" role="dialog" aria-labelledby="welcome-modal-title" aria-modal="true">
+        <div class="card p-8 relative max-w-2xl w-full">
+            <button id="close-welcome-modal" class="absolute top-4 right-4 text-muted hover:text-primary transition-colors" aria-label="Close modal"><svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg></button>
+            <h2 id="welcome-modal-title" class="text-2xl md:text-3xl font-bold mb-6 brand-font text-gradient text-center">What is the Creative Sprint?</h2>
+            <p class="text-lg text-text-secondary mb-4">
+                For the next 90 days, I’m throwing myself into an experiment in making. The Creative Sprint isn't about perfection or polish, it’s about rhythm and rigor. Each week I’ll take on a theme—pop culture, politics, or the messy intersections of gender, race, capitalism, and art—and build a body of work around it. Videos, essays, livestreams, podcasts, posts—each orbiting the same core questions, each in conversation with the others.
+            </p>
+            <p class="text-lg text-text-secondary mb-4">
+                You’ll be able to trace the references, inspirations, and footnotes in real time. Not just what I think—but how I think.
+            </p>
+            <p class="text-xl font-semibold text-gradient my-6 italic text-center">
+                This is practice, but also proof: ambitious ideas deserve ambitious output.
+            </p>
+            <p class="text-lg text-text-secondary mb-4">
+                By the end of 90 days, I’ll have more than a stack of work: I’ll have a living archive—a record of the thinkers, artists, and texts I’ve been in dialogue with, and a map of where my ideas might go next.
+            </p>
+             <p class="text-lg text-text-secondary mb-4">
+                This isn't about chasing an algorithm. This is about giving creativity structure and space to breathe—and seeing what happens.
+            </p>
+            <p class="text-lg text-text-secondary">
+                The Sprint is an invitation: to run toward the work instead of away from it.
+            </p>
+            <img src="https://knfoster13.github.io/HQ/KNFSIGNATURE.png" alt="Kimberly's signature" class="mx-auto mt-8 w-48" loading="lazy">
+        </div>
+    </div>
+
+    <div id="subscribe-modal" class="fixed inset-0 bg-black/50 backdrop-blur-sm hidden flex items-center justify-center p-4 z-50" role="dialog" aria-labelledby="subscribe-modal-title" aria-modal="true">
         <div class="card p-6 relative max-w-lg w-full">
             <button id="close-subscribe" class="absolute top-4 right-4 text-muted hover:text-primary transition-colors" aria-label="Close modal"><svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg></button>
             <h2 id="subscribe-modal-title" class="text-2xl font-bold mb-4 text-center brand-font text-gradient">Join the Newsletter!</h2>
@@ -548,7 +584,7 @@
         </div>
     </div>
 
-    <div id="sms-modal" class="fixed inset-0 bg-black/50 backdrop-blur-sm hidden items-center justify-center p-4 z-50" role="dialog" aria-labelledby="sms-modal-title" aria-modal="true">
+    <div id="sms-modal" class="fixed inset-0 bg-black/50 backdrop-blur-sm hidden flex items-center justify-center p-4 z-50" role="dialog" aria-labelledby="sms-modal-title" aria-modal="true">
         <div class="card p-8 relative max-w-lg w-full">
             <button id="close-sms-modal" class="absolute top-4 right-4 text-muted hover:text-primary transition-colors" aria-label="Close SMS modal"><svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg></button>
             <h2 id="sms-modal-title" class="text-2xl font-bold mb-2 text-center brand-font text-gradient">Get SMS Alerts</h2>
@@ -584,8 +620,9 @@
          * @property {string} [imageUrl] - Optional URL for a thumbnail image.
          * @property {number} day - The day of the challenge this was sparked on.
          * @property {number} hearts - The number of hearts.
-         * @property {'published' | 'scheduled'} status - The publication status.
-         * @property {import("firebase/firestore").Timestamp} timestamp - Firestore server timestamp.
+         * @property {'published' | 'scheduled' | 'draft'} status - The publication status.
+         * @property {import("firebase/firestore").Timestamp} [timestamp] - Firestore server timestamp for published items.
+         * @property {string} [scheduledFor] - ISO string for scheduled items.
          */
 
         // --- CONFIGURATION ---
@@ -604,6 +641,7 @@
         const TOTAL_DAYS = 90;
         const SPARKS_PER_PAGE = 5;
         const dropsCollectionPath = `artifacts/${firebaseConfig.projectId}/public/data/drops`;
+        const DRAFT_KEY = 'sparkFormDraft';
         
         // --- UTILITY FUNCTIONS ---
         const getCurrentDay = () => {
@@ -646,7 +684,9 @@
                 'sort-select', 'skeleton-loaders', 'today-section', 'today-sparks', 'previous-section', 'previous-sparks',
                 'load-more-container', 'empty-state', 'empty-state-message', 'subscribe-btn', 'hero-subscribe-btn',
                 'subscribe-modal', 'close-subscribe', 'sms-modal', 'close-sms-modal', 'toast', 'toast-message',
-                'toast-icon', 'content-feed', 'day-dots-container', 'schedule-toggle', 'schedule-options', 'feed-announcer'
+                'toast-icon', 'content-feed', 'day-dots-container', 'schedule-toggle', 'schedule-options', 'feed-announcer',
+                'welcome-modal', 'show-welcome-btn', 'close-welcome-modal', 'auto-save-status', 'save-draft-btn',
+                'drafts-section', 'draft-sparks', 'scheduled-section', 'scheduled-sparks'
             ].map(id => [id.replace(/-(\w)/g, (m, g) => g.toUpperCase()), document.getElementById(id)])
         );
 
@@ -683,6 +723,7 @@
             state.editingSparkId = null;
             if(DOMElements.publishBtnText) DOMElements.publishBtnText.textContent = 'Spark It!';
             DOMElements.cancelEditBtn?.classList.add('hidden');
+            clearDraftFromLocalStorage();
             checkFormValidity();
         };
 
@@ -705,6 +746,41 @@
             DOMElements.publishBtn.disabled = !(title && desc && isValidLink(link));
         };
         
+        // --- DRAFT & AUTO-SAVE FUNCTIONS ---
+        const saveDraftToLocalStorage = () => {
+            const draftData = {
+                title: document.getElementById('spark-title').value,
+                description: document.getElementById('spark-description').value,
+                link: document.getElementById('spark-link').value,
+                imageUrl: document.getElementById('spark-image').value,
+                contentType: document.getElementById('spark-type').value,
+                access: document.getElementById('spark-access').value,
+            };
+            localStorage.setItem(DRAFT_KEY, JSON.stringify(draftData));
+            if (DOMElements.autoSaveStatus) {
+                DOMElements.autoSaveStatus.textContent = `Draft saved locally at ${new Date().toLocaleTimeString()}`;
+            }
+        };
+
+        const loadDraftFromLocalStorage = () => {
+            const draftData = localStorage.getItem(DRAFT_KEY);
+            if (draftData) {
+                const data = JSON.parse(draftData);
+                Object.entries(data).forEach(([key, value]) => {
+                    const elId = `spark-${key.replace('contentType', 'type').replace('imageUrl', 'image')}`;
+                    const el = document.getElementById(elId);
+                    if (el) el.value = value;
+                });
+                if (DOMElements.autoSaveStatus) DOMElements.autoSaveStatus.textContent = 'Loaded auto-saved draft.';
+                checkFormValidity();
+            }
+        };
+
+        const clearDraftFromLocalStorage = () => {
+            localStorage.removeItem(DRAFT_KEY);
+            if (DOMElements.autoSaveStatus) DOMElements.autoSaveStatus.textContent = '';
+        };
+
         // --- RENDER FUNCTIONS ---
         const createSparkCard = (spark, scrollObserver) => {
             const isHearted = state.heartedPosts[spark.id];
@@ -757,6 +833,29 @@
             return card;
         };
         
+        const renderAdminLists = () => {
+            const drafts = state.allSparks.filter(s => s.status === 'draft');
+            const scheduled = state.allSparks.filter(s => s.status === 'scheduled');
+
+            DOMElements.draftsSection.classList.toggle('hidden', drafts.length === 0);
+            DOMElements.draftSparks.innerHTML = '';
+            drafts.forEach(spark => {
+                const el = document.createElement('div');
+                el.className = 'flex items-center justify-between p-2 rounded hover:bg-white/5';
+                el.innerHTML = `
+                    <span>${escapeHtml(spark.title)}</span>
+                    <div class="flex items-center gap-2">
+                        <button class="edit-btn text-muted hover:text-accent" data-id="${spark.id}" aria-label="Edit ${escapeHtml(spark.title)}"><svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.5L16.732 3.732z"></path></svg></button>
+                        <button class="delete-btn text-muted hover:text-error" data-id="${spark.id}" aria-label="Delete ${escapeHtml(spark.title)}"><svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"></path></svg></button>
+                    </div>
+                `;
+                DOMElements.draftSparks.appendChild(el);
+            });
+            
+            DOMElements.scheduledSection.classList.toggle('hidden', scheduled.length === 0);
+            // NOTE: Logic for rendering scheduled sparks can be added here if needed in the future
+        };
+
         const renderSparks = (scrollObserver) => {
             DOMElements.skeletonLoaders.classList.add('hidden');
             DOMElements.contentFeed.setAttribute('aria-busy', 'false');
@@ -811,6 +910,7 @@
                 DOMElements.feedAnnouncer.textContent = `Feed updated. Now showing ${state.filteredSparks.length} sparks.`;
             }
 
+            if (isAdmin) renderAdminLists();
             updateItemListSchema(publishedSparks.slice(0, 10));
         };
         
@@ -918,6 +1018,32 @@
             }
         };
 
+        const handleSaveAsDraft = async () => {
+             const sparkData = {
+                title: document.getElementById('spark-title').value.trim() || 'Untitled Draft',
+                description: document.getElementById('spark-description').value.trim(),
+                link: document.getElementById('spark-link').value.trim(),
+                imageUrl: document.getElementById('spark-image').value.trim(),
+                contentType: document.getElementById('spark-type').value,
+                access: document.getElementById('spark-access').value,
+                status: 'draft',
+            };
+
+            try {
+                if (state.editingSparkId && state.allSparks.find(s => s.id === state.editingSparkId)?.status === 'draft') {
+                    await updateDoc(doc(db, dropsCollectionPath, state.editingSparkId), sparkData);
+                    showToast('Draft updated!');
+                } else {
+                    await addDoc(collection(db, dropsCollectionPath), sparkData);
+                    showToast('Saved as draft!');
+                }
+                 resetForm();
+            } catch (error) {
+                 showToast(error.message || "Could not save draft.", "error");
+            }
+        };
+
+
         const handleContentClick = async (e) => {
             const btn = e.target.closest('button');
             if (!btn) return;
@@ -996,6 +1122,10 @@
                 DOMElements.adminSigninBtn.classList.toggle('hidden', isAdmin);
                 DOMElements.adminSignoutBtn.classList.toggle('hidden', !isAdmin);
                 
+                if (isAdmin) {
+                    loadDraftFromLocalStorage();
+                }
+                
                 if (!user) await signInAnonymously(auth);
                 
                 setupFirestoreListener(scrollObserver);
@@ -1005,9 +1135,22 @@
             updateProgress();
             setInterval(updateProgress, 60000);
 
+            // Modal Handlers
+            const setupModal = (modal, openBtns, closeBtn) => {
+                openBtns.forEach(btn => btn?.addEventListener('click', () => modal?.classList.remove('hidden')));
+                closeBtn?.addEventListener('click', () => modal?.classList.add('hidden'));
+                modal?.addEventListener('click', (e) => {
+                    if (e.target === modal) modal.classList.add('hidden');
+                });
+            };
+            
+            setupModal(DOMElements.welcomeModal, [DOMElements.showWelcomeBtn], DOMElements.closeWelcomeModal);
+            setupModal(DOMElements.subscribeModal, [DOMElements.subscribeBtn, DOMElements.heroSubscribeBtn], DOMElements.closeSubscribe);
+
             DOMElements.sparkForm?.addEventListener('submit', handleAdminFormSubmit);
-            DOMElements.sparkForm?.addEventListener('input', checkFormValidity);
+            DOMElements.sparkForm?.addEventListener('input', debounce(saveDraftToLocalStorage, 2000));
             DOMElements.contentFeed.addEventListener('click', handleContentClick);
+            DOMElements.draftSparks?.addEventListener('click', handleContentClick); // Listen for clicks on drafts too
             DOMElements.searchInput?.addEventListener('input', debounce(() => { state.searchQuery = DOMElements.searchInput.value; applyFiltersAndSort(scrollObserver); }, 300));
             DOMElements.sortSelect?.addEventListener('change', (e) => { state.currentSort = e.target.value; applyFiltersAndSort(scrollObserver); });
             
@@ -1027,6 +1170,7 @@
 
             DOMElements.adminSigninBtn?.addEventListener('click', signInWithGoogle);
             DOMElements.adminSignoutBtn?.addEventListener('click', () => signOut(auth));
+            DOMElements.saveDraftBtn?.addEventListener('click', handleSaveAsDraft);
             DOMElements.cancelEditBtn?.addEventListener('click', resetForm);
             DOMElements.clearDataBtn?.addEventListener('click', async () => {
                 if (window.confirm('Are you sure you want to delete ALL sparks? This is irreversible.')) {
@@ -1043,4 +1187,7 @@
     </script>
 </body>
 </html>
+
+
+
 
