@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Kimberly's Creative Sprint - A 90 Day Project</title>
+    <title>Kimberly's Creative Sprint: A 90-day practice: daily videos, essays, livestreams, and experiments.</title>
     <!-- CHANGE: Updated meta description -->
     <meta name="description" content="Join Kimberly's 90-day creative challenge. Outrunning perfectionism one creative spark at a time.">
     <meta name="theme-color" content="#271A3A">
@@ -78,8 +78,8 @@
       html { scroll-behavior: smooth; }
       body {
         font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
-        /* CHANGE: Reverted to a more dramatic purple gradient */
-        background: radial-gradient(ellipse at top center, #4c2d6f 0%, #1a0f26 70%);
+        /* UPDATED: Added final stop for vignette effect */
+        background: radial-gradient(ellipse at top center, #4c2d6f 0%, #1a0f26 70%, #23123d 100%);
         min-height: 100vh;
         color: var(--text-primary);
         line-height: 1.75;
@@ -111,12 +111,9 @@
         background-clip: text;
         color: transparent;
       }
-      /* CHANGE: New subtitle gradient class */
+      /* UPDATED: Changed subtitle to solid color */
       .subtitle-gradient {
-        background: linear-gradient(to right, #FFF6E9, #FFD6C2);
-        -webkit-background-clip: text;
-        background-clip: text;
-        color: transparent;
+        color: #FFD6C2;
       }
 
       /* Accessibility */
@@ -181,7 +178,6 @@
       .btn-primary:hover:not(:disabled) { transform: scale(1.05); box-shadow: 0 10px 25px rgba(244, 114, 182, 0.3); }
       .btn-primary:disabled { opacity: 0.5; cursor: not-allowed; transform: scale(1); }
       
-      /* CHANGE: New Secondary Button Style (SMS) */
       .btn-secondary { 
         background: #2E144F; 
         color: var(--accent-bright); 
@@ -190,10 +186,9 @@
       .btn-secondary:hover:not(:disabled) { 
         background: #3a1c63; 
         border-color: var(--accent-bright);
-        box-shadow: 0 0 15px var(--accent-bright);
+        box-shadow: 0 0 15px #684077;
       }
 
-      /* CHANGE: New Primary CTA Button Style (Newsletter) */
        .btn-gradient {
         background: linear-gradient(90deg, #C6B6F7 0%, #FFD6C2 100%);
         color: #3d3128;
@@ -204,14 +199,14 @@
       }
       
       .btn-subscribe {
-        background: linear-gradient(to right, var(--accent-start), var(--accent-end));
-        color: #3d3128;
+        background: linear-gradient(135deg, #f472b6 0%, #684077 100%);
+        color: white;
         font-weight: 500;
-        box-shadow: 0 0 20px var(--purple-glow);
+        box-shadow: 0 4px 15px rgba(104, 64, 119, 0.4);
       }
       .btn-subscribe:hover:not(:disabled) {
         transform: scale(1.05);
-        box-shadow: 0 8px 30px var(--purple-glow);
+        box-shadow: 0 8px 30px rgba(104, 64, 119, 0.6);
       }
       .btn:hover svg {
           transform: scale(1.1) rotate(3deg);
@@ -383,7 +378,6 @@
                         </div>
                         <div class="h-6 w-px bg-white/10"></div>
                         <div class="flex flex-col">
-                             <!-- CHANGE: "Drops" to "Sparks" -->
                              <span id="header-sparks" class="text-base font-bold">0</span>
                              <span class="text-xs uppercase tracking-wider text-muted">Sparks</span>
                         </div>
@@ -418,13 +412,11 @@
     <main class="max-w-6xl mx-auto px-4 py-8" role="main" id="main-content">
         <section class="text-center pt-0 pb-12" aria-labelledby="hero-title">
             <img src="https://knfoster13.github.io/HQ/KCS-WARM.png" alt="Kimberly's Creative Sprint" class="hero-image mx-auto w-full max-w-md mb-6" width="1024" height="768" fetchpriority="high" decoding="async" loading="eager">
-            <!-- CHANGE: New subtitle text and color class -->
             <h1 id="hero-title" class="text-3xl md:text-4xl font-bold mb-4 brand-font subtitle-gradient">Outrunning perfectionism one creative spark at a time.</h1>
             <p class="text-lg text-muted mb-4">
-                <strong id="challenge-dates" class="font-bold" style="color: #ffe3dc;">October 2 &mdash; December 31, 2025</strong>
+                <strong id="challenge-dates" class="font-bold" style="color: #ffe3dc;">October 3 &mdash; December 31, 2025</strong>
             </p>
             <div class="mt-6 flex flex-wrap gap-3 justify-center">
-                <!-- CHANGE: New button styles applied via class -->
                 <button id="hero-subscribe-btn" class="btn btn-gradient">Newsletter</button>
                 <a href="sms-optin.html" class="btn btn-secondary">SMS Alerts 📱</a>
             </div>
@@ -432,7 +424,6 @@
             <div id="day-dots-container" class="flex gap-1.5 justify-center flex-wrap max-w-full py-2 px-4 mt-8"></div>
 
             <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mt-8 max-w-2xl mx-auto" role="region" aria-label="Challenge statistics">
-                <!-- CHANGE: "Drops" to "Sparks" -->
                 <div class="card p-4 text-center"><div class="text-2xl font-bold text-accent" id="today-count" aria-live="polite">0</div><div class="text-sm text-muted">Today's Sparks</div></div>
                 <div class="card p-4 text-center"><div class="text-2xl font-bold text-cta" id="streak-count" aria-live="polite">0</div><div class="text-sm text-muted">Day Streak</div></div>
                 <div class="card p-4 text-center"><div class="text-2xl font-bold text-success" id="free-count" aria-live="polite">0</div><div class="text-sm text-muted">Free Content</div></div>
@@ -442,7 +433,6 @@
 
         <section id="admin-panel" class="hidden mb-8 transition-all duration-500 card" aria-label="Admin panel">
             <div class="p-6">
-                <!-- CHANGE: "Drop" to "Spark" -->
                 <h2 class="text-2xl font-bold mb-4 flex items-center gap-2"><svg class="w-6 h-6 text-accent" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6"></path></svg>Add or Edit Spark</h2>
                 <form id="spark-form" class="space-y-4" novalidate>
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
@@ -463,7 +453,6 @@
                     </div>
                     
                     <div class="flex items-center gap-4 pt-2">
-                        <!-- CHANGE: "Drop It!" to "Spark It!" -->
                         <button type="submit" id="publish-btn" class="btn btn-primary" disabled><span class="loading-spinner hidden"></span><svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8"></path></svg><span id="publish-btn-text">Spark It!</span></button>
                         <button type="button" id="cancel-edit-btn" class="btn btn-secondary hidden">Cancel Edit</button>
                         <button type="button" id="clear-data-btn" class="btn btn-secondary !bg-red-500/10 !text-red-400 !border-red-500/20 ml-auto">Clear All Data</button>
@@ -471,7 +460,6 @@
                 </form>
             </div>
             <div id="scheduled-section" class="hidden mt-8 p-6 pt-0">
-                <!-- CHANGE: "Drops" to "Sparks" -->
                 <h3 class="text-xl font-bold mb-4 brand-font text-gradient">Scheduled Sparks</h3>
                 <div id="scheduled-sparks" class="space-y-4"></div>
             </div>
@@ -481,7 +469,6 @@
             <div class="card p-4">
                 <div class="grid md:grid-cols-3 gap-4">
                     <div class="relative md:col-span-1">
-                        <!-- CHANGE: "drops" to "sparks" -->
                         <input type="text" id="search-input" class="form-input pl-10" placeholder="Search sparks..." aria-label="Search sparks">
                         <svg class="w-5 h-5 absolute left-3 top-1/2 -translate-y-1/2 text-muted" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path></svg>
                     </div>
@@ -494,7 +481,6 @@
                              <button class="filter-btn" data-filter="Free" aria-pressed="false">Free</button>
                             <button class="filter-btn" data-filter="Paid" aria-pressed="false">Premium</button>
                         </div>
-                        <!-- CHANGE: "drops" to "sparks" -->
                         <select id="sort-select" class="form-input w-40" aria-label="Sort sparks">
                             <option value="newest">Newest</option>
                             <option value="oldest">Oldest</option>
@@ -510,7 +496,6 @@
             <span id="feed-announcer" class="sr-only" aria-live="assertive"></span>
             
             <div id="skeleton-loaders">
-                <!-- CHANGE: "drops" to "sparks" -->
                 <h2 class="text-2xl md:text-3xl font-bold mb-4 brand-font animate-pulse">Loading sparks...</h2>
                 <div class="space-y-6">
                     <div class="skeleton-card"><div class="flex flex-col md:flex-row gap-4"><div class="md:w-48 h-32 skeleton-line rounded-lg"></div><div class="flex-1 space-y-2"><div class="skeleton-line w-3/4"></div><div class="skeleton-line w-1/2"></div><div class="skeleton-line w-full"></div></div></div></div>
@@ -520,17 +505,14 @@
             
             <div id="today-section" class="hidden"><h2 class="text-2xl md:text-3xl font-bold mb-4 flex items-center gap-3">
                 <span class="relative flex h-3 w-3"><span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75"></span><span class="relative inline-flex rounded-full h-3 w-3 bg-green-500"></span></span>
-                <!-- CHANGE: "Drops" to "Sparks" -->
                 <span class="text-white brand-font text-gradient">Today's Sparks</span>
             </h2><div id="today-sparks" class="grid gap-6"></div></div>
             <div id="previous-section" class="hidden">
-                <!-- CHANGE: "Drops" to "Sparks" -->
                 <h2 class="text-2xl font-bold mb-4 brand-font text-gradient">Previous Sparks</h2>
                 <div id="previous-sparks" class="grid gap-6"></div>
                 <div id="load-more-container" class="text-center mt-8"></div>
             </div>
             
-            <!-- CHANGE: "drops" to "sparks" -->
             <div id="empty-state" class="text-center py-12 hidden"><svg class="w-24 h-24 mx-auto mb-4 text-muted opacity-50" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20 13V6a2 2 0 00-2-2H6a2 2 0 00-2 2v7m16 0v5a2 2 0 01-2 2H6a2 2 0 01-2-2v-5m16 0h-2.586a1 1 0 00-.707.293l-2.414 2.414a1 1 0 01-.707.293h-3.172a1 1 0 01-.707-.293l-2.414-2.414A1 1 0 006.586 13H4"></path></svg><p class="text-lg text-muted" id="empty-state-message">No sparks yet. Check back soon!</p></div>
         </section>
         
@@ -561,7 +543,6 @@
         <div class="card p-6 relative max-w-lg w-full">
             <button id="close-subscribe" class="absolute top-4 right-4 text-muted hover:text-primary transition-colors" aria-label="Close modal"><svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg></button>
             <h2 id="subscribe-modal-title" class="text-2xl font-bold mb-4 text-center brand-font text-gradient">Join the Newsletter!</h2>
-            <!-- CHANGE: "drops" to "sparks" -->
             <p class="text-muted mb-6 text-center">Get exclusive updates, behind-the-scenes content, and early access to sparks straight to your inbox!</p>
             <div class="bg-white rounded-xl p-1"><iframe src="https://kimberlynfoster.substack.com/embed" width="100%" height="320" style="border:1px solid #EEE; background:white;" frameborder="0" scrolling="no" title="Subscribe to newsletter"></iframe></div>
         </div>
@@ -571,7 +552,6 @@
         <div class="card p-8 relative max-w-lg w-full">
             <button id="close-sms-modal" class="absolute top-4 right-4 text-muted hover:text-primary transition-colors" aria-label="Close SMS modal"><svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg></button>
             <h2 id="sms-modal-title" class="text-2xl font-bold mb-2 text-center brand-font text-gradient">Get SMS Alerts</h2>
-            <!-- CHANGE: "drops" to "sparks" -->
             <p class="text-muted mb-6 text-center">Be the first to know when new sparks go live, get reminders, and receive exclusive tips.</p>
             <div class="tm-widget-container">
                 <script src="https://widgets.textmagic.com/widget-script.js" data-code="ca975eb0fab8d2e" data-type="subscribe" defer></script>
@@ -617,14 +597,12 @@
             messagingSenderId: "762035393571",
             appId: "1:762035393571:web:7d474a6a57cc031b860d96"
         };
-        // FIXED: Updated admin email
         const ADMIN_EMAIL = "submissions@forharriet.com";
-        const START_DATE = new Date('2025-10-02T00:00:00');
+        const START_DATE = new Date('2025-10-03T00:00:00');
         const END_DATE = new Date('2025-12-31T23:59:59');
         const MS_PER_DAY = 1000 * 60 * 60 * 24;
         const TOTAL_DAYS = 90;
         const SPARKS_PER_PAGE = 5;
-        // CHANGE: Point back to the original 'drops' collection name
         const dropsCollectionPath = `artifacts/${firebaseConfig.projectId}/public/data/drops`;
         
         // --- UTILITY FUNCTIONS ---
@@ -654,7 +632,6 @@
             searchQuery: '',
             heartedPosts: JSON.parse(localStorage.getItem('heartedPosts') || '{}'),
             editingSparkId: null,
-            // CHANGE: Renamed for clarity
             unsubscribeDrops: null,
             visiblePreviousSparks: SPARKS_PER_PAGE,
             isLoading: false
@@ -695,7 +672,6 @@
             DOMElements.toastMessage.textContent = message;
             DOMElements.toast.className = `toast ${type}`;
             DOMElements.toastIcon.innerHTML = icons[type].path;
-            // FIX: Use setAttribute for SVG class compatibility
             DOMElements.toastIcon.setAttribute('class', `w-5 h-5 ${icons[type].color}`);
             DOMElements.toast.classList.add('show');
             toastTimeout = setTimeout(() => DOMElements.toast.classList.remove('show'), 5000);
@@ -864,7 +840,6 @@
         };
 
         const setupFirestoreListener = (scrollObserver) => {
-            // CHANGE: Use renamed variable and correct collection path
             if (state.unsubscribeDrops) state.unsubscribeDrops(); 
             const q = isAdmin ? query(collection(db, dropsCollectionPath)) : query(collection(db, dropsCollectionPath), where('status', '==', 'published'));
 
@@ -927,12 +902,10 @@
                 }
                 
                 if (state.editingSparkId) {
-                    // CHANGE: Use correct collection path
                     await updateDoc(doc(db, dropsCollectionPath, state.editingSparkId), sparkData);
                     showToast('Spark updated successfully!');
                 } else {
                     sparkData.hearts = 0; 
-                    // CHANGE: Use correct collection path
                     await addDoc(collection(db, dropsCollectionPath), sparkData);
                     showToast('Spark added successfully!');
                 }
@@ -965,7 +938,6 @@
 
             if (btn.classList.contains('delete-btn')) {
                 if (window.confirm('Delete this spark? This cannot be undone.')) {
-                    // CHANGE: Use correct collection path
                     await deleteDoc(doc(db, dropsCollectionPath, id));
                     showToast('Spark deleted.');
                 }
@@ -983,7 +955,6 @@
                 btn.setAttribute('aria-label', `Remove heart from ${escapeHtml(title)}`);
 
                 try {
-                    // CHANGE: Use correct collection path
                     await updateDoc(doc(db, dropsCollectionPath, id), { hearts: increment(1) });
                 } catch (error) {
                     state.heartedPosts[id] = false;
@@ -1022,7 +993,6 @@
                 
                 document.body.classList.toggle('is-admin', isAdmin);
                 DOMElements.adminPanel.classList.toggle('hidden', !isAdmin);
-                // FIXED: Changed button visibility logic
                 DOMElements.adminSigninBtn.classList.toggle('hidden', isAdmin);
                 DOMElements.adminSignoutBtn.classList.toggle('hidden', !isAdmin);
                 
@@ -1060,7 +1030,6 @@
             DOMElements.cancelEditBtn?.addEventListener('click', resetForm);
             DOMElements.clearDataBtn?.addEventListener('click', async () => {
                 if (window.confirm('Are you sure you want to delete ALL sparks? This is irreversible.')) {
-                    // CHANGE: Use correct collection path
                     const snapshot = await getDocs(query(collection(db, dropsCollectionPath)));
                     const batch = writeBatch(db);
                     snapshot.docs.forEach(doc => batch.delete(doc.ref));
@@ -1074,3 +1043,4 @@
     </script>
 </body>
 </html>
+
