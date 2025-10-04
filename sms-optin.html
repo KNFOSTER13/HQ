@@ -1,140 +1,185 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <title>Dropathon SMS Alerts | Kimberly Nicole Foster</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <!-- Fonts -->
-  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=Inter:wght@400;600&display=swap" rel="stylesheet" />
-  <style>
-    /* Base */
-    :root{
-      --ivory:#FCFBF7; --muted:#BDB6AE;
-      --grad-a:#C6B6F7; --grad-b:#ffe3dc;
-      --bg1:#2d1b42; --bg2:#1a0f26;
-      --panel:rgba(42,26,61,0.9); --panel-border:rgba(167,139,250,0.25);
-    }
-    *{box-sizing:border-box}
-    body{
-      margin:0;
-      font-family:'Inter',system-ui,-apple-system,Segoe UI,Roboto,sans-serif;
-      color:var(--ivory);
-      background:radial-gradient(ellipse at top center, var(--bg1), var(--bg2));
-      min-height:100vh;
-      display:flex;
-      flex-direction:column;
-    }
-    a{color:inherit;text-decoration:none}
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SMS Alerts | Kimberly's Creative Sprint</title>
+    <meta name="description" content="Get SMS alerts for Kimberly's 90-day creative sprint. No spam, opt out anytime.">
+    <meta name="theme-color" content="#271A3A">
+    <meta name="robots" content="noindex, nofollow">
 
-    /* Sticky Header (no Tailwind needed) */
-    .frosted-header{
-      position:sticky; top:0; z-index:50;
-      background-color:rgba(26,15,38,0.8);
-      backdrop-filter:blur(12px);
-      -webkit-backdrop-filter:blur(12px);
-      border-bottom:1px solid rgba(255,255,255,0.1);
-    }
-    .header-inner{
-      max-width:1200px; margin:0 auto;
-      padding:1rem;
-      display:flex; align-items:center; justify-content:space-between;
-      gap:1rem; flex-wrap:wrap;
-    }
-    .logo-link{display:flex; align-items:center; gap:.5rem}
-    .logo-img{height:40px; width:auto; display:block; filter:drop-shadow(0 0 8px #FCE9EB)}
-    .brand-font{font-family:'DM Serif Display',serif}
-    .text-gradient{
-      background:linear-gradient(to right, var(--grad-a), var(--grad-b));
-      -webkit-background-clip:text; background-clip:text; color:transparent;
-      font-weight:700; font-size:1.25rem;
-    }
-    .btn-back-glow{
-      display:inline-flex; align-items:center; justify-content:center; gap:.35rem;
-      padding:.6rem 1.2rem; border-radius:9999px; font-weight:600; font-size:.875rem;
-      background:linear-gradient(to right, var(--grad-a), var(--grad-b));
-      color:#3d3128; box-shadow:0 0 20px rgba(198,182,247,.3);
-      transition:transform .2s ease, box-shadow .2s ease;
-    }
-    .btn-back-glow:hover{transform:scale(1.05); box-shadow:0 5px 30px rgba(150,129,237,.4)}
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+      :root {
+        --bg-dark: #12072B;
+        --bg-center: #2E144F;
+        --bg-edge: #1D0D37;
+        --surface: rgba(42, 26, 61, 0.85);
+        --surface-hover: rgba(52, 36, 71, 0.95);
+        --accent: #a78bfa;
+        --accent-bright: #c4b5fd;
+        --accent-start: #C6B6F7;
+        --accent-end:   #ffe3dc;
+        --cta: #f472b6;
+        --cta-hover: #ec4899;
+        --text-primary: #FCFBF7;
+        --text-secondary: #E5E1DA;
+        --text-muted: #BDB6AE;
+        --border-color: rgba(167, 139, 250, 0.15);
+        --purple-glow: rgba(150, 129, 237, 0.4);
+        --cursor-x: 50vw;
+        --cursor-y: 50vh;
+      }
 
-    /* Mobile stacking for header */
-    @media (max-width: 640px){
-      .header-inner{flex-direction:column; align-items:flex-start}
-      .btn-back-glow{width:100%; text-align:center}
-    }
+      html { scroll-behavior: smooth; }
+      body {
+        font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+        background: radial-gradient(ellipse at top center, #4c2d6f 0%, #1a0f26 70%, #23123d 100%);
+        min-height: 100vh;
+        color: var(--text-primary);
+        line-height: 1.75;
+        display: flex;
+        flex-direction: column;
+      }
+      body::before {
+          content: '';
+          position: fixed;
+          top: 0; left: 0;
+          width: 100%; height: 100%;
+          background: radial-gradient(
+            circle 500px at var(--cursor-x) var(--cursor-y),
+            rgba(167, 139, 250, 0.08),
+            transparent 80%
+          );
+          pointer-events: none;
+          z-index: -1;
+      }
 
-    /* Opt-in card */
-    main{flex:1; display:flex; align-items:center; justify-content:center; padding:1rem}
-    .optin-wrapper{
-      width:100%; max-width:480px; margin:2rem auto;
-      background:var(--panel); border:1px solid var(--panel-border);
-      border-radius:1rem; padding:2.5rem 2rem; text-align:center;
-      box-shadow:0 12px 32px rgba(0,0,0,.4);
-    }
-    .optin-title{
-      font-family:'DM Serif Display',serif; font-size:2rem; margin:0 0 .6em;
-      background:linear-gradient(to right, var(--grad-a), var(--grad-b));
-      -webkit-background-clip:text; background-clip:text; color:transparent;
-    }
-    .optin-desc{color:var(--muted); font-size:1.05rem; margin:0 0 2rem}
-    .optin-desc strong{color:#f472b6}
+      .brand-font { font-family: 'DM Serif Display', serif; }
+      
+      .text-gradient {
+        background: linear-gradient(to right, var(--accent-start), var(--accent-end));
+        -webkit-background-clip: text;
+        background-clip: text;
+        color: transparent;
+      }
 
-    /* TextMagic overrides (best-effort; iframes may limit) */
-    .tm-widget-form{text-align:left}
-    .tm-widget-form label{color:#E5E1DA!important; font-weight:600; font-size:.95rem}
-    .tm-widget-form input,.tm-widget-form select{
-      background:rgba(0,0,0,.2)!important; color:var(--ivory)!important;
-      border:1px solid rgba(167,139,250,.3)!important;
-      border-radius:.5rem!important; padding:.75rem!important; margin-bottom:1rem!important; width:100%
-    }
-    .tm-widget-form input::placeholder{color:var(--muted)!important}
-    .tm-widget-form button,.tm-widget-form input[type="submit"]{
-      width:100%; border:none!important; cursor:pointer;
-      background:linear-gradient(to right, var(--grad-a), var(--grad-b))!important;
-      color:#3d3128!important; font-weight:600!important; border-radius:9999px!important;
-      padding:.9rem 1.5rem!important; font-size:1rem!important;
-      transition:transform .15s ease, box-shadow .15s ease
-    }
-    .tm-widget-form button:hover{transform:translateY(-2px); box-shadow:0 8px 20px rgba(167,139,250,.3)}
-    .tm-widget-form .tm-widget-success{
-      color:#34d399!important; background:rgba(42,26,61,.95); padding:1rem; border-radius:.75rem; margin-top:1rem; text-align:center; font-weight:600
-    }
-    .tm-widget-form .tm-widget-disclaimer{color:#8c7ea7!important; font-size:.8rem!important; line-height:1.4}
-    footer{color:var(--muted); text-align:center; padding:1rem; font-size:.85rem}
-  </style>
+       .frosted-header {
+        background-color: rgba(29, 13, 55, 0.8);
+        backdrop-filter: blur(12px);
+        -webkit-backdrop-filter: blur(12px);
+        border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+      }
+      .card {
+        background: var(--surface);
+        border: 1px solid var(--border-color);
+        backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
+        border-radius: 1rem;
+        box-shadow: 0 12px 32px rgba(0,0,0,.4);
+      }
+      .btn {
+        font-weight: 600; padding: 0.625rem 1.5rem; border-radius: 9999px;
+        transition: all 0.3s ease; border: none; cursor: pointer;
+        display: inline-flex; align-items: center; justify-content: center; gap: 0.5rem;
+      }
+      .btn-secondary { 
+        background: #2E144F; 
+        color: var(--accent-bright); 
+        border: 1px solid var(--accent);
+      }
+      .btn-secondary:hover:not(:disabled) { 
+        background: #3a1c63; 
+        border-color: var(--accent-bright);
+        box-shadow: 0 0 15px #684077;
+      }
+
+      /* TextMagic Widget Overrides */
+      .tm-widget-form { text-align: left !important; }
+      .tm-widget-form label { color: var(--text-secondary) !important; font-weight: 600; font-size: 0.9rem; }
+      .tm-widget-form input, .tm-widget-form select {
+        background: rgba(0,0,0,.2) !important; 
+        color: var(--text-primary) !important;
+        border: 1px solid var(--border-color) !important;
+        border-radius: .5rem !important; 
+        padding: .75rem 1rem !important; 
+        margin-bottom: 1rem !important; 
+        width: 100% !important;
+      }
+      .tm-widget-form input::placeholder { color: var(--text-muted) !important; }
+      .tm-widget-form button, .tm-widget-form input[type="submit"] {
+        width: 100% !important; 
+        border: none !important; 
+        cursor: pointer !important;
+        background: linear-gradient(90deg, #C6B6F7 0%, #FFD6C2 100%) !important;
+        color: #3d3128 !important; 
+        font-weight: 600 !important; 
+        border-radius: 9999px !important;
+        padding: .9rem 1.5rem !important; 
+        font-size: 1rem !important;
+        transition: transform .2s ease, box-shadow .2s ease !important;
+      }
+      .tm-widget-form button:hover {
+        transform: scale(1.05) !important;
+        box-shadow: 0 8px 20px rgba(198,182,247,.3) !important;
+      }
+      .tm-widget-form .tm-widget-success {
+        color: #86efac !important; 
+        background: rgba(42,26,61,.95) !important; 
+        padding: 1rem !important; 
+        border-radius: .75rem !important; 
+        margin-top: 1rem !important; 
+        text-align: center !important; 
+        font-weight: 600 !important;
+        border: 1px solid var(--border-color) !important;
+      }
+      .tm-widget-form .tm-widget-disclaimer {
+        color: #8c7ea7 !important; 
+        font-size: .8rem !important; 
+        line-height: 1.4 !important;
+      }
+    </style>
 </head>
-<body>
-  <!-- Sticky Header -->
-  <header class="frosted-header" role="banner">
-    <div class="header-inner" aria-label="Primary">
-      <a class="logo-link" href="./index.html" aria-label="Back to Dropathon Home">
-        <img class="logo-img" src="KNF-LOGO-SEPTEMBER-22-2025-3.png" alt="Kimberly Nicole Foster logo" />
-        <span class="brand-font text-gradient">Kimberly's Sprint</span>
+<body class="bg-bg-dark">
+  <header class="sticky top-0 z-50 frosted-header" role="banner">
+    <nav class="max-w-6xl mx-auto px-4 py-4 flex items-center justify-between">
+      <a href="FRIOCT31048AM.html" class="flex items-center gap-2" aria-label="Creative Sprint Home">
+        <img src="https://knfoster13.github.io/HQ/KMonogram-GLOW.png" alt="Logo" class="h-10 w-auto" style="filter: drop-shadow(0 0 8px #FCE9EB);">
+        <span class="hidden sm:inline font-bold text-xl brand-font" style="color: #F9E7E9; text-shadow: 0 1px 2px rgba(0,0,0,0.1), 0 0 10px #684077;">Kimberly's Creative Sprint</span>
       </a>
-      <a class="btn-back-glow" href="./index.html">&larr; Back to Drops</a>
-    </div>
+      <a href="FRIOCT31048AM.html" class="btn btn-secondary">&larr; Back to Sprint</a>
+    </nav>
   </header>
 
-  <!-- Main -->
-  <main role="main">
-    <div class="optin-wrapper">
-      <h1 class="optin-title">Get Dropathon SMS Alerts 📱</h1>
-      <p class="optin-desc">
-        Be the first to know when new drops go live, get livestream reminders,
+  <main role="main" class="flex-grow flex items-center justify-center p-4">
+    <div class="card p-6 sm:p-8 w-full max-w-lg text-center">
+      <h1 class="text-2xl sm:text-3xl font-bold mb-2 brand-font text-gradient">Get SMS Alerts 📱</h1>
+      <p class="text-muted mb-6">
+        Be the first to know when new sparks go live, get livestream reminders,
         and receive exclusive behind-the-scenes updates — straight to your phone.<br />
-        <strong>No spam. Opt out anytime.</strong>
+        <strong class="text-cta font-semibold">No spam. Opt out anytime.</strong>
       </p>
 
-      <!-- TextMagic Embed -->
-      <script src="https://widgets.textmagic.com/widget-script.js"
-              data-code="ca975eb0fab8d2e"
-              data-type="subscribe"
-              defer></script>
+      <div class="tm-widget-container">
+        <script src="https://widgets.textmagic.com/widget-script.js" data-code="ca975eb0fab8d2e" data-type="subscribe" defer></script>
+      </div>
     </div>
   </main>
 
-  <footer role="contentinfo">
-    &copy; 2025 Kimberly's Dropathon. All rights reserved.
+  <footer class="text-center py-8 text-sm text-muted" role="contentinfo">
+    <p>&copy; 2025 Kimberly's Creative Sprint. All rights reserved.</p>
   </footer>
+
+  <script>
+    document.body.addEventListener('mousemove', e => {
+        requestAnimationFrame(() => {
+            document.body.style.setProperty('--cursor-x', `${e.clientX}px`);
+            document.body.style.setProperty('--cursor-y', `${e.clientY}px`);
+        });
+    });
+  </script>
 </body>
 </html>
