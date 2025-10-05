@@ -100,8 +100,16 @@
       }
 
       .brand-font { font-family: 'DM Serif Display', serif; }
-      h1, h2, h3 { text-wrap: balance; }
+      h1, h2, h3 { 
+        text-wrap: balance; 
+        letter-spacing: -0.02em;
+      }
       
+      h1 { font-size: clamp(2.25rem, 1.8rem + 2.25vw, 3rem); } /* 36px -> 48px */
+      h2 { font-size: clamp(1.5rem, 1.2rem + 1.5vw, 1.875rem); } /* 24px -> 30px */
+      h3 { font-size: clamp(1.125rem, 1rem + 0.625vw, 1.25rem); } /* 18px -> 20px */
+      p { max-width: 65ch; } /* Improve readability */
+
       .line-clamp-3 {
         display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden;
       }
@@ -129,13 +137,15 @@
         border-bottom: 1px solid rgba(255, 255, 255, 0.1);
       }
       .card {
-        background: var(--surface);
+        background: linear-gradient(to bottom, rgba(48, 35, 76, 0.9), var(--surface));
         border: 1px solid var(--border-color);
         backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
         transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease, opacity 0.5s ease;
         border-radius: 0.75rem;
         overflow: hidden;
-        box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.1);
+        box-shadow: 0 4px 10px rgba(0,0,0,0.2), /* Drop shadow */
+                    0 0 15px rgba(196, 181, 253, 0.05), /* Subtle glow */
+                    inset 0 1px 0 rgba(255, 255, 255, 0.07); /* Inset Highlight */
         border-left-width: 4px;
         border-left-color: transparent;
       }
@@ -149,9 +159,11 @@
       }
       .card:hover {
         transform: translateY(-5px) !important;
-        background: var(--surface-hover);
+        background: linear-gradient(to bottom, rgba(58, 45, 86, 0.95), var(--surface-hover));
         border-color: var(--border-color-hover);
-        box-shadow: 0 10px 20px rgba(0,0,0,0.15), inset 0 0 0 1px rgba(255, 255, 255, 0.1);
+        box-shadow: 0 10px 20px rgba(0,0,0,0.25), /* Stronger drop shadow */
+                    0 0 25px rgba(196, 181, 253, 0.1), /* Stronger glow */
+                    inset 0 1px 0 rgba(255, 255, 255, 0.1); /* Brighter inset highlight */
       }
       .card .image-container::after {
         content: '';
@@ -373,8 +385,8 @@
     <main class="max-w-6xl mx-auto px-4 py-8" role="main" id="main-content">
         <section class="text-center pt-0 pb-12 flex flex-col justify-center items-center min-h-[80vh]" aria-labelledby="hero-title">
             <img src="https://knfoster13.github.io/HQ/KCSLAVGLOWINNER.png" alt="Kimberly's Creative Sprint" class="hero-image mx-auto w-full max-w-lg mb-4" width="1024" height="768" fetchpriority="high" decoding="async" loading="eager">
-            <h1 id="hero-title" class="text-4xl md:text-5xl font-bold mb-4 brand-font subtitle-gradient">A 90-Day Sprint Through Ideas, Images, and Inquiry</h1>
-            <p class="text-xl italic mb-4" style="color: var(--text-secondary);">
+            <h1 id="hero-title" class="font-bold mb-4 brand-font subtitle-gradient">A 90-Day Sprint Through Ideas, Images, and Inquiry</h1>
+            <p class="text-xl italic mb-4 mx-auto" style="color: var(--text-secondary);">
                 Think. Make. Share. Repeat.
             </p>
         </section>
@@ -404,7 +416,7 @@
 
         <section id="admin-panel" class="hidden transition-all duration-500 card" aria-label="Admin panel">
             <div class="p-6">
-                <h2 class="text-2xl font-semibold mb-4 flex items-center gap-2 brand-font"><svg class="w-6 h-6 text-accent" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6"></path></svg>Add or Edit Spark</h2>
+                <h2 class="font-semibold mb-4 flex items-center gap-2 brand-font"><svg class="w-6 h-6 text-accent" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6"></path></svg>Add or Edit Spark</h2>
                 <form id="spark-form" class="space-y-4" novalidate>
                     <!-- ... form inputs ... -->
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
@@ -474,19 +486,19 @@
             <span id="feed-announcer" class="sr-only" aria-live="assertive"></span>
             
             <div id="skeleton-loaders">
-                <h2 class="text-2xl md:text-3xl font-semibold mb-4 brand-font animate-pulse">Loading sparks...</h2>
+                <h2 class="font-semibold mb-4 brand-font animate-pulse">Loading sparks...</h2>
                 <div class="space-y-6">
                     <div class="skeleton-card"><div class="flex flex-col md:flex-row gap-4"><div class="md:w-48 h-32 skeleton-line rounded-lg"></div><div class="flex-1 space-y-2"><div class="skeleton-line w-3/4"></div><div class="skeleton-line w-1/2"></div><div class="skeleton-line w-full"></div></div></div></div>
                     <div class="skeleton-card"><div class="flex flex-col md:flex-row gap-4"><div class="md:w-48 h-32 skeleton-line rounded-lg"></div><div class="flex-1 space-y-2"><div class="skeleton-line w-3/4"></div><div class="skeleton-line w-1/2"></div><div class="skeleton-line w-full"></div></div></div></div>
                 </div>
             </div>
             
-            <div id="today-section" class="hidden max-w-4xl mx-auto"><h2 class="text-2xl md:text-3xl font-semibold mb-4 flex items-center gap-3 brand-font">
+            <div id="today-section" class="hidden max-w-4xl mx-auto"><h2 class="font-semibold mb-4 flex items-center gap-3 brand-font">
                 <span class="relative flex h-3 w-3"><span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75"></span><span class="relative inline-flex rounded-full h-3 w-3 bg-green-500"></span></span>
                 <span class="text-white text-gradient">Today's Sparks</span>
             </h2><div id="today-sparks" class="grid gap-6"></div></div>
             <div id="previous-section" class="hidden max-w-4xl mx-auto">
-                <h2 class="text-2xl font-semibold mb-4 brand-font text-gradient">Previous Sparks</h2>
+                <h2 class="font-semibold mb-4 brand-font text-gradient">Previous Sparks</h2>
                 <div id="previous-sparks" class="grid gap-6"></div>
                 <div id="load-more-container" class="text-center mt-8"></div>
             </div>
@@ -495,7 +507,7 @@
         </section>
         
         <nav class="mt-12" aria-label="Quick links">
-            <h2 class="text-2xl font-semibold mb-6 text-center brand-font text-gradient">Quick Links</h2>
+            <h2 class="font-semibold mb-6 text-center brand-font text-gradient">Quick Links</h2>
             <div class="grid grid-cols-1 md:grid-cols-3 gap-4 max-w-3xl mx-auto">
                 <a href="https://www.patreon.com/kimberlynfoster" class="card p-6 flex items-center gap-4 hover:!scale-105" rel="noopener noreferrer" target="_blank">
                     <div class="p-3 rounded-full bg-pink-500/20"><svg class="w-6 h-6 text-pink-400" fill="currentColor" viewBox="0 0 20 20" aria-hidden="true"><path fill-rule="evenodd" d="M3.172 5.172a4 4 0 015.656 0L10 6.343l1.172-1.171a4 4 0 115.656 5.656L10 17.657l-6.828-6.829a4 4 0 010-5.656z" clip-rule="evenodd"/></svg></div>
@@ -529,23 +541,23 @@
     <div id="welcome-modal" class="fixed inset-0 bg-black/50 backdrop-blur-sm hidden flex items-center justify-center p-4 z-50" role="dialog" aria-labelledby="welcome-modal-title" aria-modal="true">
         <div class="card p-8 relative max-w-2xl w-full">
             <button id="close-welcome-modal" class="absolute top-4 right-4 text-muted hover:text-primary transition-colors" aria-label="Close modal"><svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg></button>
-            <h2 id="welcome-modal-title" class="text-2xl md:text-3xl font-semibold mb-6 brand-font text-gradient text-center">What is the Creative Sprint?</h2>
-            <p class="text-lg text-text-secondary mb-4">
+            <h2 id="welcome-modal-title" class="font-semibold mb-6 brand-font text-gradient text-center">What is the Creative Sprint?</h2>
+            <p class="text-lg text-text-secondary mb-4 mx-auto">
                 For the next 90 days, I’m throwing myself into an experiment in making. The Creative Sprint isn't about perfection or polish, it’s about rhythm and rigor. Each week I’ll take on a theme—pop culture, politics, or the messy intersections of gender, race, capitalism, and art—and build a body of work around it. Videos, essays, livestreams, podcasts, posts—each orbiting the same core questions, each in conversation with the others.
             </p>
-            <p class="text-lg text-text-secondary mb-4">
+            <p class="text-lg text-text-secondary mb-4 mx-auto">
                 You’ll be able to trace the references, inspirations, and footnotes in real time. Not just what I think—but how I think.
             </p>
-            <p class="text-xl font-semibold text-gradient my-6 italic text-center">
+            <p class="text-xl font-semibold text-gradient my-6 italic text-center mx-auto">
                 This is practice, but also proof: ambitious ideas deserve ambitious output.
             </p>
-            <p class="text-lg text-text-secondary mb-4">
+            <p class="text-lg text-text-secondary mb-4 mx-auto">
                 By the end of 90 days, I’ll have more than a stack of work: I’ll have a living archive—a record of the thinkers, artists, and texts I’ve been in dialogue with, and a map of where my ideas might go next.
             </p>
-             <p class="text-lg text-text-secondary mb-4">
+             <p class="text-lg text-text-secondary mb-4 mx-auto">
                 This isn't about chasing an algorithm. This is about giving creativity structure and space to breathe—and seeing what happens.
             </p>
-            <p class="text-lg text-text-secondary">
+            <p class="text-lg text-text-secondary mx-auto">
                 The Sprint is an invitation: to run toward the work instead of away from it.
             </p>
             <img src="https://knfoster13.github.io/HQ/KNFSIGNATURE.png" alt="Kimberly's signature" class="mx-auto mt-8 w-48" loading="lazy">
@@ -555,8 +567,8 @@
     <div id="subscribe-modal" class="fixed inset-0 bg-black/50 backdrop-blur-sm hidden flex items-center justify-center p-4 z-50" role="dialog" aria-labelledby="subscribe-modal-title" aria-modal="true">
         <div class="card p-6 relative max-w-lg w-full">
             <button id="close-subscribe" class="absolute top-4 right-4 text-muted hover:text-primary transition-colors" aria-label="Close modal"><svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg></button>
-            <h2 id="subscribe-modal-title" class="text-2xl font-semibold mb-4 text-center brand-font text-gradient">Join the Newsletter!</h2>
-            <p class="text-muted mb-6 text-center">Get exclusive updates, behind-the-scenes content, and early access to sparks straight to your inbox!</p>
+            <h2 id="subscribe-modal-title" class="font-semibold mb-4 text-center brand-font text-gradient">Join the Newsletter!</h2>
+            <p class="text-muted mb-6 text-center mx-auto">Get exclusive updates, behind-the-scenes content, and early access to sparks straight to your inbox!</p>
             <div class="bg-white rounded-xl p-1"><iframe src="https://kimberlynfoster.substack.com/embed" width="100%" height="320" style="border:1px solid #EEE; background:white;" frameborder="0" scrolling="no" title="Subscribe to newsletter"></iframe></div>
         </div>
     </div>
@@ -564,8 +576,8 @@
     <div id="sms-modal" class="fixed inset-0 bg-black/50 backdrop-blur-sm hidden flex items-center justify-center p-4 z-50" role="dialog" aria-labelledby="sms-modal-title" aria-modal="true">
         <div class="card p-8 relative max-w-lg w-full">
             <button id="close-sms-modal" class="absolute top-4 right-4 text-muted hover:text-primary transition-colors" aria-label="Close SMS modal"><svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg></button>
-            <h2 id="sms-modal-title" class="text-2xl font-semibold mb-2 text-center brand-font text-gradient">Get SMS Alerts</h2>
-            <p class="text-muted mb-6 text-center">Be the first to know when new sparks go live, get reminders, and receive exclusive tips.</p>
+            <h2 id="sms-modal-title" class="font-semibold mb-2 text-center brand-font text-gradient">Get SMS Alerts</h2>
+            <p class="text-muted mb-6 text-center mx-auto">Be the first to know when new sparks go live, get reminders, and receive exclusive tips.</p>
             <div class="tm-widget-container">
                 <script src="https://widgets.textmagic.com/widget-script.js" data-code="ca975eb0fab8d2e" data-type="subscribe" defer></script>
             </div>
@@ -820,7 +832,7 @@
                 <div class="flex-1 p-4 md:p-5 flex flex-col">
                     <span class="tag ${spark.access === 'Paid' ? 'tag-paid' : 'tag-free'} absolute top-3 right-3">${spark.access}</span>
                     <div class="flex-grow space-y-2 mt-4">
-                        <h3 class="text-xl font-medium leading-tight hover:text-accent transition-colors">
+                        <h3 class="font-medium leading-tight hover:text-accent transition-colors">
                           <a href="${spark.link}" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1.5">${escapeHtml(spark.title)} <svg class="w-4 h-4 opacity-50 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path></svg></a>
                         </h3>
                         <p class="text-base text-muted line-clamp-3" style="line-height: 1.5;">${escapeHtml(spark.description)}</p>
@@ -1197,6 +1209,8 @@
     </script>
 </body>
 </html>
+
+
 
 
 
