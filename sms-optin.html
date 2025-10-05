@@ -18,17 +18,17 @@
         --bg-dark: #12072B;
         --bg-center: #2E144F;
         --bg-edge: #1D0D37;
-        --surface: rgba(42, 26, 61, 0.85);
-        --surface-hover: rgba(52, 36, 71, 0.95);
+        --surface: rgba(38, 25, 66, 0.85);
+        --surface-hover: rgba(48, 35, 76, 0.95);
         --accent: #a78bfa;
         --accent-bright: #c4b5fd;
         --accent-start: #C6B6F7;
-        --accent-end:   #ffe3dc;
+        --accent-end:   #D1D5DB;
         --cta: #f472b6;
         --cta-hover: #ec4899;
-        --text-primary: #FCFBF7;
-        --text-secondary: #E5E1DA;
-        --text-muted: #BDB6AE;
+        --text-primary: #F9FAFB;
+        --text-secondary: #D1D5DB;
+        --text-muted: #9CA3AF;
         --border-color: rgba(167, 139, 250, 0.15);
         --purple-glow: rgba(150, 129, 237, 0.4);
         --cursor-x: 50vw;
@@ -38,7 +38,7 @@
       html { scroll-behavior: smooth; }
       body {
         font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
-        background: radial-gradient(ellipse at top center, #4c2d6f 0%, #1a0f26 70%, #23123d 100%);
+        background: radial-gradient(ellipse at top center, #4a2d71 0%, #180f28 70%, #21123f 100%);
         min-height: 100vh;
         color: var(--text-primary);
         line-height: 1.75;
@@ -52,7 +52,7 @@
           width: 100%; height: 100%;
           background: radial-gradient(
             circle 500px at var(--cursor-x) var(--cursor-y),
-            rgba(167, 139, 250, 0.08),
+            rgba(165, 139, 252, 0.08),
             transparent 80%
           );
           pointer-events: none;
@@ -62,14 +62,15 @@
       .brand-font { font-family: 'DM Serif Display', serif; }
       
       .text-gradient {
-        background: linear-gradient(to right, var(--accent-start), var(--accent-end));
+        background: linear-gradient(to right, #E9D5FF, #FAFAFA);
         -webkit-background-clip: text;
         background-clip: text;
         color: transparent;
+        text-shadow: 0 0 15px rgba(233, 213, 255, 0.5);
       }
 
        .frosted-header {
-        background-color: rgba(29, 13, 55, 0.8);
+        background-color: rgba(24, 15, 40, 0.8);
         backdrop-filter: blur(12px);
         -webkit-backdrop-filter: blur(12px);
         border-bottom: 1px solid rgba(255, 255, 255, 0.1);
@@ -87,14 +88,14 @@
         display: inline-flex; align-items: center; justify-content: center; gap: 0.5rem;
       }
       .btn-secondary { 
-        background: #2E144F; 
+        background: #3a2c51; 
         color: var(--accent-bright); 
         border: 1px solid var(--accent);
       }
       .btn-secondary:hover:not(:disabled) { 
-        background: #3a1c63; 
+        background: #4b3a69; 
         border-color: var(--accent-bright);
-        box-shadow: 0 0 15px #684077;
+        box-shadow: 0 0 15px rgba(165, 139, 252, 0.3);
       }
 
       /* TextMagic Widget Overrides */
@@ -114,7 +115,7 @@
         width: 100% !important; 
         border: none !important; 
         cursor: pointer !important;
-        background: linear-gradient(90deg, #C6B6F7 0%, #FFD6C2 100%) !important;
+        background: linear-gradient(90deg, #C6B6F7 0%, #D1D5DB 100%) !important;
         color: #3d3128 !important; 
         font-weight: 600 !important; 
         border-radius: 9999px !important;
@@ -128,7 +129,7 @@
       }
       .tm-widget-form .tm-widget-success {
         color: #86efac !important; 
-        background: rgba(42,26,61,.95) !important; 
+        background: var(--surface) !important; 
         padding: 1rem !important; 
         border-radius: .75rem !important; 
         margin-top: 1rem !important; 
@@ -137,7 +138,7 @@
         border: 1px solid var(--border-color) !important;
       }
       .tm-widget-form .tm-widget-disclaimer {
-        color: #8c7ea7 !important; 
+        color: var(--text-muted) !important; 
         font-size: .8rem !important; 
         line-height: 1.4 !important;
       }
@@ -146,11 +147,11 @@
 <body class="bg-bg-dark">
   <header class="sticky top-0 z-50 frosted-header" role="banner">
     <nav class="max-w-6xl mx-auto px-4 py-4 flex items-center justify-between">
-      <a href="FRIOCT31048AM.html" class="flex items-center gap-2" aria-label="Creative Sprint Home">
-        <img src="https://knfoster13.github.io/HQ/KMonogram-GLOW.png" alt="Logo" class="h-10 w-auto" style="filter: drop-shadow(0 0 8px #FCE9EB);">
-        <span class="hidden sm:inline font-bold text-xl brand-font" style="color: #F9E7E9; text-shadow: 0 1px 2px rgba(0,0,0,0.1), 0 0 10px #684077;">Kimberly's Creative Sprint</span>
+      <a href="index.html" class="flex items-center gap-2" aria-label="Creative Sprint Home">
+        <img src="https://knfoster13.github.io/HQ/lightpurplek.png" alt="Logo" class="h-10 w-auto" style="filter: drop-shadow(0 0 10px var(--accent));">
+        <span class="hidden sm:inline font-bold text-xl brand-font" style="text-shadow: 0 1px 2px rgba(0,0,0,0.1), 0 0 10px rgba(165, 139, 252, 0.5);">Kimberly's Creative Sprint</span>
       </a>
-      <a href="FRIOCT31048AM.html" class="btn btn-secondary">&larr; Back to Sprint</a>
+      <a href="index.html" class="btn btn-secondary">&larr; Back to Sprint</a>
     </nav>
   </header>
 
