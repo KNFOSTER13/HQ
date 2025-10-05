@@ -413,12 +413,16 @@
 
     <main class="max-w-6xl mx-auto px-4 py-8" role="main" id="main-content">
         <section class="text-center pt-0 pb-12" aria-labelledby="hero-title">
-            <img src="http://knfoster13.github.io/HQ/KCSLAVGLOWINNER.png" alt="Kimberly's Creative Sprint" class="hero-image mx-auto w-full max-w-md mb-6" width="1024" height="768" fetchpriority="high" decoding="async" loading="eager">
-            <h1 id="hero-title" class="text-3xl md:text-4xl font-bold mb-4 brand-font subtitle-gradient">90 in 90: A Sprint Through Ideas, Images, and Inquiry</h1>
-            <p class="text-lg text-muted mb-4">
+            <img src="https://knfoster13.github.io/HQ/KCSORCHIDGLOWINNERGOLD.png" alt="Kimberly's Creative Sprint" class="hero-image mx-auto w-full max-w-lg mb-4" width="1024" height="768" fetchpriority="high" decoding="async" loading="eager">
+            <h1 id="hero-title" class="text-4xl md:text-5xl font-bold mb-4 brand-font subtitle-gradient">90 in 90: A Sprint Through Ideas, Images, and Inquiry</h1>
+            <p class="text-xl italic mb-4" style="color: #FFD6C2;">
                 Think. Make. Share. Repeat.
-                <br>
-                <strong id="challenge-dates" class="font-bold text-sm" style="color: var(--accent-bright);">October 3 &mdash; December 31, 2025</strong>
+            </p>
+            <div class="mb-4">
+                <p id="weekly-theme" class="text-lg font-semibold" style="color: #FFD6C2; text-shadow: 0 0 8px rgba(255, 214, 194, 0.4);"></p>
+            </div>
+            <p>
+                <strong id="challenge-dates" class="font-bold text-sm" style="color: #FFD6C2;">October 3 &mdash; December 31, 2025</strong>
             </p>
             <div class="mt-6 flex flex-wrap gap-3 justify-center">
                 <button id="show-welcome-btn" class="btn btn-secondary">What is this Sprint?</button>
@@ -699,11 +703,43 @@
                 'subscribe-modal', 'close-subscribe', 'sms-modal', 'close-sms-modal', 'toast', 'toast-message',
                 'toast-icon', 'content-feed', 'day-dots-container', 'schedule-toggle', 'schedule-options', 'feed-announcer',
                 'welcome-modal', 'show-welcome-btn', 'close-welcome-modal', 'auto-save-status', 'save-draft-btn',
-                'drafts-section', 'draft-sparks', 'scheduled-section', 'scheduled-sparks'
+                'drafts-section', 'draft-sparks', 'scheduled-section', 'scheduled-sparks', 'weekly-theme'
             ].map(id => [id.replace(/-(\w)/g, (m, g) => g.toUpperCase()), document.getElementById(id)])
         );
+        
+        const weeklyThemes = [
+            "The Politics of Pop Culture",
+            "Digital Selves & Authenticity",
+            "The Aesthetics of Power",
+            "Creator Economy & The Future of Work",
+            "Black Feminist Thought in a Digital Age",
+            "Nostalgia, Trends, and the Cultural Cycle",
+            "Visual Storytelling & Online Identity",
+            "The Art of the Critique",
+            "Building Community in Public",
+            "Rest, Leisure, and Liberatory Practice",
+            "Money, Ambition, and Creative Integrity",
+            "The Algorithm & The Archive",
+            "Reflections & Future Forecasts"
+        ];
 
         // --- UI & FEEDBACK FUNCTIONS ---
+        const updateWeeklyTheme = () => {
+            const now = new Date();
+            if (now < START_DATE || now > END_DATE || !DOMElements.weeklyTheme) {
+                if(DOMElements.weeklyTheme) DOMElements.weeklyTheme.style.display = 'none';
+                return;
+            }
+            const daysIntoSprint = Math.floor((now - START_DATE) / MS_PER_DAY);
+            const weekNumber = Math.floor(daysIntoSprint / 7);
+
+            if (weekNumber >= 0 && weekNumber < weeklyThemes.length) {
+                DOMElements.weeklyTheme.textContent = "This Week's Theme: " + weeklyThemes[weekNumber];
+            } else {
+                DOMElements.weeklyTheme.textContent = "Final Week: Reflections";
+            }
+        };
+
         const updateProgress = () => {
             const day = getCurrentDay();
             const progress = Math.min(100, (day / TOTAL_DAYS) * 100);
@@ -1146,7 +1182,9 @@
 
             DOMElements.challengeDates.innerHTML = `${START_DATE.toLocaleDateString('en-US', { month: 'long', day: 'numeric' })} &mdash; ${END_DATE.toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' })}`;
             updateProgress();
+            updateWeeklyTheme();
             setInterval(updateProgress, 60000);
+            setInterval(updateWeeklyTheme, 60000 * 60); // Update theme every hour
 
             // Modal Handlers
             const setupModal = (modal, openBtns, closeBtn) => {
