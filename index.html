@@ -50,17 +50,21 @@
         --bg-dark: #12072B;
         --bg-center: #2E144F;
         --bg-edge: #1D0D37;
-        --surface: rgba(42, 26, 61, 0.85);
-        --surface-hover: rgba(52, 36, 71, 0.95);
+        /* UPDATED: Cooler surface colors */
+        --surface: rgba(38, 25, 66, 0.85);
+        --surface-hover: rgba(48, 35, 76, 0.95);
         --accent: #a78bfa;
         --accent-bright: #c4b5fd;
         --accent-start: #C6B6F7;
-        --accent-end:   #ffe3dc;
+        /* UPDATED: Cooler end to gradient */
+        --accent-end:   #D1D5DB;
         --cta: #f472b6;
         --cta-hover: #ec4899;
-        --text-primary: #FCFBF7;
-        --text-secondary: #E5E1DA;
-        --text-muted: #BDB6AE;
+        /* UPDATED: Cooler primary text color */
+        --text-primary: #F9FAFB;
+        /* UPDATED: Cooler text grays */
+        --text-secondary: #D1D5DB;
+        --text-muted: #9CA3AF;
         --tag-free: #86efac;
         --tag-paid: #fde047;
         --heart: #f472b6;
@@ -78,8 +82,8 @@
       html { scroll-behavior: smooth; }
       body {
         font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
-        /* UPDATED: Added final stop for vignette effect */
-        background: radial-gradient(ellipse at top center, #4c2d6f 0%, #1a0f26 70%, #23123d 100%);
+        /* UPDATED: Shifted to a slightly bluer purple gradient */
+        background: radial-gradient(ellipse at top center, #4a2d71 0%, #180f28 70%, #21123f 100%);
         min-height: 100vh;
         color: var(--text-primary);
         line-height: 1.75;
@@ -90,9 +94,10 @@
           position: fixed;
           top: 0; left: 0;
           width: 100%; height: 100%;
+          /* UPDATED: Shifted glow to a slightly bluer purple */
           background: radial-gradient(
             circle 500px at var(--cursor-x) var(--cursor-y),
-            rgba(167, 139, 250, 0.08),
+            rgba(165, 139, 252, 0.08),
             transparent 80%
           );
           pointer-events: none;
@@ -106,14 +111,16 @@
         display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden;
       }
       .text-gradient {
-        background: linear-gradient(to right, var(--accent-start), var(--accent-end));
+        /* UPDATED: Lighter gradient and added glow effect */
+        background: linear-gradient(to right, #E9D5FF, #FAFAFA);
         -webkit-background-clip: text;
         background-clip: text;
         color: transparent;
+        text-shadow: 0 0 15px rgba(233, 213, 255, 0.5);
       }
-      /* UPDATED: Changed subtitle to solid color */
+      /* UPDATED: Changed subtitle color to a cooler tone */
       .subtitle-gradient {
-        color: #FFD6C2;
+        color: var(--accent-bright);
       }
 
       /* Accessibility */
@@ -124,7 +131,8 @@
 
       /* Components */
        .frosted-header {
-        background-color: rgba(29, 13, 55, 0.8); /* Darker plum shade */
+        /* UPDATED: Cooler background color */
+        background-color: rgba(24, 15, 40, 0.8);
         backdrop-filter: blur(12px);
         -webkit-backdrop-filter: blur(12px);
         border-bottom: 1px solid rgba(255, 255, 255, 0.1);
@@ -179,18 +187,19 @@
       .btn-primary:disabled { opacity: 0.5; cursor: not-allowed; transform: scale(1); }
       
       .btn-secondary { 
-        background: #2E144F; 
+        /* UPDATED: Cooler and lighter background for better contrast */
+        background: #3a2c51; 
         color: var(--accent-bright); 
         border: 1px solid var(--accent);
       }
       .btn-secondary:hover:not(:disabled) { 
-        background: #3a1c63; 
+        background: #4b3a69; 
         border-color: var(--accent-bright);
-        box-shadow: 0 0 15px #684077;
+        box-shadow: 0 0 15px rgba(165, 139, 252, 0.3);
       }
 
        .btn-gradient {
-        background: linear-gradient(90deg, #C6B6F7 0%, #FFD6C2 100%);
+        background: linear-gradient(90deg, #C6B6F7 0%, #D1D5DB 100%);
         color: #3d3128;
       }
       .btn-gradient:hover:not(:disabled) {
@@ -199,14 +208,15 @@
       }
       
       .btn-subscribe {
-        background: linear-gradient(135deg, #f472b6 0%, #684077 100%);
+        /* UPDATED: New cooler gradient */
+        background: linear-gradient(135deg, var(--accent) 0%, #6366f1 100%);
         color: white;
         font-weight: 500;
-        box-shadow: 0 4px 15px rgba(104, 64, 119, 0.4);
+        box-shadow: 0 4px 15px rgba(167, 139, 250, 0.3);
       }
       .btn-subscribe:hover:not(:disabled) {
         transform: scale(1.05);
-        box-shadow: 0 8px 30px rgba(104, 64, 119, 0.6);
+        box-shadow: 0 8px 30px rgba(167, 139, 250, 0.4);
       }
       .btn:hover svg {
           transform: scale(1.1) rotate(3deg);
@@ -366,8 +376,8 @@
         <nav class="max-w-6xl mx-auto px-4 py-4" aria-label="Primary">
             <div class="header-nav flex items-center justify-between">
                 <a href="#" class="header-logo flex items-center gap-2" aria-label="Creative Sprint Home">
-                    <img src="https://knfoster13.github.io/HQ/KMonogram-GLOW.png" alt="Logo" class="h-10 w-auto" style="filter: drop-shadow(0 0 8px #FCE9EB);">
-                    <span class="hidden sm:inline font-bold text-xl brand-font" style="color: #F9E7E9; text-shadow: 0 1px 2px rgba(0,0,0,0.1), 0 0 10px #684077;">Kimberly's Creative Sprint</span>
+                    <img src="https://knfoster13.github.io/HQ/lightpurplek.png" alt="Logo" class="h-10 w-auto" style="filter: drop-shadow(0 0 10px var(--accent));">
+                    <span class="hidden sm:inline font-bold text-xl brand-font" style="text-shadow: 0 1px 2px rgba(0,0,0,0.1), 0 0 10px rgba(165, 139, 252, 0.5);">Kimberly's Creative Sprint</span>
                 </a>
     
                 <div class="header-counters hidden md:flex flex-col items-center">
@@ -411,10 +421,12 @@
 
     <main class="max-w-6xl mx-auto px-4 py-8" role="main" id="main-content">
         <section class="text-center pt-0 pb-12" aria-labelledby="hero-title">
-            <img src="https://knfoster13.github.io/HQ/KCS-WARM.png" alt="Kimberly's Creative Sprint" class="hero-image mx-auto w-full max-w-md mb-6" width="1024" height="768" fetchpriority="high" decoding="async" loading="eager">
-            <h1 id="hero-title" class="text-3xl md:text-4xl font-bold mb-4 brand-font subtitle-gradient">Outrunning perfectionism one creative spark at a time.</h1>
+            <img src="http://knfoster13.github.io/HQ/KCSLAVGLOWINNER.png" alt="Kimberly's Creative Sprint" class="hero-image mx-auto w-full max-w-md mb-6" width="1024" height="768" fetchpriority="high" decoding="async" loading="eager">
+            <h1 id="hero-title" class="text-3xl md:text-4xl font-bold mb-4 brand-font subtitle-gradient">90 in 90: A Sprint Through Ideas, Images, and Inquiry</h1>
             <p class="text-lg text-muted mb-4">
-                <strong id="challenge-dates" class="font-bold" style="color: #ffe3dc;">October 3 &mdash; December 31, 2025</strong>
+                Think. Make. Share. Repeat.
+                <br>
+                <strong id="challenge-dates" class="font-bold text-sm" style="color: var(--accent-bright);">October 3 &mdash; December 31, 2025</strong>
             </p>
             <div class="mt-6 flex flex-wrap gap-3 justify-center">
                 <button id="show-welcome-btn" class="btn btn-secondary">What is this Sprint?</button>
@@ -1187,7 +1199,5 @@
     </script>
 </body>
 </html>
-
-
 
 
