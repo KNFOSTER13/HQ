@@ -50,29 +50,25 @@
         --bg-dark: #12072B;
         --bg-center: #2E144F;
         --bg-edge: #1D0D37;
-        /* UPDATED: Cooler surface colors */
-        --surface: rgba(38, 25, 66, 0.85);
-        --surface-hover: rgba(48, 35, 76, 0.95);
+        --surface: rgba(29, 21, 50, 0.8);
+        --surface-hover: rgba(39, 30, 64, 0.9);
         --accent: #a78bfa;
         --accent-bright: #c4b5fd;
         --accent-start: #C6B6F7;
-        /* UPDATED: Cooler end to gradient */
         --accent-end:   #D1D5DB;
-        --cta: #f472b6;
-        --cta-hover: #ec4899;
-        /* UPDATED: Cooler primary text color */
+        --cta: #c4b5fd; /* Icy Lilac */
+        --cta-hover: #a78bfa; /* Lavender */
         --text-primary: #F9FAFB;
-        /* UPDATED: Cooler text grays */
         --text-secondary: #D1D5DB;
         --text-muted: #9CA3AF;
         --tag-free: #86efac;
         --tag-paid: #fde047;
-        --heart: #f472b6;
+        --heart: var(--cta);
         --success: #34d399;
         --warning: #fbbf24;
         --error: #f87171;
-        --border-color: rgba(167, 139, 250, 0.15);
-        --border-color-hover: rgba(167, 139, 250, 0.3);
+        --border-color: rgba(167, 139, 250, 0.1);
+        --border-color-hover: rgba(167, 139, 250, 0.2);
         --purple-glow: rgba(150, 129, 237, 0.4);
         --cursor-x: 50vw;
         --cursor-y: 50vh;
@@ -82,7 +78,6 @@
       html { scroll-behavior: smooth; }
       body {
         font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
-        /* UPDATED: Shifted to a slightly bluer purple gradient */
         background: radial-gradient(ellipse at top center, #4a2d71 0%, #180f28 70%, #21123f 100%);
         min-height: 100vh;
         color: var(--text-primary);
@@ -94,7 +89,6 @@
           position: fixed;
           top: 0; left: 0;
           width: 100%; height: 100%;
-          /* UPDATED: Shifted glow to a slightly bluer purple */
           background: radial-gradient(
             circle 500px at var(--cursor-x) var(--cursor-y),
             rgba(165, 139, 252, 0.08),
@@ -111,16 +105,13 @@
         display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden;
       }
       .text-gradient {
-        /* UPDATED: Lighter gradient and added glow effect */
-        background: linear-gradient(to right, #E9D5FF, #FAFAFA);
+        background: linear-gradient(to right, var(--accent-start), var(--accent-end));
         -webkit-background-clip: text;
         background-clip: text;
         color: transparent;
-        text-shadow: 0 0 15px rgba(233, 213, 255, 0.5);
       }
-      /* UPDATED: Changed subtitle color to a cooler tone */
       .subtitle-gradient {
-        color: var(--accent-bright);
+        color: var(--text-secondary);
       }
 
       /* Accessibility */
@@ -131,7 +122,6 @@
 
       /* Components */
        .frosted-header {
-        /* UPDATED: Cooler background color */
         background-color: rgba(24, 15, 40, 0.8);
         backdrop-filter: blur(12px);
         -webkit-backdrop-filter: blur(12px);
@@ -148,11 +138,11 @@
         border-left-width: 4px;
         border-left-color: transparent;
       }
-      main .card {
+      .fade-in-section, main .card {
         opacity: 0;
         transform: translateY(20px);
       }
-      main .card.is-visible {
+      .fade-in-section.is-visible, main .card.is-visible {
         opacity: 1;
         transform: translateY(0);
       }
@@ -182,41 +172,31 @@
         transition: all 0.3s ease; border: none; cursor: pointer;
         display: inline-flex; align-items: center; justify-content: center; gap: 0.5rem;
       }
-      .btn-primary { background: linear-gradient(135deg, var(--cta) 0%, var(--cta-hover) 100%); color: white; }
-      .btn-primary:hover:not(:disabled) { transform: scale(1.05); box-shadow: 0 10px 25px rgba(244, 114, 182, 0.3); }
+      .btn-primary { background: linear-gradient(135deg, var(--cta) 0%, var(--cta-hover) 100%); color: var(--bg-dark); }
+      .btn-primary:hover:not(:disabled) { transform: scale(1.05); box-shadow: 0 10px 25px rgba(196, 181, 253, 0.3); }
       .btn-primary:disabled { opacity: 0.5; cursor: not-allowed; transform: scale(1); }
       
       .btn-secondary { 
-        /* UPDATED: Cooler and lighter background for better contrast */
-        background: #3a2c51; 
-        color: var(--accent-bright); 
-        border: 1px solid var(--accent);
+        background: transparent; 
+        color: var(--text-secondary); 
+        border: 1px solid var(--border-color-hover);
       }
       .btn-secondary:hover:not(:disabled) { 
-        background: #4b3a69; 
-        border-color: var(--accent-bright);
-        box-shadow: 0 0 15px rgba(165, 139, 252, 0.3);
-      }
-
-       .btn-gradient {
-        background: linear-gradient(90deg, #C6B6F7 0%, #D1D5DB 100%);
-        color: #3d3128;
-      }
-      .btn-gradient:hover:not(:disabled) {
-          box-shadow: 0 0 20px #c6b6f7;
-          transform: scale(1.05);
+        background: rgba(167, 139, 250, 0.1);
+        border-color: var(--accent);
+        box-shadow: none;
       }
       
       .btn-subscribe {
-        /* UPDATED: New cooler gradient */
-        background: linear-gradient(135deg, var(--accent) 0%, #6366f1 100%);
-        color: white;
+        background: var(--cta);
+        color: var(--bg-dark);
         font-weight: 500;
-        box-shadow: 0 4px 15px rgba(167, 139, 250, 0.3);
+        box-shadow: 0 4px 15px rgba(196, 181, 253, 0.3);
       }
       .btn-subscribe:hover:not(:disabled) {
         transform: scale(1.05);
-        box-shadow: 0 8px 30px rgba(167, 139, 250, 0.4);
+        background: var(--cta-hover);
+        box-shadow: 0 0 20px rgba(196, 181, 253, 0.4);
       }
       .btn:hover svg {
           transform: scale(1.1) rotate(3deg);
@@ -240,16 +220,11 @@
         background: rgba(134, 239, 172, 0.15); 
         color: var(--tag-free); 
         border: 1px solid rgba(134, 239, 172, 0.3);
-        box-shadow: 0 0 10px rgba(134, 239, 172, 0.2);
       }
       .tag-paid { 
         background: rgba(253, 224, 71, 0.15); 
         color: var(--tag-paid); 
         border: 1px solid rgba(253, 224, 71, 0.3);
-        box-shadow: 0 0 10px rgba(253, 224, 71, 0.2);
-      }
-      .title-glow {
-        text-shadow: 0 0 8px rgba(255, 255, 255, 0.1);
       }
       
       .heart-btn { transition: all 0.2s ease; cursor: pointer; user-select: none; }
@@ -268,13 +243,7 @@
         height: 100%;
         background: linear-gradient(90deg, var(--accent-start) 0%, var(--accent-end) 100%);
         transition: width 1.5s cubic-bezier(0.4, 0, 0.2, 1);
-        animation: progressShimmer 2s ease-in-out infinite;
         box-shadow: 0 0 8px var(--accent-start);
-      }
-      @keyframes progressShimmer {
-          0% { opacity: 0.7; }
-          50% { opacity: 1; }
-          100% { opacity: 0.7; }
       }
       
       #today-section {
@@ -282,16 +251,6 @@
         border: 1px solid rgba(167, 139, 250, 0.1);
         padding: 1.5rem;
         border-radius: 1rem;
-      }
-      .shimmer-border {
-        animation: shimmer-animation 3s infinite;
-        border: 1px solid transparent;
-        background: linear-gradient(var(--surface), var(--surface)) padding-box,
-                    linear-gradient(90deg, transparent, var(--accent), transparent) border-box;
-      }
-      @keyframes shimmer-animation {
-        0% { background-position: -200% 0; }
-        100% { background-position: 200% 0; }
       }
 
       .day-dot {
@@ -353,11 +312,7 @@
       ::-webkit-scrollbar-thumb:hover { background: var(--accent-bright); }
 
       .hero-image {
-          animation: subtleGlow 4s ease-in-out infinite alternate;
-      }
-      @keyframes subtleGlow {
-          from { filter: drop-shadow(0 0 15px var(--purple-glow)); }
-          to { filter: drop-shadow(0 0 25px var(--purple-glow)); }
+          filter: drop-shadow(0 0 20px var(--purple-glow));
       }
         
       @media (max-width: 768px) {
@@ -366,6 +321,9 @@
         .header-progress-bar { order: 4; }
         .header-buttons { order: 2; }
         .header-logo { order: 1; }
+      }
+      main > section + section, main > section + nav {
+        margin-top: 6rem;
       }
     </style>
 </head>
@@ -412,21 +370,24 @@
     </header>
 
     <main class="max-w-6xl mx-auto px-4 py-8" role="main" id="main-content">
-        <section class="text-center pt-0 pb-12" aria-labelledby="hero-title">
-            <img src="https://knfoster13.github.io/HQ/KCSORCHIDGLOWINNERGOLD.png" alt="Kimberly's Creative Sprint" class="hero-image mx-auto w-full max-w-lg mb-4" width="1024" height="768" fetchpriority="high" decoding="async" loading="eager">
+        <section class="text-center pt-0 pb-12 flex flex-col justify-center items-center min-h-[80vh]" aria-labelledby="hero-title">
+            <img src="https://knfoster13.github.io/HQ/KCSLAVGLOWINNER.png" alt="Kimberly's Creative Sprint" class="hero-image mx-auto w-full max-w-lg mb-4" width="1024" height="768" fetchpriority="high" decoding="async" loading="eager">
             <h1 id="hero-title" class="text-4xl md:text-5xl font-bold mb-4 brand-font subtitle-gradient">90 in 90: A Sprint Through Ideas, Images, and Inquiry</h1>
-            <p class="text-xl italic mb-4" style="color: #FFD6C2;">
+            <p class="text-xl italic mb-4" style="color: var(--text-secondary);">
                 Think. Make. Share. Repeat.
             </p>
+        </section>
+
+        <section id="sprint-details" class="text-center fade-in-section">
             <div class="mb-4">
-                <p id="weekly-theme" class="text-lg font-semibold" style="color: #FFD6C2; text-shadow: 0 0 8px rgba(255, 214, 194, 0.4);"></p>
+                <p id="weekly-theme" class="text-lg font-semibold" style="color: var(--text-secondary);"></p>
             </div>
             <p>
-                <strong id="challenge-dates" class="font-bold text-sm" style="color: #FFD6C2;">October 3 &mdash; December 31, 2025</strong>
+                <strong id="challenge-dates" class="font-bold text-sm" style="color: var(--text-secondary);">October 3 &mdash; December 31, 2025</strong>
             </p>
             <div class="mt-6 flex flex-wrap gap-3 justify-center">
                 <button id="show-welcome-btn" class="btn btn-secondary">What is this Sprint?</button>
-                <button id="hero-subscribe-btn" class="btn btn-gradient">Newsletter</button>
+                <button id="hero-subscribe-btn" class="btn btn-primary">Newsletter</button>
                 <a href="sms-optin.html" class="btn btn-secondary">SMS Alerts 📱</a>
             </div>
 
@@ -440,9 +401,7 @@
             </div>
         </section>
 
-        <!-- REMOVED THE PREVIOUS WELCOME SECTION FROM HERE -->
-
-        <section id="admin-panel" class="hidden mb-8 transition-all duration-500 card" aria-label="Admin panel">
+        <section id="admin-panel" class="hidden transition-all duration-500 card" aria-label="Admin panel">
             <div class="p-6">
                 <h2 class="text-2xl font-bold mb-4 flex items-center gap-2"><svg class="w-6 h-6 text-accent" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6"></path></svg>Add or Edit Spark</h2>
                 <form id="spark-form" class="space-y-4" novalidate>
@@ -521,11 +480,11 @@
                 </div>
             </div>
             
-            <div id="today-section" class="hidden"><h2 class="text-2xl md:text-3xl font-bold mb-4 flex items-center gap-3">
+            <div id="today-section" class="hidden max-w-4xl mx-auto"><h2 class="text-2xl md:text-3xl font-bold mb-4 flex items-center gap-3">
                 <span class="relative flex h-3 w-3"><span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75"></span><span class="relative inline-flex rounded-full h-3 w-3 bg-green-500"></span></span>
                 <span class="text-white brand-font text-gradient">Today's Sparks</span>
             </h2><div id="today-sparks" class="grid gap-6"></div></div>
-            <div id="previous-section" class="hidden">
+            <div id="previous-section" class="hidden max-w-4xl mx-auto">
                 <h2 class="text-2xl font-bold mb-4 brand-font text-gradient">Previous Sparks</h2>
                 <div id="previous-sparks" class="grid gap-6"></div>
                 <div id="load-more-container" class="text-center mt-8"></div>
@@ -703,7 +662,7 @@
                 'subscribe-modal', 'close-subscribe', 'sms-modal', 'close-sms-modal', 'toast', 'toast-message',
                 'toast-icon', 'content-feed', 'day-dots-container', 'schedule-toggle', 'schedule-options', 'feed-announcer',
                 'welcome-modal', 'show-welcome-btn', 'close-welcome-modal', 'auto-save-status', 'save-draft-btn',
-                'drafts-section', 'draft-sparks', 'scheduled-section', 'scheduled-sparks', 'weekly-theme'
+                'drafts-section', 'draft-sparks', 'scheduled-section', 'scheduled-sparks', 'weekly-theme', 'sprint-details'
             ].map(id => [id.replace(/-(\w)/g, (m, g) => g.toUpperCase()), document.getElementById(id)])
         );
         
@@ -860,7 +819,7 @@
                 <div class="flex-1 p-4 md:p-5 flex flex-col">
                     <span class="tag ${spark.access === 'Paid' ? 'tag-paid' : 'tag-free'} absolute top-3 right-3">${spark.access}</span>
                     <div class="flex-grow space-y-2 mt-4">
-                        <h3 class="text-2xl font-semibold leading-tight hover:text-accent transition-colors brand-font title-glow">
+                        <h3 class="text-2xl font-semibold leading-tight hover:text-accent transition-colors brand-font">
                           <a href="${spark.link}" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1.5">${escapeHtml(spark.title)} <svg class="w-4 h-4 opacity-50 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path></svg></a>
                         </h3>
                         <p class="text-base text-muted line-clamp-3" style="line-height: 1.5;">${escapeHtml(spark.description)}</p>
@@ -928,7 +887,6 @@
             DOMElements.todaySparks.innerHTML = '';
             todaySparks.forEach(d => {
                 const card = createSparkCard(d, scrollObserver);
-                card.classList.add('shimmer-border');
                 DOMElements.todaySparks.appendChild(card);
             });
 
@@ -1160,7 +1118,7 @@
                 entries.forEach(entry => { if (entry.isIntersecting) entry.target.classList.add('is-visible'); });
             }, { threshold: 0.1 });
 
-            document.querySelectorAll('main .card').forEach(card => scrollObserver.observe(card));
+            document.querySelectorAll('main .card, .fade-in-section').forEach(el => scrollObserver.observe(el));
 
             onAuthStateChanged(auth, async (user) => {
                 currentUser = user;
