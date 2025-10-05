@@ -82,6 +82,7 @@
         min-height: 100vh;
         color: var(--text-primary);
         line-height: 1.75;
+        font-weight: 400; /* Set a lighter base font weight for body text */
         transition: all 0.3s ease;
       }
       body::before {
@@ -334,8 +335,8 @@
         <nav class="max-w-6xl mx-auto px-4 py-4" aria-label="Primary">
             <div class="header-nav flex items-center justify-between">
                 <a href="#" class="header-logo flex items-center gap-2" aria-label="Creative Sprint Home">
-                    <img src="https://knfoster13.github.io/HQ/lightpurplek.png" alt="Logo" class="h-10 w-auto" style="filter: drop-shadow(0 0 10px var(--accent));">
-                    <span class="hidden sm:inline font-bold text-xl brand-font" style="text-shadow: 0 1px 2px rgba(0,0,0,0.1), 0 0 10px rgba(165, 139, 252, 0.5);">Kimberly's Creative Sprint</span>
+                    <img src="https://knfoster13.github.io/HQ/lightpurplek.png" alt="Logo" class="h-10 w-auto" style="filter: drop-shadow(0 0 6px rgba(167, 139, 250, 0.5));">
+                    <span class="hidden sm:inline font-semibold text-xl" style="text-shadow: 0 1px 2px rgba(0,0,0,0.1), 0 0 10px rgba(165, 139, 252, 0.5);">Kimberly's Creative Sprint</span>
                 </a>
     
                 <div class="header-counters hidden md:flex flex-col items-center">
@@ -383,7 +384,7 @@
                 <p id="weekly-theme" class="text-lg font-semibold" style="color: var(--text-secondary);"></p>
             </div>
             <p>
-                <strong id="challenge-dates" class="font-bold text-sm" style="color: var(--text-secondary);">October 3 &mdash; December 31, 2025</strong>
+                <strong id="challenge-dates" class="text-sm font-medium" style="color: var(--text-secondary);">October 3 &mdash; December 31, 2025</strong>
             </p>
             <div class="mt-6 flex flex-wrap gap-3 justify-center">
                 <button id="show-welcome-btn" class="btn btn-secondary">What is this Sprint?</button>
@@ -394,16 +395,16 @@
             <div id="day-dots-container" class="flex gap-1.5 justify-center flex-wrap max-w-full py-2 px-4 mt-8"></div>
 
             <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mt-8 max-w-2xl mx-auto" role="region" aria-label="Challenge statistics">
-                <div class="card p-4 text-center"><div class="text-2xl font-bold text-accent" id="today-count" aria-live="polite">0</div><div class="text-sm text-muted">Today's Sparks</div></div>
-                <div class="card p-4 text-center"><div class="text-2xl font-bold text-cta" id="streak-count" aria-live="polite">0</div><div class="text-sm text-muted">Day Streak</div></div>
-                <div class="card p-4 text-center"><div class="text-2xl font-bold text-success" id="free-count" aria-live="polite">0</div><div class="text-sm text-muted">Free Content</div></div>
-                <div class="card p-4 text-center"><div class="text-2xl font-bold text-warning" id="paid-count" aria-live="polite">0</div><div class="text-sm text-muted">Premium</div></div>
+                <div class="card p-4 text-center"><div class="text-2xl font-semibold text-accent" id="today-count" aria-live="polite">0</div><div class="text-sm text-muted">Today's Sparks</div></div>
+                <div class="card p-4 text-center"><div class="text-2xl font-semibold text-cta" id="streak-count" aria-live="polite">0</div><div class="text-sm text-muted">Day Streak</div></div>
+                <div class="card p-4 text-center"><div class="text-2xl font-semibold text-success" id="free-count" aria-live="polite">0</div><div class="text-sm text-muted">Free Content</div></div>
+                <div class="card p-4 text-center"><div class="text-2xl font-semibold text-warning" id="paid-count" aria-live="polite">0</div><div class="text-sm text-muted">Premium</div></div>
             </div>
         </section>
 
         <section id="admin-panel" class="hidden transition-all duration-500 card" aria-label="Admin panel">
             <div class="p-6">
-                <h2 class="text-2xl font-bold mb-4 flex items-center gap-2"><svg class="w-6 h-6 text-accent" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6"></path></svg>Add or Edit Spark</h2>
+                <h2 class="text-2xl font-semibold mb-4 flex items-center gap-2 brand-font"><svg class="w-6 h-6 text-accent" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6"></path></svg>Add or Edit Spark</h2>
                 <form id="spark-form" class="space-y-4" novalidate>
                     <!-- ... form inputs ... -->
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
@@ -473,19 +474,19 @@
             <span id="feed-announcer" class="sr-only" aria-live="assertive"></span>
             
             <div id="skeleton-loaders">
-                <h2 class="text-2xl md:text-3xl font-bold mb-4 brand-font animate-pulse">Loading sparks...</h2>
+                <h2 class="text-2xl md:text-3xl font-semibold mb-4 brand-font animate-pulse">Loading sparks...</h2>
                 <div class="space-y-6">
                     <div class="skeleton-card"><div class="flex flex-col md:flex-row gap-4"><div class="md:w-48 h-32 skeleton-line rounded-lg"></div><div class="flex-1 space-y-2"><div class="skeleton-line w-3/4"></div><div class="skeleton-line w-1/2"></div><div class="skeleton-line w-full"></div></div></div></div>
                     <div class="skeleton-card"><div class="flex flex-col md:flex-row gap-4"><div class="md:w-48 h-32 skeleton-line rounded-lg"></div><div class="flex-1 space-y-2"><div class="skeleton-line w-3/4"></div><div class="skeleton-line w-1/2"></div><div class="skeleton-line w-full"></div></div></div></div>
                 </div>
             </div>
             
-            <div id="today-section" class="hidden max-w-4xl mx-auto"><h2 class="text-2xl md:text-3xl font-bold mb-4 flex items-center gap-3">
+            <div id="today-section" class="hidden max-w-4xl mx-auto"><h2 class="text-2xl md:text-3xl font-semibold mb-4 flex items-center gap-3 brand-font">
                 <span class="relative flex h-3 w-3"><span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75"></span><span class="relative inline-flex rounded-full h-3 w-3 bg-green-500"></span></span>
-                <span class="text-white brand-font text-gradient">Today's Sparks</span>
+                <span class="text-white text-gradient">Today's Sparks</span>
             </h2><div id="today-sparks" class="grid gap-6"></div></div>
             <div id="previous-section" class="hidden max-w-4xl mx-auto">
-                <h2 class="text-2xl font-bold mb-4 brand-font text-gradient">Previous Sparks</h2>
+                <h2 class="text-2xl font-semibold mb-4 brand-font text-gradient">Previous Sparks</h2>
                 <div id="previous-sparks" class="grid gap-6"></div>
                 <div id="load-more-container" class="text-center mt-8"></div>
             </div>
@@ -494,7 +495,7 @@
         </section>
         
         <nav class="mt-12" aria-label="Quick links">
-            <h2 class="text-2xl font-bold mb-6 text-center brand-font text-gradient">Quick Links</h2>
+            <h2 class="text-2xl font-semibold mb-6 text-center brand-font text-gradient">Quick Links</h2>
             <div class="grid grid-cols-1 md:grid-cols-3 gap-4 max-w-3xl mx-auto">
                 <a href="https://www.patreon.com/kimberlynfoster" class="card p-6 flex items-center gap-4 hover:!scale-105" rel="noopener noreferrer" target="_blank">
                     <div class="p-3 rounded-full bg-pink-500/20"><svg class="w-6 h-6 text-pink-400" fill="currentColor" viewBox="0 0 20 20" aria-hidden="true"><path fill-rule="evenodd" d="M3.172 5.172a4 4 0 015.656 0L10 6.343l1.172-1.171a4 4 0 115.656 5.656L10 17.657l-6.828-6.829a4 4 0 010-5.656z" clip-rule="evenodd"/></svg></div>
@@ -528,7 +529,7 @@
     <div id="welcome-modal" class="fixed inset-0 bg-black/50 backdrop-blur-sm hidden flex items-center justify-center p-4 z-50" role="dialog" aria-labelledby="welcome-modal-title" aria-modal="true">
         <div class="card p-8 relative max-w-2xl w-full">
             <button id="close-welcome-modal" class="absolute top-4 right-4 text-muted hover:text-primary transition-colors" aria-label="Close modal"><svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg></button>
-            <h2 id="welcome-modal-title" class="text-2xl md:text-3xl font-bold mb-6 brand-font text-gradient text-center">What is the Creative Sprint?</h2>
+            <h2 id="welcome-modal-title" class="text-2xl md:text-3xl font-semibold mb-6 brand-font text-gradient text-center">What is the Creative Sprint?</h2>
             <p class="text-lg text-text-secondary mb-4">
                 For the next 90 days, I’m throwing myself into an experiment in making. The Creative Sprint isn't about perfection or polish, it’s about rhythm and rigor. Each week I’ll take on a theme—pop culture, politics, or the messy intersections of gender, race, capitalism, and art—and build a body of work around it. Videos, essays, livestreams, podcasts, posts—each orbiting the same core questions, each in conversation with the others.
             </p>
@@ -554,7 +555,7 @@
     <div id="subscribe-modal" class="fixed inset-0 bg-black/50 backdrop-blur-sm hidden flex items-center justify-center p-4 z-50" role="dialog" aria-labelledby="subscribe-modal-title" aria-modal="true">
         <div class="card p-6 relative max-w-lg w-full">
             <button id="close-subscribe" class="absolute top-4 right-4 text-muted hover:text-primary transition-colors" aria-label="Close modal"><svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg></button>
-            <h2 id="subscribe-modal-title" class="text-2xl font-bold mb-4 text-center brand-font text-gradient">Join the Newsletter!</h2>
+            <h2 id="subscribe-modal-title" class="text-2xl font-semibold mb-4 text-center brand-font text-gradient">Join the Newsletter!</h2>
             <p class="text-muted mb-6 text-center">Get exclusive updates, behind-the-scenes content, and early access to sparks straight to your inbox!</p>
             <div class="bg-white rounded-xl p-1"><iframe src="https://kimberlynfoster.substack.com/embed" width="100%" height="320" style="border:1px solid #EEE; background:white;" frameborder="0" scrolling="no" title="Subscribe to newsletter"></iframe></div>
         </div>
@@ -563,7 +564,7 @@
     <div id="sms-modal" class="fixed inset-0 bg-black/50 backdrop-blur-sm hidden flex items-center justify-center p-4 z-50" role="dialog" aria-labelledby="sms-modal-title" aria-modal="true">
         <div class="card p-8 relative max-w-lg w-full">
             <button id="close-sms-modal" class="absolute top-4 right-4 text-muted hover:text-primary transition-colors" aria-label="Close SMS modal"><svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg></button>
-            <h2 id="sms-modal-title" class="text-2xl font-bold mb-2 text-center brand-font text-gradient">Get SMS Alerts</h2>
+            <h2 id="sms-modal-title" class="text-2xl font-semibold mb-2 text-center brand-font text-gradient">Get SMS Alerts</h2>
             <p class="text-muted mb-6 text-center">Be the first to know when new sparks go live, get reminders, and receive exclusive tips.</p>
             <div class="tm-widget-container">
                 <script src="https://widgets.textmagic.com/widget-script.js" data-code="ca975eb0fab8d2e" data-type="subscribe" defer></script>
@@ -819,7 +820,7 @@
                 <div class="flex-1 p-4 md:p-5 flex flex-col">
                     <span class="tag ${spark.access === 'Paid' ? 'tag-paid' : 'tag-free'} absolute top-3 right-3">${spark.access}</span>
                     <div class="flex-grow space-y-2 mt-4">
-                        <h3 class="text-2xl font-semibold leading-tight hover:text-accent transition-colors brand-font">
+                        <h3 class="text-xl font-medium leading-tight hover:text-accent transition-colors">
                           <a href="${spark.link}" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1.5">${escapeHtml(spark.title)} <svg class="w-4 h-4 opacity-50 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path></svg></a>
                         </h3>
                         <p class="text-base text-muted line-clamp-3" style="line-height: 1.5;">${escapeHtml(spark.description)}</p>
@@ -1196,4 +1197,5 @@
     </script>
 </body>
 </html>
+
 
