@@ -47,17 +47,17 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
       :root {
-        --bg-dark: #12072B;
-        --bg-center: #2E144F;
-        --bg-edge: #1D0D37;
-        --surface: rgba(29, 21, 50, 0.8);
-        --surface-hover: rgba(39, 30, 64, 0.9);
-        --accent: #a78bfa;
-        --accent-bright: #c4b5fd;
-        --accent-start: #C6B6F7;
-        --accent-end:   #D1D5DB;
-        --cta: #c4b5fd;
-        --cta-hover: #a78bfa;
+        --bg-dark: #13072A;
+        --bg-center: #2F144E;
+        --bg-edge: #1E0D36;
+        --surface: rgba(30, 21, 49, 0.8);
+        --surface-hover: rgba(40, 30, 63, 0.9);
+        --accent: #aa8bfa;
+        --accent-bright: #c5b5fd;
+        --accent-start: #C7B8F8;
+        --accent-end:   #E0D8D5;
+        --cta: #cbbdff;
+        --cta-hover: #b2a3ff;
         --text-primary: #F9FAFB;
         --text-secondary: #D1D5DB;
         --text-muted: #9CA3AF;
@@ -69,7 +69,7 @@
         --error: #f87171;
         --border-color: rgba(167, 139, 250, 0.1);
         --border-color-hover: rgba(167, 139, 250, 0.2);
-        --purple-glow: rgba(150, 129, 237, 0.4);
+        --purple-glow: rgba(160, 140, 240, 0.4);
         --cursor-x: 50vw;
         --cursor-y: 50vh;
       }
@@ -79,17 +79,17 @@
       body {
         font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
         background: radial-gradient(ellipse at top center, 
-            rgba(76, 45, 113, 0.4) 0%, 
+            rgba(78, 45, 113, 0.4) 0%, 
             transparent 50%
           ),
           radial-gradient(ellipse at bottom right, 
-            rgba(90, 28, 135, 0.2) 0%, 
+            rgba(92, 28, 135, 0.2) 0%, 
             transparent 50%
           ),
           linear-gradient(180deg, 
-            #190f28 0%, 
-            #13072b 50%,
-            #0b0416 100%
+            #1a0f27 0%, 
+            #14072a 50%,
+            #0c0415 100%
           );
         min-height: 100vh;
         color: var(--text-primary);
@@ -157,7 +157,7 @@
 
       /* Components */
        .frosted-header {
-        background-color: rgba(24, 15, 40, 0.8);
+        background-color: rgba(26, 15, 40, 0.8);
         backdrop-filter: blur(12px);
         -webkit-backdrop-filter: blur(12px);
         border-bottom: 1px solid rgba(255, 255, 255, 0.1);
@@ -1062,7 +1062,6 @@
             updateItemListSchema(publishedSparks.slice(0, 10));
         };
         
-        // --- DATA LOGIC ---
         const applyFiltersAndSort = (scrollObserver) => {
             state.visiblePreviousSparks = SPARKS_PER_PAGE;
             const publishedSparks = state.allSparks.filter(d => d.status === 'published');
@@ -1121,7 +1120,6 @@
             }
         }
         
-        // --- EVENT LISTENERS & HANDLERS ---
         const handleAdminFormSubmit = async (e) => {
             e.preventDefault();
             const sparkData = {
@@ -1241,14 +1239,12 @@
             }
         };
         
-        // --- AUTH LOGIC ---
         const provider = new GoogleAuthProvider();
         async function signInWithGoogle() {
             try { await signInWithPopup(auth, provider); showToast("Sign-in successful!", "success"); } 
             catch (error) { showToast(`Sign-in failed: ${error.message}`, "error"); }
         }
         
-        // --- INITIAL SETUP ---
         document.addEventListener('DOMContentLoaded', () => {
             const app = initializeApp(firebaseConfig);
             auth = getAuth(app);
@@ -1285,7 +1281,6 @@
             setInterval(updateProgress, 60000);
             setInterval(updateWeeklyTheme, 60000 * 60);
 
-            // Modal Handlers
             const setupModal = (modal, openBtns, closeBtn) => {
                 openBtns.forEach(btn => btn?.addEventListener('click', () => modal?.classList.remove('hidden')));
                 closeBtn?.addEventListener('click', () => modal?.classList.add('hidden'));
@@ -1337,3 +1332,5 @@
     </script>
 </body>
 </html>
+
+
