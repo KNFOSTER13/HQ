@@ -320,8 +320,8 @@
                 </button>
             </div>
         </nav>
-        <div id="header-progress-bar" role="progressbar" aria-valuemin="0" aria-valuemax="90" aria-valuenow="1" class="w-full header-progress-bar">
-            <div class="header-progress-fill" style="width: 1%;"></div>
+        <div id="header-progress-bar" role="progressbar" aria-valuemin="0" aria-valuemax="90" aria-valuenow="1" class="w-full h-1 bg-white/10">
+            <div class="header-progress-fill h-full" style="width: 1%;"></div>
         </div>
     </header>
 
@@ -364,6 +364,7 @@
             <div class="p-6">
                 <h2 class="font-semibold mb-4 flex items-center gap-2 brand-font"><svg class="w-6 h-6 text-accent" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6"></path></svg>Add or Edit Entry</h2>
                 <form id="spark-form" class="space-y-4" novalidate>
+                    <!-- Form fields unchanged except for footnotes -->
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
                         <div><label for="spark-title" class="block text-sm font-medium mb-1">Title *</label><input type="text" id="spark-title" class="form-input" required maxlength="200" aria-required="true"></div>
                         <div><label for="spark-type" class="block text-sm font-medium mb-1">Content Type *</label><select id="spark-type" class="form-input" aria-required="true"><option>Video</option><option>Podcast</option><option>Essay</option><option>Social Post</option><option>Newsletter</option><option>Tutorial</option><option>Other</option></select></div>
@@ -540,7 +541,6 @@
             'weekly-theme', 'welcome-modal', 'show-welcome-btn', 'close-welcome-modal', 'spark-form', 'publish-btn', 
             'publish-btn-text', 'cancel-edit-btn', 'feed-container', 'skeleton-loaders', 'load-more-container',
             'chapter-markers', 'view-toggle-grid', 'view-toggle-toc', 'toc-view', 'header-progress-bar',
-            'epigraph-text', 'epigraph-author'
         ];
         
         const weeklyThemes = [
@@ -594,6 +594,15 @@
             DOMElements.publishBtnText.textContent = 'Update Entry';
             DOMElements.cancelEditBtn.classList.remove('hidden');
             window.scrollTo({ top: DOMElements.adminPanel.offsetTop - 80, behavior: 'smooth' });
+        };
+
+        const checkFormValidity = () => {
+            if (!DOMElements.sparkForm) return;
+            const isValidLink = (link) => { try { new URL(link); return true; } catch { return false; }};
+            const title = document.getElementById('spark-title').value.trim();
+            const desc = document.getElementById('spark-description').value.trim();
+            const link = document.getElementById('spark-link').value.trim();
+            DOMElements.publishBtn.disabled = !(title && desc && isValidLink(link));
         };
         
         const createEntryCard = (entry, scrollObserver) => {
@@ -805,6 +814,7 @@
             setupModal(DOMElements.welcomeModal, [DOMElements.showWelcomeBtn], DOMElements.closeWelcomeModal);
             setupModal(DOMElements.subscribeModal, [DOMElements.subscribeBtn, DOMElements.heroSubscribeBtn], DOMElements.closeSubscribe);
 
+            DOMElements.sparkForm?.addEventListener('input', checkFormValidity);
             DOMElements.sparkForm?.addEventListener('submit', async (e) => {
                 e.preventDefault();
                 const formData = {
@@ -853,3 +863,4 @@
     </script>
 </body>
 </html>
+
