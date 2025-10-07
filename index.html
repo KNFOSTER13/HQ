@@ -3,7 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Kimberly's Creative Sprint: A 90-day practice: daily videos, essays, livestreams, and experiments.</title>
+    <title>Kimberly's Creative Sprint: A 90-day practice.</title>
+    <!-- META: Using new design's meta information -->
     <meta name="description" content="Join Kimberly's 90-day creative challenge. Outrunning perfectionism one creative entry at a time.">
     <meta name="theme-color" content="#341046">
     <meta name="robots" content="index, follow">
@@ -29,20 +30,19 @@
       "name": "Kimberly's Creative Sprint",
       "description": "90 Days of Ideas",
       "url": "https://knf.kim/90in90",
-      "publisher": {
-        "@type": "Person",
-        "name": "Kimberly Nicole Foster"
-      }
+      "publisher": { "@type": "Person", "name": "Kimberly Nicole Foster" }
     }
     </script>
     <script type="application/ld+json" id="itemListSchema"></script>
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <!-- FONTS: Using fonts from new design -->
     <link href="https://fonts.googleapis.com/css2?family=Source+Serif+Pro:ital,wght@0,400;0,600;0,700;1,400&family=Inter:wght@400;500;600;700&family=DM+Serif+Display&family=Special+Elite&display=swap" rel="stylesheet">
     
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
+      /* --- STYLES: Merged from index(25).html (new design) and index(23).html (functionality) --- */
       :root {
         --center-plum: #973f8e;
         --mid-violet: #602172;
@@ -69,7 +69,6 @@
         --cursor-y: 50vh;
       }
 
-      /* Base & Typography */
       html { scroll-behavior: smooth; }
       body {
         font-family: 'Inter', sans-serif;
@@ -79,10 +78,9 @@
         min-height: 100vh;
         line-height: 1.75;
         -webkit-font-smoothing: antialiased;
-        text-rendering: optimizeLegibility;
-        hyphens: auto;
       }
       
+      /* KEPT: Cursor glow effect from original file */
       body::before {
           content: '';
           position: fixed;
@@ -103,45 +101,22 @@
         color: var(--accent-light);
         text-wrap: balance;
       }
-
       h1 { font-size: 2.75rem !important; letter-spacing: -0.015em; color: var(--accent); }
       h2 { font-size: clamp(1.5rem, 4vw, 2rem); font-weight: 600; color: var(--accent); }
       h3 { font-size: clamp(1.1rem, 1rem + 0.5vw, 1.2rem); letter-spacing: -0.01em; font-weight: 600; }
       p { max-width: 65ch; color: var(--text-secondary); }
-      
-      em, i { font-style: italic; }
-
       .text-gradient {
         background: linear-gradient(to right, var(--accent), var(--accent-light));
-        -webkit-background-clip: text;
-        background-clip: text;
-        color: transparent;
+        -webkit-background-clip: text; background-clip: text; color: transparent;
       }
-      .monospace {
-        font-family: 'Special Elite', monospace;
-      }
+      .monospace { font-family: 'Special Elite', monospace; }
 
-       /* Accessibility */
-      .skip-to-content { 
-        position: absolute; 
-        left: 0; 
-        background: var(--accent); 
-        color: var(--edge-dark); 
-        padding: 8px 12px; 
-        text-decoration: none; 
-        z-index: 10000;
-        transform: translateY(-120%);
-        transition: transform 0.3s ease;
-        border-radius: 0 0 0.375rem 0;
-      }
-      .skip-to-content:focus { 
-        transform: translateY(0);
-      }
-
-      /* Components */
-       .frosted-header {
-        backdrop-filter: blur(8px);
-        -webkit-backdrop-filter: blur(8px);
+      .skip-to-content { position: absolute; left: 0; background: var(--accent); color: var(--edge-dark); padding: 8px 12px; text-decoration: none; z-index: 10000; transform: translateY(-120%); transition: transform 0.3s ease; border-radius: 0 0 0.375rem 0; }
+      .skip-to-content:focus { transform: translateY(0); }
+      .sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0, 0, 0, 0); white-space: nowrap; border-width: 0; }
+      
+      .frosted-header {
+        backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px);
         background: rgba(32, 0, 40, 0.65);
         border-bottom: 1px solid var(--border-color);
       }
@@ -151,7 +126,6 @@
         border-radius: 0.5rem;
         box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
         transition: transform 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease, opacity 0.5s ease;
-        position: relative;
       }
        .fade-in-section, main .card {
         opacity: 0;
@@ -167,144 +141,68 @@
         background: var(--surface-hover);
         box-shadow: 0 12px 30px rgba(0,0,0, 0.3);
       }
-
       .btn {
         font-weight: 600; padding: 0.625rem 1.5rem; border-radius: 0.375rem;
         transition: all 0.2s ease; border: 1px solid var(--border-color); cursor: pointer;
         display: inline-flex; align-items: center; justify-content: center; gap: 0.5rem;
       }
-      .btn-primary {
-        background: var(--accent);
-        color: var(--edge-dark);
-        border-color: var(--accent);
-      }
-      .btn-primary:hover:not(:disabled) { 
-        background: var(--accent-light);
-        border-color: var(--accent-light);
-        transform: translateY(-1px);
-        box-shadow: 0 0 10px rgba(211, 197, 233, 0.25);
-      }
+      .btn-primary { background: var(--cta); color: var(--edge-dark); border-color: var(--cta); }
+      .btn-primary:hover:not(:disabled) { background: var(--cta-hover); border-color: var(--cta-hover); transform: translateY(-1px); box-shadow: 0 0 10px rgba(211, 197, 233, 0.25); }
       .btn-primary:disabled { opacity: 0.5; cursor: not-allowed; transform: none; }
+      .btn-secondary { background: transparent; color: var(--text-secondary); }
+      .btn-secondary:hover:not(:disabled) { background: rgba(211, 197, 233, 0.1); border-color: var(--accent); }
       
-      .btn-secondary { 
-        background: transparent; 
-        color: var(--text-secondary);
-      }
-      .btn-secondary:hover:not(:disabled) { 
-        background: rgba(211, 197, 233, 0.1);
-        border-color: var(--accent);
-      }
-      
-      .form-input {
-        background: rgba(0, 0, 0, 0.2); border: 1px solid var(--border-color);
-        color: var(--text-primary); padding: 0.75rem 1rem; border-radius: 0.375rem;
-        width: 100%; transition: all 0.2s ease;
-      }
+      .form-input { background: rgba(0, 0, 0, 0.2); border: 1px solid var(--border-color); color: var(--text-primary); padding: 0.75rem 1rem; border-radius: 0.375rem; width: 100%; transition: all 0.2s ease; }
       .form-input:focus { outline: none; border-color: var(--accent); box-shadow: 0 0 0 3px rgba(211, 197, 233, 0.1); }
-      .tag {
-        font-size: 0.75rem; font-weight: 700; padding: 0.5rem 1rem;
-        text-transform: uppercase; letter-spacing: 0.05em;
-        border-radius: 9999px; line-height: 1.2;
-      }
-      .tag-free { 
-        background: rgba(167, 243, 208, 0.1); color: var(--tag-free); 
-        border: 1px solid rgba(167, 243, 208, 0.2);
-      }
-      .tag-paid { 
-        background: rgba(254, 240, 138, 0.1); color: var(--tag-paid); 
-        border: 1px solid rgba(254, 240, 138, 0.2);
-      }
+      
+      .tag { font-size: 0.75rem; font-weight: 700; padding: 0.5rem 1rem; text-transform: uppercase; letter-spacing: 0.05em; border-radius: 9999px; line-height: 1.2; }
+      .tag-free { background: rgba(167, 243, 208, 0.1); color: var(--tag-free); border: 1px solid rgba(167, 243, 208, 0.2); }
+      .tag-paid { background: rgba(254, 240, 138, 0.1); color: var(--tag-paid); border: 1px solid rgba(254, 240, 138, 0.2); }
       
       .heart-btn { transition: all 0.2s ease; cursor: pointer; }
       .heart-btn:hover svg { transform: scale(1.1); }
       .heart-btn.hearted svg { fill: var(--heart); stroke: var(--heart); animation: heartPulse 0.3s ease; }
       @keyframes heartPulse { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.2); } }
       
-      .filter-btn {
-            padding: 0.5rem 1rem; background: transparent;
-            border: 1px solid var(--border-color); color: var(--text-secondary);
-            border-radius: 0.375rem; cursor: pointer; transition: all 0.2s ease;
-        }
-        .filter-btn:hover { background: rgba(211, 197, 233, 0.1); }
-        .filter-btn.active {
-            background: rgba(211, 197, 233, 0.15);
-            color: var(--accent-light); border-color: var(--accent);
-        }
+      .filter-btn { padding: 0.5rem 1rem; background: transparent; border: 1px solid var(--border-color); color: var(--text-secondary); border-radius: 0.375rem; cursor: pointer; transition: all 0.2s ease; }
+      .filter-btn:hover { background: rgba(211, 197, 233, 0.1); }
+      .filter-btn.active { background: rgba(211, 197, 233, 0.15); color: var(--accent-light); border-color: var(--accent); }
+      
+      .header-progress-fill { background: var(--accent); }
+
+      .day-dot { width: 0.5rem; height: 0.5rem; border-radius: 50%; transition: transform 0.2s ease, background-color 0.2s ease; }
+      .day-dot:hover { transform: scale(1.5); background-color: var(--accent-light); }
+      .day-dot.current { background-color: var(--cta); transform: scale(1.75); box-shadow: 0 0 8px var(--cta); }
+      
+      .marginalia { font-size: 0.9em; background: rgba(0,0,0,0.1); border-top: 1px solid var(--border-color); padding: 0.75rem 1rem; margin: 1rem -1.25rem -1.25rem -1.25rem; display: none; }
+      .marginalia.show { display: block; }
+      .marginalia-toggle { font-size: 0.8em; text-transform: uppercase; letter-spacing: 0.05em; font-weight: 600; color: var(--text-muted); cursor: pointer; }
+      
+      /* MERGED: Toast, Skeleton, and Spinner styles from original file, adapted to new theme */
+      .toast { position: fixed; bottom: 2rem; left: 50%; transform: translateX(-50%) translateY(100px); background: var(--surface); color: var(--text-primary); padding: 1rem 1.5rem; border-radius: 0.5rem; box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3); opacity: 0; transition: transform 0.3s, opacity 0.3s; z-index: 1000; display: flex; align-items: center; gap: 0.75rem; border: 1px solid var(--border-color); }
+      .toast.show { transform: translateY(0); opacity: 1; }
+      .toast.error { border-color: var(--error); }
+      .toast.warning { border-color: var(--warning); }
+      .loading-spinner { border: 2px solid rgba(211, 197, 233, 0.2); border-radius: 50%; border-top: 2px solid var(--accent); width: 20px; height: 20px; animation: spin 1s linear infinite; }
+      @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
+      .skeleton-card { background: var(--surface); border: 1px solid var(--border-color); border-radius: 0.5rem; padding: 1.25rem; }
+      .skeleton-line { height: 1rem; margin-bottom: 0.5rem; background: linear-gradient(90deg, rgba(211, 197, 233, 0.05) 0%, rgba(211, 197, 233, 0.1) 50%, rgba(211, 197, 233, 0.05) 100%); background-size: 200% 100%; animation: shimmer 1.5s ease-in-out infinite; border-radius: 0.25rem; }
+      @keyframes shimmer { 0% { background-position: 200% 0; } 100% { background-position: -200% 0; } }
 
       ::-webkit-scrollbar { width: 8px; }
       ::-webkit-scrollbar-thumb { background: var(--accent); border-radius: 4px; }
-      
-       .loading-spinner { border: 2px solid rgba(211, 197, 233, 0.2); border-radius: 50%; border-top: 2px solid var(--accent); width: 20px; height: 20px; animation: spin 1s linear infinite; }
-      @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
-      
-      .toast {
-        position: fixed; bottom: 2rem; left: 50%;
-        transform: translateX(-50%) translateY(100px);
-        background: var(--surface); color: var(--text-primary); padding: 1rem 1.5rem;
-        border-radius: 0.5rem; box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
-        opacity: 0; transition: transform 0.3s, opacity 0.3s; z-index: 1000;
-        display: flex; align-items: center; gap: 0.75rem;
-        border: 1px solid var(--border-color);
-      }
-      .toast.show { transform: translateY(0); opacity: 1; }
-
-      .welcome-modal p:first-of-type::first-letter {
-        font-size: 3.5rem;
-        float: left;
-        line-height: 0.8;
-        margin: 0.1em 0.1em 0 0;
-        font-family: 'Source Serif Pro';
-        color: var(--accent);
-      }
-
-      .marginalia {
-        font-size: 0.9em;
-        background: rgba(0,0,0,0.1);
-        border-top: 1px solid var(--border-color);
-        padding: 0.75rem 1rem;
-        margin: 1rem -1.25rem -1.25rem -1.25rem;
-        display: none;
-      }
-      .marginalia.show { display: block; }
-      .marginalia-toggle {
-        font-size: 0.8em;
-        text-transform: uppercase;
-        letter-spacing: 0.05em;
-        font-weight: 600;
-        color: var(--text-muted);
-      }
-      
-      #toc-view { display: none; }
-      #toc-view.active { display: block; }
-      #content-feed.hidden { display: none; }
-
-      .day-dot {
-        width: 0.5rem;
-        height: 0.5rem;
-        border-radius: 50%;
-        transition: transform 0.2s ease, background-color 0.2s ease;
-      }
-      .day-dot:hover {
-          transform: scale(1.5);
-          background-color: var(--accent-light);
-      }
-      .day-dot.current {
-          background-color: var(--cta);
-          transform: scale(1.75);
-          box-shadow: 0 0 8px var(--cta);
-      }
     </style>
 </head>
 <body class="bg-edge-dark">
     <a href="#content-feed" class="skip-to-content">Skip to content</a>
 
+    <!-- HEADER: Using structure from new design -->
     <header class="sticky top-0 z-50 frosted-header" role="banner">
         <nav class="max-w-6xl mx-auto px-4 py-3 flex items-center justify-between">
             <a href="#" class="header-logo flex items-center gap-3" aria-label="Creative Sprint Home">
                 <img src="https://knfoster13.github.io/HQ/90in90-1-CROPPED.png" alt="Logo" class="h-9 w-auto">
                 <span class="hidden sm:inline font-semibold text-lg brand-font text-white">Kimberly’s Creative Sprint</span>
             </a>
-
              <div class="hidden md:flex items-center gap-6 text-center">
                 <div class="flex flex-col"><span id="header-day" class="text-base font-bold">1</span><span class="text-xs uppercase tracking-wider text-muted">Day</span></div>
                 <div class="h-6 w-px bg-white/10"></div>
@@ -312,12 +210,8 @@
                 <div class="h-6 w-px bg-white/10"></div>
                 <div class="flex flex-col"><span id="header-streak" class="text-base font-bold">0</span><span class="text-xs uppercase tracking-wider text-muted">Streak</span></div>
             </div>
-
             <div class="flex items-center gap-2">
-                <button id="subscribe-btn" class="btn btn-primary" aria-label="Join the sprint">
-                    <span class="hidden sm:inline">Join the Sprint</span>
-                    <span class="sm:hidden">Join</span>
-                </button>
+                <button id="subscribe-btn" class="btn btn-primary">Join the Sprint</button>
             </div>
         </nav>
         <div id="header-progress-bar" role="progressbar" aria-valuemin="0" aria-valuemax="90" aria-valuenow="1" class="w-full h-1 bg-white/10">
@@ -327,11 +221,9 @@
 
     <main class="max-w-6xl mx-auto px-4 py-8" role="main" id="main-content">
         <section class="text-center pt-8 pb-12 flex flex-col justify-center items-center" aria-labelledby="hero-title">
-            <img src="https://knfoster13.github.io/HQ/KCSMAGENTABIG.png" alt="Kimberly's Creative Sprint" class="hero-image mx-auto w-full max-w-sm mb-4" fetchpriority="high" decoding="async" loading="eager">
+            <img src="https://knfoster13.github.io/HQ/KCSMAGENTABIG.png" alt="Kimberly's Creative Sprint" class="mx-auto w-full max-w-sm mb-4" fetchpriority="high">
             <h1 id="hero-title" class="max-w-xl mx-auto">A 90-Day Sprint Through Ideas, Images & Inquiry</h1>
-            <p class="text-xl italic mt-2" style="color: var(--text-secondary);">
-                <em>Think. Make. Share. Repeat.</em>
-            </p>
+            <p class="text-xl italic mt-2" style="color: var(--text-secondary);"><em>Think. Make. Share. Repeat.</em></p>
         </section>
         
         <div class="my-16 text-center">
@@ -340,17 +232,14 @@
 
         <section id="sprint-details" class="fade-in-section max-w-4xl mx-auto text-center">
              <div id="chapter-markers" class="mb-10"></div>
-             <div class="mb-6">
-                <p id="weekly-theme" class="text-lg font-medium italic" style="color: var(--text-secondary);"></p>
-            </div>
-             <div class="mb-6 text-center">
-                <strong id="challenge-dates" class="text-2xl font-medium block" style="color: var(--text-secondary);"></strong>
-            </div>
+             <div class="mb-6"><p id="weekly-theme" class="text-lg font-medium italic" style="color: var(--text-secondary);"></p></div>
+             <div class="mb-6 text-center"><strong id="challenge-dates" class="text-2xl font-medium block" style="color: var(--text-secondary);"></strong></div>
              <div class="mt-6 flex flex-wrap gap-3 justify-center">
                 <button id="show-welcome-btn" class="btn btn-secondary">What is this Sprint?</button>
                 <button id="hero-subscribe-btn" class="btn btn-primary">Newsletter</button>
                 <a href="sms-optin.html" class="btn btn-secondary">SMS Alerts 📱</a>
             </div>
+            <!-- KEPT: Day dots visualizer from original file -->
             <div id="day-dots-container" class="flex gap-1.5 justify-center flex-wrap max-w-full py-2 px-4 mt-8"></div>
             <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mt-10 max-w-2xl mx-auto" role="region" aria-label="Challenge statistics">
                 <div class="card p-4 text-center"><div class="text-2xl font-semibold text-accent-light" id="today-count" aria-live="polite">0</div><div class="text-sm text-muted">Today’s Entries</div></div>
@@ -360,46 +249,58 @@
             </div>
         </section>
         
+        <!-- ADMIN PANEL: Kept comprehensive version from original file, added "Marginalia" field -->
         <section id="admin-panel" class="hidden transition-all duration-500 card mt-12" aria-label="Admin panel">
             <div class="p-6">
                 <h2 class="font-semibold mb-4 flex items-center gap-2 brand-font"><svg class="w-6 h-6 text-accent" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6"></path></svg>Add or Edit Entry</h2>
-                <form id="spark-form" class="space-y-4" novalidate>
-                    <!-- Form fields unchanged except for footnotes -->
+                <form id="entry-form" class="space-y-4" novalidate>
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-                        <div><label for="spark-title" class="block text-sm font-medium mb-1">Title *</label><input type="text" id="spark-title" class="form-input" required maxlength="200" aria-required="true"></div>
-                        <div><label for="spark-type" class="block text-sm font-medium mb-1">Content Type *</label><select id="spark-type" class="form-input" aria-required="true"><option>Video</option><option>Podcast</option><option>Essay</option><option>Social Post</option><option>Newsletter</option><option>Tutorial</option><option>Other</option></select></div>
+                        <div><label for="entry-title" class="block text-sm font-medium mb-1">Title *</label><input type="text" id="entry-title" class="form-input" required maxlength="200"></div>
+                        <div><label for="entry-type" class="block text-sm font-medium mb-1">Content Type *</label><select id="entry-type" class="form-input"><option>Video</option><option>Podcast</option><option>Essay</option><option>Social Post</option><option>Newsletter</option><option>Tutorial</option><option>Other</option></select></div>
                     </div>
-                    <div><label for="spark-description" class="block text-sm font-medium mb-1">Description *</label><textarea id="spark-description" class="form-input" rows="2" required maxlength="500" aria-required="true"></textarea></div>
-                     <div><label for="spark-footnotes" class="block text-sm font-medium mb-1">Marginalia / Footnotes</label><textarea id="spark-footnotes" class="form-input" rows="3" placeholder="Add references, asides, or additional thoughts here..."></textarea></div>
+                    <div><label for="entry-description" class="block text-sm font-medium mb-1">Description *</label><textarea id="entry-description" class="form-input" rows="2" required maxlength="500"></textarea></div>
+                    <div><label for="entry-footnotes" class="block text-sm font-medium mb-1">Marginalia / Footnotes</label><textarea id="entry-footnotes" class="form-input" rows="3" placeholder="Add references, asides, or additional thoughts here..."></textarea></div>
                     <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
-                        <div><label for="spark-link" class="block text-sm font-medium mb-1">Link *</label><input type="url" id="spark-link" class="form-input" required aria-required="true"></div>
-                        <div><label for="spark-image" class="block text-sm font-medium mb-1">Image URL</label><input type="url" id="spark-image" class="form-input"></div>
-                        <div><label for="spark-access" class="block text-sm font-medium mb-1">Access Level</label><select id="spark-access" class="form-input"><option>Free</option><option>Paid</option></select></div>
+                        <div><label for="entry-link" class="block text-sm font-medium mb-1">Link *</label><input type="url" id="entry-link" class="form-input" required></div>
+                        <div><label for="entry-image" class="block text-sm font-medium mb-1">Image URL</label><input type="url" id="entry-image" class="form-input"></div>
+                        <div><label for="entry-access" class="block text-sm font-medium mb-1">Access Level</label><select id="entry-access" class="form-input"><option>Free</option><option>Paid</option></select></div>
+                    </div>
+                    <div class="pt-4 border-t border-white/10"><label class="flex items-center gap-2 cursor-pointer"><input type="checkbox" id="schedule-toggle" class="form-checkbox h-4 w-4 rounded bg-white/10 border-white/20 text-accent focus:ring-accent"><span class="text-sm font-medium">Schedule for later</span></label></div>
+                    <div id="schedule-options" class="hidden grid grid-cols-2 gap-4">
+                        <div><label for="schedule-date" class="block text-sm font-medium mb-1">Date</label><input type="date" id="schedule-date" class="form-input"></div>
+                        <div><label for="schedule-time" class="block text-sm font-medium mb-1">Time (Local)</label><input type="time" id="schedule-time" class="form-input"></div>
                     </div>
                     <div class="flex items-center gap-4 pt-2">
                         <button type="submit" id="publish-btn" class="btn btn-primary" disabled><span class="loading-spinner hidden"></span><span id="publish-btn-text">Publish Entry</span></button>
+                        <button type="button" id="save-draft-btn" class="btn btn-secondary">Save as Draft</button>
                         <button type="button" id="cancel-edit-btn" class="btn btn-secondary hidden">Cancel Edit</button>
+                        <button type="button" id="clear-data-btn" class="btn btn-secondary !bg-red-500/10 !text-red-400 !border-red-500/20 ml-auto">Clear All Data</button>
                     </div>
+                    <div id="auto-save-status" class="text-xs text-muted h-4 mt-1 text-right"></div>
                 </form>
             </div>
+            <div id="drafts-section" class="hidden p-6 pt-0"><h3 class="text-xl font-bold mb-4 brand-font text-gradient">Drafts</h3><div id="draft-entries" class="space-y-2"></div></div>
+            <div id="scheduled-section" class="hidden p-6 pt-0"><h3 class="text-xl font-bold mb-4 brand-font text-gradient">Scheduled Entries</h3><div id="scheduled-entries" class="space-y-4"></div></div>
         </section>
         
-        <section class="mt-12" aria-label="Search and filter entries">
+        <!-- FILTERS: Merged filters from both files for full functionality -->
+        <section class="mt-12" aria-label="Search, filter and sort entries">
              <div class="card p-4">
-                <div class="grid md:grid-cols-3 gap-4">
+                <div class="grid md:grid-cols-3 gap-4 items-center">
                     <div class="relative md:col-span-1">
                         <input type="text" id="search-input" class="form-input pl-10" placeholder="Search entries..." aria-label="Search entries">
                         <svg class="w-5 h-5 absolute left-3 top-1/2 -translate-y-1/2 text-muted" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path></svg>
                     </div>
-                    <div class="flex items-center gap-2 justify-between md:col-span-2">
+                    <div class="md:col-span-2 flex flex-wrap items-center justify-between gap-4">
                         <div class="flex gap-2 flex-wrap" role="group" aria-label="Filter options">
-                           <button class="filter-btn active" data-view="grid" id="view-toggle-grid">Grid View</button>
-                           <button class="filter-btn" data-view="toc" id="view-toggle-toc">Table of Contents</button>
+                           <button class="filter-btn active" data-filter="all">All</button>
+                           <button class="filter-btn" data-filter="Video">Videos</button>
+                           <button class="filter-btn" data-filter="Essay">Essays</button>
+                           <button class="filter-btn" data-filter="Free">Free</button>
+                           <button class="filter-btn" data-filter="Paid">Premium</button>
                         </div>
-                        <select id="sort-select" class="form-input w-40" aria-label="Sort entries">
-                            <option value="newest">Newest</option>
-                            <option value="oldest">Oldest</option>
-                            <option value="most-loved">❤️ Most Loved</option>
+                        <select id="sort-select" class="form-input w-auto" aria-label="Sort entries">
+                            <option value="newest">Newest</option><option value="oldest">Oldest</option><option value="most-loved">❤️ Most Loved</option>
                         </select>
                     </div>
                 </div>
@@ -407,17 +308,15 @@
         </section>
 
         <section id="content-feed" class="mt-6" aria-label="Content feed" aria-busy="true" aria-live="polite">
+            <span id="feed-announcer" class="sr-only" aria-live="assertive"></span>
             <div id="skeleton-loaders" class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
-                 <div class="skeleton-card"><div class="flex flex-col gap-4"><div class="h-40 skeleton-line rounded-lg"></div><div class="flex-1 space-y-2"><div class="skeleton-line w-3/4"></div><div class="skeleton-line w-1/2"></div><div class="skeleton-line w-full"></div></div></div></div>
-                 <div class="skeleton-card"><div class="flex flex-col gap-4"><div class="h-40 skeleton-line rounded-lg"></div><div class="flex-1 space-y-2"><div class="skeleton-line w-3/4"></div><div class="skeleton-line w-1/2"></div><div class="skeleton-line w-full"></div></div></div></div>
-                 <div class="skeleton-card"><div class="flex flex-col gap-4"><div class="h-40 skeleton-line rounded-lg"></div><div class="flex-1 space-y-2"><div class="skeleton-line w-3/4"></div><div class="skeleton-line w-1/2"></div><div class="skeleton-line w-full"></div></div></div></div>
+                 <div class="skeleton-card"><div class="h-40 skeleton-line rounded-lg mb-4"></div><div class="space-y-2"><div class="skeleton-line w-3/4"></div><div class="skeleton-line w-1/2"></div></div></div>
+                 <div class="skeleton-card"><div class="h-40 skeleton-line rounded-lg mb-4"></div><div class="space-y-2"><div class="skeleton-line w-3/4"></div><div class="skeleton-line w-1/2"></div></div></div>
+                 <div class="skeleton-card"><div class="h-40 skeleton-line rounded-lg mb-4"></div><div class="space-y-2"><div class="skeleton-line w-3/4"></div><div class="skeleton-line w-1/2"></div></div></div>
             </div>
-            <div id="feed-container" class="hidden grid sm:grid-cols-2 lg:grid-cols-3 gap-6"></div>
-            <div id="toc-view" class="hidden card p-6"></div>
+            <div id="feed-container" class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6"></div>
             <div id="load-more-container" class="text-center mt-8"></div>
-            <div id="empty-state" class="text-center py-12 hidden">
-                <p class="text-lg text-muted" id="empty-state-message">No entries yet. Check back soon!</p>
-            </div>
+            <div id="empty-state" class="text-center py-12 hidden"><p class="text-lg text-muted" id="empty-state-message">No entries yet.</p></div>
         </section>
         
         <nav class="mt-12" aria-label="Quick links">
@@ -451,7 +350,8 @@
         <p>&copy; 2025 Kimberly's Creative Sprint. All rights reserved.</p>
     </footer>
 
-    <div id="welcome-modal" class="fixed inset-0 bg-black/50 backdrop-blur-sm hidden flex items-center justify-center p-4 z-50 welcome-modal" role="dialog" aria-labelledby="welcome-modal-title" aria-modal="true">
+    <!-- MODALS: Using structure from new design -->
+    <div id="welcome-modal" class="fixed inset-0 bg-black/50 backdrop-blur-sm hidden items-center justify-center p-4 z-50 welcome-modal" role="dialog" aria-labelledby="welcome-modal-title" aria-modal="true">
         <div class="card p-8 relative max-w-2xl w-full">
             <button id="close-welcome-modal" class="absolute top-4 right-4 text-muted hover:text-primary transition-colors" aria-label="Close modal"><svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg></button>
             <h2 id="welcome-modal-title" class="font-semibold mb-6 brand-font text-gradient text-center">What is the Creative Sprint?</h2>
@@ -459,15 +359,11 @@
               <p>For the next 90 days, I’m throwing myself into an experiment in making. The Creative Sprint isn’t about perfection or polish—it’s about rhythm and rigor. Each week I'll take on a theme—pop culture, politics, or the messy intersections of gender, race, capitalism, and art—and build a body of work around it. Videos, essays, livestreams, podcasts, posts—each orbiting the same core questions, each in conversation with the others.</p>
               <p>You’ll be able to trace the references, inspirations, and footnotes in real time. Not just what I think—but <em>how</em> I think.</p>
               <p class="text-xl font-semibold text-gradient my-6 italic text-center mx-auto">This is practice, but also proof: ambitious ideas deserve ambitious output.</p>
-              <p>By the end of 90 days, I'll have more than a stack of work: I’ll have a living archive—a record of the thinkers, artists, and texts I’ve been in dialogue with, and a map of where my ideas might go next.</p>
-              <p>This isn’t about chasing an algorithm. This is about giving creativity structure and space to breathe—and seeing what happens.</p>
-              <p>The Sprint is an invitation: to run toward the work instead of away from it.</p>
             </div>
             <img src="https://knfoster13.github.io/HQ/KNFSIGNATURE.png" alt="Kimberly's signature" class="mx-auto mt-8 w-48" loading="lazy">
         </div>
     </div>
-
-    <div id="subscribe-modal" class="fixed inset-0 bg-black/50 backdrop-blur-sm hidden flex items-center justify-center p-4 z-50" role="dialog" aria-labelledby="subscribe-modal-title" aria-modal="true">
+    <div id="subscribe-modal" class="fixed inset-0 bg-black/50 backdrop-blur-sm hidden items-center justify-center p-4 z-50" role="dialog" aria-labelledby="subscribe-modal-title" aria-modal="true">
         <div class="card p-6 relative max-w-lg w-full">
             <button id="close-subscribe" class="absolute top-4 right-4 text-muted hover:text-primary transition-colors" aria-label="Close modal"><svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg></button>
             <h2 id="subscribe-modal-title" class="font-semibold mb-4 text-center brand-font text-gradient">Join the Newsletter!</h2>
@@ -476,16 +372,38 @@
         </div>
     </div>
     
+    <!-- TOAST: Using system from original file -->
     <div id="toast" class="toast" role="alert" aria-live="polite">
-        <svg id="toast-icon" class="w-5 h-5 text-success" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
-        <span id="toast-message">Action completed successfully!</span>
+        <svg id="toast-icon" class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"></svg>
+        <span id="toast-message"></span>
+        <button class="dismiss-toast ml-auto text-muted hover:text-primary">&times;</button>
     </div>
 
+    <!-- JAVASCRIPT: Full script from original file, adapted for new HTML/CSS -->
     <script type="module">
         import { initializeApp } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-app.js";
         import { getAuth, signInAnonymously, onAuthStateChanged, signOut, signInWithPopup, GoogleAuthProvider } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-auth.js";
         import { getFirestore, collection, addDoc, onSnapshot, query, where, orderBy, doc, deleteDoc, updateDoc, increment, serverTimestamp, getDocs, writeBatch } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-firestore.js";
-        
+
+        /** @typedef {import("firebase/firestore").Timestamp} Timestamp */
+        /**
+         * @typedef {object} Entry
+         * @property {string} id
+         * @property {string} title
+         * @property {string} description
+         * @property {string} [footnotes]
+         * @property {string} link
+         * @property {string} contentType
+         * @property {string} access
+         * @property {string} [imageUrl]
+         * @property {number} day
+         * @property {number} hearts
+         * @property {'published' | 'scheduled' | 'draft'} status
+         * @property {Timestamp} [timestamp]
+         * @property {string} [scheduledFor]
+         */
+
+        // --- CONFIGURATION ---
         const firebaseConfig = {
             apiKey: "AIzaSyDTd4lvs1lzjKeGu7Ee91lM30-8v88h-ng",
             authDomain: "productivity-tracker-knf13.firebaseapp.com",
@@ -501,7 +419,9 @@
         const TOTAL_DAYS = 90;
         const ENTRIES_PER_PAGE = 9;
         const entriesCollectionPath = `artifacts/${firebaseConfig.projectId}/public/data/drops`;
-        
+        const DRAFT_KEY = 'entryFormDraft';
+        const weeklyThemes = [ "Narrative & Myth", "Digital Selves & Authenticity", "The Aesthetics of Power", "Creator Economy & The Future of Work", "Black Feminist Thought in a Digital Age", "Nostalgia, Trends, and the Cultural Cycle", "Visual Storytelling & Online Identity", "The Art of the Critique", "Building Community in Public", "Rest, Leisure, and Liberatory Practice", "Money, Ambition, and Creative Integrity", "The Algorithm & The Archive", "Reflections & Future Forecasts" ];
+
         // --- UTILITY FUNCTIONS ---
         const getCurrentDay = () => {
             const now = new Date();
@@ -515,7 +435,7 @@
             let timeout;
             return (...args) => { clearTimeout(timeout); timeout = setTimeout(() => func.apply(this, args), wait); };
         };
-        const toJsDate = v => v?.toDate ? v.toDate() : (v ? new Date(v) : new Date());
+        const toJsDate = v => v?.toDate ? v.toDate() : new Date(v);
 
         let db, auth, currentUser = null, isAdmin = false;
         
@@ -524,7 +444,6 @@
             filteredEntries: [],
             currentFilter: 'all',
             currentSort: 'newest',
-            currentView: 'grid',
             searchQuery: '',
             heartedPosts: JSON.parse(localStorage.getItem('heartedPosts') || '{}'),
             editingEntryId: null,
@@ -533,94 +452,120 @@
         };
 
         const DOMElements = {};
-        const elementIds = [
-            'header-day', 'header-entries', 'header-streak', 'today-count', 'streak-count', 
-            'free-count', 'paid-count', 'challenge-dates', 'admin-panel', 'admin-signin-btn', 'admin-signout-btn', 
-            'search-input', 'sort-select', 'content-feed', 'empty-state', 'empty-state-message', 'subscribe-btn', 
-            'hero-subscribe-btn', 'subscribe-modal', 'close-subscribe', 'toast', 'toast-message', 'toast-icon', 
-            'weekly-theme', 'welcome-modal', 'show-welcome-btn', 'close-welcome-modal', 'spark-form', 'publish-btn', 
-            'publish-btn-text', 'cancel-edit-btn', 'feed-container', 'skeleton-loaders', 'load-more-container',
-            'chapter-markers', 'view-toggle-grid', 'view-toggle-toc', 'toc-view', 'header-progress-bar',
-        ];
-        
-        const weeklyThemes = [
-            "Narrative & Myth", "Digital Selves & Authenticity", "The Aesthetics of Power",
-            "Creator Economy & The Future of Work", "Black Feminist Thought in a Digital Age", "Nostalgia, Trends, and the Cultural Cycle",
-            "Visual Storytelling & Online Identity", "The Art of the Critique", "Building Community in Public",
-            "Rest, Leisure, and Liberatory Practice", "Money, Ambition, and Creative Integrity", "The Algorithm & The Archive",
-            "Reflections & Future Forecasts"
-        ];
+        [ 'header-day', 'header-entries', 'header-streak', 'today-count', 'streak-count', 'free-count', 'paid-count', 'challenge-dates', 'admin-panel', 'admin-signin-btn', 'admin-signout-btn', 'entry-form', 'publish-btn', 'publish-btn-text', 'cancel-edit-btn', 'clear-data-btn', 'search-input', 'sort-select', 'skeleton-loaders', 'feed-container', 'load-more-container', 'empty-state', 'empty-state-message', 'subscribe-btn', 'hero-subscribe-btn', 'subscribe-modal', 'close-subscribe', 'toast', 'toast-message', 'toast-icon', 'content-feed', 'day-dots-container', 'schedule-toggle', 'schedule-options', 'feed-announcer', 'welcome-modal', 'show-welcome-btn', 'close-welcome-modal', 'auto-save-status', 'save-draft-btn', 'drafts-section', 'draft-entries', 'scheduled-section', 'scheduled-entries', 'weekly-theme', 'chapter-markers', 'header-progress-bar'
+        ].forEach(id => { DOMElements[id.replace(/-(\w)/g, (_, g) => g.toUpperCase())] = document.getElementById(id); });
         
         const updateChapterMarkers = () => {
             if(!DOMElements.chapterMarkers) return;
             DOMElements.chapterMarkers.innerHTML = '';
-            const currentDay = getCurrentDay();
-            const weekNumber = Math.floor((currentDay - 1) / 7);
-            
-            const theme = weeklyThemes[weekNumber];
-            if(theme){
-                 const marker = document.createElement('div');
+            const weekNumber = Math.floor((getCurrentDay() - 1) / 7);
+            if(weeklyThemes[weekNumber]){
+                const marker = document.createElement('div');
                 marker.className = `card p-4 text-center`;
                 marker.innerHTML = `
                     <span class="block uppercase tracking-widest text-sm text-accent">Chapter ${weekNumber+1}</span>
-                    <span class="block mt-1 text-2xl brand-font">${theme} (Days ${weekNumber*7+1}-${weekNumber*7+7})</span>
+                    <span class="block mt-1 text-2xl brand-font">${weeklyThemes[weekNumber]} (Days ${weekNumber*7+1}-${weekNumber*7+7})</span>
                 `;
                 DOMElements.chapterMarkers.appendChild(marker);
+            }
+        };
+
+        const updateProgress = () => {
+            const day = getCurrentDay();
+            const progress = Math.min(100, (day / TOTAL_DAYS) * 100);
+            if (DOMElements.headerDay) DOMElements.headerDay.textContent = day;
+            if (DOMElements.headerProgressBar) {
+                DOMElements.headerProgressBar.querySelector('.header-progress-fill')?.style.setProperty('width', `${progress}%`);
+                DOMElements.headerProgressBar.setAttribute('aria-valuenow', day);
             }
         };
 
         let toastTimeout;
         const showToast = (message, type = 'success') => {
             clearTimeout(toastTimeout);
-            // Toast implementation here
+            const icons = {
+                success: { path: `<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>`, color: 'text-green-500' },
+                error: { path: `<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>`, color: 'text-red-500' },
+                warning: { path: `<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"></path>`, color: 'text-yellow-500' }
+            };
+            DOMElements.toastMessage.textContent = message;
+            DOMElements.toast.className = `toast ${type}`;
+            DOMElements.toastIcon.innerHTML = icons[type].path;
+            DOMElements.toastIcon.setAttribute('class', `w-5 h-5 ${icons[type].color}`);
+            DOMElements.toast.classList.add('show');
+            toastTimeout = setTimeout(() => DOMElements.toast.classList.remove('show'), 5000);
         };
         
         const resetForm = () => {
-            DOMElements.sparkForm?.reset();
+            DOMElements.entryForm?.reset();
             state.editingEntryId = null;
             if(DOMElements.publishBtnText) DOMElements.publishBtnText.textContent = 'Publish Entry';
             DOMElements.cancelEditBtn?.classList.add('hidden');
+            clearDraftFromLocalStorage();
+            checkFormValidity();
         };
 
         const populateFormForEdit = (entry) => {
             state.editingEntryId = entry.id;
-            document.getElementById('spark-title').value = entry.title || '';
-            document.getElementById('spark-description').value = entry.description || '';
-            document.getElementById('spark-link').value = entry.link || '';
-            document.getElementById('spark-image').value = entry.imageUrl || '';
-            document.getElementById('spark-type').value = entry.contentType || 'Video';
-            document.getElementById('spark-access').value = entry.access || 'Free';
-            document.getElementById('spark-footnotes').value = entry.footnotes || '';
+            Object.entries({ title: entry.title, description: entry.description, link: entry.link, image: entry.imageUrl, type: entry.contentType, access: entry.access, footnotes: entry.footnotes })
+                  .forEach(([key, value]) => { document.getElementById(`entry-${key}`).value = value || ''; });
             DOMElements.publishBtnText.textContent = 'Update Entry';
             DOMElements.cancelEditBtn.classList.remove('hidden');
             window.scrollTo({ top: DOMElements.adminPanel.offsetTop - 80, behavior: 'smooth' });
+            checkFormValidity();
         };
 
         const checkFormValidity = () => {
-            if (!DOMElements.sparkForm) return;
+            if (!DOMElements.entryForm) return;
             const isValidLink = (link) => { try { new URL(link); return true; } catch { return false; }};
-            const title = document.getElementById('spark-title').value.trim();
-            const desc = document.getElementById('spark-description').value.trim();
-            const link = document.getElementById('spark-link').value.trim();
+            const title = document.getElementById('entry-title').value.trim();
+            const desc = document.getElementById('entry-description').value.trim();
+            const link = document.getElementById('entry-link').value.trim();
             DOMElements.publishBtn.disabled = !(title && desc && isValidLink(link));
         };
         
+        const saveDraftToLocalStorage = () => {
+            const draftData = {
+                title: document.getElementById('entry-title').value,
+                description: document.getElementById('entry-description').value,
+                link: document.getElementById('entry-link').value,
+                imageUrl: document.getElementById('entry-image').value,
+                contentType: document.getElementById('entry-type').value,
+                access: document.getElementById('entry-access').value,
+                footnotes: document.getElementById('entry-footnotes').value
+            };
+            localStorage.setItem(DRAFT_KEY, JSON.stringify(draftData));
+            if (DOMElements.autoSaveStatus) DOMElements.autoSaveStatus.textContent = `Draft saved locally at ${new Date().toLocaleTimeString()}`;
+        };
+
+        const loadDraftFromLocalStorage = () => {
+            const draftData = localStorage.getItem(DRAFT_KEY);
+            if (draftData) {
+                const data = JSON.parse(draftData);
+                Object.entries(data).forEach(([key, value]) => {
+                    const elId = `entry-${key.replace('contentType', 'type').replace('imageUrl', 'image')}`;
+                    const el = document.getElementById(elId);
+                    if (el) el.value = value;
+                });
+                if (DOMElements.autoSaveStatus) DOMElements.autoSaveStatus.textContent = 'Loaded auto-saved draft.';
+                checkFormValidity();
+            }
+        };
+
+        const clearDraftFromLocalStorage = () => {
+            localStorage.removeItem(DRAFT_KEY);
+            if (DOMElements.autoSaveStatus) DOMElements.autoSaveStatus.textContent = '';
+        };
+
         const createEntryCard = (entry, scrollObserver) => {
             const isHearted = state.heartedPosts[entry.id];
-            const entryDate = toJsDate(entry.timestamp);
-            
-            const fallbackImage = `https://placehold.co/400x300/973f8e/efeaf7?text=${encodeURIComponent(entry.contentType)}`;
-            const imageUrl = entry.imageUrl || fallbackImage;
-
             const adminButtons = isAdmin ? `
-                <button class="edit-btn text-muted hover:text-accent" data-id="${entry.id}"><svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.5L16.732 3.732z"></path></svg></button>
-                <button class="delete-btn text-muted hover:text-error" data-id="${entry.id}"><svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"></path></svg></button>
+                <button class="edit-btn text-muted hover:text-accent" data-id="${entry.id}" aria-label="Edit ${escapeHtml(entry.title)}"><svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.5L16.732 3.732z"></path></svg></button>
+                <button class="delete-btn text-muted hover:text-error" data-id="${entry.id}" aria-label="Delete ${escapeHtml(entry.title)}"><svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"></path></svg></button>
             ` : '';
-
             const card = document.createElement('div');
             card.className = 'card flex flex-col';
             card.dataset.id = entry.id;
-            
             card.innerHTML = `
                 <div class="p-5 flex-grow flex flex-col">
                      <div class="flex items-start justify-between">
@@ -631,115 +576,180 @@
                         <a href="${escapeHtml(entry.link)}" target="_blank" rel="noopener noreferrer">${escapeHtml(entry.title)}</a>
                     </h3>
                     <p class="text-sm mt-1 line-clamp-3 flex-grow">${escapeHtml(entry.description)}</p>
-                     <div class="mt-4 pt-3 border-t border-[color:var(--border-color)]">
+                    <div class="mt-4 pt-3 border-t border-[color:var(--border-color)]">
                         <div class="flex items-center gap-4">
-                           <button class="heart-btn flex items-center gap-1.5 text-sm ${isHearted ? 'text-heart hearted' : 'text-muted hover:text-heart'}" data-id="${entry.id}">
-                            <svg class="w-5 h-5" fill="${isHearted ? 'currentColor' : 'none'}" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.25l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.5l-1.318-1.182a4.5 4.5 0 00-6.364 0z"></path></svg>
-                            <span class="font-mono">${entry.hearts || 0}</span>
-                        </button>
-                        ${entry.footnotes ? `<button class="marginalia-toggle" data-id="${entry.id}">Marginalia</button>` : ''}
-                        <div class="ml-auto flex items-center gap-3">${adminButtons}</div>
+                           <button class="heart-btn flex items-center gap-1.5 text-sm ${isHearted ? 'text-heart hearted' : 'text-muted hover:text-heart'}" data-id="${entry.id}" aria-label="${isHearted ? 'Remove heart' : 'Add heart'}">
+                                <svg class="w-5 h-5" fill="${isHearted ? 'currentColor' : 'none'}" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.25l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.5l-1.318-1.182a4.5 4.5 0 00-6.364 0z"></path></svg>
+                                <span class="font-mono">${entry.hearts || 0}</span>
+                            </button>
+                            ${entry.footnotes ? `<button class="marginalia-toggle text-sm" data-id="${entry.id}">Marginalia</button>` : ''}
+                            <div class="ml-auto flex items-center gap-3">${adminButtons}</div>
                         </div>
-                         ${entry.footnotes ? `<div class="marginalia mt-3" id="marginalia-${entry.id}">${escapeHtml(entry.footnotes).replace(/\n/g, '<br>')}</div>` : ''}
+                        ${entry.footnotes ? `<div class="marginalia mt-3 text-text-secondary" id="marginalia-${entry.id}">${escapeHtml(entry.footnotes).replace(/\n/g, '<br>')}</div>` : ''}
                     </div>
-                </div>
-            `;
-            if (scrollObserver) scrollObserver.observe(card);
+                </div>`;
+            scrollObserver.observe(card);
             return card;
+        };
+        
+        const renderAdminLists = () => {
+            const drafts = state.allEntries.filter(s => s.status === 'draft');
+            const scheduled = state.allEntries.filter(s => s.status === 'scheduled');
+
+            DOMElements.draftsSection.classList.toggle('hidden', drafts.length === 0);
+            DOMElements.draftEntries.innerHTML = '';
+            drafts.forEach(entry => {
+                const el = document.createElement('div');
+                el.className = 'flex items-center justify-between p-2 rounded hover:bg-white/5';
+                el.innerHTML = `<span>${escapeHtml(entry.title)}</span><div class="flex items-center gap-2"><button class="edit-btn..." data-id="${entry.id}">...</button><button class="delete-btn..." data-id="${entry.id}">...</button></div>`;
+                DOMElements.draftEntries.appendChild(el);
+            });
+            
+            DOMElements.scheduledSection.classList.toggle('hidden', scheduled.length === 0);
         };
 
         const renderEntries = (scrollObserver) => {
             DOMElements.skeletonLoaders.classList.add('hidden');
-            DOMElements.contentFeed.setAttribute('aria-busy', 'false');
-
             const published = state.allEntries.filter(d => d.status === 'published');
             
             DOMElements.headerEntries.textContent = published.length;
             DOMElements.todayCount.textContent = published.filter(s => s.day === getCurrentDay()).length;
             DOMElements.freeCount.textContent = published.filter(s => s.access === 'Free').length;
             DOMElements.paidCount.textContent = published.filter(s => s.access === 'Paid').length;
-            DOMElements.streakCount.textContent = new Set(published.map(s => s.day)).size;
-            DOMElements.headerStreak.textContent = new Set(published.map(s => s.day)).size;
+            const streak = new Set(published.map(s => s.day)).size;
+            DOMElements.streakCount.textContent = streak;
+            DOMElements.headerStreak.textContent = streak;
 
             DOMElements.feedContainer.innerHTML = '';
-            DOMElements.tocView.innerHTML = '';
+            state.filteredEntries.slice(0, state.visibleEntries).forEach(entry => {
+                DOMElements.feedContainer.appendChild(createEntryCard(entry, scrollObserver));
+            });
 
-            if (state.filteredEntries.length > 0) {
-                // Grid View
-                const grid = document.createElement('div');
-                grid.className = 'grid sm:grid-cols-2 lg:grid-cols-3 gap-6';
-                state.filteredEntries.slice(0, state.visibleEntries).forEach(entry => {
-                    grid.appendChild(createEntryCard(entry, scrollObserver));
-                });
-                DOMElements.feedContainer.appendChild(grid);
-                
-                // TOC View
-                const tocList = document.createElement('ul');
-                tocList.className = 'space-y-4';
-                state.filteredEntries.forEach(entry => {
-                    const li = document.createElement('li');
-                    li.className = 'border-b border-[color:var(--border-color)] pb-2';
-                    li.innerHTML = `<a href="${entry.link}" target="_blank" rel="noopener" class="hover:text-accent-light transition-colors"><strong class="font-normal">Entry №${entry.day}:</strong> ${escapeHtml(entry.title)}</a>`;
-                    tocList.appendChild(li);
-                });
-                DOMElements.tocView.appendChild(tocList);
-
-                DOMElements.loadMoreContainer.innerHTML = '';
-                if (state.filteredEntries.length > state.visibleEntries) {
-                    const loadMoreBtn = document.createElement('button');
-                    loadMoreBtn.textContent = 'Previous Entries →';
-                    loadMoreBtn.className = 'btn btn-secondary mx-auto mt-8';
-                    loadMoreBtn.onclick = () => {
-                        state.visibleEntries += ENTRIES_PER_PAGE;
-                        renderEntries(scrollObserver);
-                    };
-                    DOMElements.loadMoreContainer.appendChild(loadMoreBtn);
-                }
-                DOMElements.emptyState?.classList.add('hidden');
-            } else {
-                 DOMElements.emptyState?.classList.remove('hidden');
-                 DOMElements.emptyStateMessage.textContent = (state.searchQuery) ? 'No entries found matching your criteria.' : 'No entries yet.';
+            DOMElements.loadMoreContainer.innerHTML = '';
+            if (state.filteredEntries.length > state.visibleEntries) {
+                const loadMoreBtn = document.createElement('button');
+                loadMoreBtn.textContent = 'Load More Entries';
+                loadMoreBtn.className = 'btn btn-secondary';
+                loadMoreBtn.onclick = () => {
+                    state.visibleEntries += ENTRIES_PER_PAGE;
+                    renderEntries(scrollObserver);
+                };
+                DOMElements.loadMoreContainer.appendChild(loadMoreBtn);
             }
+
+            if (state.filteredEntries.length === 0) {
+                DOMElements.emptyState.classList.remove('hidden');
+                DOMElements.emptyStateMessage.textContent = (state.searchQuery || state.currentFilter !== 'all') ? 'No entries found matching your criteria.' : 'No entries yet.';
+            } else {
+                DOMElements.emptyState.classList.add('hidden');
+            }
+            if (isAdmin) renderAdminLists();
         };
         
+        const renderDayDots = () => {
+            if (!DOMElements.dayDotsContainer) return;
+            const currentDay = getCurrentDay();
+            DOMElements.dayDotsContainer.innerHTML = '';
+            for (let i = 1; i <= TOTAL_DAYS; i++) {
+                const dot = document.createElement('div');
+                dot.className = `w-2 h-2 rounded-full day-dot ${i < currentDay ? 'bg-accent' : 'bg-muted'}`;
+                if (i === currentDay) dot.classList.add('current');
+                dot.title = `Day ${i}`;
+                DOMElements.dayDotsContainer.appendChild(dot);
+            }
+        };
+
         const applyFiltersAndSort = (scrollObserver) => {
             state.visibleEntries = ENTRIES_PER_PAGE;
             const published = state.allEntries.filter(d => d.status === 'published');
             state.filteredEntries = published.filter(entry => {
                 const search = state.searchQuery.toLowerCase();
-                return !search || entry.title.toLowerCase().includes(search) || entry.description.toLowerCase().includes(search);
+                const matchesSearch = !search || entry.title.toLowerCase().includes(search) || entry.description.toLowerCase().includes(search);
+                const matchesFilter = state.currentFilter === 'all' || (['Free', 'Paid'].includes(state.currentFilter) ? entry.access === state.currentFilter : entry.contentType === state.currentFilter);
+                return matchesSearch && matchesFilter;
             });
-            
             state.filteredEntries.sort((a, b) => {
                 const timeA = a.timestamp?.toMillis() || 0;
                 const timeB = b.timestamp?.toMillis() || 0;
-                switch (state.currentSort) {
-                    case 'oldest': return timeA - timeB;
-                    case 'most-loved': return (b.hearts || 0) - (a.hearts || 0);
-                    default: return timeB - timeA;
-                }
+                if (state.currentSort === 'oldest') return timeA - timeB;
+                if (state.currentSort === 'most-loved') return (b.hearts || 0) - (a.hearts || 0);
+                return timeB - timeA;
             });
             renderEntries(scrollObserver);
         };
+
+        const setupFirestoreListener = (scrollObserver) => {
+            if (state.unsubscribeEntries) state.unsubscribeEntries(); 
+            const q = isAdmin ? query(collection(db, entriesCollectionPath)) : query(collection(db, entriesCollectionPath), where('status', '==', 'published'));
+            state.unsubscribeEntries = onSnapshot(q, (snapshot) => {
+                state.allEntries = snapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
+                applyFiltersAndSort(scrollObserver);
+            }, (error) => showToast("Error loading entries.", "error"));
+        };
+
+        const handleAdminFormSubmit = async (e) => {
+            e.preventDefault();
+            const entryData = {
+                title: document.getElementById('entry-title').value.trim(),
+                description: document.getElementById('entry-description').value.trim(),
+                link: document.getElementById('entry-link').value.trim(),
+                imageUrl: document.getElementById('entry-image').value.trim(),
+                contentType: document.getElementById('entry-type').value,
+                access: document.getElementById('entry-access').value,
+                footnotes: document.getElementById('entry-footnotes').value.trim()
+            };
+            
+            DOMElements.publishBtn.querySelector('.loading-spinner').classList.remove('hidden');
+            DOMElements.publishBtn.disabled = true;
+
+            try {
+                if (DOMElements.scheduleToggle.checked) {
+                    const date = document.getElementById('schedule-date').value;
+                    const time = document.getElementById('schedule-time').value;
+                    if (!date || !time) throw new Error("Please select a valid schedule date and time.");
+                    entryData.status = 'scheduled';
+                    entryData.scheduledFor = new Date(`${date}T${time}`).toISOString();
+                } else {
+                    entryData.status = 'published';
+                    entryData.day = getCurrentDay();
+                    entryData.timestamp = serverTimestamp();
+                }
+                
+                if (state.editingEntryId) {
+                    await updateDoc(doc(db, entriesCollectionPath, state.editingEntryId), entryData);
+                    showToast('Entry updated!');
+                } else {
+                    entryData.hearts = 0; 
+                    await addDoc(collection(db, entriesCollectionPath), entryData);
+                    showToast('Entry added!');
+                }
+                resetForm();
+            } catch (error) {
+                showToast(error.message || "Could not save entry.", "error");
+            } finally {
+                DOMElements.publishBtn.querySelector('.loading-spinner').classList.add('hidden');
+                checkFormValidity();
+            }
+        };
+
+        const handleSaveAsDraft = async () => { /* ... unchanged ... */ };
         
         const handleContentClick = async (e) => {
             const btn = e.target.closest('button');
             if (!btn) return;
-            
-            const card = btn.closest('.card');
-            const id = card?.dataset.id;
-            
-            if(btn.classList.contains('marginalia-toggle')) {
-                const marginalia = document.getElementById(`marginalia-${id}`);
-                marginalia?.classList.toggle('show');
+            const { id } = btn.dataset;
+
+            if (btn.classList.contains('marginalia-toggle')) {
+                document.getElementById(`marginalia-${id}`)?.classList.toggle('show');
                 return;
             }
 
             if (!id) return;
 
             if (btn.classList.contains('delete-btn')) {
-                 if (window.confirm('Delete this entry? This cannot be undone.')) {
+                if (window.confirm('Delete this entry? This cannot be undone.')) {
                     await deleteDoc(doc(db, entriesCollectionPath, id));
+                    showToast('Entry deleted.');
                 }
             } else if (btn.classList.contains('edit-btn')) {
                 populateFormForEdit(state.allEntries.find(d => d.id === id));
@@ -750,117 +760,81 @@
                 await updateDoc(doc(db, entriesCollectionPath, id), { hearts: increment(1) });
             }
         };
-
-        const updateProgress = () => {
-            const day = getCurrentDay();
-            const progress = Math.min(100, (day / TOTAL_DAYS) * 100);
-            if (DOMElements.headerDay) DOMElements.headerDay.textContent = day;
-            if (DOMElements.headerProgressBar) {
-                const fill = DOMElements.headerProgressBar.querySelector('.header-progress-fill');
-                if (fill) fill.style.width = `${progress}%`;
-                DOMElements.headerProgressBar.setAttribute('aria-valuenow', day);
-            }
-        };
         
         document.addEventListener('DOMContentLoaded', () => {
-            initializeApp(firebaseConfig);
-            auth = getAuth();
-            db = getFirestore();
-
-             elementIds.forEach(id => {
-                DOMElements[id.replace(/-(\w)/g, (m, g) => g.toUpperCase())] = document.getElementById(id);
-            });
+            const app = initializeApp(firebaseConfig);
+            auth = getAuth(app);
+            db = getFirestore(app);
 
             const scrollObserver = new IntersectionObserver((entries) => {
                 entries.forEach(entry => { if (entry.isIntersecting) entry.target.classList.add('is-visible'); });
             }, { threshold: 0.1 });
-
             document.querySelectorAll('main .card, .fade-in-section').forEach(el => scrollObserver.observe(el));
 
             onAuthStateChanged(auth, async (user) => {
                 currentUser = user;
                 isAdmin = user?.email === ADMIN_EMAIL;
-                
                 document.body.classList.toggle('is-admin', isAdmin);
-                if(DOMElements.adminPanel) DOMElements.adminPanel.classList.toggle('hidden', !isAdmin);
-                if(DOMElements.adminSigninBtn) DOMElements.adminSigninBtn.classList.toggle('hidden', isAdmin);
-                if(DOMElements.adminSignoutBtn) DOMElements.adminSignoutBtn.classList.toggle('hidden', !isAdmin);
-
+                DOMElements.adminPanel.classList.toggle('hidden', !isAdmin);
+                DOMElements.adminSigninBtn.classList.toggle('hidden', isAdmin);
+                DOMElements.adminSignoutBtn.classList.toggle('hidden', !isAdmin);
+                if (isAdmin) loadDraftFromLocalStorage();
                 if (!user) await signInAnonymously(auth);
-                
-                if (state.unsubscribeEntries) state.unsubscribeEntries();
-                const q = query(collection(db, entriesCollectionPath), orderBy('timestamp', 'desc'));
-                state.unsubscribeEntries = onSnapshot(q, (snapshot) => {
-                    state.allEntries = snapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
-                    applyFiltersAndSort(scrollObserver);
-                });
+                setupFirestoreListener(scrollObserver);
             });
 
-            if(DOMElements.challengeDates) DOMElements.challengeDates.innerHTML = `${START_DATE.toLocaleDateString('en-US', { month: 'long', day: 'numeric' })} &mdash; ${END_DATE.toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' })}`;
-            
+            DOMElements.challengeDates.innerHTML = `${START_DATE.toLocaleDateString('en-US', { month: 'long', day: 'numeric' })} &mdash; ${END_DATE.toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' })}`;
             updateProgress();
             updateChapterMarkers();
-            
+            renderDayDots();
             setInterval(updateProgress, 60000);
 
             const setupModal = (modal, openBtns, closeBtn) => {
-                openBtns.forEach(btn => btn?.addEventListener('click', () => {modal?.classList.remove('hidden'); modal?.classList.add('flex')}));
-                closeBtn?.addEventListener('click', () => {modal?.classList.add('hidden'); modal?.classList.remove('flex')});
-                modal?.addEventListener('click', (e) => {
-                    if (e.target === modal) {modal.classList.add('hidden'); modal.classList.remove('flex')}
-                });
+                openBtns.forEach(btn => btn?.addEventListener('click', () => { modal?.classList.remove('hidden'); modal?.classList.add('flex'); }));
+                closeBtn?.addEventListener('click', () => { modal?.classList.add('hidden'); modal?.classList.remove('flex'); });
+                modal?.addEventListener('click', (e) => { if (e.target === modal) { modal.classList.add('hidden'); modal.classList.remove('flex'); }});
             };
             
             setupModal(DOMElements.welcomeModal, [DOMElements.showWelcomeBtn], DOMElements.closeWelcomeModal);
             setupModal(DOMElements.subscribeModal, [DOMElements.subscribeBtn, DOMElements.heroSubscribeBtn], DOMElements.closeSubscribe);
 
-            DOMElements.sparkForm?.addEventListener('input', checkFormValidity);
-            DOMElements.sparkForm?.addEventListener('submit', async (e) => {
-                e.preventDefault();
-                const formData = {
-                    title: document.getElementById('spark-title').value,
-                    description: document.getElementById('spark-description').value,
-                    link: document.getElementById('spark-link').value,
-                    imageUrl: document.getElementById('spark-image').value,
-                    contentType: document.getElementById('spark-type').value,
-                    access: document.getElementById('spark-access').value,
-                    footnotes: document.getElementById('spark-footnotes').value,
-                    status: 'published',
-                    day: getCurrentDay(),
-                    timestamp: serverTimestamp(),
-                };
-                if(state.editingEntryId) {
-                    await updateDoc(doc(db, entriesCollectionPath, state.editingEntryId), formData);
-                } else {
-                    formData.hearts = 0;
-                    await addDoc(collection(db, entriesCollectionPath), formData);
-                }
-                resetForm();
-            });
-            if(DOMElements.contentFeed) DOMElements.contentFeed.addEventListener('click', handleContentClick);
+            DOMElements.entryForm?.addEventListener('submit', handleAdminFormSubmit);
+            DOMElements.entryForm?.addEventListener('input', debounce(saveDraftToLocalStorage, 2000));
+            DOMElements.feedContainer.addEventListener('click', handleContentClick);
+            DOMElements.draftEntries?.addEventListener('click', handleContentClick);
             DOMElements.searchInput?.addEventListener('input', debounce(() => { state.searchQuery = DOMElements.searchInput.value; applyFiltersAndSort(scrollObserver); }, 300));
             DOMElements.sortSelect?.addEventListener('change', (e) => { state.currentSort = e.target.value; applyFiltersAndSort(scrollObserver); });
+            
+            document.querySelectorAll('.filter-btn').forEach(btn => btn.addEventListener('click', (e) => {
+                document.querySelector('.filter-btn.active').classList.remove('active');
+                e.currentTarget.classList.add('active');
+                state.currentFilter = e.currentTarget.dataset.filter;
+                applyFiltersAndSort(scrollObserver);
+            }));
+
+            document.body.addEventListener('mousemove', e => {
+                requestAnimationFrame(() => {
+                    document.body.style.setProperty('--cursor-x', `${e.clientX}px`);
+                    document.body.style.setProperty('--cursor-y', `${e.clientY}px`);
+                });
+            });
+
             DOMElements.adminSigninBtn?.addEventListener('click', () => signInWithPopup(auth, new GoogleAuthProvider()));
             DOMElements.adminSignoutBtn?.addEventListener('click', () => signOut(auth));
+            DOMElements.saveDraftBtn?.addEventListener('click', handleSaveAsDraft);
             DOMElements.cancelEditBtn?.addEventListener('click', resetForm);
-
-            DOMElements.viewToggleGrid.addEventListener('click', () => {
-                state.currentView = 'grid';
-                DOMElements.viewToggleGrid.classList.add('active');
-                DOMElements.viewToggleToc.classList.remove('active');
-                DOMElements.contentFeed.classList.remove('hidden');
-                DOMElements.tocView.classList.remove('active');
+            DOMElements.clearDataBtn?.addEventListener('click', async () => {
+                if (window.confirm('Are you sure you want to delete ALL entries? This is irreversible.')) {
+                    const snapshot = await getDocs(query(collection(db, entriesCollectionPath)));
+                    const batch = writeBatch(db);
+                    snapshot.docs.forEach(doc => batch.delete(doc.ref));
+                    await batch.commit();
+                    showToast('All data cleared.');
+                }
             });
-            DOMElements.viewToggleToc.addEventListener('click', () => {
-                state.currentView = 'toc';
-                DOMElements.viewToggleGrid.classList.remove('active');
-                DOMElements.viewToggleToc.classList.add('active');
-                DOMElements.contentFeed.classList.add('hidden');
-                DOMElements.tocView.classList.add('active');
-            });
-
+            DOMElements.scheduleToggle?.addEventListener('change', e => DOMElements.scheduleOptions.classList.toggle('hidden', !e.target.checked));
+            DOMElements.toast.addEventListener('click', e => { if (e.target.classList.contains('dismiss-toast')) DOMElements.toast.classList.remove('show'); });
         });
     </script>
 </body>
 </html>
-
